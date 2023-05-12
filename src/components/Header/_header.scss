@@ -1,0 +1,158 @@
+
+
+.header{
+    max-width: $container-xl;
+    margin: 0 auto;
+
+    padding: 32px 24px;
+
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    overflow: hidden;
+
+    @include responsive(s) {
+        flex-direction: column;
+    
+        padding: 32px 18px;
+      }
+      
+    .header-menu{
+        .logo{
+            // border: 1px solid rgb(103, 103, 103);
+            background-image: url("../assets/icons/logoIcon.svg");
+            background-position: center center;
+            background-size: cover;
+            background-repeat: no-repeat;
+            width: 295px;
+            height: 57px;
+
+            cursor: pointer;
+        }
+        .menu-list{
+            
+            .menu-item{
+                position: relative;
+                text-align: left;
+
+                padding-left: 0;
+
+                color: $white-normal;
+                opacity: .88;
+
+                @include typeface-1(h5, desktop);
+                @include responsive(s) {
+                    @include typeface-1(h5, mobile);
+                }
+
+                cursor: pointer;
+
+                &::after{
+                    content: "";
+                    display: block;
+
+                    position: absolute;
+                    bottom: 0;
+                    left: -5px;
+
+                    width: 0%;
+                    height: 2px;
+
+                    opacity: 0;
+                    
+                    background: linear-gradient(89.97deg, #E50914 0%, rgba(8, 5, 6, 0) 101.2%);
+                    transform: matrix(1, 0, 0.28, 0.96, 0, 0);
+
+                    transition: .3s ease;
+                }
+                transition: .3s ease;
+                &:hover{
+                    color: white;
+                    opacity: 1;
+
+                    transform: translateX(1px);
+                    &::after{
+                        width: 100%;
+                        opacity: 1;
+
+                        transform: translateX(6px);
+
+                    }
+                }
+            }
+        }
+    }
+    .header-user{
+
+        .search{
+            position: relative;
+            width: 40px ;
+            height: 40px;
+            border: 2px solid $white-normal;
+            border-radius: 100%;
+            opacity: .8;
+
+            &::after{
+                content: "";
+                position: absolute;
+                display: inline-block;
+
+                width: 24px;
+                height: 24px;
+
+                top: 20%;
+                left: 20%;
+
+                background-image: url("../assets/icons/searchIcon.svg");
+                background-position: center center;
+                background-size: cover;
+                background-repeat: no-repeat;
+            }
+        }
+    }
+}
+
+
+
+
+
+
+
+
+// lixo
+// icone que abre barra de busca
+
+ // .search{
+        //     position: relative;
+        //     width: 50px;
+        //     input{
+        //         position: relative;
+        //         width: 100%;
+        //         border: none;
+        //         border-radius: 32px;
+        //         padding: 16px 24px;
+
+        //         &:focus{
+        //             outline: none;
+        //             box-shadow: 0 0 0 0;
+        //         }
+        //     }
+        //     &::after{
+        //         content: "";
+        //         display: inline-block;
+        //         position: absolute;
+        //         top: -4%;
+        //         right: 0px;
+        //         width: 50px;
+        //         height: 50px;
+        //         border-radius: 50%;
+        //         border: 1px solid red;
+        //         background-color: red;
+        //         // opacity: 0;
+        //     }
+        //     transition: .5s ease;
+        //         &:hover{
+        //             width: 200px;
+        //             transform: translateX(2px);
+        //         }
+        // }

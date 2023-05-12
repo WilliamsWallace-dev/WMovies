@@ -1,0 +1,56 @@
+*,
+*:after,
+*:before {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+@import "partials/colors";
+@import "partials/layout";
+@import "partials/typography";
+@import "partials/buttons";
+@import "partials/spacing";
+
+html {
+  // Scrool mais suave de transição
+  scroll-behavior: smooth;
+}
+body {
+  width: 100%;
+  height: 100vh;
+  position: relative;
+
+  // teste
+  // display: flex;
+  // justify-content: center;
+  // align-items: center;
+
+  scroll-behavior: smooth;
+
+  background-color: $black-dark;
+}
+
+// Para deixar imagens e SVGs fluidos
+svg {
+  width: 100%;
+}
+
+img {
+  width: 100%;
+}
+
+li{
+  list-style: none;
+}
+
+.border {
+  border: 1px solid red;
+}
+
+@import "partials/swiper";
+@import "partials/icons";
+@import "../components/Header/header";
+@import "../components/UserButton/userButton";
+@import "../components/SearchButton/searchButton";
+@import "../components/SwitchMain/switchMain"
