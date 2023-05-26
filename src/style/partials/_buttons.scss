@@ -1,87 +1,138 @@
-.btn {
-  background: linear-gradient(220.94deg, #a950c4 14.43%, #82269e 85.28%);
-  border-radius: 14px;
-  text-decoration: none;
-  @include typeface-2(p3, desktop);
-  color: $white-light;
+.starButton{
+        position: relative;
+        background-color: transparent;
+        text-decoration: none;
+        border: none;
+    
+    cursor: pointer;
 
-  padding: 12px 32px;
+    // border: 1px solid red;
+    color: $white-normal;
+    text-transform: uppercase;
 
-  transition: 0.3s ease;
+    background: rgba(240, 223, 223, 0.16);
+    
+    width: 144px;
+    height: 40px;
 
-  box-shadow: 0px 17px 17px rgba(204, 204, 204, 0.04),
-    0px 5.125px 5.125px rgba(204, 204, 204, 0.0260636),
-    0px 2.12866px 2.12866px rgba(204, 204, 204, 0.02),
-    0px 0.769896px 0.769896px rgba(204, 204, 204, 0.0139364);
+    border-radius: 26px;
+    padding-left: 26px;
 
-  &:hover {
-    box-shadow: 0px 17px 17px rgba(169, 80, 196, 0.13),
-      0px 5.125px 5.125px rgba(169, 80, 196, 0.0847066),
-      0px 2.12866px 2.12866px rgba(169, 80, 196, 0.065),
-      0px 0.769896px 0.769896px rgba(169, 80, 196, 0.0452935);
-    transform: scale(1.02);
-    opacity: 0.9;
-  }
-}
+    &::before{
+        content: "";
+        display: inline-block;
+        position: absolute;
 
-a {
-  @include typeface-2(p2, desktop);
-  text-decoration: none;
-  color: $black-normal;
-  transition: 0.5s ease;
+        top: 22%;
+        left: 10%;
+        width: 16px;
+        height: 20px;
 
-  &:hover {
-    opacity: 0.9;
-  }
-}
-
-.link {
-  display: inline-block;
-
-  color: $primary-normal;
-  background-image: url("../svg/icon-arrow.svg");
-  background-repeat: no-repeat;
-  background-position: 0% 50%;
-  font-size: 18px;
-
-  transition: 0.5s ease;
-
-  padding-top: 16px;
-  padding-bottom: 16px;
-  padding-left: 40px;
-  padding-right: 16px;
-
-  position: relative;
-
-  &:after {
-    content: "";
-    position: absolute;
-    top: 75%;
-    left: 56px;
-
-    width: 0%;
-    height: 2px;
-    z-index: -1;
-
-    transition: 0.5s ease;
-
-    background-color: $secondary-light;
-  }
-
-  &:hover {
-    opacity: 0.8;
-    padding-left: 64px;
-    background-position: 8px 50%;
-
-    &:after {
-      width: 90%;
+        background-image: url("../assets/icons/backgroundStar.svg");
+        background-position: center center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        transition: .5s ease;
     }
-  }
+    transition: .5s ease;
+    &:hover{
+        opacity: 1;
+        background: rgba(240, 223, 223, 0.32);
+        filter: drop-shadow(0px 4px 32px rgba(0, 0, 0, 0.25)) drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+        transform: translateY(-2px);
+        &::before{
+            background-image: url("../assets/icons/backgroundStarHover.svg");
+        }
+    }
 }
 
-.button {
-  transition: 0.5s ease;
-  &:hover {
-    transform: scale(1.05);
+
+.sumButton{
+  position: relative;
+  background-color: transparent;
+  text-decoration: none;
+  border: none;
+
+cursor: pointer;
+
+// border: 1px solid red;
+color: $white-normal;
+text-transform: uppercase;
+
+background: rgba(240, 223, 223, 0.16);
+
+width: 144px;
+height: 40px;
+
+border-radius: 26px;
+padding-left: 26px;
+
+&::before{
+  content: "+";
+  font-size: 24px;
+  display: inline-block;
+  position: absolute;
+
+  top: 20.5%;
+  left: 10%;
+  width: 16px;
+  height: 20px;
+
+  transition: .5s ease;
+}
+transition: .5s ease;
+&:hover{
+  opacity: 1;
+  background: rgba(240, 223, 223, 0.32);
+  filter: drop-shadow(0px 4px 32px rgba(0, 0, 0, 0.25)) drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+  transform: translateY(-2px);
+}
+}
+
+.popularButton{
+  position: relative;
+  background-color: transparent;
+  text-decoration: none;
+  border: none;
+
+cursor: pointer;
+
+// border: 1px solid red;
+color: $white-normal;
+text-transform: uppercase;
+
+background: rgba(240, 223, 223, 0.16);
+
+width: 144px;
+height: 40px;
+
+border-radius: 26px;
+padding-left: 23px;
+
+&::before{
+  content: "";
+  display: inline-block;
+  position: absolute;
+
+  top: 22%;
+  left: 10%;
+  width: 20px;
+  height: 20px;
+
+  background-image: url("../assets/icons/backgroundPopular.svg");
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  transition: .5s ease;
+}
+transition: .5s ease;
+&:hover{
+  opacity: 1;
+  background: rgba(240, 223, 223, 0.32);
+  filter: drop-shadow(0px 4px 32px rgba(0, 0, 0, 0.25)) drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+  transform: translateY(-2px);
+  &::before{
+      background-image: url("../assets/icons/backgroundPopularHover.svg");
   }
+}
 }

@@ -1,21 +1,39 @@
 
 
 .header{
-    max-width: $container-xl;
-    margin: 0 auto;
+    max-width: 100%;
+    // margin: 0 72px;
 
-    padding: 32px 24px;
+    position: relative;
+
+    padding: 32px 96px;
 
     display: flex;
     align-items: center;
     flex-direction: row;
     overflow: hidden;
 
+    z-index: 999;
+
     @include responsive(s) {
         flex-direction: column;
     
         padding: 32px 18px;
       }
+      
+    // border: 1px solid red;
+
+    &::after{
+        content: "";
+        display: block;
+        position: absolute;
+
+        bottom: 0;
+
+        height: 1.2px;
+        width: 40%;
+        background: linear-gradient(90deg, rgba(8, 5, 6, 0) 0%, rgba(252, 248, 248, 0.880208) 50%, rgba(8, 5, 6, 0) 91.67%);   
+    }
       
     .header-menu{
         .logo{
@@ -24,8 +42,8 @@
             background-position: center center;
             background-size: cover;
             background-repeat: no-repeat;
-            width: 295px;
-            height: 57px;
+            width: 200px;
+            height: 38.69px;
 
             cursor: pointer;
         }
@@ -40,10 +58,12 @@
                 color: $white-normal;
                 opacity: .88;
 
-                @include typeface-1(h5, desktop);
+                @include typeface-2(p1, desktop);
                 @include responsive(s) {
-                    @include typeface-1(h5, mobile);
+                    @include typeface-2(p1, mobile);
                 }
+
+                font-weight: 600;
 
                 cursor: pointer;
 
@@ -72,7 +92,7 @@
 
                     transform: translateX(1px);
                     &::after{
-                        width: 100%;
+                        width: 70%;
                         opacity: 1;
 
                         transform: translateX(6px);

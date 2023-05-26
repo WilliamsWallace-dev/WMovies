@@ -4,20 +4,21 @@
   font-family: "Mulish", sans-serif;
 
   @if $size == h1 and $device == desktop {
-    font-size: 64px;
+    font-size: 36px;
     line-height: 100%;
   } @else if $size == h1 and $device == mobile {
     font-size: 36px;
     line-height: 100%;
   } @else if $size == h2 and $device == desktop {
-    font-size: 52px;
+    font-size: 32px;
     line-height: 100%;
   } @else if $size == h2 and $device == mobile {
     font-size: 36px;
     line-height: 100%;
   } @else if $size == h3 and $device == desktop {
-    font-size: 36px;
+    font-size: 32px;
     line-height: 120%;
+    font-weight: 600;
   } @else if $size == h3 and $device == mobile {
     font-size: 24px;
     line-height: 120%;
@@ -37,54 +38,65 @@
 }
 
 @mixin typeface-2($size: p2, $device: desktop) {
-  font-family: "Source Sans Pro", sans-serif;
+  font-family: "Mulish", sans-serif;
 
   @if $size == p1 and $device == desktop {
-    font-size: 20px;
+    font-size: 14px;
     line-height: 130%;
     font-weight: 400;
   } @else if $size == p1 and $device == mobile {
-    font-size: 18px;
+    font-size: 14px;
     line-height: 130%;
     font-weight: 400;
   } @else if $size == p2 and $device == desktop {
-    font-size: 20px;
+    font-size: 13px;
     line-height: 140%;
-    font-weight: 300;
+    font-weight: 400;
   } @else if $size == p2 and $device == mobile {
-    font-size: 18px;
+    font-size: 13px;
     line-height: 150%;
-    font-weight: 300;
+    font-weight: 400;
   } @else if $size == p3 and $device == desktop {
-    font-size: 16px;
+    font-size: 12px;
     line-height: 150%;
-    font-weight: 400;
+    font-weight: 800;
   } @else if $size == p3 and $device == mobile {
-    font-size: 16px;
+    font-size: 12px;
     line-height: 150%;
-    font-weight: 400;
+    font-weight: 800;
   }@else if $size == p4 and $device == desktop {
-    font-size: 14px;
+    font-size: 12px;
     line-height: 150%;
-    font-weight: 300;
+    font-weight: 800;
+    text-transform: uppercase;
   } @else if $size == p4 and $device == mobile {
-    font-size: 14px;
+    font-size: 12px;
     line-height: 150%;
-    font-weight: 300;
+    font-weight: 800;
+    text-transform: uppercase;
   } @else if $size == p5 and $device == desktop {
     font-size: 14px;
     line-height: 150%;
-    font-weight: 800;
+    font-weight: 600;
   } @else if $size == p5 and $device == mobile {
     font-size: 14px;
     line-height: 150%;
-    font-weight: 800;
+    font-weight: 600;
+  }@else if $size == p6 and $device == desktop {
+    font-size: 15px;
+    line-height: 150%;
+    font-weight: 600;
+  } @else if $size == p6 and $device == mobile {
+    font-size: 12px;
+    line-height: 150%;
+    font-weight: 600;
   }
   
 }
 
 h1 {
-  color: $white-light;
+  text-shadow: 0px 2px 4px rgba(0, 0, 0, 64);
+  color: white;
   @include typeface-1(h1, desktop);
   @include responsive(s) {
     @include typeface-1(h1, mobile);
@@ -124,50 +136,46 @@ h5 {
 
 p {
   color: $white-normal;
-  opacity: .8;
+  text-shadow: 0px 4px 8px rgba(0, 0, 0, 64);
   @include typeface-2(p2, desktop);
   @include responsive(s) {
     @include typeface-2(p2, mobile);
   }
 }
 .p1 {
-  color: $white-normal;
-  opacity: .8;
   @include typeface-2(p1, desktop);
   @include responsive(s) {
     @include typeface-2(p1, mobile);
   }
 }
 .p2 {
-  color: $white-normal;
-  opacity: .8;
   @include typeface-2(p2, desktop);
   @include responsive(s) {
     @include typeface-2(p2, mobile);
   }
 }
 .p3 {
-  color: $white-normal;
-  opacity: .8;
   @include typeface-2(p3, desktop);
   @include responsive(s) {
     @include typeface-2(p3, mobile);
   }
 }
 .p4 {
-  color: $white-normal;
-  opacity: .8;
   @include typeface-2(p4, desktop);
   @include responsive(s) {
     @include typeface-2(p4, mobile);
   }
 }
 .p5 {
-  color: $white-normal;
-  opacity: .8;
   @include typeface-2(p5, desktop);
   @include responsive(s) {
     @include typeface-2(p5, mobile);
+  }
+}
+.p6 {
+  @include typeface-2(p6, desktop);
+  @include responsive(s) {
+    @include typeface-2(p6, mobile);
   }
 }
 
@@ -186,4 +194,8 @@ strong {
 
 .text-center {
   text-align: center;
+}
+
+.text-left{
+  text-align: left;
 }

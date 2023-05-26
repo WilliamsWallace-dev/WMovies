@@ -31,6 +31,13 @@ body {
   background-color: $black-dark;
 }
 
+#root{
+  width: 100%;
+  height: 100%;
+  // background-color: red;
+  // position: absolute;
+}
+
 // Para deixar imagens e SVGs fluidos
 svg {
   width: 100%;
@@ -53,4 +60,5 @@ li{
 @import "../components/Header/header";
 @import "../components/UserButton/userButton";
 @import "../components/SearchButton/searchButton";
-@import "../components/SwitchMain/switchMain"
+@import "../components/SwiperMainItem/swiperMainItem";
+@import "../components/SwiperListItem/swiperListItem"
