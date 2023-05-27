@@ -12,10 +12,21 @@ import "./swiperMain.css"
 // import Swiper core and required modules
 import { EffectFade,Navigation, Pagination, Scrollbar, A11y,Autoplay } from '../../../node_modules/swiper';
 // import Header from "../Header";
-import { ReactNode } from "react";
+import { ReactNode, useContext, useEffect } from "react";
+import { AppContext } from "../../context/AppContext";
+import { AppContextType, MovieType } from "../../Types";
 
 
 export default function SwiperMain({children} : {children? : ReactNode}){
+
+    const {swiperMainMovies, SwiperMainMoviesNowPlaying} = useContext(AppContext) as AppContextType;
+
+
+    useEffect(()=>{
+        SwiperMainMoviesNowPlaying();
+    },[])
+
+
     return(
         <>
         <section className= {children ? "SwiperMain mb-4" : "SwiperSecondary my-5"}>
@@ -27,12 +38,12 @@ export default function SwiperMain({children} : {children? : ReactNode}){
                 effect={"fade"}
                 centeredSlides={true}
                 autoplay={{
-                delay: 2000,
+                delay: 10000,
                 disableOnInteraction: false,
                 }}
                 loop={true}
                 slidesPerView={1}
-                navigation
+                // navigation
                 pagination={{ dynamicBullets: true, clickable: true }}
                 scrollbar={{ draggable: true }}
                 onSwiper={(swiper) => console.log(swiper)}
@@ -40,13 +51,16 @@ export default function SwiperMain({children} : {children? : ReactNode}){
                 className="mySwiper"
                 style={{position:"absolute",top:"0"}}
             >
-                <SwiperSlide><SwiperMainItem></SwiperMainItem></SwiperSlide>
-                {/* <SwiperSlide>Slide 4</SwiperSlide>
-                <SwiperSlide>Slide 5</SwiperSlide>
-                <SwiperSlide>Slide 6</SwiperSlide>
-                <SwiperSlide>Slide 7</SwiperSlide>
-                <SwiperSlide>Slide 8</SwiperSlide>
-                <SwiperSlide>Slide 9</SwiperSlide> */}
+                {
+                    swiperMainMovies && swiperMainMovies.results.map((movie,index)=>{
+                        if(index < 3)
+                        return (
+                            <>
+                                <SwiperSlide><SwiperMainItem key = {movie.id} movie = {movie}></SwiperMainItem></SwiperSlide>
+                            </>
+                        )
+                    })
+                }
             </Swiper>     
         </section>
            

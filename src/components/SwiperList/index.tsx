@@ -1,5 +1,8 @@
 import SwiperListItem from "../SwiperListItem";
 
+//Type
+import { AppContextType } from "../../Types";
+
 // Context
 import { useContext, useEffect } from "react";
 import { AppContext } from "../../context/AppContext";
@@ -17,13 +20,16 @@ import "./swiperList.css"
 // import required modules
 import { Navigation } from "../../../node_modules/swiper";
 
+
 export default function SwiperList ({typeSwiper} : {typeSwiper : string}){
 
-    const {SwiperMoviesTopRated} = useContext(AppContext)
+    const {swiperMovies, SwiperMoviesNowPlaying} = useContext(AppContext) as AppContextType;
 
     useEffect(()=>{
-        SwiperMoviesTopRated()
+        SwiperMoviesNowPlaying()
     },[])
+
+    
 
     return(
         <>
@@ -47,22 +53,15 @@ export default function SwiperList ({typeSwiper} : {typeSwiper : string}){
                     className="mySwiper"
                 >  
                     <SwiperSlide style={{width : "100px"}}></SwiperSlide>
-                    <SwiperSlide><SwiperListItem></SwiperListItem></SwiperSlide>
-                    <SwiperSlide><SwiperListItem></SwiperListItem></SwiperSlide>
-                    <SwiperSlide><SwiperListItem></SwiperListItem></SwiperSlide>
-                    <SwiperSlide><SwiperListItem></SwiperListItem></SwiperSlide>
-                    <SwiperSlide><SwiperListItem></SwiperListItem></SwiperSlide>
-                    <SwiperSlide><SwiperListItem></SwiperListItem></SwiperSlide>
-                    <SwiperSlide><SwiperListItem></SwiperListItem></SwiperSlide>
-                    <SwiperSlide><SwiperListItem></SwiperListItem></SwiperSlide>
-                    <SwiperSlide><SwiperListItem></SwiperListItem></SwiperSlide>
-                    <SwiperSlide><SwiperListItem></SwiperListItem></SwiperSlide>
-                    <SwiperSlide><SwiperListItem></SwiperListItem></SwiperSlide>
-                    <SwiperSlide><SwiperListItem></SwiperListItem></SwiperSlide>
-                    <SwiperSlide><SwiperListItem></SwiperListItem></SwiperSlide>
-                    <SwiperSlide><SwiperListItem></SwiperListItem></SwiperSlide>
-                    <SwiperSlide><SwiperListItem></SwiperListItem></SwiperSlide>
-                    <SwiperSlide><SwiperListItem></SwiperListItem></SwiperSlide>
+                    {
+                        swiperMovies && swiperMovies.results.map((movie)=>{
+                            return (
+                                <>
+                                    <SwiperSlide><SwiperListItem movie = {movie} key={movie.id} ></SwiperListItem></SwiperSlide>
+                                </>
+                            )
+                        })
+                    }
                     {/* <SwiperSlide style={{width : "100px"}}></SwiperSlide> */}
                 </Swiper>
             </section>

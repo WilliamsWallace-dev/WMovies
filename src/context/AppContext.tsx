@@ -1,31 +1,35 @@
 import { ReactNode, createContext, useState } from "react"; 
 
 import { tmdb,URLValues } from "../services/Api";
+import { AppContextType, SearchTMDBType } from "../Types";
 
-type TodoContextType = {SwiperMoviesTopRated : ()=> Promise<void> }
-
-export const AppContext = createContext <TodoContextType | null>( null);
+export const AppContext = createContext <AppContextType | null>(null);
 
 export const AppProvidor = ({children} : {children : ReactNode}) =>{
-    const [swiperMovies,setSwiperMovies] = useState ([]);
+    const [swiperMovies,setSwiperMovies] = useState <SearchTMDBType | null> (null);
+    const [swiperMainMovies,setSwiperMainMovies] = useState <SearchTMDBType | null> (null);
 
     const getTmdb = async (url : string)=>{
         const res = await tmdb.get(url);
-        const data = await res.data.jason()
-        console.log(data)
-        return data;
+        console.log(res.data)
+        return res.data;
     }
-    const SwiperMoviesTopRated = async ()=>{
-        const url = `${URLValues.movies}${URLValues.topRated}${URLValues.api_key}`
-        await getTmdb(url)
-        // setSwiperMovies(await getTmdb(url));
+    const SwiperMoviesNowPlaying = async ()=>{
+        const url = `${URLValues.movies}${URLValues.nowPlaying}${URLValues.api_key}&page=${1}`
+        setSwiperMovies(await getTmdb(url));
+    }
+    const SwiperMainMoviesNowPlaying = async ()=>{
+        const url = `${URLValues.movies}${URLValues.nowPlaying}${URLValues.api_key}&page=${2}`
+        setSwiperMainMovies(await getTmdb(url));
     }
 
     return (
         <>
             <AppContext.Provider value = {{
-                // swiperMovies,
-                SwiperMoviesTopRated
+                swiperMovies,
+                SwiperMoviesNowPlaying,
+                swiperMainMovies,
+                SwiperMainMoviesNowPlaying
             }}>
                 {children}
             </AppContext.Provider>
@@ -33,3 +37,47 @@ export const AppProvidor = ({children} : {children : ReactNode}) =>{
     )
 }   
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// import React, { ReactNode, useState } from "react";
+
+// import { createContext } from "react";
+
+// interface ContextType {
+//     theme : StateType
+// }
+
+// interface StateType { 
+//     themeMood :
+// }
+
+// const AppContext = createContext <ContextType | null>(null)
+
+// const AppProvidor = ({children} : {children : ReactNode})=>{
+    
+//     const [theme , setTheme] = useState <StateType>({})
+
+
+//     return (
+//         <>
+//             <AppContext.Provider value = {{
+//                 theme
+//             }}>
+//                 {children}
+//             </AppContext.Provider>
+//         </>
+//     )
+// }

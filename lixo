@@ -1,3 +1,0 @@
-baseURL: `https://api.themoviedb.org/3/search/movie?api_key=13f3c3621ab303e180ca6fd8ba0df8e1&query=${"Naruto"}&page=2`
-baseURL: `https://api.themoviedb.org/3/search/movie?api_key=13f3c3621ab303e180ca6fd8ba0df8e1&query=${"Naruto"}`
-baseURL: `https://api.themoviedb.org/3/search/tv?api_key=13f3c3621ab303e180ca6fd8ba0df8e1&query=${"Naruto"}`
