@@ -49,6 +49,32 @@
         }
         .menu-list{
             
+            .active{
+                // border: 1px solid red;
+                position: relative;
+                &::after{
+                    content: "";
+                    display: block;
+
+                    position: absolute;
+                    bottom: 0;
+                    left: -5px;
+
+                    width: 70%;
+                    height: 2px;
+
+                    opacity: 0;
+                    
+                    background: linear-gradient(89.97deg, #E50914 0%, rgba(8, 5, 6, 0) 101.2%);
+                    transform: matrix(1, 0, 0.28, 0.96, 0, 0);
+
+                    opacity: 1;
+
+                    transform: translateX(6px);
+
+                }
+            }
+            
             .menu-item{
                 position: relative;
                 text-align: left;

@@ -17,7 +17,7 @@
 
     cursor: pointer;
 
-    transition: .3s ease;
+    transition: .3s ease-in;
 
     &:hover{
         transform: scale(1.05) translateY(-4px);
@@ -33,28 +33,36 @@
             }
         }
         .titleListItem, .titleListItem &::after,.descriptionListItem p{
-            opacity: .64;
-            transform: translateY(-3px);
+            opacity: 0;
+            transform: translateY(8px);
         }
 
     }
 
     .sinopseHover{
-        height: 60%;
+        position: absolute;
+            
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
 
-        text-align: center;
+            // border: 2px solid red;
 
-        // color: transparent;
+            width: 100%;
+            height: 100%;
+
+            padding: .5rem ;
+
         opacity: 0;
-        // border: 1px solid red;
 
         transform: translateY(25px);
 
-        transition: .3s ease;
+        transition: .3s ease-in;
     }
 
     .titleListItem,.descriptionListItem p{
-        transition: .3s ease;
+        transition: .3s ease-in;
     }
     .titleListItem{
         
@@ -63,14 +71,20 @@
             display: block;
             position: relative;
 
-            width: 30%;
+            margin: .25rem auto;
+
+            width: 100px;
             height: 2px;
 
-            margin-top: .125rem ;
+            // margin-top: .125rem ;
 
             border-radius: .125rem;
 
-            background: linear-gradient(89.97deg, #E50914 0%, rgba(8, 5, 6, 0) 101.2%);
+            // background: linear-gradient(89.97deg, #E50914 0%, rgba(8, 5, 6, 0) 101.2%);
+            // transform: matrix(1, 0, 0.28, 0.96, 0, 0);
+
+            background: linear-gradient(90deg, rgba(8, 5, 6, 0) 0%, #E50914 50%, rgba(8, 5, 6, 0) 91.67%);
+            border-radius: 2px;
             transform: matrix(1, 0, 0.28, 0.96, 0, 0);
 
             
@@ -157,7 +171,7 @@
     
             background: linear-gradient(180deg, rgba(8, 5, 6, 0.04) 49.98%, #080506 99.96%);
             backdrop-filter: blur(0px);
-            transition: .3s ease;
+            transition: .3s ease-in;
         }
         
     }

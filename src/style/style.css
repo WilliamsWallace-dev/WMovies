@@ -131,7 +131,7 @@ h2 {
 h3 {
   color: #FDF9F9;
   font-family: "Mulish", sans-serif;
-  font-size: 32px;
+  font-size: 24px;
   line-height: 120%;
   font-weight: 600;
 }
@@ -316,7 +316,7 @@ strong {
   cursor: pointer;
   color: #FDF9F9;
   text-transform: uppercase;
-  background: rgba(240, 223, 223, 0.16);
+  background: rgba(240, 223, 223, 0.08);
   width: 144px;
   height: 40px;
   border-radius: 26px;
@@ -335,11 +335,11 @@ strong {
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
-  transition: 0.5s ease;
+  transition: 0.7s ease;
 }
 .starButton:hover {
   opacity: 1;
-  background: rgba(240, 223, 223, 0.32);
+  background: rgba(240, 223, 223, 0.16);
   filter: drop-shadow(0px 4px 32px rgba(0, 0, 0, 0.25)) drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
   transform: translateY(-2px);
 }
@@ -355,7 +355,7 @@ strong {
   cursor: pointer;
   color: #FDF9F9;
   text-transform: uppercase;
-  background: rgba(240, 223, 223, 0.16);
+  background: rgba(240, 223, 223, 0.08);
   width: 144px;
   height: 40px;
   border-radius: 26px;
@@ -375,7 +375,7 @@ strong {
 }
 .sumButton:hover {
   opacity: 1;
-  background: rgba(240, 223, 223, 0.32);
+  background: rgba(240, 223, 223, 0.16);
   filter: drop-shadow(0px 4px 32px rgba(0, 0, 0, 0.25)) drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
   transform: translateY(-2px);
 }
@@ -388,7 +388,7 @@ strong {
   cursor: pointer;
   color: #FDF9F9;
   text-transform: uppercase;
-  background: rgba(240, 223, 223, 0.16);
+  background: rgba(240, 223, 223, 0.08);
   width: 144px;
   height: 40px;
   border-radius: 26px;
@@ -407,11 +407,11 @@ strong {
   background-position: center center;
   background-repeat: no-repeat;
   background-size: contain;
-  transition: 0.5s ease;
+  transition: 0.7s ease;
 }
 .popularButton:hover {
   opacity: 1;
-  background: rgba(240, 223, 223, 0.32);
+  background: rgba(240, 223, 223, 0.16);
   filter: drop-shadow(0px 4px 32px rgba(0, 0, 0, 0.25)) drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
   transform: translateY(-2px);
 }
@@ -753,6 +753,10 @@ li {
   list-style: none;
 }
 
+a {
+  text-decoration: none;
+}
+
 .border {
   border: 1px solid red;
 }
@@ -952,6 +956,23 @@ li {
   height: 38.69px;
   cursor: pointer;
 }
+.header .header-menu .menu-list .active {
+  position: relative;
+}
+.header .header-menu .menu-list .active::after {
+  content: "";
+  display: block;
+  position: absolute;
+  bottom: 0;
+  left: -5px;
+  width: 70%;
+  height: 2px;
+  opacity: 0;
+  background: linear-gradient(89.97deg, #E50914 0%, rgba(8, 5, 6, 0) 101.2%);
+  transform: matrix(1, 0, 0.28, 0.96, 0, 0);
+  opacity: 1;
+  transform: translateX(6px);
+}
 .header .header-menu .menu-list .menu-item {
   position: relative;
   text-align: left;
@@ -1138,17 +1159,19 @@ li {
 }
 
 .description {
+  max-width: 600px;
   align-items: flex-start;
 }
 .description .title::after {
   content: "";
   display: block;
   position: relative;
-  width: 30%;
+  width: 100px;
   height: 4px;
   margin-top: 0.5rem;
   border-radius: 0.125rem;
-  background: linear-gradient(89.97deg, #E50914 0%, rgba(8, 5, 6, 0) 101.2%);
+  background: linear-gradient(90deg, rgba(8, 5, 6, 0) 0%, #E50914 50%, rgba(8, 5, 6, 0) 91.67%);
+  border-radius: 2px;
   transform: matrix(1, 0, 0.28, 0.96, 0, 0);
 }
 .description .duration::before {
@@ -1285,7 +1308,7 @@ li {
   border-radius: 24px;
   overflow: hidden;
   cursor: pointer;
-  transition: 0.3s ease;
+  transition: 0.3s ease-in;
 }
 .SwiperListItem:hover {
   transform: scale(1.05) translateY(-4px);
@@ -1300,28 +1323,35 @@ li {
           backdrop-filter: blur(2px);
 }
 .SwiperListItem:hover .titleListItem, .titleListItem .SwiperListItem:hover::after, .SwiperListItem:hover .descriptionListItem p {
-  opacity: 0.64;
-  transform: translateY(-3px);
+  opacity: 0;
+  transform: translateY(8px);
 }
 .SwiperListItem .sinopseHover {
-  height: 60%;
-  text-align: center;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  padding: 0.5rem;
   opacity: 0;
   transform: translateY(25px);
-  transition: 0.3s ease;
+  transition: 0.3s ease-in;
 }
 .SwiperListItem .titleListItem, .SwiperListItem .descriptionListItem p {
-  transition: 0.3s ease;
+  transition: 0.3s ease-in;
 }
 .SwiperListItem .titleListItem::after {
   content: "";
   display: block;
   position: relative;
-  width: 30%;
+  margin: 0.25rem auto;
+  width: 100px;
   height: 2px;
-  margin-top: 0.125rem;
   border-radius: 0.125rem;
-  background: linear-gradient(89.97deg, #E50914 0%, rgba(8, 5, 6, 0) 101.2%);
+  background: linear-gradient(90deg, rgba(8, 5, 6, 0) 0%, #E50914 50%, rgba(8, 5, 6, 0) 91.67%);
+  border-radius: 2px;
   transform: matrix(1, 0, 0.28, 0.96, 0, 0);
 }
 .SwiperListItem .descriptionListItem p {
@@ -1370,5 +1400,11 @@ li {
   background: linear-gradient(180deg, rgba(8, 5, 6, 0.04) 49.98%, #080506 99.96%);
   -webkit-backdrop-filter: blur(0px);
           backdrop-filter: blur(0px);
-  transition: 0.3s ease;
+  transition: 0.3s ease-in;
+}
+
+.DescritionCard {
+  position: relative;
+  width: 100%;
+  height: 78vh;
 }/*# sourceMappingURL=style.css.map */

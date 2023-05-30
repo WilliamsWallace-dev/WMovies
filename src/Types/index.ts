@@ -151,24 +151,30 @@
 //-----------------------------------------------------------------------------------
 
 //Types
-
+export enum TypeContent  {
+    Filmes = "Filmes",
+    Series = "Séries",
+    Animes = "Animes"
+}
 // Context
-
 export interface AppContextType { 
-    swiperMovies : SearchTMDBType | null, 
-    SwiperMoviesNowPlaying : ()=> Promise<void> 
-    swiperMainMovies : SearchTMDBType | null, 
-    SwiperMainMoviesNowPlaying : ()=> Promise<void> 
+    moviesList : SearchTMDBType | null, 
+    GetMoviesList : ()=> Promise<void>
+    seriesList : SearchTMDBType | null, 
+    GetSeriesList : ()=> Promise<void> 
+    animesList : SearchTMDBType | null, 
+    GetAnimesList : ()=> Promise<void> 
 }
 
 export interface SearchTMDBType {
     page : number,
-    results : MovieType[],
+    results : CardType[],
     total_page : number,
     total_results : number
 }
 
-export interface MovieType {
+export interface CardType {
+    typeContent? : "Filme" | "Série" | "Anime", 
     adult : boolean,
     backdrop_path : string,
     id : number,

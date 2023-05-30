@@ -10,7 +10,7 @@
     color: $white-normal;
     text-transform: uppercase;
 
-    background: rgba(240, 223, 223, 0.16);
+    background: rgba(240, 223, 223, 0.08);
     
     width: 144px;
     height: 40px;
@@ -32,12 +32,12 @@
         background-position: center center;
         background-repeat: no-repeat;
         background-size: cover;
-        transition: .5s ease;
+        transition: .7s ease;
     }
     transition: .5s ease;
     &:hover{
         opacity: 1;
-        background: rgba(240, 223, 223, 0.32);
+        background: rgba(240, 223, 223, 0.16);
         filter: drop-shadow(0px 4px 32px rgba(0, 0, 0, 0.25)) drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
         transform: translateY(-2px);
         &::before{
@@ -59,7 +59,7 @@ cursor: pointer;
 color: $white-normal;
 text-transform: uppercase;
 
-background: rgba(240, 223, 223, 0.16);
+background: rgba(240, 223, 223, 0.08);
 
 width: 144px;
 height: 40px;
@@ -83,7 +83,7 @@ padding-left: 26px;
 transition: .5s ease;
 &:hover{
   opacity: 1;
-  background: rgba(240, 223, 223, 0.32);
+  background: rgba(240, 223, 223, 0.16);
   filter: drop-shadow(0px 4px 32px rgba(0, 0, 0, 0.25)) drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
   transform: translateY(-2px);
 }
@@ -101,7 +101,7 @@ cursor: pointer;
 color: $white-normal;
 text-transform: uppercase;
 
-background: rgba(240, 223, 223, 0.16);
+background: rgba(240, 223, 223, 0.08);
 
 width: 144px;
 height: 40px;
@@ -123,12 +123,12 @@ padding-left: 23px;
   background-position: center center;
   background-repeat: no-repeat;
   background-size: contain;
-  transition: .5s ease;
+  transition: .7s ease;
 }
 transition: .5s ease;
 &:hover{
   opacity: 1;
-  background: rgba(240, 223, 223, 0.32);
+  background: rgba(240, 223, 223, 0.16);
   filter: drop-shadow(0px 4px 32px rgba(0, 0, 0, 0.25)) drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
   transform: translateY(-2px);
   &::before{

@@ -1,27 +1,26 @@
 
-import { ReactNode } from "react"
 import "../../style/style.css";
 import TomHolland from "../../assets/actors/TomHolland.jpg"
-import SpiderManDescriptionPoster from "../../assets/descriptionPosters/SpiderMan.jpg"
-import { MovieType } from "../../Types";
+import {CardType } from "../../Types";
 import { URLValues } from "../../services/Api";
 
-export default function SwiperDescriptionItem({children , key , movie} : {children? : ReactNode , key : number , movie : MovieType}){
+
+
+export default function CardMain({header ,key , cardSent} : {header? : boolean , key : number , cardSent : CardType}){
 
         return(
             <>
                 {/* <div style={{position : "relative"}}> */}
-                {children}
-                <section className="SwiperDescriptionItem container ">
+                <section key={key} className="SwiperDescriptionItem container ">
                     <div className="desciptionPoster mr-3">
-                        <img src={`${URLValues.img_path}${movie.poster_path}`} alt="SpiderManDescriptionPoster" />
+                        <img src={`${URLValues.img_path}${cardSent.poster_path}`} alt= {`Poste do Filmes : ${cardSent.title}`} />
                     </div>
                     <div className="description flex-start flex-column">
-                        <h1 className="title">{movie.title}</h1>
+                        <h1 className="title">{cardSent.title}</h1>
                         <div className="flex-start mt-2">
-                            <p className="p1 mr-3 pt-1">{movie.release_date.split("-")[0]}</p>
-                            <p className="duration p1 mr-3">{movie.runtime || "2h,36min"}</p>
-                            <p className="rated p1">{movie.vote_average}</p>
+                            <p className="p1 mr-3 pt-1">{cardSent.release_date.split("-")[0]}</p>
+                            <p className="duration p1 mr-3">{cardSent.runtime || "2h,36min"}</p>
+                            <p className="rated p1">{cardSent.vote_average}</p>
                         </div>
                         <div className="actors flex-start mt-2">
                             <div className="actorsItem flex-start mr-3">
@@ -38,11 +37,11 @@ export default function SwiperDescriptionItem({children , key , movie} : {childr
                             </div>
                         </div>
                         <p className="sinopse text-left p1 mt-2">
-                            {movie.overview}
+                            {cardSent.overview}
                         </p>
                         <div className="type flex-start mt-2">
                             {
-                                movie.genres && movie.genres.map((genre)=>{
+                                cardSent.genres && cardSent.genres.map((genre)=>{
                                     return(
                                         <>
                                             <p className="typeItem p2 mr-2">{genre.name}</p>
@@ -62,8 +61,9 @@ export default function SwiperDescriptionItem({children , key , movie} : {childr
                     </div>
                     <div className="playIcon"></div>
                 </section>
-                <div className={children ? "backgroundPoster height100vh" : "backgroundPoster height100 " }>
-                    <img src= {`${URLValues.img_path_original}${movie.backdrop_path}`} alt={`Poste do filme ${movie.title}`} />
+                {/* <div className={header ? "backgroundPoster" : "backgroundPoster " }></div> */}
+                <div className= "backgroundPoster">
+                    <img src= {`${URLValues.img_path_original}${cardSent.backdrop_path}`} alt={`Poste do filme ${cardSent.title}`} />
                 </div>
                 {/* </div> */}
             </>

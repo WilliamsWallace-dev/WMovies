@@ -31,7 +31,11 @@
 
       border-radius: .125rem;
 
-      background: linear-gradient(89.97deg, #E50914 0%, rgba(8, 5, 6, 0) 101.2%);
+      // background: linear-gradient(89.97deg, #E50914 0%, rgba(8, 5, 6, 0) 101.2%);
+      // transform: matrix(1, 0, 0.28, 0.96, 0, 0);
+
+      background: linear-gradient(90deg, rgba(8, 5, 6, 0) 0%, #E50914 50%, rgba(8, 5, 6, 0) 91.67%);
+      border-radius: 2px;
       transform: matrix(1, 0, 0.28, 0.96, 0, 0);
 
   }

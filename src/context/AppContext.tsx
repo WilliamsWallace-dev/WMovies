@@ -1,4 +1,4 @@
-import { ReactNode, createContext, useState } from "react"; 
+import { ReactNode, createContext, useEffect, useState } from "react"; 
 
 import { tmdb,URLValues } from "../services/Api";
 import { AppContextType, SearchTMDBType } from "../Types";
@@ -6,30 +6,42 @@ import { AppContextType, SearchTMDBType } from "../Types";
 export const AppContext = createContext <AppContextType | null>(null);
 
 export const AppProvidor = ({children} : {children : ReactNode}) =>{
-    const [swiperMovies,setSwiperMovies] = useState <SearchTMDBType | null> (null);
-    const [swiperMainMovies,setSwiperMainMovies] = useState <SearchTMDBType | null> (null);
+    const [moviesList,setMoviesList] = useState <SearchTMDBType | null>(null);
+    const [seriesList,setSeriesList] = useState <SearchTMDBType | null>(null);
+    const [animesList,setAnimesList] = useState <SearchTMDBType | null>(null);
 
     const getTmdb = async (url : string)=>{
         const res = await tmdb.get(url);
-        console.log(res.data)
+        // console.log(res.data)
         return res.data;
     }
-    const SwiperMoviesNowPlaying = async ()=>{
+
+    useEffect(()=>{
+        GetMoviesList();
+        GetSeriesList()
+        GetAnimesList()
+    },[])
+
+    const GetMoviesList = async ()=>{
         const url = `${URLValues.movies}${URLValues.nowPlaying}${URLValues.api_key}&page=${1}`
-        setSwiperMovies(await getTmdb(url));
+        setMoviesList(await getTmdb(url));
     }
-    const SwiperMainMoviesNowPlaying = async ()=>{
+    const GetSeriesList = async ()=>{
         const url = `${URLValues.movies}${URLValues.nowPlaying}${URLValues.api_key}&page=${2}`
-        setSwiperMainMovies(await getTmdb(url));
+        setSeriesList(await getTmdb(url));
+    }
+    const GetAnimesList = async ()=>{
+        const url = `${URLValues.movies}${URLValues.nowPlaying}${URLValues.api_key}&page=${3}`
+        setAnimesList(await getTmdb(url));
     }
 
     return (
         <>
             <AppContext.Provider value = {{
-                swiperMovies,
-                SwiperMoviesNowPlaying,
-                swiperMainMovies,
-                SwiperMainMoviesNowPlaying
+                moviesList,GetMoviesList,
+                seriesList,GetSeriesList,
+                animesList,GetAnimesList
+
             }}>
                 {children}
             </AppContext.Provider>
@@ -80,4 +92,35 @@ export const AppProvidor = ({children} : {children : ReactNode}) =>{
 //             </AppContext.Provider>
 //         </>
 //     )
+// }
+
+
+
+
+
+// import { ReactNode, createContext, useState } from "react";
+// import { AppContextType } from "../Types";
+// import { CardType } from "../Types";
+
+// export const AppContext = createContext <AppContextType | null>(null);
+
+
+// export const AppProvidor = ({children} : {children : ReactNode}) =>{
+
+//      const [theme,setTheme] = useState <CardType[] | null >(null)
+
+//      const changeTheme = (theme : CardType[])=>{
+//         setTheme(theme)
+//      }
+
+//      return (
+//         <>
+//             <AppContext.Provider value = {{
+//                 theme,
+//                 changeTheme
+//             }}>
+//                 {children}
+//             </AppContext.Provider>
+//         </>
+//      )
 // }

@@ -1,4 +1,4 @@
-import SwiperMainItem from "../SwiperMainItem";
+import CardMain from "../CardMain";
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
 
@@ -12,25 +12,36 @@ import "./swiperMain.css"
 // import Swiper core and required modules
 import { EffectFade,Navigation, Pagination, Scrollbar, A11y,Autoplay } from '../../../node_modules/swiper';
 // import Header from "../Header";
-import { ReactNode, useContext, useEffect } from "react";
+import { ReactNode, useContext, useEffect, useState } from "react";
 import { AppContext } from "../../context/AppContext";
-import { AppContextType, MovieType } from "../../Types";
+import { AppContextType, CardType, SearchTMDBType, TypeContent } from "../../Types";
 
 
-export default function SwiperMain({children} : {children? : ReactNode}){
+export default function SwiperMain({header = false, typeSwiper = "Filme"} : {header? : boolean, typeSwiper : string}){
 
-    const {swiperMainMovies, SwiperMainMoviesNowPlaying} = useContext(AppContext) as AppContextType;
+    const {moviesList,seriesList,animesList} = useContext(AppContext) as AppContextType;
 
+    const [swiperMain,setSwiperMain] = useState <SearchTMDBType | null>(null)
 
     useEffect(()=>{
-        SwiperMainMoviesNowPlaying();
-    },[])
+        
+        switch (typeSwiper) {
+            case TypeContent.Filmes : 
+                setSwiperMain(moviesList)
+                break;
+            case TypeContent.Series : 
+                setSwiperMain(seriesList)
+                break;
+            case TypeContent.Animes : 
+                setSwiperMain(animesList)
+                break;
+        }
+    },[moviesList,seriesList,animesList])
 
-
+    console.log(swiperMain)
     return(
         <>
-        <section className= {children ? "SwiperMain mb-4" : "SwiperSecondary my-5"}>
-            {children}
+        <section className= {header ? "SwiperMain" : "SwiperSecondary my-5"}>
             <Swiper
                     // install Swiper modules
                 modules={[EffectFade, Navigation, Pagination, Scrollbar, A11y , Autoplay]}
@@ -52,11 +63,11 @@ export default function SwiperMain({children} : {children? : ReactNode}){
                 style={{position:"absolute",top:"0"}}
             >
                 {
-                    swiperMainMovies && swiperMainMovies.results.map((movie,index)=>{
+                    swiperMain && swiperMain.results.map((card,index)=>{
                         if(index < 3)
                         return (
                             <>
-                                <SwiperSlide><SwiperMainItem key = {movie.id} movie = {movie}></SwiperMainItem></SwiperSlide>
+                                <SwiperSlide><CardMain key = {card.id} cardSent = {card}></CardMain></SwiperSlide>
                             </>
                         )
                     })

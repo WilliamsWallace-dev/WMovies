@@ -1,10 +1,10 @@
-import SwiperListItem from "../SwiperListItem";
+import Card from "../Card";
 
 //Type
-import { AppContextType } from "../../Types";
+import { AppContextType, SearchTMDBType, TypeContent } from "../../Types";
 
 // Context
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { AppContext } from "../../context/AppContext";
 
 // Import Swiper React components
@@ -19,15 +19,30 @@ import "./swiperList.css"
 
 // import required modules
 import { Navigation } from "../../../node_modules/swiper";
+import { Link } from "react-router-dom";
 
 
-export default function SwiperList ({typeSwiper} : {typeSwiper : string}){
 
-    const {swiperMovies, SwiperMoviesNowPlaying} = useContext(AppContext) as AppContextType;
+
+export default function SwiperList ({typeSwiper = "Filmes" , id} : {typeSwiper : string, id? : string}){
+
+    const {moviesList,seriesList,animesList} = useContext(AppContext) as AppContextType;
+
+    const [swiperList,setSwiperList] = useState <SearchTMDBType | null>(null)
 
     useEffect(()=>{
-        SwiperMoviesNowPlaying()
-    },[])
+        switch (typeSwiper) {
+            case TypeContent.Filmes : 
+                setSwiperList(moviesList)
+                break;
+            case TypeContent.Series : 
+                setSwiperList(seriesList)
+                break;
+            case TypeContent.Animes : 
+                setSwiperList(animesList)
+                break;
+        }
+    },[moviesList,seriesList,animesList])
 
     
 
@@ -43,7 +58,7 @@ export default function SwiperList ({typeSwiper} : {typeSwiper : string}){
                 <Swiper
                     slidesPerView={"auto"}
                     centeredSlides={false}
-                    spaceBetween={20}
+                    spaceBetween={24}
                     navigation={true}
                     grabCursor={true}
                     pagination={{
@@ -54,10 +69,10 @@ export default function SwiperList ({typeSwiper} : {typeSwiper : string}){
                 >  
                     <SwiperSlide style={{width : "100px"}}></SwiperSlide>
                     {
-                        swiperMovies && swiperMovies.results.map((movie)=>{
+                        swiperList && swiperList.results.map((movie)=>{
                             return (
                                 <>
-                                    <SwiperSlide><SwiperListItem movie = {movie} key={movie.id} ></SwiperListItem></SwiperSlide>
+                                    <SwiperSlide><Link to={!id ? `${typeSwiper}/${movie.id}` : `../${typeSwiper}/${movie.id}` }><Card movie = {movie} key={movie.id} ></Card></Link></SwiperSlide>
                                 </>
                             )
                         })

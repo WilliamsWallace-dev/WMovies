@@ -10,6 +10,7 @@ import './style/style.css'
 
 import React from 'react'
 import { AppProvidor } from './context/AppContext'
+import {AppRoutes} from './router/index'
 
 function App() {
 
@@ -17,12 +18,7 @@ function App() {
     <>
     <React.StrictMode>
       <AppProvidor>
-        <SwiperMain><Header></Header></SwiperMain>
-        <SwiperList typeSwiper='Filmes'></SwiperList>
-        <SwiperMain></SwiperMain>
-        <SwiperList typeSwiper='Séries'></SwiperList>
-        <SwiperMain></SwiperMain>
-        <SwiperList typeSwiper='Animes'></SwiperList>
+        <AppRoutes></AppRoutes>
       </AppProvidor>
     </React.StrictMode>
     </>
