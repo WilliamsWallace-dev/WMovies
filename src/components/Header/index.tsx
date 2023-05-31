@@ -1,5 +1,5 @@
 
-import { Outlet } from "react-router-dom"
+import { Link, Outlet } from "react-router-dom"
 import "../../style/style.css"
 import SearchButton from "../SearchButton"
 import UserButton from "../UserButton"
@@ -23,8 +23,8 @@ export default function Header (){
                     </nav>
                 </div>
                 <div className="header-user flex-center">
-                    <SearchButton></SearchButton>
-                    <UserButton>Minha conta</UserButton>
+                    <NavLink className="activeSearch" to="Search"><SearchButton></SearchButton></NavLink>
+                    <NavLink className="activeLogin" to="Login"><UserButton>Minha conta</UserButton></NavLink>
                 </div>
             </header>
             <Outlet></Outlet>

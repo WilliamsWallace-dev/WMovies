@@ -3,7 +3,7 @@ import { ReactNode, createContext, useEffect, useState } from "react";
 import { tmdb,URLValues } from "../services/Api";
 import { AppContextType, SearchTMDBType } from "../Types";
 
-export const AppContext = createContext <AppContextType | null>(null);
+export const AppContext = createContext <AppContextType>({} as AppContextType);
 
 export const AppProvidor = ({children} : {children : ReactNode}) =>{
     const [moviesList,setMoviesList] = useState <SearchTMDBType | null>(null);

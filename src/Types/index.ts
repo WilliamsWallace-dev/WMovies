@@ -204,3 +204,25 @@ interface GenreType {
     id : number,
     name : string
 }
+
+//AuthProvider
+
+export interface IUser {
+    username? : string,
+    password? : string,
+    email? : string
+}
+
+export interface IUserRegister extends IUser {
+    checkPassword : string
+}
+
+export interface IContext extends IUser{
+    authenticate : ({username , password} : IUser) => Promise<void>,
+    logout : () => void
+}
+
+export interface n {
+    children : JSX.Element
+}
+

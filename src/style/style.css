@@ -419,6 +419,41 @@ strong {
   background-image: url("../assets/icons/backgroundPopularHover.svg");
 }
 
+.FormButton {
+  position: relative;
+  background: transparent;
+  color: #FDF9F9;
+  border: none;
+  width: 100%;
+  height: 45px;
+  font-family: "Mulish", sans-serif;
+  font-size: 16px;
+  line-height: 130%;
+  font-weight: 400;
+  cursor: pointer;
+  transition: 0.3s ease-in;
+}
+.FormButton::before {
+  content: "";
+  display: inline-block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("../assets/icons/FormButtonIcon.svg");
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  transition: 0.3s ease-in;
+}
+.FormButton:hover {
+  transform: scale(1.01) translateY(-1px) translateX(0px);
+}
+.FormButton:hover::before {
+  background-image: url("../assets/icons/FormButtonIconHover.svg");
+}
+
 .s-0 {
   margin: 0;
   padding: 0;
@@ -1407,4 +1442,122 @@ a {
   position: relative;
   width: 100%;
   height: 78vh;
+}
+
+.Form {
+  max-width: 840px;
+  margin: 3rem auto;
+  padding: 3rem 0;
+  background: linear-gradient(180deg, #140F10 1.39%, rgba(20, 15, 16, 0) 100%);
+  background-image: url("../assets/icons/BackgroundForm.svg");
+  background-position: top;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+.Form h1 {
+  text-align: center;
+}
+.Form h1::after {
+  content: "";
+  display: block;
+  position: relative;
+  width: 300px;
+  height: 3px;
+  margin: 1.5rem auto;
+  background: linear-gradient(90deg, rgba(8, 5, 6, 0) 0%, #E50914 50%, rgba(8, 5, 6, 0) 100%);
+  border-radius: 2px;
+  transform: matrix(1, 0, 0.28, 0.96, 0, 0);
+}
+.Form form {
+  width: 380px;
+}
+.Form form .inputUsername {
+  position: relative;
+}
+.Form form .inputUsername::after {
+  content: "";
+  display: inline-block;
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  top: 22%;
+  left: 3.5%;
+  background-image: url("../assets/icons/UsernameIcon.svg");
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+.Form form .inputPassword {
+  position: relative;
+}
+.Form form .inputPassword::after {
+  content: "";
+  display: inline-block;
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  top: 22%;
+  left: 3.5%;
+  background-image: url("../assets/icons/PasswordIcon.svg");
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+.Form form input {
+  display: block;
+  position: relative;
+  width: 100%;
+  height: 45px;
+  border: none;
+  background-color: transparent;
+  background-image: url("../assets/icons/inputIcon.svg");
+  background-repeat: no-repeat;
+  background-size: contain;
+  padding: 0 0 0.5rem 2.7rem;
+  font-family: "Mulish", sans-serif;
+  font-size: 16px;
+  line-height: 130%;
+  font-weight: 200;
+  color: #FDF9F9;
+  transition: 0.3s ease-in;
+}
+.Form form input:focus {
+  box-shadow: 0 0 0 0;
+  outline: 0;
+  transform: scale(1.01) translateY(-1px) translateX(1px);
+  background-image: url("../assets/icons/inputIconActive.svg");
+}
+.Form form label {
+  font-family: "Mulish", sans-serif;
+  font-size: 16px;
+  line-height: 130%;
+  font-weight: 200;
+  color: #FDF9F9;
+  display: inline-block;
+  position: absolute;
+  top: 23%;
+  left: 11%;
+  transition: 0.3s ease-in;
+}
+.Form form input:focus + label {
+  transform: translateX(15px);
+  opacity: 0;
+  pointer-events: none;
+}
+.Form p {
+  color: #948889;
+  font-size: 16px;
+}
+.Form p span {
+  display: inline-block;
+  color: #FDF9F9;
+  font-size: 15px;
+  opacity: 0.9;
+  transition: 0.3s ease;
+  cursor: pointer;
+}
+.Form p span:hover {
+  opacity: 1;
+  color: #FDF9F9;
+  transform: translateX(1.5px);
 }/*# sourceMappingURL=style.css.map */

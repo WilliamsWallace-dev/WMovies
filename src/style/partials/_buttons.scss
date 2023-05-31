@@ -136,3 +136,50 @@ transition: .5s ease;
   }
 }
 }
+
+.FormButton{
+  position: relative;
+  background: transparent;
+  // border-radius: 16px 0px;
+  color: $white-light;
+
+  border: none;
+
+  width: 100%;
+  height: 45px;
+
+  font-family: "Mulish", sans-serif;
+  font-size: 16px;
+  line-height: 130%;
+  font-weight: 400;
+
+  cursor: pointer;
+
+  transition: .3s ease-in;
+  &::before{
+    content: "";
+    display: inline-block;
+    position: absolute;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+
+    background-image: url("../assets/icons/FormButtonIcon.svg");
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: contain;
+
+    transition: .3s ease-in;
+  }
+
+  &:hover{
+     &::before{
+      background-image: url("../assets/icons/FormButtonIconHover.svg");
+     }
+    // font-weight: 400;
+    transform: scale(1.01) translateY(-1px) translateX(0px);
+  }
+}
