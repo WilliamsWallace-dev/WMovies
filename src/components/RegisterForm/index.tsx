@@ -5,7 +5,7 @@ import { IUserRegister } from "../../Types";
 export const RegisterForm = ()=>{
 
     const initialState : IUserRegister = {
-        username : "", password : "", checkPassword : ""
+        username : "", password : "", checkPassword : "",email : ""
     }
 
     const [fields, setFields] = useState<IUserRegister>(initialState);

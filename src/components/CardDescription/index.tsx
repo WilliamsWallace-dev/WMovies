@@ -4,8 +4,10 @@ import "../../style/style.css";
 import TomHolland from "../../assets/actors/TomHolland.jpg"
 import { AppContextType, CardType, TypeContent } from "../../Types";
 import { URLValues } from "../../services/Api";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { AppContext } from "../../context/AppContext";
+
+import { useAuth } from "../../context/AuthProvider/useAuth";
 
 
 
@@ -16,6 +18,9 @@ export default function CardDescription(){
     const [card,setCard] = useState <CardType>()
 
     const {typeContent = "Filmes",id = "0"} = useParams<{typeContent : string , id : string}>();
+
+    const {user} = useAuth();
+    const navigate = useNavigate();
 
     useEffect(()=>{
 
@@ -32,12 +37,21 @@ export default function CardDescription(){
         }
     },[moviesList,seriesList,animesList,id])
 
+    const ProtectedFunction = (action : ()=>void)=>{
+        if(user && user.id){
+            action();
+        }else{
+            navigate("/Login")
+            // console.log("mudar login")
+        }   
+    }
+
         return(
             <>
                 {/* <div style={{position : "relative"}}> */}
-                <section className="SwiperDescriptionItem container DescritionCard ">
+                <section className="SwiperDescriptionItem container ">
                     <div className="desciptionPoster mr-3">
-                        <img src={`${URLValues.img_path}${card?.poster_path}`} alt="SpiderManDescriptionPoster" />
+                        <img src={`${URLValues.img_path}${card?.poster_path}`} alt= {`Poste do Filmes : ${card?.title}`} />
                     </div>
                     <div className="description flex-start flex-column">
                         <h1 className="title">{card?.title}</h1>
@@ -78,8 +92,8 @@ export default function CardDescription(){
                             <p className="typeItem p2 mr-2">Comédia</p>
                         </div>
                         <div className="buttonsDescription flex-center mt-2">
-                            <button className="saveButton p3 mr-2"> Ver depois</button>
-                            <button className="likeButton"></button>
+                            <button className="saveButton p3 mr-2" onClick= {()=>{ProtectedFunction(()=>console.log("likeButton"))}}> Ver depois</button>
+                            <button className="likeButton" onClick= {()=>{ProtectedFunction(()=>console.log("likeButton"))}}></button>
                         </div>
                         
                     </div>

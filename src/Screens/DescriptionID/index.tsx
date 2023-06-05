@@ -4,7 +4,6 @@ import SwiperList from "../../components/SwiperList"
 import { ScrollToTop } from "../../components/ScrollToTop";
 
 
-
 export const DescriptionID = ()=>{
 
     const {typeContent = "" , id = "0"} = useParams();
@@ -12,7 +11,9 @@ export const DescriptionID = ()=>{
     return(
         <>
             <ScrollToTop></ScrollToTop>
-            <CardDescription></CardDescription>
+            <section className="DescriptionIDContainer">
+                <CardDescription></CardDescription>
+            </section>    
             <SwiperList typeSwiper={typeContent} id = {id}></SwiperList>
         </>
     )

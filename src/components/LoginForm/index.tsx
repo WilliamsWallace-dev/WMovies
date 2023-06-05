@@ -1,32 +1,40 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
-import { IUser } from "../../Types";
+import { Link, useNavigate } from "react-router-dom";
+import { useAuth } from "../../context/AuthProvider/useAuth";
 
 export const LoginForm = ()=>{
 
-    const initialState : IUser = {
-        username : "", password : "", email : ""
+    const auth = useAuth()
+
+    const initialState = {
+       email : "", password : ""
     }
 
-    const [fields, setFields] = useState<IUser>(initialState);
+    const [fields, setFields] = useState({} as {email : string, password : string});
+    const navigate = useNavigate();
 
     const handleFieldsChange = (e: { currentTarget: { id: string; value: string; }; })=>{
         setFields({
             ...fields,
             [e.currentTarget.id] : e.currentTarget.value
         })
-        console.log(fields)
+        // console.log(fields)
     }
 
-    const handleSubmit = (e: { preventDefault: () => void; })=>{
+    const handleSubmit = async (e: { preventDefault: () => void; })=>{
         e.preventDefault()
+        try {
+            await auth.authenticate(fields.email,fields.password)
+            navigate(-1)
+        }catch(error){
+            console.log(error)
+        }
         setFields(initialState)
     }
 
     const changeLabel = (e : any)=>{
         const label = e.currentTarget.parentNode.querySelector("label") ;
-        
-        console.log(label.getAttribute("for") )
+
         if(label.getAttribute("for") == "email"){
             if(fields.email != "")
                 label.innerHTML = ""

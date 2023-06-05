@@ -4,9 +4,11 @@ import "../../style/style.css"
 import SearchButton from "../SearchButton"
 import UserButton from "../UserButton"
 import { NavLink } from "react-router-dom"
+import { useAuth } from "../../context/AuthProvider/useAuth"
 export default function Header (){
 
-    
+    const {user} = useAuth()
+
     return(
         <>
             <header className="header flex-center flex-between">
@@ -24,7 +26,7 @@ export default function Header (){
                 </div>
                 <div className="header-user flex-center">
                     <NavLink className="activeSearch" to="Search"><SearchButton></SearchButton></NavLink>
-                    <NavLink className="activeLogin" to="Login"><UserButton>Minha conta</UserButton></NavLink>
+                    {user && user.id ? <NavLink className="SignedIn" to="Profile"><UserButton signedIn = {true}></UserButton></NavLink> : <NavLink className="activeLogin" to="Login"><UserButton signedIn = {false}>Minha conta</UserButton></NavLink>}
                 </div>
             </header>
             <Outlet></Outlet>

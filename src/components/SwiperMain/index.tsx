@@ -38,7 +38,6 @@ export default function SwiperMain({header = false, typeSwiper = "Filme"} : {hea
         }
     },[moviesList,seriesList,animesList])
 
-    console.log(swiperMain)
     return(
         <>
         <section className= {header ? "SwiperMain" : "SwiperSecondary my-5"}>

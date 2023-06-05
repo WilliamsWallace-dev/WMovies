@@ -150,6 +150,12 @@
 
 //-----------------------------------------------------------------------------------
 
+//Enum
+export enum typeAccount {
+    admin = "admin",
+    user = "user"
+}
+
 //Types
 export enum TypeContent  {
     Filmes = "Filmes",
@@ -207,22 +213,30 @@ interface GenreType {
 
 //AuthProvider
 
-export interface IUser {
-    username? : string,
+export interface IUserRegister{
+    email? : string,
     password? : string,
-    email? : string
-}
-
-export interface IUserRegister extends IUser {
+    username : string,
     checkPassword : string
 }
 
-export interface IContext extends IUser{
-    authenticate : ({username , password} : IUser) => Promise<void>,
+export interface IUser {
+    id? : string,
+    email? : string | null,
+    password? : string,
+    username? : string,
+    favorites? : CardType[],
+    seeLater ? : CardType[],
+    typeOfAccount? : "admin" | "user"  
+}
+
+export interface IContext{
+    user : IUser | null,
+    authenticate : (email : string , password : string) => Promise<void>,
     logout : () => void
 }
 
-export interface n {
+export interface IAuthProvider {
     children : JSX.Element
 }
 
