@@ -47,12 +47,7 @@ export const LoginForm = ()=>{
                 else {
                     label.innerHTML = "Senha"
                 }
-            }
-                
-            
-            
-        
-        
+            }        
     }
 
     return(

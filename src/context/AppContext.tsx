@@ -1,6 +1,6 @@
 import { ReactNode, createContext, useEffect, useState } from "react"; 
 
-import { tmdb,URLValues } from "../services/Api";
+import { tmdb,URLValues,getTmdb } from "../services/Api";
 import { AppContextType, SearchTMDBType } from "../Types";
 
 export const AppContext = createContext <AppContextType>({} as AppContextType);
@@ -10,11 +10,7 @@ export const AppProvidor = ({children} : {children : ReactNode}) =>{
     const [seriesList,setSeriesList] = useState <SearchTMDBType | null>(null);
     const [animesList,setAnimesList] = useState <SearchTMDBType | null>(null);
 
-    const getTmdb = async (url : string)=>{
-        const res = await tmdb.get(url);
-        // console.log(res.data)
-        return res.data;
-    }
+    
 
     useEffect(()=>{
         GetMoviesList();

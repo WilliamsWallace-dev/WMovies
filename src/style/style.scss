@@ -21,6 +21,8 @@ body {
   height: 100vh;
   position: relative;
 
+  padding: 0 1rem;
+
   // teste
   // display: flex;
   // justify-content: center;
@@ -60,10 +62,9 @@ a{
 @import "partials/swiper";
 @import "partials/icons";
 @import "../components/Header/header";
-@import "../components/UserButton/userButton";
-@import "../components/SearchButton/searchButton";
 @import "../components/CardMain/cardMain";
 @import "../components/Card/card";
 @import "../components/CardDescription/cardDescription";
 @import "../components/LoginForm/loginRegisterForm";
-@import "../components/Profile/profile"
+@import "../components/Profile/profile";
+@import "../components/CardAdmin/cardAdmin"

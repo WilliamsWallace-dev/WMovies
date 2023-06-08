@@ -8,14 +8,18 @@ export enum URLValues {
   series = "tv/",
   nowPlaying = "now_playing",
   searchMovie = "search/movie",
-  searchSerie = "search/tv",
+  searchSerieAnimes = "search/tv",
 }
 
 export const tmdb = axios.create({
     baseURL: `https://api.themoviedb.org/3/`
   });
 
-
+export const getTmdb = async (url : string)=>{
+    const res = await tmdb.get(url);
+    // console.log(res.data)
+    return res.data;
+}
 
 
   //Firebase

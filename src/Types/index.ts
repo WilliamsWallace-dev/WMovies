@@ -185,12 +185,14 @@ export interface CardType {
     backdrop_path : string,
     id : number,
     original_languge : string,
-    original_title : string,
+    original_title? : string,
     overview : string,
     popularity : number,
     poster_path : string,
     release_date : string,
+    first_air_date : string, //Série
     title : string,
+    name : string,  //Série
     vote_average : number,
     vote_count : number,
     runtime : null | number,
@@ -240,3 +242,12 @@ export interface IAuthProvider {
     children : JSX.Element
 }
 
+export interface TypeSearch {
+    typeContent : "Filme" | "Série" | "Anime", 
+    typeOp : "Gerenciar" | "Adicionar"
+}
+
+export interface Search { 
+    text  : string,
+    cards : CardType[],
+}

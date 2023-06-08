@@ -183,3 +183,221 @@ transition: .5s ease;
     transform: scale(1.01) translateY(-1px) translateX(0px);
   }
 }
+
+.searchButton{
+  position: relative;
+  background-color: transparent;
+  text-decoration: none;
+  border: none;
+  
+  cursor: pointer;
+
+  // border: 1px solid red;
+  color: $white-normal;
+
+  background: rgba(252, 248, 248, 0.05);
+  
+  width: 48px;
+  height: 48px;
+
+  border-radius: 32px;
+  padding-left: 32px;
+
+  &::before{
+      content: "";
+      display: inline-block;
+      position: absolute;
+
+      left: 32%;
+      top: 28%;
+      width: 21px;
+      height: 22px;
+
+      background-image: url("../assets/icons/searchIcon.svg");
+      background-position: center center;
+      background-repeat: no-repeat;
+      background-size: cover;
+
+      transition: .5s ease;
+  }
+  transition: .5s ease;
+  &:hover{
+      color: $black-dark;
+      background: white;
+      opacity: 1;
+      
+      transform: translateY(-2px);
+      filter: drop-shadow(0px 4px 4px rgba(33, 27, 28, 0.64));
+      &::before{
+          background-image: url("../assets/icons/searchIconHover.svg");
+      }
+  }
+
+}
+
+
+.userButton{
+  position: relative;
+  background-color: transparent;
+  text-decoration: none;
+  border: none;
+  
+  cursor: pointer;
+
+  // border: 1px solid red;
+  color: $white-normal;
+
+  background: rgba(252, 248, 248, 0.05);
+  
+  width: 160px;
+  height: 48px;
+
+  border-radius: 32px;
+  padding-left: 32px;
+
+  &::before{
+      content: "";
+      display: inline-block;
+      position: absolute;
+
+      left: 24px;
+      width: 20px;
+      height: 20px;
+
+      background-image: url("../assets/icons/userIcon.svg");
+      background-position: center center;
+      background-repeat: no-repeat;
+      background-size: cover;
+      transition: .5s ease;
+  }
+  transition: .5s ease;
+  &:hover{
+      color: $black-dark;
+      background: white;
+      opacity: 1;
+
+      transform: translateY(-2px);
+      filter: drop-shadow(0px 4px 4px rgba(33, 27, 28, 0.64));
+      &::before{
+          background-image: url("../assets/icons/userIconHover.svg");
+      }
+  }
+
+}
+
+.signedInButton{
+  position: relative;
+  background-color: transparent;
+  text-decoration: none;
+  border: none;
+  
+  cursor: pointer;
+
+  // border: 1px solid red;
+  color: $white-normal;
+
+  background: rgba(252, 248, 248, 0.05);
+  
+  width: 48px;
+  height: 48px;
+
+  border-radius: 32px;
+  padding-left: 32px;
+
+  &::before{
+      content: "";
+      display: inline-block;
+      position: relative;
+
+      transform: translateX(-20px);
+      width: 28px;
+      height: 28px;
+
+      background-image: url("../assets/icons/signedIcon.svg");
+      background-position: center center;
+      background-repeat: no-repeat;
+      background-size: cover;
+      transition: .5s ease;
+  }
+  transition: .5s ease;
+  &:hover{
+      color: $black-dark;
+      background: white;
+      opacity: 1;
+
+      transform: translateY(-2px);
+      filter: drop-shadow(0px 4px 4px rgba(33, 27, 28, 0.64));
+  }
+}
+
+.CardAdmin{
+  cursor: initial;
+  .sinopseHover{
+      .buttonAdd{
+          color: $green-dark;
+          font-size: 48px;
+          &:hover{
+              color: $green-light;
+          }
+      }
+      .buttonDel{
+          color: $red-dark;
+          font-size: 48px;
+          &:hover{
+              color: $red-light;
+          }
+      }
+      button{
+
+          background: transparent;
+          border: none;
+          
+
+          font-family: "Mulish", sans-serif;
+          font-size: 24px;
+          font-weight: 700;
+
+          cursor: pointer;
+
+          transition: .3s ease;
+
+          &:hover{
+              transform: translateY(-8px) scale(1.2);
+              
+          }
+      }
+  }
+}
+
+.pages{
+    .paginationButton{
+      position: relative;
+      display: inline-block;
+
+      width: 40px;
+      height: 40px;
+
+      cursor: pointer;
+
+      border: 2px solid $white-normal;
+      border-radius: 50%;
+
+      color: $white-dark;
+      // font-weight: 600;
+
+      
+
+      background: rgba(252, 248, 248, 0.05);
+      
+      transition: .3s ease;
+      &:hover{
+        border-color: $primary-normal;
+        transform: translateY(-2px) scale(1.1);
+        color: $white-light;
+      }
+    }
+  .active {
+    border-color: $primary-normal;
+    color: $white-light;
+  }
+}

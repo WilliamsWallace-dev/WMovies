@@ -1,6 +1,57 @@
-.Admin{
-    .featuresAdmin{
+.Profile{
+    align-items: flex-start;
 
+    padding: 2rem 1.5rem;
+
+    .UserInf{
+        h1{
+            color: $primary-normal;
+            text-shadow: 0px 2px 8px rgba(173, 3, 12, .88);
+
+            // background: linear-gradient(180deg, #E50914 0%, #FC303E 150%);
+            // -webkit-background-clip: text;
+            // -webkit-text-fill-color: transparent;
+            // background-clip: text;
+            // text-fill-color: transparent;
+
+        }
+        p{
+            position: relative;
+            color: $white-light;
+
+            margin-bottom: .25rem;
+
+            &::after{
+                content: "";
+                display: inline-block;
+                position: absolute;
+
+                left: 0;
+                top: 0;
+
+                width: 100%;
+                height: 100%;
+
+                
+                background: linear-gradient(90deg, rgba(252, 248, 248, 0) 0%, #0A0101 51.56%), linear-gradient(90deg, rgba(252, 248, 248, 0) 0%, #0A0101 51.56%), linear-gradient(90deg, rgba(252, 248, 248, 0) 0%, #0A0101 51.56%), linear-gradient(90deg, rgba(252, 248, 248, 0) 0%, #0A0101 51.56%);
+            }
+        }
+        
+    }
+
+    .featuresProfile{
+        width: 100%;
+        min-height: 500px;
+        padding: 2rem 0;
+
+        justify-content: flex-start;
+        
+        background: linear-gradient(180deg, #140F10 0%, rgba(20, 15, 16, 0) 100%);
+        background-image: url("../assets/icons/BackgroundProfile.svg");
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: contain;
+        
         .menu-item{
             // border: 1px solid green;
             position: relative;
@@ -19,6 +70,7 @@
             }
 
             font-weight: 600;
+            
 
             cursor: pointer;
             &::after{
@@ -152,7 +204,7 @@
                 width: 20px;
                 height: 20px;
         
-                top: 22%;
+                top: 18%;
                 left: 3.5%;
                 
                 background-image: url("../assets/icons/searchIcon.svg");
@@ -175,8 +227,9 @@
             // background-position: center center;
             background-repeat: no-repeat;
             background-size: contain;
+            
         
-            padding: 0 0 .5rem 3.7rem;
+            padding: 0 0 1rem 3rem;
         
             font-family: "Mulish", sans-serif;
             font-size: 16px;
@@ -191,9 +244,11 @@
                 box-shadow: 0 0 0 0;
                 outline: 0;
         
-                transform: scale(1.01) translateY(-1px) translateX(1px);
+                transform: scale(1.01) translateY(-.25px) translateX(1px);
                 background-image: url("../assets/icons/inputSearchIconActive.svg");
-        
+                background-repeat: no-repeat;
+                background-size: contain;
+                
                 // box-shadow: white;
         
             }
@@ -208,7 +263,7 @@
             display: inline-block;
             position: absolute;
         
-            top: 23%;
+            top: 17%;
             left: 27%;
         
             transition: .3s ease-in;
@@ -220,6 +275,29 @@
             opacity: 0;
             pointer-events: none;
         }    
+    }
+    .cardContainer{
+        position: relative;
+
+        width: 100%;
+        min-height: 200px;
+        
+        &::before{
+            content: "";
+            display: block;
+            position: absolute;
+
+            top: -40px;
+
+            width: 300px;
+            height: 3px;
+            
+            margin: 1.5rem auto;
+
+            background: linear-gradient(90deg, rgba(8, 5, 6, 0) 0%, #E50914 50%, rgba(8, 5, 6, 0) 100%);
+            border-radius: 2px;
+            transform: matrix(1, 0, 0.28, 0.96, 0, 0);
+        }
     }
 }
 

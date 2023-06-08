@@ -6,6 +6,23 @@
   box-sizing: border-box;
 }
 
+.containerFlex {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 96px 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  overflow: hidden;
+}
+@media screen and (max-width: 960px) {
+  .containerFlex {
+    flex-direction: column;
+    padding: 32px 18px;
+  }
+}
+
 .container {
   max-width: 1440px;
   margin: 0 auto;
@@ -454,6 +471,170 @@ strong {
   background-image: url("../assets/icons/FormButtonIconHover.svg");
 }
 
+.searchButton {
+  position: relative;
+  background-color: transparent;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  color: #FDF9F9;
+  background: rgba(252, 248, 248, 0.05);
+  width: 48px;
+  height: 48px;
+  border-radius: 32px;
+  padding-left: 32px;
+  transition: 0.5s ease;
+}
+.searchButton::before {
+  content: "";
+  display: inline-block;
+  position: absolute;
+  left: 32%;
+  top: 28%;
+  width: 21px;
+  height: 22px;
+  background-image: url("../assets/icons/searchIcon.svg");
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  transition: 0.5s ease;
+}
+.searchButton:hover {
+  color: #0A0101;
+  background: white;
+  opacity: 1;
+  transform: translateY(-2px);
+  filter: drop-shadow(0px 4px 4px rgba(33, 27, 28, 0.64));
+}
+.searchButton:hover::before {
+  background-image: url("../assets/icons/searchIconHover.svg");
+}
+
+.userButton {
+  position: relative;
+  background-color: transparent;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  color: #FDF9F9;
+  background: rgba(252, 248, 248, 0.05);
+  width: 160px;
+  height: 48px;
+  border-radius: 32px;
+  padding-left: 32px;
+  transition: 0.5s ease;
+}
+.userButton::before {
+  content: "";
+  display: inline-block;
+  position: absolute;
+  left: 24px;
+  width: 20px;
+  height: 20px;
+  background-image: url("../assets/icons/userIcon.svg");
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  transition: 0.5s ease;
+}
+.userButton:hover {
+  color: #0A0101;
+  background: white;
+  opacity: 1;
+  transform: translateY(-2px);
+  filter: drop-shadow(0px 4px 4px rgba(33, 27, 28, 0.64));
+}
+.userButton:hover::before {
+  background-image: url("../assets/icons/userIconHover.svg");
+}
+
+.signedInButton {
+  position: relative;
+  background-color: transparent;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  color: #FDF9F9;
+  background: rgba(252, 248, 248, 0.05);
+  width: 48px;
+  height: 48px;
+  border-radius: 32px;
+  padding-left: 32px;
+  transition: 0.5s ease;
+}
+.signedInButton::before {
+  content: "";
+  display: inline-block;
+  position: relative;
+  transform: translateX(-20px);
+  width: 28px;
+  height: 28px;
+  background-image: url("../assets/icons/signedIcon.svg");
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  transition: 0.5s ease;
+}
+.signedInButton:hover {
+  color: #0A0101;
+  background: white;
+  opacity: 1;
+  transform: translateY(-2px);
+  filter: drop-shadow(0px 4px 4px rgba(33, 27, 28, 0.64));
+}
+
+.CardAdmin {
+  cursor: initial;
+}
+.CardAdmin .sinopseHover .buttonAdd {
+  color: #28bb49;
+  font-size: 48px;
+}
+.CardAdmin .sinopseHover .buttonAdd:hover {
+  color: #50e170;
+}
+.CardAdmin .sinopseHover .buttonDel {
+  color: #d03333;
+  font-size: 48px;
+}
+.CardAdmin .sinopseHover .buttonDel:hover {
+  color: #f05454;
+}
+.CardAdmin .sinopseHover button {
+  background: transparent;
+  border: none;
+  font-family: "Mulish", sans-serif;
+  font-size: 24px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+.CardAdmin .sinopseHover button:hover {
+  transform: translateY(-8px) scale(1.2);
+}
+
+.pages .paginationButton {
+  position: relative;
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  border: 2px solid #FDF9F9;
+  border-radius: 50%;
+  color: #F5E9E9;
+  background: rgba(252, 248, 248, 0.05);
+  transition: 0.3s ease;
+}
+.pages .paginationButton:hover {
+  border-color: #E50914;
+  transform: translateY(-2px) scale(1.1);
+  color: #FDF9F9;
+}
+.pages .active {
+  border-color: #E50914;
+  color: #FDF9F9;
+}
+
 .s-0 {
   margin: 0;
   padding: 0;
@@ -767,6 +948,7 @@ body {
   width: 100%;
   height: 100vh;
   position: relative;
+  padding: 0 1rem;
   scroll-behavior: smooth;
   background-color: #0A0101;
 }
@@ -1075,118 +1257,6 @@ a {
   background-repeat: no-repeat;
 }
 
-.userButton {
-  position: relative;
-  background-color: transparent;
-  text-decoration: none;
-  border: none;
-  cursor: pointer;
-  color: #FDF9F9;
-  background: rgba(252, 248, 248, 0.05);
-  width: 160px;
-  height: 48px;
-  border-radius: 32px;
-  padding-left: 32px;
-  transition: 0.5s ease;
-}
-.userButton::before {
-  content: "";
-  display: inline-block;
-  position: absolute;
-  left: 24px;
-  width: 20px;
-  height: 20px;
-  background-image: url("../assets/icons/userIcon.svg");
-  background-position: center center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  transition: 0.5s ease;
-}
-.userButton:hover {
-  color: #0A0101;
-  background: white;
-  opacity: 1;
-  transform: translateY(-2px);
-  filter: drop-shadow(0px 4px 4px rgba(33, 27, 28, 0.64));
-}
-.userButton:hover::before {
-  background-image: url("../assets/icons/userIconHover.svg");
-}
-
-.signedInButton {
-  position: relative;
-  background-color: transparent;
-  text-decoration: none;
-  border: none;
-  cursor: pointer;
-  color: #FDF9F9;
-  background: rgba(252, 248, 248, 0.05);
-  width: 48px;
-  height: 48px;
-  border-radius: 32px;
-  padding-left: 32px;
-  transition: 0.5s ease;
-}
-.signedInButton::before {
-  content: "";
-  display: inline-block;
-  position: relative;
-  transform: translateX(-20px);
-  width: 28px;
-  height: 28px;
-  background-image: url("../assets/icons/signedIcon.svg");
-  background-position: center center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  transition: 0.5s ease;
-}
-.signedInButton:hover {
-  color: #0A0101;
-  background: white;
-  opacity: 1;
-  transform: translateY(-2px);
-  filter: drop-shadow(0px 4px 4px rgba(33, 27, 28, 0.64));
-}
-
-.searchButton {
-  position: relative;
-  background-color: transparent;
-  text-decoration: none;
-  border: none;
-  cursor: pointer;
-  color: #FDF9F9;
-  background: rgba(252, 248, 248, 0.05);
-  width: 48px;
-  height: 48px;
-  border-radius: 32px;
-  padding-left: 32px;
-  transition: 0.5s ease;
-}
-.searchButton::before {
-  content: "";
-  display: inline-block;
-  position: absolute;
-  left: 32%;
-  top: 28%;
-  width: 21px;
-  height: 22px;
-  background-image: url("../assets/icons/searchIcon.svg");
-  background-position: center center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  transition: 0.5s ease;
-}
-.searchButton:hover {
-  color: #0A0101;
-  background: white;
-  opacity: 1;
-  transform: translateY(-2px);
-  filter: drop-shadow(0px 4px 4px rgba(33, 27, 28, 0.64));
-}
-.searchButton:hover::before {
-  background-image: url("../assets/icons/searchIconHover.svg");
-}
-
 .height100vh {
   height: 100vh;
 }
@@ -1490,7 +1560,6 @@ a {
   max-width: 840px;
   margin: 3rem auto;
   padding: 3rem 0;
-  background: linear-gradient(180deg, #140F10 1.39%, rgba(20, 15, 16, 0) 100%);
   background-image: url("../assets/icons/BackgroundForm.svg");
   background-position: top;
   background-repeat: no-repeat;
@@ -1604,11 +1673,45 @@ a {
   transform: translateX(1.5px);
 }
 
-.Admin .featuresAdmin .menu-item {
+.Profile {
+  align-items: flex-start;
+  padding: 2rem 1.5rem;
+}
+.Profile .UserInf h1 {
+  color: #E50914;
+  text-shadow: 0px 2px 8px rgba(173, 3, 12, 0.88);
+}
+.Profile .UserInf p {
+  position: relative;
+  color: #FDF9F9;
+  margin-bottom: 0.25rem;
+}
+.Profile .UserInf p::after {
+  content: "";
+  display: inline-block;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, rgba(252, 248, 248, 0) 0%, #0A0101 51.56%), linear-gradient(90deg, rgba(252, 248, 248, 0) 0%, #0A0101 51.56%), linear-gradient(90deg, rgba(252, 248, 248, 0) 0%, #0A0101 51.56%), linear-gradient(90deg, rgba(252, 248, 248, 0) 0%, #0A0101 51.56%);
+}
+.Profile .featuresProfile {
+  width: 100%;
+  min-height: 500px;
+  padding: 2rem 0;
+  justify-content: flex-start;
+  background: linear-gradient(180deg, #140F10 0%, rgba(20, 15, 16, 0) 100%);
+  background-image: url("../assets/icons/BackgroundProfile.svg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+.Profile .featuresProfile .menu-item {
   position: relative;
   text-align: center;
 }
-.Admin .featuresAdmin .menu-item h3 {
+.Profile .featuresProfile .menu-item h3 {
   position: relative;
   padding-left: 0;
   color: #FDF9F9;
@@ -1622,13 +1725,13 @@ a {
   transition: 0.3s ease;
 }
 @media screen and (max-width: 960px) {
-  .Admin .featuresAdmin .menu-item h3 {
+  .Profile .featuresProfile .menu-item h3 {
     font-family: "Mulish", sans-serif;
     font-size: 24px;
     line-height: 120%;
   }
 }
-.Admin .featuresAdmin .menu-item h3::after {
+.Profile .featuresProfile .menu-item h3::after {
   content: "";
   display: block;
   position: absolute;
@@ -1643,16 +1746,16 @@ a {
   background-size: cover;
   transition: 0.3s ease;
 }
-.Admin .featuresAdmin .menu-item:hover h3 {
+.Profile .featuresProfile .menu-item:hover h3 {
   color: white;
   opacity: 1;
   transform: translateX(1px);
 }
-.Admin .featuresAdmin .menu-item:hover h3::after {
+.Profile .featuresProfile .menu-item:hover h3::after {
   opacity: 1;
   transform: translateX(16px);
 }
-.Admin .featuresAdmin .menu-item:hover .menu-options {
+.Profile .featuresProfile .menu-item:hover .menu-options {
   height: 28px;
   overflow: hidden;
   pointer-events: all;
@@ -1660,7 +1763,7 @@ a {
   opacity: 1;
   transform: translateY(0px);
 }
-.Admin .featuresAdmin .menu-item .menu-options {
+.Profile .featuresProfile .menu-item .menu-options {
   position: absolute;
   bottom: -100%;
   z-index: 999;
@@ -1672,7 +1775,7 @@ a {
   transform: translateY(4px);
   transition: 0.3s ease;
 }
-.Admin .featuresAdmin .menu-item .menu-options li {
+.Profile .featuresProfile .menu-item .menu-options li {
   color: #FDF9F9;
   opacity: 0.88;
   padding-bottom: 0.25rem;
@@ -1685,14 +1788,14 @@ a {
   transition: 0.3s ease;
 }
 @media screen and (max-width: 960px) {
-  .Admin .featuresAdmin .menu-item .menu-options li {
+  .Profile .featuresProfile .menu-item .menu-options li {
     font-family: "Mulish", sans-serif;
     font-size: 14px;
     line-height: 130%;
     font-weight: 400;
   }
 }
-.Admin .featuresAdmin .menu-item .menu-options li::after {
+.Profile .featuresProfile .menu-item .menu-options li::after {
   content: "";
   display: block;
   position: absolute;
@@ -1705,34 +1808,34 @@ a {
   transform: matrix(1, 0, 0.28, 0.96, 0, 0);
   transition: 0.3s ease;
 }
-.Admin .featuresAdmin .menu-item .menu-options li:hover {
+.Profile .featuresProfile .menu-item .menu-options li:hover {
   color: white;
   opacity: 1;
   transform: translateX(1px);
 }
-.Admin .featuresAdmin .menu-item .menu-options li:hover::after {
+.Profile .featuresProfile .menu-item .menu-options li:hover::after {
   width: 70%;
   opacity: 1;
   transform: translateX(6px);
 }
-.Admin .featuresAdmin .inputSearch {
+.Profile .featuresProfile .inputSearch {
   position: relative;
   width: 30%;
 }
-.Admin .featuresAdmin .inputSearch::after {
+.Profile .featuresProfile .inputSearch::after {
   content: "";
   display: inline-block;
   position: absolute;
   width: 20px;
   height: 20px;
-  top: 22%;
+  top: 18%;
   left: 3.5%;
   background-image: url("../assets/icons/searchIcon.svg");
   background-position: center center;
   background-repeat: no-repeat;
   background-size: contain;
 }
-.Admin .featuresAdmin input {
+.Profile .featuresProfile input {
   display: block;
   position: relative;
   width: 100%;
@@ -1742,7 +1845,7 @@ a {
   background-image: url("../assets/icons/inputSearchIcon.svg");
   background-repeat: no-repeat;
   background-size: contain;
-  padding: 0 0 0.5rem 3.7rem;
+  padding: 0 0 1rem 3rem;
   font-family: "Mulish", sans-serif;
   font-size: 16px;
   line-height: 130%;
@@ -1750,13 +1853,15 @@ a {
   color: #FDF9F9;
   transition: 0.3s ease-in;
 }
-.Admin .featuresAdmin input:focus {
+.Profile .featuresProfile input:focus {
   box-shadow: 0 0 0 0;
   outline: 0;
-  transform: scale(1.01) translateY(-1px) translateX(1px);
+  transform: scale(1.01) translateY(-0.25px) translateX(1px);
   background-image: url("../assets/icons/inputSearchIconActive.svg");
+  background-repeat: no-repeat;
+  background-size: contain;
 }
-.Admin .featuresAdmin label {
+.Profile .featuresProfile label {
   font-family: "Mulish", sans-serif;
   font-size: 16px;
   line-height: 130%;
@@ -1764,12 +1869,59 @@ a {
   color: #FDF9F9;
   display: inline-block;
   position: absolute;
-  top: 23%;
+  top: 17%;
   left: 27%;
   transition: 0.3s ease-in;
 }
-.Admin .featuresAdmin input:focus + label {
+.Profile .featuresProfile input:focus + label {
   transform: translateX(15px);
   opacity: 0;
   pointer-events: none;
+}
+.Profile .cardContainer {
+  position: relative;
+  width: 100%;
+  min-height: 200px;
+}
+.Profile .cardContainer::before {
+  content: "";
+  display: block;
+  position: absolute;
+  top: -40px;
+  width: 300px;
+  height: 3px;
+  margin: 1.5rem auto;
+  background: linear-gradient(90deg, rgba(8, 5, 6, 0) 0%, #E50914 50%, rgba(8, 5, 6, 0) 100%);
+  border-radius: 2px;
+  transform: matrix(1, 0, 0.28, 0.96, 0, 0);
+}
+
+.CardAdmin {
+  cursor: initial;
+}
+.CardAdmin .sinopseHover .buttonAdd {
+  color: #28bb49;
+  font-size: 48px;
+}
+.CardAdmin .sinopseHover .buttonAdd:hover {
+  color: #50e170;
+}
+.CardAdmin .sinopseHover .buttonDel {
+  color: #d03333;
+  font-size: 48px;
+}
+.CardAdmin .sinopseHover .buttonDel:hover {
+  color: #f05454;
+}
+.CardAdmin .sinopseHover button {
+  background: transparent;
+  border: none;
+  font-family: "Mulish", sans-serif;
+  font-size: 24px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+.CardAdmin .sinopseHover button:hover {
+  transform: translateY(-8px) scale(1.2);
 }/*# sourceMappingURL=style.css.map */

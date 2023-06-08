@@ -36,6 +36,25 @@ $container-s: 540px;
   }
 }
 
+.containerFlex {
+  max-width: $container-xl;
+  margin: 0 auto;
+
+  padding: 96px 24px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  overflow: hidden;
+
+  @include responsive(s) {
+    flex-direction: column;
+
+    padding: 32px 18px;
+  }
+}
+
 .container {
   max-width: $container-xl;
   margin: 0 auto;

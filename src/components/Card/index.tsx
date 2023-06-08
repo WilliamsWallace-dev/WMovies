@@ -30,8 +30,8 @@ export default function Card({movie ,key} : {movie : CardType , key : number}){
 
 
 //Descrição sem Sinopse
-<p className="sinopseHover px-1">
+{/* <p className="sinopseHover px-1">
     Peter Parker é desmascarado e não consegue mais separar sua vida normal dos grandes riscos
     de ser um super-herói. Quando ele pede ajuda ao Doutor Estranho, os riscos se tornam ainda mais perigosos, e o forçam
     a descobrir o que realmente significa ser o Homem-Aranha.
-</p>
+</p> */}
