@@ -12,12 +12,12 @@ export const AuthProvider = ({children} : IAuthProvider) =>{
 
     useEffect(()=>{
         
-        auth.signOut().
-        then(()=>{
-            console.log("Usuário Deslogado")
-            setUser(null)
-        })
-        .catch((error)=> console.log(error))
+        // auth.signOut().
+        // then(()=>{
+        //     console.log("Usuário Deslogado")
+        //     setUser(null)
+        // })
+        // .catch((error)=> console.log(error))
 
         onAuthStateChanged(auth, (userOn) => {
             if (userOn) {

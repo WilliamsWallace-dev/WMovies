@@ -1697,15 +1697,11 @@ a {
   background: linear-gradient(90deg, rgba(252, 248, 248, 0) 0%, #0A0101 51.56%), linear-gradient(90deg, rgba(252, 248, 248, 0) 0%, #0A0101 51.56%), linear-gradient(90deg, rgba(252, 248, 248, 0) 0%, #0A0101 51.56%), linear-gradient(90deg, rgba(252, 248, 248, 0) 0%, #0A0101 51.56%);
 }
 .Profile .featuresProfile {
+  position: relative;
   width: 100%;
   min-height: 500px;
   padding: 2rem 0;
   justify-content: flex-start;
-  background: linear-gradient(180deg, #140F10 0%, rgba(20, 15, 16, 0) 100%);
-  background-image: url("../assets/icons/BackgroundProfile.svg");
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: contain;
 }
 .Profile .featuresProfile .menu-item {
   position: relative;
@@ -1739,7 +1735,7 @@ a {
   left: -45px;
   width: 24px;
   height: 24px;
-  opacity: 0;
+  opacity: 0.64;
   background-image: url("../assets/icons/MenuOptionsIcon.svg");
   background-position: center;
   background-repeat: no-repeat;
@@ -1820,7 +1816,7 @@ a {
 }
 .Profile .featuresProfile .inputSearch {
   position: relative;
-  width: 30%;
+  width: 400px;
 }
 .Profile .featuresProfile .inputSearch::after {
   content: "";
@@ -1828,8 +1824,9 @@ a {
   position: absolute;
   width: 20px;
   height: 20px;
-  top: 18%;
-  left: 3.5%;
+  top: 13%;
+  left: 4%;
+  padding: 0rem;
   background-image: url("../assets/icons/searchIcon.svg");
   background-position: center center;
   background-repeat: no-repeat;
@@ -1869,7 +1866,7 @@ a {
   color: #FDF9F9;
   display: inline-block;
   position: absolute;
-  top: 17%;
+  top: 13%;
   left: 27%;
   transition: 0.3s ease-in;
 }
@@ -1894,34 +1891,4 @@ a {
   background: linear-gradient(90deg, rgba(8, 5, 6, 0) 0%, #E50914 50%, rgba(8, 5, 6, 0) 100%);
   border-radius: 2px;
   transform: matrix(1, 0, 0.28, 0.96, 0, 0);
-}
-
-.CardAdmin {
-  cursor: initial;
-}
-.CardAdmin .sinopseHover .buttonAdd {
-  color: #28bb49;
-  font-size: 48px;
-}
-.CardAdmin .sinopseHover .buttonAdd:hover {
-  color: #50e170;
-}
-.CardAdmin .sinopseHover .buttonDel {
-  color: #d03333;
-  font-size: 48px;
-}
-.CardAdmin .sinopseHover .buttonDel:hover {
-  color: #f05454;
-}
-.CardAdmin .sinopseHover button {
-  background: transparent;
-  border: none;
-  font-family: "Mulish", sans-serif;
-  font-size: 24px;
-  font-weight: 700;
-  cursor: pointer;
-  transition: 0.3s ease;
-}
-.CardAdmin .sinopseHover button:hover {
-  transform: translateY(-8px) scale(1.2);
 }/*# sourceMappingURL=style.css.map */

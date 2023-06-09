@@ -2,6 +2,7 @@ import { ReactNode, createContext, useEffect, useState } from "react";
 
 import { tmdb,URLValues,getTmdb } from "../services/Api";
 import { AppContextType, SearchTMDBType } from "../Types";
+import { collection, addDoc } from "firebase/firestore";
 
 export const AppContext = createContext <AppContextType>({} as AppContextType);
 

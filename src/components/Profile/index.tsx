@@ -4,7 +4,6 @@ import { useAuth } from "../../context/AuthProvider/useAuth"
 import { URLValues, getTmdb } from "../../services/Api";
 import {CardAdmin} from "../CardAdmin";
 import { PaginationComponent } from "../PaginationComponent";
-import { ScrollToTop } from "../ScrollToTop";
 
 
 export const Profile = ()=>{
@@ -13,7 +12,7 @@ export const Profile = ()=>{
 
     const [search,setSearch] = useState({text : "", cards : []} as Search) ;
 
-    const [feature,setFeature] = useState({typeContent : "Filme", typeOp : "Adicionar"} as TypeSearch)
+    const [feature,setFeature] = useState({typeContent : "Série", typeOp : "Adicionar"} as TypeSearch)
 
     const handleFieldsChange = (e : {currentTarget : {value : string}})=>{
         setSearch({...search, text : e.currentTarget.value})
@@ -37,42 +36,73 @@ export const Profile = ()=>{
                 const url = `${URLValues.searchMovie}${URLValues.api_key}&query=${search.text}&page=${1}`
                 const searchTMDB = await getTmdb(url);
 
-                const pages = searchTMDB.total_pages;
                 let result = searchTMDB.results;
 
-                if(pages == 1){
+                if(searchTMDB.total_pages == 1){
                     setSearch({...search,cards : result})
                 }else{
-                    Array.from(Array(pages), async (item,index)=>{
-                        if(index+1 != 1){
+                    Array.from(Array(searchTMDB.total_pages), async (item,index)=>{
+                        if(index != 0){
                             const url = `${URLValues.searchMovie}${URLValues.api_key}&query=${search.text}&page=${index+1}`
                             const searchTMDB = await getTmdb(url);
                             result = [...result,...searchTMDB.results]
-                            setSearch({...search,cards : result})
+                            index < searchTMDB.total_pages && setSearch({...search,cards : result})
                         }
                     })
                 }
-            } else {
+            } else if(feature.typeContent == "Série") {
 
                 const url = `${URLValues.searchSerieAnimes}${URLValues.api_key}&query=${search.text}&page=${1}`
                 const searchTMDB = await getTmdb(url);
-                
-                
-                const pages = searchTMDB.total_pages;
+                              
                 let result = searchTMDB.results;
 
-                if(pages == 1){
+                if(searchTMDB.total_pages == 1){
                     setSearch({...search,cards : result})
                 }else{
-                    Array.from(Array(pages), async (item,index)=>{
-                        if(index+1 != 1){
+                    Array.from(Array(searchTMDB.total_pages), async (item,index)=>{
+                        if(index != 0){
                             const url = `${URLValues.searchSerieAnimes}${URLValues.api_key}&query=${search.text}&page=${index+1}`
                             const searchTMDB = await getTmdb(url);
                             result = [...result,...searchTMDB.results]
-                            setSearch({...search,cards : result})
+                            index < searchTMDB.total_pages && setSearch({...search,cards : result})
                         }
                     })
                 }
+            }else if(feature.typeContent == "Anime") {
+                let url = `${URLValues.searchSerieAnimes}${URLValues.api_key}&query=${search.text}&page=${1}`
+                let searchTMDB = await getTmdb(url);
+                let result = searchTMDB.results;
+
+                
+
+                if(searchTMDB.total_pages > 1){
+                    Array.from(Array(searchTMDB.total_pages), async (item,index)=>{
+                        if(index != 0){
+                            const url = `${URLValues.searchSerieAnimes}${URLValues.api_key}&query=${search.text}&page=${index+1}`
+                            const searchTMDB = await getTmdb(url);
+                            result = [...result,...searchTMDB.results]
+                        }
+                    })
+                }
+                    url = `${URLValues.searchMovie}${URLValues.api_key}&query=${search.text}&page=${1}`
+                    searchTMDB = await getTmdb(url);
+                    result = [...result, ...searchTMDB.results];
+
+                    
+
+                    if(searchTMDB.total_pages == 1){
+                        setSearch({...search,cards : result})
+                    }else{
+                        Array.from(Array(searchTMDB.total_pages), async (item,index)=>{
+                            if(index != 0){
+                                const url = `${URLValues.searchMovie}${URLValues.api_key}&query=${search.text}&page=${index+1}`
+                                const searchTMDB = await getTmdb(url);
+                                result = [...result,...searchTMDB.results]
+                                index < searchTMDB.total_pages && setSearch({...search,cards : result})
+                            }
+                        })
+                    }
             }
         }
         
@@ -86,11 +116,14 @@ export const Profile = ()=>{
     const endIndex = startIndex + itensPerPage
     const currentItens = search.cards.slice(startIndex,endIndex)
 
+    useEffect(()=>{
+        window.scrollTo(0,0);
+    },[currentPage])
+
 
     if(user && user.typeOfAccount == typeAccount.admin){
     return(
         <>
-            <ScrollToTop></ScrollToTop>
             <section className="Profile flex-column container">
                 <div className="UserInf mb-2">
                     <p className="typeOfAccount">Administrador</p>

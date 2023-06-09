@@ -5,7 +5,7 @@ export enum URLValues {
   img_path = "https://image.tmdb.org/t/p/w500/",
   img_path_original = "https://image.tmdb.org/t/p/original/",
   movies = "movie/",
-  series = "tv/",
+  seriesAnimes = "tv/",
   nowPlaying = "now_playing",
   searchMovie = "search/movie",
   searchSerieAnimes = "search/tv",
@@ -28,6 +28,7 @@ export const getTmdb = async (url : string)=>{
 import { initializeApp } from "firebase/app";
 // import { getAnalytics } from "firebase/analytics";
 import { getAuth } from "firebase/auth";
+import { getFirestore } from "firebase/firestore";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -49,3 +50,75 @@ const app = initializeApp(firebaseConfig);
 
 // Initialize Firebase Authentication and get a reference to the service
 export const auth = getAuth(app);
+export const db = getFirestore(app);
+
+import { collection, addDoc } from "firebase/firestore";
+import { doc, setDoc } from "firebase/firestore";
+import { CardType, IUser } from '../../Types';
+
+export const AddDocumentDb = async (collectionName : string,data : IUser)=>{
+
+  try {
+    const docRef = await addDoc(collection(db, collectionName), data);
+    console.log("Document written with ID: ", docRef.id);
+  } catch (e) {
+    console.error("Error adding document: ", e);
+  }
+
+}
+
+export const SetDocumentDbCardType = async (collectionName : string, data : CardType)=>{
+
+  if(collectionName == "Filme"){
+    let url = `${URLValues.movies}${data.id}${URLValues.api_key}&language=pt-BR`
+    data = await getTmdb(url)
+
+    url = `${URLValues.movies}${data.id}/videos${URLValues.api_key}&language=pt-BR`
+    const videosResults = await getTmdb(url)
+
+    if(videosResults.results.length){
+        data.video = videosResults.results[0] 
+    }else data.video = false
+
+    try {
+      await setDoc(doc(db, collectionName, `${data.id}`),data);
+    } catch (e) {
+      console.error("Error adding document: ", e);
+    }
+  }else if(collectionName == "Série"){
+          let url = `${URLValues.seriesAnimes}${data.id}${URLValues.api_key}&language=pt-BR`
+          data = await getTmdb(url)
+
+          url = `${URLValues.seriesAnimes}${data.id}/videos${URLValues.api_key}&language=pt-BR`
+          const videosResults = await getTmdb(url)
+
+          if(videosResults.results.length){
+              data.video = videosResults.results[0] 
+            }else data.video = false
+
+          try {
+            await setDoc(doc(db, collectionName, `${data.id}`),data);
+          } catch (e) {
+            console.error("Error adding document: ", e);
+          }
+    }else if(collectionName == "Anime"){
+
+              let url = `${data.title ? URLValues.movies : URLValues.seriesAnimes }${data.id}${URLValues.api_key}&language=pt-BR`
+              data = await getTmdb(url)
+              
+              url = `${data.title ? URLValues.movies : URLValues.seriesAnimes}${data.id}/videos${URLValues.api_key}&language=pt-BR`
+              const videosResults = await getTmdb(url)
+
+              if(videosResults.results.length){
+                data.video = videosResults.results[0] 
+              }else data.video = false
+
+              try {
+                await setDoc(doc(db, collectionName, `${data.id}`),data);
+              } catch (e) {
+                console.error("Error adding document: ", e);
+              }
+    }
+
+
+}

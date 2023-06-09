@@ -196,11 +196,20 @@ export interface CardType {
     vote_average : number,
     vote_count : number,
     runtime : null | number,
-    video : boolean | string,
+    video? : boolean | typeVideo | null,
     logo : string | null,
     cast : ActorType[],
     genres: null | GenreType[],
 
+}
+
+interface typeVideo { 
+    id : string,
+    key : string,
+    name : string
+    site : string,
+    size : number,
+    type : string
 }
 
 interface ActorType {
@@ -229,8 +238,15 @@ export interface IUser {
     username? : string,
     favorites? : CardType[],
     seeLater ? : CardType[],
-    typeOfAccount? : "admin" | "user"  
+    typeOfAccount? : "admin" | "user"
 }
+
+// export interface IAdmin {
+//     id? : string,
+//     email? : string | null,
+//     password? : string,
+//     username? : string,
+// }
 
 export interface IContext{
     user : IUser | null,
