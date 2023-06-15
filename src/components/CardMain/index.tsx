@@ -6,21 +6,21 @@ import { URLValues } from "../../services/Api";
 
 
 
-export default function CardMain({header ,key , cardSent} : {header? : boolean , key : number , cardSent : CardType}){
+export default function CardMain({header ,key , card} : {header? : boolean , key : number , card : CardType}){
 
         return(
             <>
                 {/* <div style={{position : "relative"}}> */}
                 <section key={key} className="SwiperDescriptionItem container ">
                     <div className="desciptionPoster mr-3">
-                        <img src={`${URLValues.img_path}${cardSent.poster_path}`} alt= {`Poste do Filmes : ${cardSent.title}`} />
+                        <img src={`${URLValues.img_path}${card.poster_path}`} alt= {`Poste do Filmes : ${card.title}`} />
                     </div>
                     <div className="description flex-start flex-column">
-                        <h1 className="title">{cardSent.title}</h1>
+                        <h1 className="title">{card.name || card.title}</h1>
                         <div className="flex-start mt-2">
-                            <p className="p1 mr-3 pt-1">{cardSent.release_date.split("-")[0]}</p>
-                            <p className="duration p1 mr-3">{cardSent.runtime || "2h,36min"}</p>
-                            <p className="rated p1">{cardSent.vote_average}</p>
+                            {card.first_air_date || card.release_date ? <p className="p1 mr-3 pt-1">{card.first_air_date ? card.first_air_date.split('-')[0] : card.release_date.split('-')[0]}</p> : <></> }
+                            <p className="duration p1 mr-3">{card.runtime || "2h,36min"}</p>
+                            <p className="rated p1">{card.vote_average}</p>
                         </div>
                         <div className="actors flex-start mt-2">
                             <div className="actorsItem flex-start mr-3">
@@ -37,11 +37,11 @@ export default function CardMain({header ,key , cardSent} : {header? : boolean ,
                             </div>
                         </div>
                         <p className="sinopse text-left p1 mt-2">
-                            {cardSent.overview}
+                            {card.overview}
                         </p>
                         <div className="type flex-start mt-2">
                             {
-                                cardSent.genres && cardSent.genres.map((genre)=>{
+                                card.genres && card.genres.map((genre)=>{
                                     return(
                                         <>
                                             <p className="typeItem p2 mr-2">{genre.name}</p>
@@ -63,7 +63,7 @@ export default function CardMain({header ,key , cardSent} : {header? : boolean ,
                 </section>
                 {/* <div className={header ? "backgroundPoster" : "backgroundPoster " }></div> */}
                 <div className= "backgroundPoster">
-                    <img src= {`${URLValues.img_path_original}${cardSent.backdrop_path}`} alt={`Poste do filme ${cardSent.title}`} />
+                    <img src= {`${URLValues.img_path_original}${card.backdrop_path}`} alt={`Poste do filme ${card.title}`} />
                 </div>
                 {/* </div> */}
             </>

@@ -1,6 +1,7 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
-import { IUserRegister } from "../../Types";
+import { Link, useNavigate } from "react-router-dom";
+import { IUser, IUserRegister } from "../../Types";
+import { useAuth } from "../../context/AuthProvider/useAuth";
 
 export const RegisterForm = ()=>{
 
@@ -10,16 +11,20 @@ export const RegisterForm = ()=>{
 
     const [fields, setFields] = useState<IUserRegister>(initialState);
 
+    const {createAccount} = useAuth()
+
+    const navigate = useNavigate()
+
     const handleFieldsChange = (e: { currentTarget: { id: string; value: string; }; })=>{
         setFields({
             ...fields,
             [e.currentTarget.id] : e.currentTarget.value
         })
-        console.log(fields)
     }
 
-    const handleSubmit = (e: { preventDefault: () => void; })=>{
+    const handleSubmit = async (e: { preventDefault: () => void; })=>{
         e.preventDefault()
+        await createAccount(fields as IUser)
         setFields(initialState)
     }
 
@@ -84,7 +89,7 @@ export const RegisterForm = ()=>{
                         <label className="" htmlFor="checkPassword">Repita sua senha</label>
                     </div>
                     
-                    <button className="FormButton" type="submit">Entrar</button>
+                    <button className="FormButton" type="submit">Cadastrar</button>
                 </form>
                 <Link to="../Login"><p className=" mt-3">Já é usuário? <span className="p3">Entre na sua conta!</span></p></Link>
             </section>

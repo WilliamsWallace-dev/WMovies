@@ -164,12 +164,12 @@ export enum TypeContent  {
 }
 // Context
 export interface AppContextType { 
-    moviesList : SearchTMDBType | null, 
-    GetMoviesList : ()=> Promise<void>
-    seriesList : SearchTMDBType | null, 
-    GetSeriesList : ()=> Promise<void> 
-    animesList : SearchTMDBType | null, 
-    GetAnimesList : ()=> Promise<void> 
+    moviesList : CardType [], 
+    seriesList : CardType [],  
+    animesList : CardType [], 
+    GetLists : ()=> Promise<void> ,
+    SetLists: (typeList: "Filme" | "Série" | "Anime", data: CardType) => void,
+    DelCard: (typeList: "Filme" | "Série" | "Anime", data: CardType) => Promise<void>
 }
 
 export interface SearchTMDBType {
@@ -224,17 +224,14 @@ interface GenreType {
 
 //AuthProvider
 
-export interface IUserRegister{
-    email? : string,
-    password? : string,
-    username : string,
+export interface IUserRegister extends IUser{
     checkPassword : string
 }
 
 export interface IUser {
     id? : string,
-    email? : string | null,
-    password? : string,
+    email : string,
+    password : string,
     username? : string,
     favorites? : CardType[],
     seeLater ? : CardType[],
@@ -251,7 +248,8 @@ export interface IUser {
 export interface IContext{
     user : IUser | null,
     authenticate : (email : string , password : string) => Promise<void>,
-    logout : () => void
+    logout : () => void,
+    createAccount: (userCreated: IUser) => void
 }
 
 export interface IAuthProvider {

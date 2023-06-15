@@ -27,8 +27,7 @@ export const getTmdb = async (url : string)=>{
   // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 // import { getAnalytics } from "firebase/analytics";
-import { getAuth } from "firebase/auth";
-import { getFirestore } from "firebase/firestore";
+import { DocumentData, getFirestore } from "firebase/firestore";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -52,17 +51,77 @@ const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
 export const db = getFirestore(app);
 
-import { collection, addDoc } from "firebase/firestore";
-import { doc, setDoc } from "firebase/firestore";
+import { collection, addDoc, getDocs, doc, setDoc, deleteDoc } from "firebase/firestore";
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import { CardType, IUser } from '../../Types';
 
-export const AddDocumentDb = async (collectionName : string,data : IUser)=>{
+//Autenticação - Usuário
+export const AddDocumentDbUser = async (collectionName : string,data : IUser)=>{
 
   try {
     const docRef = await addDoc(collection(db, collectionName), data);
     console.log("Document written with ID: ", docRef.id);
   } catch (e) {
     console.error("Error adding document: ", e);
+  }
+
+}
+
+export const CreateUser = async (userCreated : IUser)=>{
+
+  createUserWithEmailAndPassword(auth, userCreated.email, userCreated.password)
+  .then((userCredential) => {
+    // Signed in
+    const id = userCredential.user.uid;
+    console.log(userCredential)
+    // ...
+    setDoc(doc(db, "User", `${id}`),{
+      id : id,
+      email : userCreated.email,
+      password : userCreated.password,
+      username : userCreated.username,
+      favorites : [],
+      seeLater  : [],
+      typeOfAccount : "user"
+  })
+      .then(()=>{
+        console.log("UserDocument written");
+      })
+      .catch((e)=>{
+        console.error("Error adding document: ", e);
+      })
+  })
+  .catch((error) => {
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    // ..
+  });
+
+ 
+
+}
+
+
+//Banco de dados
+
+// eslint-disable-next-line react-refresh/only-export-components
+export const getDocumentDbCardList = async (collectionName : string)=>{
+  
+  const querySnapshot = await getDocs(collection(db, collectionName));
+  let list : CardType[] = [];
+  querySnapshot.forEach((doc) => {
+    list = [...list,doc.data() as CardType]
+  });
+  return list;
+}
+
+export const DelDocumentDb = async (collectionName : string,data : CardType)=>{
+
+  try {
+    await deleteDoc(doc(db, collectionName, `${data.id}`));
+    console.log("Document deleted with ID: ", data.id);
+  } catch (e) {
+    console.error("Error deleting document: ", e);
   }
 
 }

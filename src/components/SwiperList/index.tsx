@@ -1,7 +1,7 @@
 import Card from "../Card";
 
 //Type
-import { AppContextType, SearchTMDBType, TypeContent } from "../../Types";
+import { AppContextType, CardType, SearchTMDBType, TypeContent } from "../../Types";
 
 // Context
 import { useContext, useEffect, useState } from "react";
@@ -28,7 +28,7 @@ export default function SwiperList ({typeSwiper = "Filmes" , id} : {typeSwiper :
 
     const {moviesList,seriesList,animesList} = useContext(AppContext) as AppContextType;
 
-    const [swiperList,setSwiperList] = useState <SearchTMDBType | null>(null)
+    const [swiperList,setSwiperList] = useState <CardType[] | null>(null)
 
     useEffect(()=>{
         switch (typeSwiper) {
@@ -69,10 +69,10 @@ export default function SwiperList ({typeSwiper = "Filmes" , id} : {typeSwiper :
                 >  
                     <SwiperSlide style={{width : "100px"}}></SwiperSlide>
                     {
-                        swiperList && swiperList.results.map((movie)=>{
+                        swiperList && swiperList.map((movie)=>{
                             return (
                                 <>
-                                    <SwiperSlide><Link to={!id ? `${typeSwiper}/${movie.id}` : `../${typeSwiper}/${movie.id}` }><Card movie = {movie} key={movie.id} ></Card></Link></SwiperSlide>
+                                    <SwiperSlide><Link to={!id ? `${typeSwiper}/${movie.id}` : `../${typeSwiper}/${movie.id}` }><Card card = {movie} key={movie.id} ></Card></Link></SwiperSlide>
                                 </>
                             )
                         })

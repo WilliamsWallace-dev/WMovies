@@ -2,22 +2,22 @@ import { createContext, useEffect, useState } from "react";
 import { IContext, IUser,IAuthProvider, typeAccount } from "../../Types";
 import { LoginRequest, Logout } from "./util";
 import { onAuthStateChanged, signInWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../../services/Api";
+import { CreateUser, auth } from "../../services/Api";
 
 export const AuthContext = createContext<IContext>({} as IContext);
 
 export const AuthProvider = ({children} : IAuthProvider) =>{
 
-    const [user, setUser] = useState<IUser | null>(null)
+    const [user, setUser] = useState<IUser>({} as IUser)
 
     useEffect(()=>{
         
-        // auth.signOut().
-        // then(()=>{
-        //     console.log("Usuário Deslogado")
-        //     setUser(null)
-        // })
-        // .catch((error)=> console.log(error))
+        auth.signOut().
+        then(()=>{
+            console.log("Usuário Deslogado")
+            setUser({} as IUser)
+        })
+        .catch((error)=> console.log(error))
 
         onAuthStateChanged(auth, (userOn) => {
             if (userOn) {
@@ -25,9 +25,9 @@ export const AuthProvider = ({children} : IAuthProvider) =>{
                 // https://firebase.google.com/docs/reference/js/firebase.User
                 const uid = userOn.uid;
                 const uemail = userOn.email
-                if(uid == "uJqqGNTncHPWRHcC3tvivS0R1dX2"){
+                if(uid == "uJqqGNTncHPWRHcC3tvivS0R1dX2" && uemail){
                     setUser({...user,id : uid,typeOfAccount : typeAccount.admin, email : uemail})
-                }else{
+                }else if(uid && uemail){
                     setUser({...user,id : uid,typeOfAccount : typeAccount.user, email : uemail})
                 }
                 
@@ -48,9 +48,9 @@ export const AuthProvider = ({children} : IAuthProvider) =>{
                 const userOn = userCredential.user;
                 const uid = userOn.uid;
                 const uemail = userOn.email
-                if(uid == "uJqqGNTncHPWRHcC3tvivS0R1dX2"){
+                if(uid == "uJqqGNTncHPWRHcC3tvivS0R1dX2" && uemail){
                     setUser({...user,id : uid,typeOfAccount : typeAccount.admin, email : uemail})
-                }else{
+                }else if(uid && uemail){
                     setUser({...user,id : uid,typeOfAccount : typeAccount.user, email : uemail})
                 }
                 // ...
@@ -67,9 +67,13 @@ export const AuthProvider = ({children} : IAuthProvider) =>{
         auth.signOut().
         then(()=>{
             // console.log("Usuário Deslogado")
-            setUser(null)
+            setUser({} as IUser)
         })
         .catch((error)=> console.log(error))
+    }
+
+    const createAccount = (userCreated : IUser)=>{
+        CreateUser(userCreated)
     }
 
     return(
@@ -77,7 +81,8 @@ export const AuthProvider = ({children} : IAuthProvider) =>{
             <AuthContext.Provider value = {{
                 user,
                 authenticate,
-                logout
+                logout,
+                createAccount
             }}>
                 {children}
             </AuthContext.Provider>

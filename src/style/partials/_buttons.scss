@@ -334,17 +334,19 @@ transition: .5s ease;
   cursor: initial;
   .sinopseHover{
       .buttonAdd{
-          color: $green-dark;
-          font-size: 48px;
+          color: $green-normal;
+          text-shadow: 0px 0px 1px white,0px 0px 1px white,0px 0px 1px white,0px 0px 1px white,0px 0px 1px white,0px 0px 1px white;
+          font-size: 40px;
           &:hover{
-              color: $green-light;
+              color: $green-dark;
           }
       }
       .buttonDel{
-          color: $red-dark;
-          font-size: 48px;
+          color: $red-normal;
+          text-shadow: 0px 0px 1px white,0px 0px 1px white,0px 0px 1px white,0px 0px 1px white,0px 0px 1px white,0px 0px 1px white;
+          font-size: 40px;
           &:hover{
-              color: $red-light;
+              color: $red-dark;
           }
       }
       button{
@@ -362,7 +364,7 @@ transition: .5s ease;
           transition: .3s ease;
 
           &:hover{
-              transform: translateY(-8px) scale(1.2);
+              transform: translateY(-4px) scale(1.1);
               
           }
       }

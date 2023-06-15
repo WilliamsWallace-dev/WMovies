@@ -1,18 +1,22 @@
-import { useEffect, useState } from "react";
-import { Search, SearchTMDBType, TypeSearch, typeAccount } from "../../Types";
+import { useContext, useEffect, useState } from "react";
+import { Search, TypeSearch, typeAccount } from "../../Types";
 import { useAuth } from "../../context/AuthProvider/useAuth"
 import { URLValues, getTmdb } from "../../services/Api";
 import {CardAdmin} from "../CardAdmin";
 import { PaginationComponent } from "../PaginationComponent";
+import { AppContext } from "../../context/AppContext";
 
 
 export const Profile = ()=>{
 
     const  {user} = useAuth();
+    console.log(user)
 
     const [search,setSearch] = useState({text : "", cards : []} as Search) ;
 
-    const [feature,setFeature] = useState({typeContent : "Série", typeOp : "Adicionar"} as TypeSearch)
+    const [feature,setFeature] = useState({typeContent : "Filme", typeOp : "Gerenciar"} as TypeSearch)
+
+    const {moviesList,seriesList,animesList} = useContext(AppContext)
 
     const handleFieldsChange = (e : {currentTarget : {value : string}})=>{
         setSearch({...search, text : e.currentTarget.value})
@@ -111,15 +115,26 @@ export const Profile = ()=>{
     const itensPerPage = 15;
     const [currentPage,setCurrentPage] = useState(0)
 
+    useEffect(()=>{
+        if(feature.typeOp == "Gerenciar"){
+            if(feature.typeContent == "Filme") setSearch({text : "", cards : moviesList} );
+            else if(feature.typeContent == "Série") setSearch({text : "", cards : seriesList} );
+            else if(feature.typeContent == "Anime") setSearch({text : "", cards : animesList} );
+        }else setSearch({text : "", cards : []} )
+    },[feature.typeContent,feature.typeOp,moviesList,seriesList,animesList])
+
     const pages = Math.ceil(search.cards.length / itensPerPage)
     const startIndex = currentPage * itensPerPage
     const endIndex = startIndex + itensPerPage
     const currentItens = search.cards.slice(startIndex,endIndex)
 
+
+    console.log(moviesList)
     useEffect(()=>{
         window.scrollTo(0,0);
     },[currentPage])
 
+    console.log(feature.typeContent, feature.typeOp)
 
     if(user && user.typeOfAccount == typeAccount.admin){
     return(
@@ -130,26 +145,26 @@ export const Profile = ()=>{
                     <h1>Williams Wallace</h1>
                 </div>
                 <div className="featuresProfile container flex-column">
-                        <ul className="menu-list flex-center mb-3">
+                        <ul className="menu-list flex-center mb-5">
                                 <li className="menu-item flex-center flex-column mr-2 px-3" >
                                     <h3 className="">Filmes</h3>
                                     <ul className="menu-options flex-center">
-                                            <li className="mr-2">Gerenciar</li>
-                                            <li>Adicionar</li>
+                                            <li className="mr-2" onClick = {()=>setFeature({typeContent : "Filme", typeOp : "Gerenciar"})}>Gerenciar</li>
+                                            <li onClick = {()=>setFeature({typeContent : "Filme", typeOp : "Adicionar"})}>Adicionar</li>
                                     </ul>
                                 </li>
                                 <li className="menu-item flex-center flex-column mr-2 px-3" >
                                     <h3 className="">Séries</h3>
                                     <ul className="menu-options flex-center">
-                                            <li className="mr-2">Gerenciar</li>
-                                            <li>Adicionar</li>
+                                            <li className="mr-2" onClick = {()=>setFeature({typeContent : "Série", typeOp : "Gerenciar"})}>Gerenciar</li>
+                                            <li onClick = {()=>setFeature({typeContent : "Série", typeOp : "Adicionar"})}>Adicionar</li>
                                     </ul>
                                 </li>
                                 <li className="menu-item flex-center flex-column px-3" >
                                     <h3 className="">Animes</h3>
                                     <ul className="menu-options flex-center">
-                                            <li className="mr-2">Gerenciar</li>
-                                            <li>Adicionar</li>
+                                            <li className="mr-2" onClick = {()=>setFeature({typeContent : "Anime", typeOp : "Gerenciar"})}>Gerenciar</li>
+                                            <li onClick = {()=>setFeature({typeContent : "Anime", typeOp : "Adicionar"})} >Adicionar</li>
                                     </ul>
                                 </li>
                                 

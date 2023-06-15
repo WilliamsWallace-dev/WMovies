@@ -4,7 +4,7 @@ import "../../style/style.css"
 import { URLValues } from "../../services/Api"
 import { useParams } from "react-router-dom"
 
-export default function Card({movie ,key} : {movie : CardType , key : number}){
+export default function Card({card ,key} : {card : CardType , key : number}){
     
     return(
         <>
@@ -12,16 +12,16 @@ export default function Card({movie ,key} : {movie : CardType , key : number}){
                         <div className="sinopseHover px-1">
                             <p className="p5" style={{opacity : ".64"}} >Sinopse</p>
                                 <p>
-                                    {movie.overview}
+                                    {card.overview}
                                 </p>
                         </div>
-                        <p className="titleListItem p5">{movie.title}</p>
+                        <p className="titleListItem p5">{card.name || card.title}</p>
                         <div className="descriptionListItem flex-start mb-2">
-                            <p className="p5 mr-2">{movie.release_date.split('-')[0]}</p>
-                            <p className="duration p5 mr-2 ">{movie.runtime || "2h,36min"}</p>
-                            <p className="rated p5">{movie.vote_average}</p>
+                            {card.first_air_date || card.release_date ? <p className="p5 mr-2">{card.first_air_date ? card.first_air_date.split('-')[0] : card.release_date.split('-')[0]}</p> : <></> }
+                            <p className="duration p5 mr-2 ">{card.runtime || "2h,36min"}</p>
+                            <p className="rated p5">{card.vote_average}</p>
                         </div>
-                        <div className="backgroundListItem"><img src= {`${URLValues.img_path}${movie.poster_path}`} alt="" /></div>
+                        <div className="backgroundListItem"><img src= {`${URLValues.img_path}${card.poster_path}`} alt="" /></div>
             </section>
         </>
     )

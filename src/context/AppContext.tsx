@@ -1,44 +1,69 @@
 import { ReactNode, createContext, useEffect, useState } from "react"; 
 
-import { tmdb,URLValues,getTmdb } from "../services/Api";
-import { AppContextType, SearchTMDBType } from "../Types";
-import { collection, addDoc } from "firebase/firestore";
+import { tmdb,URLValues,getTmdb, getDocumentDbCardList, DelDocumentDb, SetDocumentDbCardType } from "../services/Api";
+import { AppContextType, CardType, SearchTMDBType } from "../Types";
+
 
 export const AppContext = createContext <AppContextType>({} as AppContextType);
 
 export const AppProvidor = ({children} : {children : ReactNode}) =>{
-    const [moviesList,setMoviesList] = useState <SearchTMDBType | null>(null);
-    const [seriesList,setSeriesList] = useState <SearchTMDBType | null>(null);
-    const [animesList,setAnimesList] = useState <SearchTMDBType | null>(null);
+    const [moviesList,setMoviesList] = useState <CardType []>([]);
+    const [seriesList,setSeriesList] = useState <CardType []>([]);
+    const [animesList,setAnimesList] = useState <CardType []>([]);
 
     
 
     useEffect(()=>{
-        GetMoviesList();
-        GetSeriesList()
-        GetAnimesList()
+        GetLists();
     },[])
 
-    const GetMoviesList = async ()=>{
-        const url = `${URLValues.movies}${URLValues.nowPlaying}${URLValues.api_key}&page=${1}`
-        setMoviesList(await getTmdb(url));
+    const GetLists = async ()=>{
+        let result = await getDocumentDbCardList("Filme")
+        setMoviesList(result);
+         result = await getDocumentDbCardList("Série")
+         setSeriesList(result);
+         result = await getDocumentDbCardList("Anime")
+         setAnimesList(result);
     }
-    const GetSeriesList = async ()=>{
-        const url = `${URLValues.movies}${URLValues.nowPlaying}${URLValues.api_key}&page=${2}`
-        setSeriesList(await getTmdb(url));
+    const SetLists = async (typeList : "Filme" | "Série" | "Anime", data : CardType) =>{
+
+        await SetDocumentDbCardType(typeList,data)
+
+        if(typeList == "Filme"){
+            setMoviesList([...moviesList,data])
+        }else if(typeList == "Série"){
+                setSeriesList([...moviesList,data])
+        }else setAnimesList([...moviesList,data])
     }
-    const GetAnimesList = async ()=>{
-        const url = `${URLValues.movies}${URLValues.nowPlaying}${URLValues.api_key}&page=${3}`
-        setAnimesList(await getTmdb(url));
+    const DelCard = async (typeList : "Filme" | "Série" | "Anime", data : CardType) =>{
+        console.log("delcard")
+        await DelDocumentDb(typeList, data)
+
+        if(typeList == "Filme"){
+            setMoviesList(moviesList.filter((card)=> card.id != data.id))
+        }else if(typeList == "Série"){
+                setSeriesList(seriesList.filter((card)=> card.id != data.id))
+        }else setAnimesList(seriesList.filter((card)=> card.id != data.id ))
+        
     }
+    // const GetSeriesList = async ()=>{
+    //     const url = `${URLValues.movies}${URLValues.nowPlaying}${URLValues.api_key}&page=${2}`
+    //     setSeriesList(await getTmdb(url));
+    // }
+    // const GetAnimesList = async ()=>{
+    //     const url = `${URLValues.movies}${URLValues.nowPlaying}${URLValues.api_key}&page=${3}`
+    //     setAnimesList(await getTmdb(url));
+    // }
 
     return (
         <>
             <AppContext.Provider value = {{
-                moviesList,GetMoviesList,
-                seriesList,GetSeriesList,
-                animesList,GetAnimesList
-
+                moviesList,
+                seriesList,
+                animesList,
+                GetLists,
+                SetLists,
+                DelCard
             }}>
                 {children}
             </AppContext.Provider>

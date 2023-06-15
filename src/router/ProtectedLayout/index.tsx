@@ -45,3 +45,23 @@ export const ProtecteLayout = ({children} : {children : JSX.Element})=>{
     }
     
 }
+
+export const RegisterToProfile = ({children} : {children : JSX.Element})=>{
+
+    const {user} = useAuth();
+
+    if(user && user.id){
+        return (
+            <>
+                <Navigate to="/Profile" replace={true}></Navigate>
+            </>
+        )
+    }else{
+        return(
+            <>
+                {children}
+            </>
+        )
+    }
+    
+}

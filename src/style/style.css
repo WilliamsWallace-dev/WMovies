@@ -587,18 +587,20 @@ strong {
   cursor: initial;
 }
 .CardAdmin .sinopseHover .buttonAdd {
-  color: #28bb49;
-  font-size: 48px;
+  color: #32d957;
+  text-shadow: 0px 0px 1px white, 0px 0px 1px white, 0px 0px 1px white, 0px 0px 1px white, 0px 0px 1px white, 0px 0px 1px white;
+  font-size: 40px;
 }
 .CardAdmin .sinopseHover .buttonAdd:hover {
-  color: #50e170;
+  color: #28bb49;
 }
 .CardAdmin .sinopseHover .buttonDel {
-  color: #d03333;
-  font-size: 48px;
+  color: #eb3d3d;
+  text-shadow: 0px 0px 1px white, 0px 0px 1px white, 0px 0px 1px white, 0px 0px 1px white, 0px 0px 1px white, 0px 0px 1px white;
+  font-size: 40px;
 }
 .CardAdmin .sinopseHover .buttonDel:hover {
-  color: #f05454;
+  color: #d03333;
 }
 .CardAdmin .sinopseHover button {
   background: transparent;
@@ -610,7 +612,7 @@ strong {
   transition: 0.3s ease;
 }
 .CardAdmin .sinopseHover button:hover {
-  transform: translateY(-8px) scale(1.2);
+  transform: translateY(-4px) scale(1.1);
 }
 
 .pages .paginationButton {
@@ -1703,6 +1705,21 @@ a {
   padding: 2rem 0;
   justify-content: flex-start;
 }
+.Profile .featuresProfile .menu-list {
+  position: relative;
+}
+.Profile .featuresProfile .menu-list::after {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 40px;
+  width: 300px;
+  height: 3px;
+  margin: 1.5rem auto;
+  background: linear-gradient(90deg, rgba(8, 5, 6, 0) 0%, #E50914 50%, rgba(8, 5, 6, 0) 100%);
+  border-radius: 2px;
+  transform: matrix(1, 0, 0.28, 0.96, 0, 0);
+}
 .Profile .featuresProfile .menu-item {
   position: relative;
   text-align: center;
@@ -1879,16 +1896,4 @@ a {
   position: relative;
   width: 100%;
   min-height: 200px;
-}
-.Profile .cardContainer::before {
-  content: "";
-  display: block;
-  position: absolute;
-  top: -40px;
-  width: 300px;
-  height: 3px;
-  margin: 1.5rem auto;
-  background: linear-gradient(90deg, rgba(8, 5, 6, 0) 0%, #E50914 50%, rgba(8, 5, 6, 0) 100%);
-  border-radius: 2px;
-  transform: matrix(1, 0, 0.28, 0.96, 0, 0);
 }/*# sourceMappingURL=style.css.map */

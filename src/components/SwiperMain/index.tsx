@@ -14,14 +14,14 @@ import { EffectFade,Navigation, Pagination, Scrollbar, A11y,Autoplay } from '../
 // import Header from "../Header";
 import { ReactNode, useContext, useEffect, useState } from "react";
 import { AppContext } from "../../context/AppContext";
-import { AppContextType, CardType, SearchTMDBType, TypeContent } from "../../Types";
+import { AppContextType, CardType, TypeContent } from "../../Types";
 
 
 export default function SwiperMain({header = false, typeSwiper = "Filme"} : {header? : boolean, typeSwiper : string}){
 
     const {moviesList,seriesList,animesList} = useContext(AppContext) as AppContextType;
 
-    const [swiperMain,setSwiperMain] = useState <SearchTMDBType | null>(null)
+    const [swiperMain,setSwiperMain] = useState <CardType[] | null>(null)
 
     useEffect(()=>{
         
@@ -62,11 +62,11 @@ export default function SwiperMain({header = false, typeSwiper = "Filme"} : {hea
                 style={{position:"absolute",top:"0"}}
             >
                 {
-                    swiperMain && swiperMain.results.map((card,index)=>{
+                    swiperMain && swiperMain.map((card,index)=>{
                         if(index < 3)
                         return (
                             <>
-                                <SwiperSlide><CardMain key = {card.id} cardSent = {card}></CardMain></SwiperSlide>
+                                <SwiperSlide><CardMain key = {card.id} card = {card}></CardMain></SwiperSlide>
                             </>
                         )
                     })

@@ -26,13 +26,13 @@ export default function CardDescription(){
 
         switch (typeContent) {
             case TypeContent.Filmes : 
-                setCard(moviesList?.results.find(movie => movie.id == parseInt(id)))
+                setCard(moviesList?.find(movie => movie.id == parseInt(id)))
                 break;
             case TypeContent.Series : 
-                setCard(seriesList?.results.find(serie => serie.id == parseInt(id)))
+                setCard(seriesList?.find(serie => serie.id == parseInt(id)))
                 break;
             case TypeContent.Animes : 
-                setCard(animesList?.results.find(anime => anime.id == parseInt(id)))
+                setCard(animesList?.find(anime => anime.id == parseInt(id)))
                 break;
         }
     },[moviesList,seriesList,animesList,id])
@@ -51,12 +51,12 @@ export default function CardDescription(){
                 {/* <div style={{position : "relative"}}> */}
                 <section className="SwiperDescriptionItem container ">
                     <div className="desciptionPoster mr-3">
-                        <img src={`${URLValues.img_path}${card?.poster_path}`} alt= {`Poste do Filmes : ${card?.title}`} />
+                        <img src={`${URLValues.img_path}${card?.poster_path}`} alt= {`Poste do Filmes : ${card?.name || card?.title}`} />
                     </div>
                     <div className="description flex-start flex-column">
-                        <h1 className="title">{card?.title}</h1>
+                        <h1 className="title">{card?.name || card?.title}</h1>
                         <div className="flex-start mt-2">
-                            <p className="p1 mr-3 pt-1">{card?.release_date.split("-")[0]}</p>
+                            {card?.first_air_date || card?.release_date ? <p className="p1 mr-3 pt-1">{card?.first_air_date ? card?.first_air_date.split('-')[0] : card?.release_date.split('-')[0]}</p> : <></> }
                             <p className="duration p1 mr-3">{card?.runtime || "2h,36min"}</p>
                             <p className="rated p1">{card?.vote_average}</p>
                         </div>
