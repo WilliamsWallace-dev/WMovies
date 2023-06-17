@@ -3,7 +3,7 @@ import { ReactNode, useEffect, useState, useContext } from "react"
 import "../../style/style.css";
 import TomHolland from "../../assets/actors/TomHolland.jpg"
 import { AppContextType, CardType, TypeContent } from "../../Types";
-import { URLValues } from "../../services/Api";
+import { URLValues, updateDocumentUser } from "../../services/Api";
 import { useNavigate, useParams } from "react-router-dom";
 import { AppContext } from "../../context/AppContext";
 
@@ -15,24 +15,24 @@ export default function CardDescription(){
 
     const {moviesList,seriesList,animesList} = useContext(AppContext) as AppContextType;
 
-    const [card,setCard] = useState <CardType>()
+    const [card,setCard] = useState <CardType | undefined>({} as CardType)
 
     const {typeContent = "Filmes",id = "0"} = useParams<{typeContent : string , id : string}>();
 
-    const {user} = useAuth();
+    const {user,updateUserCards} = useAuth();
     const navigate = useNavigate();
 
     useEffect(()=>{
 
         switch (typeContent) {
             case TypeContent.Filmes : 
-                setCard(moviesList?.find(movie => movie.id == parseInt(id)))
+                setCard(moviesList.find(movie => movie.id == parseInt(id)))
                 break;
             case TypeContent.Series : 
-                setCard(seriesList?.find(serie => serie.id == parseInt(id)))
+                setCard(seriesList.find(serie => serie.id == parseInt(id)))
                 break;
             case TypeContent.Animes : 
-                setCard(animesList?.find(anime => anime.id == parseInt(id)))
+                setCard(animesList.find(anime => anime.id == parseInt(id)))
                 break;
         }
     },[moviesList,seriesList,animesList,id])
@@ -44,6 +44,25 @@ export default function CardDescription(){
             navigate("/Login")
             // console.log("mudar login")
         }   
+    }
+
+    const seeLaterActive = (e: { currentTarget: any; },card : CardType)=>{
+        const btn = e.currentTarget;
+
+        btn.classList.toggle("saveButtonActive")
+        btn.classList.toggle("saveButton")
+
+        user && card && updateUserCards("seeLater",card,user)
+        
+    }
+    const favoritesActive = (e: { currentTarget: any; },card : CardType)=>{
+        const btn = e.currentTarget;
+
+        btn.classList.toggle("likeButtonActive")
+        btn.classList.toggle("likeButton")
+
+        user && card && updateUserCards("favorites",card,user)
+        
     }
 
         return(
@@ -92,8 +111,14 @@ export default function CardDescription(){
                             <p className="typeItem p2 mr-2">Comédia</p>
                         </div>
                         <div className="buttonsDescription flex-center mt-2">
-                            <button className="saveButton p3 mr-2" onClick= {()=>{ProtectedFunction(()=>console.log("likeButton"))}}> Ver depois</button>
-                            <button className="likeButton" onClick= {()=>{ProtectedFunction(()=>console.log("likeButton"))}}></button>
+                            {
+                                (card && user.seeLater) && user.seeLater.find((seeLaterCard)=> seeLaterCard.id === card.id) ? <button className="saveButtonActive p3 mr-2" onClick= {(e)=>{ProtectedFunction(()=> seeLaterActive(e,card))}}>Ver depois</button> : <button className="saveButton p3 mr-2" onClick= {(e)=>{ProtectedFunction(()=> card && seeLaterActive(e,card))}}> Ver depois</button>
+                            }
+                            {
+                                (card && user.favorites) && user.favorites.find((favoritesCard)=> favoritesCard.id === card.id) ? <button className="likeButtonActive" onClick= {(e)=>{ProtectedFunction(()=> favoritesActive(e,card))}}></button> : <button className="likeButton" onClick= {(e)=>{ProtectedFunction(()=> card && favoritesActive(e,card))}}></button>
+                            }
+                            {/* <button className="saveButton p3 mr-2" onClick= {()=>{ProtectedFunction(()=> (user && card) && updateUserCards("seeLater",card,user))}}> Ver depois</button>
+                            <button className="likeButton" onClick= {()=>{ProtectedFunction(()=> (user && card) && updateUserCards("favorites",card,user))}}></button> */}
                         </div>
                         
                     </div>

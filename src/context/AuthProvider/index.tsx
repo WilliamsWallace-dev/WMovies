@@ -1,8 +1,8 @@
 import { createContext, useEffect, useState } from "react";
-import { IContext, IUser,IAuthProvider, typeAccount } from "../../Types";
+import { IContext, IUser,IAuthProvider, typeAccount, CardType } from "../../Types";
 import { LoginRequest, Logout } from "./util";
 import { onAuthStateChanged, signInWithEmailAndPassword } from "firebase/auth";
-import { CreateUser, auth } from "../../services/Api";
+import { CreateUser, auth, getDocument, updateDocumentUser } from "../../services/Api";
 
 export const AuthContext = createContext<IContext>({} as IContext);
 
@@ -29,6 +29,7 @@ export const AuthProvider = ({children} : IAuthProvider) =>{
                     setUser({...user,id : uid,typeOfAccount : typeAccount.admin, email : uemail})
                 }else if(uid && uemail){
                     setUser({...user,id : uid,typeOfAccount : typeAccount.user, email : uemail})
+                    getUserDocument(uid)
                 }
                 
                 // ...
@@ -38,6 +39,7 @@ export const AuthProvider = ({children} : IAuthProvider) =>{
                 console.log("User is signed out")
             }
             });
+        
 
     },[])
 
@@ -52,6 +54,7 @@ export const AuthProvider = ({children} : IAuthProvider) =>{
                     setUser({...user,id : uid,typeOfAccount : typeAccount.admin, email : uemail})
                 }else if(uid && uemail){
                     setUser({...user,id : uid,typeOfAccount : typeAccount.user, email : uemail})
+                    getUserDocument(uid)
                 }
                 // ...
             })
@@ -75,6 +78,28 @@ export const AuthProvider = ({children} : IAuthProvider) =>{
     const createAccount = (userCreated : IUser)=>{
         CreateUser(userCreated)
     }
+    const getUserDocument = async (id : string)=>{
+       setUser(await getDocument<IUser>("User", id))
+    }
+    const updateUserCards = (attribute : "favorites" | "seeLater", card : CardType,user : IUser)=>{
+        if(user.favorites && attribute == "favorites"){
+            if(user.favorites.find((cardfavorites)=> cardfavorites.id == card.id)){
+                setUser({...user, favorites : user.favorites.filter((cardfavorites)=> cardfavorites.id != card.id) })
+            }else{
+                setUser({...user, favorites : [...user.favorites,card] })
+            }
+            updateDocumentUser("favorites",card,user)
+
+        } else if(user.seeLater && attribute == "seeLater"){
+                    if(user.seeLater.find((cardSeeLater)=> cardSeeLater.id == card.id)){
+                        setUser({...user, seeLater : user.seeLater.filter((cardSeeLater)=> cardSeeLater.id != card.id) })
+                    }else{
+                        setUser({...user, seeLater : [...user.seeLater,card] })
+                    }
+                    updateDocumentUser("seeLater",card,user)
+        }
+        
+    }
 
     return(
         <>
@@ -82,7 +107,9 @@ export const AuthProvider = ({children} : IAuthProvider) =>{
                 user,
                 authenticate,
                 logout,
-                createAccount
+                createAccount,
+                getUserDocument,
+                updateUserCards
             }}>
                 {children}
             </AuthContext.Provider>

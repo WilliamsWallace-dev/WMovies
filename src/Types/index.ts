@@ -246,10 +246,12 @@ export interface IUser {
 // }
 
 export interface IContext{
-    user : IUser | null,
+    user : IUser,
     authenticate : (email : string , password : string) => Promise<void>,
     logout : () => void,
-    createAccount: (userCreated: IUser) => void
+    createAccount: (userCreated: IUser) => void,
+    getUserDocument: (id: string) => Promise<void>,
+    updateUserCards: (attribute: "favorites" | "seeLater", card: CardType, user: IUser) => void
 }
 
 export interface IAuthProvider {

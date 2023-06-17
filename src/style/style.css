@@ -325,6 +325,156 @@ strong {
   text-align: left;
 }
 
+.saveButton {
+  position: relative;
+  background-color: transparent;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  color: #FDF9F9;
+  text-transform: uppercase;
+  background: rgba(240, 223, 223, 0.16);
+  width: 152px;
+  height: 48px;
+  border-radius: 32px;
+  padding-left: 32px;
+  transition: 0.5s ease;
+}
+.saveButton::before {
+  content: "";
+  display: inline-block;
+  position: absolute;
+  left: 18%;
+  width: 16px;
+  height: 20px;
+  background-image: url("../assets/icons/saveIcon.svg");
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  transition: 0.5s ease;
+}
+.saveButton:hover {
+  opacity: 1;
+  background: rgba(240, 223, 223, 0.32);
+  filter: drop-shadow(0px 4px 32px rgba(0, 0, 0, 0.25)) drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+  transform: translateY(-2px);
+}
+.saveButton:hover::before {
+  background-image: url("../assets/icons/saveIconHold.svg");
+}
+
+.saveButtonActive {
+  position: relative;
+  background-color: transparent;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  color: #FDF9F9;
+  text-transform: uppercase;
+  background: rgba(240, 223, 223, 0.16);
+  width: 152px;
+  height: 48px;
+  border-radius: 32px;
+  padding-left: 32px;
+  transition: 0.5s ease;
+}
+.saveButtonActive::before {
+  content: "";
+  display: inline-block;
+  position: absolute;
+  left: 18%;
+  width: 16px;
+  height: 20px;
+  background-image: url("../assets/icons/saveIconHold.svg");
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  transition: 0.5s ease;
+}
+.saveButtonActive:hover {
+  opacity: 1;
+  background: rgba(240, 223, 223, 0.32);
+  filter: drop-shadow(0px 4px 32px rgba(0, 0, 0, 0.25)) drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+  transform: translateY(-2px);
+}
+.saveButtonActive:hover::before {
+  background-image: url("../assets/icons/saveIconHold.svg");
+}
+
+.likeButton {
+  position: relative;
+  background-color: transparent;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  color: #FDF9F9;
+  background: rgba(240, 223, 223, 0.16);
+  width: 48px;
+  height: 48px;
+  border-radius: 32px;
+  transition: 0.5s ease;
+}
+.likeButton::before {
+  content: "";
+  display: inline-block;
+  position: absolute;
+  left: 25%;
+  top: 30%;
+  width: 24px;
+  height: 21px;
+  background-image: url("../assets/icons/likeIcon.svg");
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  transition: 0.5s ease;
+}
+.likeButton:hover {
+  opacity: 1;
+  background: rgba(240, 223, 223, 0.32);
+  filter: drop-shadow(0px 4px 32px rgba(0, 0, 0, 0.25)) drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+  transform: translateY(-2px);
+}
+.likeButton:hover::before {
+  background-image: url("../assets/icons/likeIconHold.svg");
+}
+
+.likeButtonActive {
+  position: relative;
+  background-color: transparent;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  color: #FDF9F9;
+  background: rgba(240, 223, 223, 0.16);
+  width: 48px;
+  height: 48px;
+  border-radius: 32px;
+  transition: 0.5s ease;
+}
+.likeButtonActive::before {
+  content: "";
+  display: inline-block;
+  position: absolute;
+  left: 25%;
+  top: 30%;
+  width: 24px;
+  height: 21px;
+  background-image: url("../assets/icons/likeIconHold.svg");
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  transition: 0.5s ease;
+}
+.likeButtonActive:hover {
+  opacity: 1;
+  background: rgba(240, 223, 223, 0.32);
+  filter: drop-shadow(0px 4px 32px rgba(0, 0, 0, 0.25)) drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+  transform: translateY(-2px);
+}
+.likeButtonActive:hover::before {
+  background-image: url("../assets/icons/likeIconHold.svg");
+}
+
 .starButton {
   position: relative;
   background-color: transparent;
@@ -1350,79 +1500,6 @@ a {
 }
 .description .imageActor img {
   border-radius: 100%;
-}
-.description .saveButton {
-  position: relative;
-  background-color: transparent;
-  text-decoration: none;
-  border: none;
-  cursor: pointer;
-  color: #FDF9F9;
-  text-transform: uppercase;
-  background: rgba(240, 223, 223, 0.16);
-  width: 152px;
-  height: 48px;
-  border-radius: 32px;
-  padding-left: 32px;
-  transition: 0.5s ease;
-}
-.description .saveButton::before {
-  content: "";
-  display: inline-block;
-  position: absolute;
-  left: 18%;
-  width: 16px;
-  height: 20px;
-  background-image: url("../assets/icons/saveIcon.svg");
-  background-position: center center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  transition: 0.5s ease;
-}
-.description .saveButton:hover {
-  opacity: 1;
-  background: rgba(240, 223, 223, 0.32);
-  filter: drop-shadow(0px 4px 32px rgba(0, 0, 0, 0.25)) drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
-  transform: translateY(-2px);
-}
-.description .saveButton:hover::before {
-  background-image: url("../assets/icons/saveIconHold.svg");
-}
-.description .likeButton {
-  position: relative;
-  background-color: transparent;
-  text-decoration: none;
-  border: none;
-  cursor: pointer;
-  color: #FDF9F9;
-  background: rgba(240, 223, 223, 0.16);
-  width: 48px;
-  height: 48px;
-  border-radius: 32px;
-  transition: 0.5s ease;
-}
-.description .likeButton::before {
-  content: "";
-  display: inline-block;
-  position: absolute;
-  left: 25%;
-  top: 30%;
-  width: 24px;
-  height: 21px;
-  background-image: url("../assets/icons/likeIcon.svg");
-  background-position: center center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  transition: 0.5s ease;
-}
-.description .likeButton:hover {
-  opacity: 1;
-  background: rgba(240, 223, 223, 0.32);
-  filter: drop-shadow(0px 4px 32px rgba(0, 0, 0, 0.25)) drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
-  transform: translateY(-2px);
-}
-.description .likeButton:hover::before {
-  background-image: url("../assets/icons/likeIconHold.svg");
 }
 
 .playIcon {

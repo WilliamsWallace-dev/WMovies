@@ -7,9 +7,9 @@ import { AppContextType, CardType, SearchTMDBType } from "../Types";
 export const AppContext = createContext <AppContextType>({} as AppContextType);
 
 export const AppProvidor = ({children} : {children : ReactNode}) =>{
-    const [moviesList,setMoviesList] = useState <CardType []>([]);
-    const [seriesList,setSeriesList] = useState <CardType []>([]);
-    const [animesList,setAnimesList] = useState <CardType []>([]);
+    const [moviesList,setMoviesList] = useState <CardType []>([] as CardType [] );
+    const [seriesList,setSeriesList] = useState <CardType []>([] as CardType []);
+    const [animesList,setAnimesList] = useState <CardType []>([] as CardType []);
 
     
 

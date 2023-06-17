@@ -51,7 +51,7 @@ const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
 export const db = getFirestore(app);
 
-import { collection, addDoc, getDocs, doc, setDoc, deleteDoc } from "firebase/firestore";
+import { collection, addDoc, getDocs, doc, setDoc, deleteDoc, getDoc, updateDoc   } from "firebase/firestore";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import { CardType, IUser } from '../../Types';
 
@@ -113,6 +113,70 @@ export const getDocumentDbCardList = async (collectionName : string)=>{
     list = [...list,doc.data() as CardType]
   });
   return list;
+}
+
+export async function  getDocument <typeDocument> (collectionName : string , id : string){
+
+  const docRef = doc(db, collectionName, `${id}`);
+  const docSnap = await getDoc(docRef);
+
+  if (docSnap.exists()) {
+    console.log("Document data:", docSnap.data());
+    return docSnap.data() as typeDocument;
+  } else {
+    // docSnap.data() will be undefined in this case
+    console.log("No such document!");
+    return {} as typeDocument
+  }
+}
+
+export const updateDocumentUser = async (attribute : "favorites" | "seeLater" , card : CardType, user : IUser,)=>{
+
+  const docRef = doc(db, "User", `${user.id}`);
+
+  console.log(user)
+
+  // Set the "capital" field of the city 'DC'
+  if(attribute == "favorites"){
+    if(user.favorites?.find((cardFavorite)=> cardFavorite.id == card.id)){
+        
+        await updateDoc(docRef, {
+          "favorites" : user.favorites?.filter((cardFavorite)=> cardFavorite.id != card.id)
+        });
+
+    }else{
+
+        if(user.favorites && user.favorites.length >= 1){
+          await updateDoc(docRef, {
+            "favorites" : [...user.favorites, card]
+          });
+        }else{
+            await updateDoc(docRef, {
+              "favorites" : [card]
+            });
+        }
+      } 
+    }else if (attribute == "seeLater"){
+            if(user.seeLater?.find((cardSeeLater)=> cardSeeLater.id == card.id)){
+
+              await updateDoc(docRef, {
+                "seeLater" : user.seeLater?.filter((cardSeeLater)=> cardSeeLater.id != card.id)
+              });
+
+              }else{
+
+                if(user.seeLater && user.seeLater.length >= 1){
+                await updateDoc(docRef, {
+                  "seeLater" : [...user.seeLater, card]
+                });
+                }else{
+                    await updateDoc(docRef, {
+                      "seeLater" : [card]
+                    });
+                }
+
+              }
+          }
 }
 
 export const DelDocumentDb = async (collectionName : string,data : CardType)=>{
