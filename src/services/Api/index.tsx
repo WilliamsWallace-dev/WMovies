@@ -134,7 +134,7 @@ export const updateDocumentUser = async (attribute : "favorites" | "seeLater" , 
 
   const docRef = doc(db, "User", `${user.id}`);
 
-  console.log(user)
+  // console.log(user)
 
   // Set the "capital" field of the city 'DC'
   if(attribute == "favorites"){
@@ -231,6 +231,14 @@ export const SetDocumentDbCardType = async (collectionName : string, data : Card
               
               url = `${data.title ? URLValues.movies : URLValues.seriesAnimes}${data.id}/videos${URLValues.api_key}&language=pt-BR`
               const videosResults = await getTmdb(url)
+
+              url = `${data.title ? URLValues.movies : URLValues.seriesAnimes}${data.id}/images${URLValues.api_key}&include_image_language=pt&language=pt-BR`
+              let logoResults = await getTmdb(url)
+              if(logoResults){
+                url = `${data.title ? URLValues.movies : URLValues.seriesAnimes}${data.id}/images${URLValues.api_key}&include_image_language=en&language=pt-BR`
+                logoResults = await getTmdb(url)
+              }
+              console.log(logoResults)
 
               if(videosResults.results.length){
                 data.video = videosResults.results[0] 

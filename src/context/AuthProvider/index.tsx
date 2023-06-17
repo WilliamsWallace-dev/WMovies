@@ -3,6 +3,7 @@ import { IContext, IUser,IAuthProvider, typeAccount, CardType } from "../../Type
 import { LoginRequest, Logout } from "./util";
 import { onAuthStateChanged, signInWithEmailAndPassword } from "firebase/auth";
 import { CreateUser, auth, getDocument, updateDocumentUser } from "../../services/Api";
+import { useNavigate } from "react-router-dom";
 
 export const AuthContext = createContext<IContext>({} as IContext);
 
@@ -12,12 +13,12 @@ export const AuthProvider = ({children} : IAuthProvider) =>{
 
     useEffect(()=>{
         
-        auth.signOut().
-        then(()=>{
-            console.log("Usuário Deslogado")
-            setUser({} as IUser)
-        })
-        .catch((error)=> console.log(error))
+        // auth.signOut().
+        // then(()=>{
+        //     console.log("Usuário Deslogado")
+        //     setUser({} as IUser)
+        // })
+        // .catch((error)=> console.log(error))
 
         onAuthStateChanged(auth, (userOn) => {
             if (userOn) {

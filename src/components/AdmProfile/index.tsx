@@ -5,16 +5,17 @@ import { URLValues, getTmdb } from "../../services/Api";
 import {CardAdmin} from "../CardAdmin";
 import { PaginationComponent } from "../PaginationComponent";
 import { AppContext } from "../../context/AppContext";
+import { useNavigate } from "react-router-dom";
 
 
-export const Profile = ()=>{
+export const AdmProfile = ()=>{
 
-    const  {user} = useAuth();
-    console.log(user)
+    const  {user,logout} = useAuth();
+    // console.log(user)
 
     const [search,setSearch] = useState({text : "", cards : []} as Search) ;
 
-    const [feature,setFeature] = useState({typeContent : "Filme", typeOp : "Gerenciar"} as TypeSearch)
+    const [feature,setFeature] = useState({typeContent : "Filme",typeOp : "Gerenciar"} as TypeSearch)
 
     const {moviesList,seriesList,animesList} = useContext(AppContext)
 
@@ -24,14 +25,13 @@ export const Profile = ()=>{
 
     const changeLabel = (e : any)=>{
         const label = e.currentTarget.parentNode.querySelector("label") ;
+        console.log(label)
 
-        if(label.getAttribute("for") == "search"){
             if(search.text != "")
                 label.innerHTML = ""
             else {
                 label.innerHTML = "Digite o Título do Filmes, Serie..."
             }  
-        }
     }
     
     const SearchCards = async (e: { keyCode: number; })=>{
@@ -115,37 +115,60 @@ export const Profile = ()=>{
     const itensPerPage = 15;
     const [currentPage,setCurrentPage] = useState(0)
 
+
+    // useEffect(()=>{
+        
+    //     setSearch({text : "", cards : []} )
+    //     const label = document.querySelector("#searchLabel") ;
+    //     if(label) label.innerHTML = "Digite o Título do Filmes, Serie..."
+        
+    // },[feature.typeContent])
+    
     useEffect(()=>{
+
+        setSearch({text : "", cards : []} )
+        const label = document.querySelector("#searchLabel") ;
+        if(label != null) label.innerHTML = "Digite o Título do Filmes, Serie..."
+        
         if(feature.typeOp == "Gerenciar"){
-            if(feature.typeContent == "Filme") setSearch({text : "", cards : moviesList} );
+            if(feature.typeContent == "Filme") {setSearch({text : "", cards : moviesList} ); console.log("ta errado aqui")}
             else if(feature.typeContent == "Série") setSearch({text : "", cards : seriesList} );
-            else if(feature.typeContent == "Anime") setSearch({text : "", cards : animesList} );
-        }else setSearch({text : "", cards : []} )
+            else if(feature.typeContent == "Anime") {setSearch({text : "", cards : animesList} ); console.log("ta certo") }
+        }
+        // else setSearch({text : "", cards : []} )
     },[feature.typeContent,feature.typeOp,moviesList,seriesList,animesList])
+
+    
 
     const pages = Math.ceil(search.cards.length / itensPerPage)
     const startIndex = currentPage * itensPerPage
     const endIndex = startIndex + itensPerPage
     const currentItens = search.cards.slice(startIndex,endIndex)
 
+    const navigate = useNavigate();
 
-    console.log(moviesList)
+
+    // console.log(moviesList)
     useEffect(()=>{
         window.scrollTo(0,0);
     },[currentPage])
 
-    console.log(feature.typeContent, feature.typeOp)
+    // console.log(feature.typeContent, feature.typeOp)
 
     if(user && user.typeOfAccount == typeAccount.admin){
     return(
         <>
             <section className="Profile flex-column container">
-                <div className="UserInf mb-2">
+                <div className="UserInf mb-4">
                     <p className="typeOfAccount">Administrador</p>
-                    <h1>Williams Wallace</h1>
+                    <div className="flex-center flex-between">
+                        <h1>Williams Wallace</h1>
+                        <button className="LogoutButton p4" onClick={()=>{logout() ; navigate("/")}}>Sair</button>
+                    </div>
+                    
                 </div>
-                <div className="featuresProfile container flex-column">
-                        <ul className="menu-list flex-center mb-5">
+                <div className="featuresProfile container flex-column ">
+                        <ul className="menu-list flex-center mb-3">
                                 <li className="menu-item flex-center flex-column mr-2 px-3" >
                                     <h3 className="">Filmes</h3>
                                     <ul className="menu-options flex-center">
@@ -163,18 +186,18 @@ export const Profile = ()=>{
                                 <li className="menu-item flex-center flex-column px-3" >
                                     <h3 className="">Animes</h3>
                                     <ul className="menu-options flex-center">
-                                            <li className="mr-2" onClick = {()=>setFeature({typeContent : "Anime", typeOp : "Gerenciar"})}>Gerenciar</li>
-                                            <li onClick = {()=>setFeature({typeContent : "Anime", typeOp : "Adicionar"})} >Adicionar</li>
+                                            <li className="mr-2" onClick = {(e)=>{setFeature({typeContent : "Anime", typeOp : "Gerenciar"}); changeLabel(e)}}>Gerenciar</li>
+                                            <li onClick = {(e)=>{setFeature({typeContent : "Anime", typeOp : "Adicionar"}); changeLabel(e)}} >Adicionar</li>
                                     </ul>
                                 </li>
                                 
                                 
                         </ul>
                         {feature.typeOp == "Adicionar" ? 
-                            <div className="inputSearch">
-                            <input className="" type="text" id="search" value={search.text} onChange={handleFieldsChange}  onBlur={changeLabel} onKeyDown={SearchCards} placeholder=""/>
-                            <label className="" htmlFor="search">Digite o Título do Filmes, Serie...</label>
-                        </div> 
+                            <div className="inputSearch mt-3">
+                                <input className="" type="text" id="search" value={search.text} onChange={handleFieldsChange}  onBlur={changeLabel} onKeyDown={SearchCards} placeholder=""/>
+                                <label id="searchLabel" htmlFor="search">Digite o Título do Filmes, Serie...</label>
+                            </div> 
                                 :
                         <></>
                         }

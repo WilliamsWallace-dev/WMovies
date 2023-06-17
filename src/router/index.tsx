@@ -8,7 +8,7 @@ import { DescriptionID } from "../Screens/DescriptionID";
 import { LoginForm } from "../components/LoginForm";
 import { Register } from "../Screens/Register";
 import { ProtecteLayout, RegisterToProfile } from "./ProtectedLayout";
-import { Profile } from "../components/Profile";
+import { AdmProfile } from "../components/AdmProfile";
 
 
 export const AppRoutes = ()=>{
@@ -22,7 +22,7 @@ export const AppRoutes = ()=>{
                         <Route path=":typeContent/:id" element = {<DescriptionID></DescriptionID>}></Route>
                         <Route path="Login" element={<LoginForm></LoginForm>}></Route>
                         <Route path="Register" element={<RegisterToProfile><Register></Register></RegisterToProfile>}></Route>
-                        <Route path="Profile" element = {<ProtecteLayout><Profile></Profile></ProtecteLayout>}></Route>
+                        <Route path="Profile" element = {<ProtecteLayout><AdmProfile></AdmProfile></ProtecteLayout>}></Route>
                     </Route>
                 </Routes>
             </BrowserRouter>

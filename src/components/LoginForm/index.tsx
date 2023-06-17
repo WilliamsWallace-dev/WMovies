@@ -2,6 +2,8 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/AuthProvider/useAuth";
 
+import "../../style/style.css"
+
 export const LoginForm = ()=>{
 
     const auth = useAuth()

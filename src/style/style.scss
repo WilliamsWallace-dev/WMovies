@@ -21,7 +21,7 @@ body {
   height: 100vh;
   position: relative;
 
-  padding: 0 1rem;
+  // padding: 0 1rem;
 
   // teste
   // display: flex;
@@ -66,4 +66,4 @@ a{
 @import "../components/Card/card";
 @import "../components/CardDescription/cardDescription";
 @import "../components/LoginForm/loginRegisterForm";
-@import "../components/Profile/profile";
+@import "../components/AdmProfile/profile";

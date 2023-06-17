@@ -69,8 +69,8 @@ export default function CardDescription(){
             <>
                 {/* <div style={{position : "relative"}}> */}
                 <section className="SwiperDescriptionItem container ">
-                    <div className="desciptionPoster mr-3">
-                        <img src={`${URLValues.img_path}${card?.poster_path}`} alt= {`Poste do Filmes : ${card?.name || card?.title}`} />
+                    <div className="desciptionPoster mr-3 flex-center">
+                        <img style={{}} src={`${URLValues.img_path}${card?.poster_path}`} alt= {`Poste do Filmes : ${card?.name || card?.title}`} />
                     </div>
                     <div className="description flex-start flex-column">
                         <h1 className="title">{card?.name || card?.title}</h1>

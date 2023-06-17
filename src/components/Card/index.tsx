@@ -15,7 +15,7 @@ export default function Card({card ,key} : {card : CardType , key : number}){
                                     {card.overview}
                                 </p>
                         </div>
-                        <p className="titleListItem p5">{card.name || card.title}</p>
+                        <p className="titleListItem p5 px-1" style={{textAlign : "center"}}>{card.name || card.title}</p>
                         <div className="descriptionListItem flex-start mb-2">
                             {card.first_air_date || card.release_date ? <p className="p5 mr-2">{card.first_air_date ? card.first_air_date.split('-')[0] : card.release_date.split('-')[0]}</p> : <></> }
                             <p className="duration p5 mr-2 ">{card.runtime || "2h,36min"}</p>

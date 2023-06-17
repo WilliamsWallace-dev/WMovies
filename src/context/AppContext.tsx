@@ -32,18 +32,18 @@ export const AppProvidor = ({children} : {children : ReactNode}) =>{
         if(typeList == "Filme"){
             setMoviesList([...moviesList,data])
         }else if(typeList == "Série"){
-                setSeriesList([...moviesList,data])
-        }else setAnimesList([...moviesList,data])
+                setSeriesList([...seriesList,data])
+        }else setAnimesList([...animesList,data])
     }
     const DelCard = async (typeList : "Filme" | "Série" | "Anime", data : CardType) =>{
-        console.log("delcard")
+
         await DelDocumentDb(typeList, data)
 
         if(typeList == "Filme"){
             setMoviesList(moviesList.filter((card)=> card.id != data.id))
         }else if(typeList == "Série"){
                 setSeriesList(seriesList.filter((card)=> card.id != data.id))
-        }else setAnimesList(seriesList.filter((card)=> card.id != data.id ))
+        }else setAnimesList(animesList.filter((card)=> card.id != data.id ))
         
     }
     // const GetSeriesList = async ()=>{

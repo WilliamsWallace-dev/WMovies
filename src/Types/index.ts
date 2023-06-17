@@ -203,6 +203,7 @@ export interface CardType {
 
 }
 
+
 interface typeVideo { 
     id : string,
     key : string,
