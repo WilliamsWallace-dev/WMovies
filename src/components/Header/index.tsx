@@ -26,7 +26,7 @@ export default function Header (){
                 </div>
                 <div className="header-user flex-center">
                     <NavLink className="activeSearch" to="Search"><SearchButton></SearchButton></NavLink>
-                    {user && user.id ? <NavLink className="SignedIn" to="Profile"><UserButton signedIn = {true}></UserButton></NavLink> : <NavLink className="activeLogin" to="Login"><UserButton signedIn = {false}>Minha conta</UserButton></NavLink>}
+                    {user && user.id ? <NavLink className="SignedIn" to = {`Profile/${user.id}`} ><UserButton signedIn = {true}></UserButton></NavLink> : <NavLink className="activeLogin" to="Login"><UserButton signedIn = {false}>Minha conta</UserButton></NavLink>}
                 </div>
             </header>
             <Outlet></Outlet>

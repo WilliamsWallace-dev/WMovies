@@ -1,8 +1,31 @@
 .Profile{
     align-items: flex-start;
 
-    .UserInf{
+    .UserContainer{
         width: 100%;
+        position: relative;
+
+        // border: 1px solid red;
+        &::after{
+            content: "";
+            display: block;
+            position: absolute;
+        
+            bottom: -24px;
+            left: 25%;
+
+        
+            width: 50%;
+            height: 3px;
+            
+            // margin: 1.5rem auto;
+        
+            background: linear-gradient(90deg, rgba(8, 5, 6, 0) 0%, #E50914 50%, rgba(8, 5, 6, 0) 100%);
+            border-radius: 2px;
+            transform: matrix(1, 0, 0.28, 0.96, 0, 0);
+        }
+
+
         h1{
             color: $primary-normal;
             text-shadow: 0px 2px 8px rgba(173, 3, 12, .88);
@@ -14,7 +37,94 @@
             // text-fill-color: transparent;
 
         }
-        p{
+        .UserAvatar{
+            width: 140px;
+            height: 140px;
+
+            background-image: url("https://wallpapercave.com/uwp/uwp1833288.jpeg");
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: contain;
+
+            border-radius: 100%;
+
+            &::before{
+                content: "";
+                display: inline-block;
+                position: relative;
+
+                top: -2.5px;
+                left: -2.5px;
+
+                z-index: -999;
+
+                
+                background: linear-gradient(180deg, #E50914 25%, #0A0101 100%);
+
+                width: 104%;
+                height: 104%;
+
+                border-radius: 100%;
+            }
+        }
+        .UserInf{
+            align-items: flex-start;
+            
+            .UserInf-menu{
+                p{
+                    color: $white-dark;
+                    opacity: .8;
+                }
+                .UserInf-item{
+                    margin-top: .25rem;
+                }
+            }
+            .qtdSeeLater{
+                position: relative;
+                &::before{
+                    content: "";
+                    position: absolute;
+                    display: inline-block;
+
+                    // border: 1px solid red;
+
+                    width: 16px;
+                    height: 16px;
+
+                    background-image: url("../assets/icons/likeIconHold.svg");
+                    background-image: center;
+                    background-repeat: no-repeat;
+                    background-size: contain;
+
+                    top: 15%;
+                    left: -24px;
+                }
+            }
+            .qtdFavorite{
+                position: relative;
+                
+
+                &::before{
+                    content: "";
+                    position: absolute;
+                    display: inline-block;
+
+                    // border: 1px solid red;
+
+                    width: 14px;
+                    height: 14px;
+
+                    background-image: url("../assets/icons/saveIconHold.svg");
+                    background-image: center;
+                    background-repeat: no-repeat;
+                    background-size: contain;
+
+                    top: 15%;
+                    left: -20px;
+                }
+            }
+        }
+        .typeOfAccount{
             position: relative;
             color: $white-light;
 
@@ -25,17 +135,165 @@
                 display: inline-block;
                 position: absolute;
 
-                left: 0;
+                right: -2px;
                 top: 0;
 
                 width: 100%;
                 height: 100%;
 
-                
-                background: linear-gradient(90deg, rgba(252, 248, 248, 0) 0%, #0A0101 51.56%), linear-gradient(90deg, rgba(252, 248, 248, 0) 0%, #0A0101 51.56%), linear-gradient(90deg, rgba(252, 248, 248, 0) 0%, #0A0101 51.56%), linear-gradient(90deg, rgba(252, 248, 248, 0) 0%, #0A0101 51.56%);
+                background: linear-gradient(90deg, rgba(252, 248, 248, 0) 0%, #0A0101 100%);
             }
         }
         
+    }
+
+    .filterMenu{
+            .favorite{
+                &::before{
+                    content: "";
+                    display: inline-block;
+                    position: absolute;
+              
+                    left: 24px;
+                    top: 15px;
+                    width: 20px;
+                    height: 20px;
+              
+                    background-image: url("../assets/icons/likeIcon.svg");
+                    background-position: center center;
+                    background-repeat: no-repeat;
+                    background-size: contain;
+                    transition: .5s ease;
+                }
+                &:hover{
+                    &::before{
+                        background-image: url("../assets/icons/likeIconHold.svg");
+                    }
+                }
+        }
+        .seeLater{
+            &::before{
+                content: "";
+                display: inline-block;
+                position: absolute;
+          
+                left: 24px;
+                top: 15px;
+                width: 20px;
+                height: 20px;
+          
+                background-image: url("../assets/icons/saveIcon.svg");
+                background-position: center center;
+                background-repeat: no-repeat;
+                background-size: contain;
+                transition: .5s ease;
+            }
+            &:hover{
+                &::before{
+                    background-image: url("../assets/icons/saveIconHold.svg");
+                }
+            }
+        }
+
+        .inputSearch{
+            // border: 1px solid red;
+            position: relative;
+
+            width: 400px;
+        
+            &::after{
+                content: "";
+                display: inline-block;
+                position: absolute;
+        
+                width: 20px;
+                height: 20px;
+        
+                top: 13%;
+                left: 4%;
+
+                padding: 0rem;
+
+                // border: 1px solid red;
+                
+                background-image: url("../assets/icons/searchIcon.svg");
+                background-position: center center;
+                background-repeat: no-repeat;
+                background-size: contain;
+            }
+
+            input{
+                display: block;
+                position: relative;
+            
+                width: 100%;
+                height: 45px;
+                border: none;
+                // border: 1px solid red;
+                background-color: transparent;
+                background-image: url("../assets/icons/inputSearchIcon.svg");
+                // background-position: center center;
+                background-repeat: no-repeat;
+                background-size: contain;
+                
+            
+                padding: 0 0 1rem 3rem;
+            
+                font-family: "Mulish", sans-serif;
+                font-size: 16px;
+                line-height: 130%;
+                font-weight: 200;
+            
+                color: $white-light;
+            
+                transition: .3s ease-in;            
+            
+                &:focus{
+                    box-shadow: 0 0 0 0;
+                    outline: 0;
+            
+                    transform: scale(1.01) translateY(-.25px) translateX(1px);
+                    background-image: url("../assets/icons/inputSearchIconActive.svg");
+                    background-repeat: no-repeat;
+                    background-size: contain;
+                    
+                    // box-shadow: white;
+            
+                }
+            }
+            label{
+                font-family: "Mulish", sans-serif;
+                font-size: 16px;
+                line-height: 130%;
+                font-weight: 200;
+                color: $white-normal;
+            
+                display: inline-block;
+                position: absolute;
+            
+                top: 13%;
+                left: 27%;
+            
+                transition: .3s ease-in;
+                
+                // transform: translateY(-30px) translateX(37px);
+            }
+            input:focus + label{
+                transform: translateX(15px);
+                opacity: 0;
+                pointer-events: none;
+            }  
+        }
+        
+        
+
+        .selectFilter-menu{
+            label{
+                color: $white-normal;
+                text-transform: uppercase;
+                // border: 1px solid red;
+            }
+        }
     }
 
     .featuresProfile{

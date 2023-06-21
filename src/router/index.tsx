@@ -22,7 +22,7 @@ export const AppRoutes = ()=>{
                         <Route path=":typeContent/:id" element = {<DescriptionID></DescriptionID>}></Route>
                         <Route path="Login" element={<LoginForm></LoginForm>}></Route>
                         <Route path="Register" element={<RegisterToProfile><Register></Register></RegisterToProfile>}></Route>
-                        <Route path="Profile" element = {<ProtecteLayout><AdmProfile></AdmProfile></ProtecteLayout>}></Route>
+                        <Route path="Profile/:id" element = {<ProtecteLayout><AdmProfile></AdmProfile></ProtecteLayout>}></Route>
                     </Route>
                 </Routes>
             </BrowserRouter>

@@ -326,6 +326,44 @@ strong {
   text-align: left;
 }
 
+.second-button {
+  position: relative;
+  background-color: transparent;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  color: #FDF9F9;
+  text-transform: uppercase;
+  background: rgba(240, 223, 223, 0.16);
+  width: 152px;
+  height: 48px;
+  border-radius: 32px;
+  padding-left: 32px;
+  transition: 0.5s ease;
+}
+.second-button::before {
+  content: "";
+  display: inline-block;
+  position: absolute;
+  left: 18%;
+  width: 16px;
+  height: 20px;
+  background-image: url("../assets/icons/saveIcon.svg");
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  transition: 0.5s ease;
+}
+.second-button:hover {
+  opacity: 1;
+  background: rgba(240, 223, 223, 0.32);
+  filter: drop-shadow(0px 4px 32px rgba(0, 0, 0, 0.25)) drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+  transform: translateY(-2px);
+}
+.second-button:hover::before {
+  background-image: url("../assets/icons/saveIconHold.svg");
+}
+
 .saveButton {
   position: relative;
   background-color: transparent;
@@ -823,6 +861,7 @@ strong {
   background-color: transparent;
   text-decoration: none;
   border: none;
+  align-self: flex-end;
   cursor: pointer;
   color: #FDF9F9;
   background: rgba(252, 248, 248, 0.05);
@@ -1823,27 +1862,202 @@ a {
 .Profile {
   align-items: flex-start;
 }
-.Profile .UserInf {
+.Profile .UserContainer {
   width: 100%;
+  position: relative;
 }
-.Profile .UserInf h1 {
+.Profile .UserContainer::after {
+  content: "";
+  display: block;
+  position: absolute;
+  bottom: -24px;
+  left: 25%;
+  width: 50%;
+  height: 3px;
+  background: linear-gradient(90deg, rgba(8, 5, 6, 0) 0%, #E50914 50%, rgba(8, 5, 6, 0) 100%);
+  border-radius: 2px;
+  transform: matrix(1, 0, 0.28, 0.96, 0, 0);
+}
+.Profile .UserContainer h1 {
   color: #E50914;
   text-shadow: 0px 2px 8px rgba(173, 3, 12, 0.88);
 }
-.Profile .UserInf p {
+.Profile .UserContainer .UserAvatar {
+  width: 140px;
+  height: 140px;
+  background-image: url("https://wallpapercave.com/uwp/uwp1833288.jpeg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  border-radius: 100%;
+}
+.Profile .UserContainer .UserAvatar::before {
+  content: "";
+  display: inline-block;
+  position: relative;
+  top: -2.5px;
+  left: -2.5px;
+  z-index: -999;
+  background: linear-gradient(180deg, #E50914 25%, #0A0101 100%);
+  width: 104%;
+  height: 104%;
+  border-radius: 100%;
+}
+.Profile .UserContainer .UserInf {
+  align-items: flex-start;
+}
+.Profile .UserContainer .UserInf .UserInf-menu p {
+  color: #F5E9E9;
+  opacity: 0.8;
+}
+.Profile .UserContainer .UserInf .UserInf-menu .UserInf-item {
+  margin-top: 0.25rem;
+}
+.Profile .UserContainer .UserInf .qtdSeeLater {
+  position: relative;
+}
+.Profile .UserContainer .UserInf .qtdSeeLater::before {
+  content: "";
+  position: absolute;
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  background-image: url("../assets/icons/likeIconHold.svg");
+  background-image: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  top: 15%;
+  left: -24px;
+}
+.Profile .UserContainer .UserInf .qtdFavorite {
+  position: relative;
+}
+.Profile .UserContainer .UserInf .qtdFavorite::before {
+  content: "";
+  position: absolute;
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  background-image: url("../assets/icons/saveIconHold.svg");
+  background-image: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  top: 15%;
+  left: -20px;
+}
+.Profile .UserContainer .typeOfAccount {
   position: relative;
   color: #FDF9F9;
   margin-bottom: 0.25rem;
 }
-.Profile .UserInf p::after {
+.Profile .UserContainer .typeOfAccount::after {
   content: "";
   display: inline-block;
   position: absolute;
-  left: 0;
+  right: -2px;
   top: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(90deg, rgba(252, 248, 248, 0) 0%, #0A0101 51.56%), linear-gradient(90deg, rgba(252, 248, 248, 0) 0%, #0A0101 51.56%), linear-gradient(90deg, rgba(252, 248, 248, 0) 0%, #0A0101 51.56%), linear-gradient(90deg, rgba(252, 248, 248, 0) 0%, #0A0101 51.56%);
+  background: linear-gradient(90deg, rgba(252, 248, 248, 0) 0%, #0A0101 100%);
+}
+.Profile .filterMenu .favorite::before {
+  content: "";
+  display: inline-block;
+  position: absolute;
+  left: 24px;
+  top: 15px;
+  width: 20px;
+  height: 20px;
+  background-image: url("../assets/icons/likeIcon.svg");
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  transition: 0.5s ease;
+}
+.Profile .filterMenu .favorite:hover::before {
+  background-image: url("../assets/icons/likeIconHold.svg");
+}
+.Profile .filterMenu .seeLater::before {
+  content: "";
+  display: inline-block;
+  position: absolute;
+  left: 24px;
+  top: 15px;
+  width: 20px;
+  height: 20px;
+  background-image: url("../assets/icons/saveIcon.svg");
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  transition: 0.5s ease;
+}
+.Profile .filterMenu .seeLater:hover::before {
+  background-image: url("../assets/icons/saveIconHold.svg");
+}
+.Profile .filterMenu .inputSearch {
+  position: relative;
+  width: 400px;
+}
+.Profile .filterMenu .inputSearch::after {
+  content: "";
+  display: inline-block;
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  top: 13%;
+  left: 4%;
+  padding: 0rem;
+  background-image: url("../assets/icons/searchIcon.svg");
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+.Profile .filterMenu .inputSearch input {
+  display: block;
+  position: relative;
+  width: 100%;
+  height: 45px;
+  border: none;
+  background-color: transparent;
+  background-image: url("../assets/icons/inputSearchIcon.svg");
+  background-repeat: no-repeat;
+  background-size: contain;
+  padding: 0 0 1rem 3rem;
+  font-family: "Mulish", sans-serif;
+  font-size: 16px;
+  line-height: 130%;
+  font-weight: 200;
+  color: #FDF9F9;
+  transition: 0.3s ease-in;
+}
+.Profile .filterMenu .inputSearch input:focus {
+  box-shadow: 0 0 0 0;
+  outline: 0;
+  transform: scale(1.01) translateY(-0.25px) translateX(1px);
+  background-image: url("../assets/icons/inputSearchIconActive.svg");
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+.Profile .filterMenu .inputSearch label {
+  font-family: "Mulish", sans-serif;
+  font-size: 16px;
+  line-height: 130%;
+  font-weight: 200;
+  color: #FDF9F9;
+  display: inline-block;
+  position: absolute;
+  top: 13%;
+  left: 27%;
+  transition: 0.3s ease-in;
+}
+.Profile .filterMenu .inputSearch input:focus + label {
+  transform: translateX(15px);
+  opacity: 0;
+  pointer-events: none;
+}
+.Profile .filterMenu .selectFilter-menu label {
+  color: #FDF9F9;
+  text-transform: uppercase;
 }
 .Profile .featuresProfile {
   position: relative;
