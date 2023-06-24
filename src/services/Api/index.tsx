@@ -160,7 +160,8 @@ export const updateDocumentUser = async (attribute : "favorites" | "seeLater" , 
             if(user.seeLater?.find((cardSeeLater)=> cardSeeLater.id == card.id)){
 
               await updateDoc(docRef, {
-                "seeLater" : user.seeLater?.filter((cardSeeLater)=> cardSeeLater.id != card.id)
+                // eslint-disable-next-line no-unsafe-optional-chaining
+                "seeLater" : [...user.seeLater?.filter((cardSeeLater)=> cardSeeLater.id != card.id)]
               });
 
               }else{
@@ -203,6 +204,10 @@ export const SetDocumentDbCardType = async (collectionName : string, data : Card
         data.video = videosResults.results[0] 
     }else data.video = false
 
+    if(data.id){
+      data.typeContent = "Filme"
+    }
+
     try {
       await setDoc(doc(db, collectionName, `${data.id}`),data);
     } catch (e) {
@@ -218,7 +223,11 @@ export const SetDocumentDbCardType = async (collectionName : string, data : Card
           if(videosResults.results.length){
               data.video = videosResults.results[0] 
             }else data.video = false
-
+          
+            if(data.id){
+              data.typeContent = "Série"
+            }
+            
           try {
             await setDoc(doc(db, collectionName, `${data.id}`),data);
           } catch (e) {
@@ -234,6 +243,7 @@ export const SetDocumentDbCardType = async (collectionName : string, data : Card
 
               url = `${data.title ? URLValues.movies : URLValues.seriesAnimes}${data.id}/images${URLValues.api_key}&include_image_language=pt&language=pt-BR`
               let logoResults = await getTmdb(url)
+
               if(logoResults){
                 url = `${data.title ? URLValues.movies : URLValues.seriesAnimes}${data.id}/images${URLValues.api_key}&include_image_language=en&language=pt-BR`
                 logoResults = await getTmdb(url)
@@ -243,6 +253,10 @@ export const SetDocumentDbCardType = async (collectionName : string, data : Card
               if(videosResults.results.length){
                 data.video = videosResults.results[0] 
               }else data.video = false
+              
+              if(data.id){
+                data.typeContent = "Anime"
+              }
 
               try {
                 await setDoc(doc(db, collectionName, `${data.id}`),data);

@@ -3,7 +3,7 @@ import { ReactNode, useEffect, useState, useContext } from "react"
 import "../../style/style.css";
 import TomHolland from "../../assets/actors/TomHolland.jpg"
 import { AppContextType, CardType, TypeContent } from "../../Types";
-import { URLValues, updateDocumentUser } from "../../services/Api";
+import { URLValues } from "../../services/Api";
 import { useNavigate, useParams } from "react-router-dom";
 import { AppContext } from "../../context/AppContext";
 
@@ -67,7 +67,7 @@ export default function CardDescription(){
 
         return(
             <>
-                {/* <div style={{position : "relative"}}> */}
+                <div className="DescriptionIDContainer">
                 <section className="SwiperDescriptionItem container ">
                     <div className="desciptionPoster mr-3 flex-center">
                         <img style={{}} src={`${URLValues.img_path}${card?.poster_path}`} alt= {`Poste do Filmes : ${card?.name || card?.title}`} />
@@ -112,10 +112,10 @@ export default function CardDescription(){
                         </div>
                         <div className="buttonsDescription flex-center mt-2">
                             {
-                                (card && user.seeLater) && user.seeLater.find((seeLaterCard)=> seeLaterCard.id === card.id) ? <button className="saveButtonActive p3 mr-2" onClick= {(e)=>{ProtectedFunction(()=> seeLaterActive(e,card))}}>Ver depois</button> : <button className="saveButton p3 mr-2" onClick= {(e)=>{ProtectedFunction(()=> card && seeLaterActive(e,card))}}> Ver depois</button>
+                                (card && user.seeLater != undefined) && user.seeLater.find((seeLaterCard)=> seeLaterCard.id === card.id) ? <button className="saveButtonActive p3 mr-2" onClick= {(e)=>{ProtectedFunction(()=> seeLaterActive(e,card))}}>Ver depois</button> : <button className="saveButton p3 mr-2" onClick= {(e)=>{ProtectedFunction(()=> card && seeLaterActive(e,card))}}>Ver depois</button>
                             }
                             {
-                                (card && user.favorites) && user.favorites.find((favoritesCard)=> favoritesCard.id === card.id) ? <button className="likeButtonActive" onClick= {(e)=>{ProtectedFunction(()=> favoritesActive(e,card))}}></button> : <button className="likeButton" onClick= {(e)=>{ProtectedFunction(()=> card && favoritesActive(e,card))}}></button>
+                                (card && user.favorites != undefined) && user.favorites.find((favoritesCard)=> favoritesCard.id === card.id) ? <button className="likeButtonActive" onClick= {(e)=>{ProtectedFunction(()=> favoritesActive(e,card))}}></button> : <button className="likeButton" onClick= {(e)=>{ProtectedFunction(()=> card && favoritesActive(e,card))}}></button>
                             }
                             {/* <button className="saveButton p3 mr-2" onClick= {()=>{ProtectedFunction(()=> (user && card) && updateUserCards("seeLater",card,user))}}> Ver depois</button>
                             <button className="likeButton" onClick= {()=>{ProtectedFunction(()=> (user && card) && updateUserCards("favorites",card,user))}}></button> */}
@@ -127,7 +127,7 @@ export default function CardDescription(){
                 <div className="backgroundPoster">
                     <img src= {`${URLValues.img_path_original}${card?.backdrop_path}`} alt={`Poste do filme ${card?.title}`} />
                 </div>
-                {/* </div> */}
+                </div>
             </>
         )
 }

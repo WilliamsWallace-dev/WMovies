@@ -264,6 +264,7 @@ export interface TypeSearch {
     typeOp : "Gerenciar" | "Adicionar"
 }
 
+
 export interface Search { 
     text  : string,
     cards : CardType[],

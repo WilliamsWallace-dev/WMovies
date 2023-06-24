@@ -27,8 +27,10 @@ export const AppProvidor = ({children} : {children : ReactNode}) =>{
     }
     const SetLists = async (typeList : "Filme" | "Série" | "Anime", data : CardType) =>{
 
-        await SetDocumentDbCardType(typeList,data)
+        data.typeContent = typeList;
 
+        await SetDocumentDbCardType(typeList,data)
+        
         if(typeList == "Filme"){
             setMoviesList([...moviesList,data])
         }else if(typeList == "Série"){
