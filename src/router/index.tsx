@@ -10,6 +10,7 @@ import { Register } from "../Screens/Register";
 import { ProtecteLayout, RegisterToProfile } from "./ProtectedLayout";
 import { AdmProfile } from "../components/AdmProfile";
 import { UserProfile } from "../components/UserProfile";
+import { CardBoardPage } from "../Screens/CardBoardPage";
 
 
 export const AppRoutes = ()=>{
@@ -24,6 +25,7 @@ export const AppRoutes = ()=>{
                         <Route path="Login" element={<LoginForm></LoginForm>}></Route>
                         <Route path="Register" element={<RegisterToProfile><Register></Register></RegisterToProfile>}></Route>
                         <Route path="Profile/:id" element = {<ProtecteLayout><UserProfile></UserProfile></ProtecteLayout>}></Route>
+                        <Route path=":typeContent" element = {<CardBoardPage></CardBoardPage>}></Route>
                     </Route>
                 </Routes>
             </BrowserRouter>

@@ -20,8 +20,6 @@ export const AdmProfile = ()=>{
     const {moviesList,seriesList,animesList} = useContext(AppContext)
 
 
-    console.log(moviesList)
-
     const handleFieldsChange = (e : {currentTarget : {value : string}})=>{
         setSearch({...search, text : e.currentTarget.value})
     }
@@ -40,8 +38,10 @@ export const AdmProfile = ()=>{
     const SearchCards = async (e: { keyCode: number; })=>{
         if(e.keyCode == 13){
             if(feature.typeContent == "Filme"){
-                const url = `${URLValues.searchMovie}${URLValues.api_key}&query=${search.text}&page=${1}`
+                const url = `${URLValues.searchMovie}${URLValues.api_key}&query=${search.text}&language=pt-BR&page=${1}`
                 const searchTMDB = await getTmdb(url);
+
+                console.log(search)
 
                 let result = searchTMDB.results;
 
@@ -50,7 +50,7 @@ export const AdmProfile = ()=>{
                 }else{
                     Array.from(Array(searchTMDB.total_pages), async (item,index)=>{
                         if(index != 0){
-                            const url = `${URLValues.searchMovie}${URLValues.api_key}&query=${search.text}&page=${index+1}`
+                            const url = `${URLValues.searchMovie}${URLValues.api_key}&query=${search.text}&language=pt-BR&page=${index+1}`
                             const searchTMDB = await getTmdb(url);
                             result = [...result,...searchTMDB.results]
                             index < searchTMDB.total_pages && setSearch({...search,cards : result})
@@ -59,7 +59,7 @@ export const AdmProfile = ()=>{
                 }
             } else if(feature.typeContent == "Série") {
 
-                const url = `${URLValues.searchSerieAnimes}${URLValues.api_key}&query=${search.text}&page=${1}`
+                const url = `${URLValues.searchSerieAnimes}${URLValues.api_key}&query=${search.text}&language=pt-BR&page=${1}`
                 const searchTMDB = await getTmdb(url);
                               
                 let result = searchTMDB.results;
@@ -69,7 +69,7 @@ export const AdmProfile = ()=>{
                 }else{
                     Array.from(Array(searchTMDB.total_pages), async (item,index)=>{
                         if(index != 0){
-                            const url = `${URLValues.searchSerieAnimes}${URLValues.api_key}&query=${search.text}&page=${index+1}`
+                            const url = `${URLValues.searchSerieAnimes}${URLValues.api_key}&query=${search.text}&language=pt-BR&page=${index+1}`
                             const searchTMDB = await getTmdb(url);
                             result = [...result,...searchTMDB.results]
                             index < searchTMDB.total_pages && setSearch({...search,cards : result})
@@ -77,7 +77,7 @@ export const AdmProfile = ()=>{
                     })
                 }
             }else if(feature.typeContent == "Anime") {
-                let url = `${URLValues.searchSerieAnimes}${URLValues.api_key}&query=${search.text}&page=${1}`
+                let url = `${URLValues.searchSerieAnimes}${URLValues.api_key}&query=${search.text}&language=pt-BR&page=${1}`
                 let searchTMDB = await getTmdb(url);
                 let result = searchTMDB.results;
 
@@ -86,13 +86,13 @@ export const AdmProfile = ()=>{
                 if(searchTMDB.total_pages > 1){
                     Array.from(Array(searchTMDB.total_pages), async (item,index)=>{
                         if(index != 0){
-                            const url = `${URLValues.searchSerieAnimes}${URLValues.api_key}&query=${search.text}&page=${index+1}`
+                            const url = `${URLValues.searchSerieAnimes}${URLValues.api_key}&query=${search.text}&language=pt-BR&page=${index+1}`
                             const searchTMDB = await getTmdb(url);
                             result = [...result,...searchTMDB.results]
                         }
                     })
                 }
-                    url = `${URLValues.searchMovie}${URLValues.api_key}&query=${search.text}&page=${1}`
+                    url = `${URLValues.searchMovie}${URLValues.api_key}&query=${search.text}&language=pt-BR&page=${1}`
                     searchTMDB = await getTmdb(url);
                     result = [...result, ...searchTMDB.results];
 
@@ -103,7 +103,7 @@ export const AdmProfile = ()=>{
                     }else{
                         Array.from(Array(searchTMDB.total_pages), async (item,index)=>{
                             if(index != 0){
-                                const url = `${URLValues.searchMovie}${URLValues.api_key}&query=${search.text}&page=${index+1}`
+                                const url = `${URLValues.searchMovie}${URLValues.api_key}&query=${search.text}&language=pt-BR&page=${index+1}`
                                 const searchTMDB = await getTmdb(url);
                                 result = [...result,...searchTMDB.results]
                                 index < searchTMDB.total_pages && setSearch({...search,cards : result})

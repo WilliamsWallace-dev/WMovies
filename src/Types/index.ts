@@ -2,148 +2,253 @@
     export const Genre = { 
         Movies : [
             {
-                genre : "Ação",
-                num : 28
+                name : "Ação",
+                id : 28
             },
             {
-                genre : "Aventura",
-                num : 12
+                name : "Aventura",
+                id : 12
             },
             {
-                genre : "Animação",
-                num : 16
+                name : "Animação",
+                id : 16
             },
             {
-                genre : "Comédia",
-                num : 35
+                name : "Comédia",
+                id : 35
             },
             {
-                genre : "Crime",
-                num : 80
+                name : "Crime",
+                id : 80
             },
             {
-                genre : "Documentário",
-                num : 99
+                name : "Documentário",
+                id : 99
             },
             {
-                genre : "Drama",
-                num : 18
+                name : "Drama",
+                id : 18
             },
             {
-                genre : "Família",
-                num : 10751
+                name : "Família",
+                id : 10751
             },
             {
-                genre : "Fantasia",
-                num : 14
+                name : "Fantasia",
+                id : 14
             },
             {
-                genre : "História",
-                num : 36
+                name : "História",
+                id : 36
             },
             {
-                genre : "Terror",
-                num : 27
+                name : "Terror",
+                id : 27
             },
             {
-                genre : "Música",
-                num : 10402
+                name : "Música",
+                id : 10402
             },
             {
-                genre : "Mistério",
-                num : 9648
+                name : "Mistério",
+                id : 9648
             },
             {
-                genre : "Romance",
-                num : 10749
+                name : "Romance",
+                id : 10749
             },
             {
-                genre : "Ficção Científica",
-                num : 878
+                name : "Ficção Científica",
+                id : 878
             },
             {
-                genre : "Filme de TV",
-                num : 10770
+                name : "Filme de TV",
+                id : 10770
             },
             {
-                genre : "Suspense",
-                num : 53
+                name : "Suspense",
+                id : 53
             },
             {
-                genre : "Guerra",
-                num : 10752
+                name : "Guerra",
+                id : 10752
             },
             {
-                genre : "Oeste",
-                num : 37
+                name : "Oeste",
+                id : 37
             },
 
         ],
         Serie : [
             {
-                genre : "Ação e Aventura",
-                num : 10759
+                name : "Ação e Aventura",
+                id : 10759
             },
             {
-                genre : "Animação",
-                num : 16
+                name : "Animação",
+                id : 16
             },
             {
-                genre : "Comédia",
-                num : 35
+                name : "Comédia",
+                id : 35
             },
             {
-                genre : "Crime",
-                num : 80
+                name : "Crime",
+                id : 80
             },
             {
-                genre : "Documentário",
-                num : 99
+                name : "Documentário",
+                id : 99
             },
             {
-                genre : "Drama",
-                num : 18
+                name : "Drama",
+                id : 18
             },
             {
-                genre : "Família",
-                num : 10751
+                name : "Família",
+                id : 10751
             },
             {
-                genre : "Crianças",
-                num : 10762
+                name : "Crianças",
+                id : 10762
             },
             {
-                genre : "Mistério",
-                num : 9648
+                name : "Mistério",
+                id : 9648
             },
             {
-                genre : "Novidades",
-                num : 10763
+                name : "Novidades",
+                id : 10763
             },
             {
-                genre : "Realidade",
-                num : 10764
+                name : "Realidade",
+                id : 10764
             },
             {
-                genre : "Ficção Científica e Fantasia",
-                num : 10765
+                name : "Ficção Científica e Fantasia",
+                id : 10765
             },
             {
-                genre : "Romance",
-                num : 10749
+                name : "Romance",
+                id : 10749
             },
             {
-                genre : "Ficção Científica",
-                num : 878
+                name : "Ficção Científica",
+                id : 878
             },
             {
-                genre : "Guerra e Política",
-                num : 10768
+                name : "Guerra e Política",
+                id : 10768
             },
             {
-                genre : "Oeste",
-                num : 37
+                name : "Oeste",
+                id : 37
             },
+
+        ],
+        All : [
+
+            {
+                name : "Ação",
+                id : 28
+            },
+            {   
+                name : "Ação e Aventura",
+                id : 10759
+            },
+            {
+                name : "Aventura",
+                id : 12
+            },
+            {
+                name : "Animação",
+                id : 16
+            },
+            {
+                name : "Comédia",
+                id : 35
+            },
+            {
+                name : "Crime",
+                id : 80
+            },
+            {
+                name : "Documentário",
+                id : 99
+            },
+            {
+                name : "Drama",
+                id : 18
+            },
+            {
+                name : "Família",
+                id : 10751
+            },
+            {
+                name : "Crianças",
+                id : 10762
+            },
+            {
+                name : "Fantasia",
+                id : 14
+            },
+            {
+                name : "Novidades",
+                id : 10763
+            },
+            {
+                name : "Realidade",
+                id : 10764
+            },
+            {
+                name : "Ficção Científica e Fantasia",
+                id : 10765
+            },
+            {
+                name : "Guerra e Política",
+                id : 10768
+            },
+            {
+                name : "História",
+                id : 36
+            },
+            {
+                name : "Terror",
+                id : 27
+            },
+            {
+                name : "Música",
+                id : 10402
+            },
+            {
+                name : "Mistério",
+                id : 9648
+            },
+            {
+                name : "Romance",
+                id : 10749
+            },
+            {
+                name : "Ficção Científica",
+                id : 878
+            },
+            {
+                name : "Filme de TV",
+                id : 10770
+            },
+            {
+                name : "Suspense",
+                id : 53
+            },
+            {
+                name : "Guerra",
+                id : 10752
+            },
+            {
+                name : "Oeste",
+                id : 37
+            },
+
 
         ]
     }
@@ -158,9 +263,9 @@ export enum typeAccount {
 
 //Types
 export enum TypeContent  {
-    Filmes = "Filmes",
-    Series = "Séries",
-    Animes = "Animes"
+    Filme = "Filme",
+    Série = "Série",
+    Anime = "Anime"
 }
 // Context
 export interface AppContextType { 

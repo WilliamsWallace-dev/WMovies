@@ -15,28 +15,28 @@ import { EffectFade,Navigation, Pagination, Scrollbar, A11y,Autoplay } from '../
 import { ReactNode, useContext, useEffect, useState } from "react";
 import { AppContext } from "../../context/AppContext";
 import { AppContextType, CardType, TypeContent } from "../../Types";
+import { useParams } from "react-router-dom";
 
 
-export default function SwiperMain({header = false, typeSwiper = "Filme"} : {header? : boolean, typeSwiper : string}){
+export default function SwiperMain({header = false, typeSwiper} : {header? : boolean, typeSwiper : string}){
 
     const {moviesList,seriesList,animesList} = useContext(AppContext) as AppContextType;
 
     const [swiperMain,setSwiperMain] = useState <CardType[] | null>(null)
 
     useEffect(()=>{
-        
         switch (typeSwiper) {
-            case TypeContent.Filmes : 
+            case TypeContent.Filme : 
                 setSwiperMain(moviesList)
                 break;
-            case TypeContent.Series : 
+            case TypeContent.Série : 
                 setSwiperMain(seriesList)
                 break;
-            case TypeContent.Animes : 
+            case TypeContent.Anime : 
                 setSwiperMain(animesList)
                 break;
         }
-    },[moviesList,seriesList,animesList])
+    })
 
     return(
         <>

@@ -171,6 +171,24 @@
                     }
                 }
         }
+        .favoriteActive{
+            &::before{
+                content: "";
+                display: inline-block;
+                position: absolute;
+          
+                left: 24px;
+                top: 12px;
+                width: 20px;
+                height: 20px;
+          
+                background-image: url("../assets/icons/likeIconHold.svg");
+                background-position: center center;
+                background-repeat: no-repeat;
+                background-size: contain;
+                transition: .5s ease;
+            }
+        }
         .seeLater{
             &::before{
                 content: "";
@@ -192,6 +210,24 @@
                 &::before{
                     background-image: url("../assets/icons/saveIconHold.svg");
                 }
+            }
+        }
+        .seeLaterActive{
+            &::before{
+                content: "";
+                display: inline-block;
+                position: absolute;
+          
+                left: 24px;
+                top: 12px;
+                width: 20px;
+                height: 20px;
+          
+                background-image: url("../assets/icons/saveIconHold.svg");
+                background-position: center center;
+                background-repeat: no-repeat;
+                background-size: contain;
+                transition: .5s ease;
             }
         }
 

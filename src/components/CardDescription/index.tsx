@@ -25,13 +25,13 @@ export default function CardDescription(){
     useEffect(()=>{
 
         switch (typeContent) {
-            case TypeContent.Filmes : 
+            case TypeContent.Filme : 
                 setCard(moviesList.find(movie => movie.id == parseInt(id)))
                 break;
-            case TypeContent.Series : 
+            case TypeContent.Série : 
                 setCard(seriesList.find(serie => serie.id == parseInt(id)))
                 break;
-            case TypeContent.Animes : 
+            case TypeContent.Anime : 
                 setCard(animesList.find(anime => anime.id == parseInt(id)))
                 break;
         }

@@ -79,9 +79,11 @@ export const AuthProvider = ({children} : IAuthProvider) =>{
     const createAccount = (userCreated : IUser)=>{
         CreateUser(userCreated)
     }
+    
     const getUserDocument = async (id : string)=>{
        setUser(await getDocument<IUser>("User", id))
     }
+
     const updateUserCards = (attribute : "favorites" | "seeLater", card : CardType,user : IUser)=>{
         if(user.favorites && attribute == "favorites"){
             if(user.favorites.find((cardfavorites)=> cardfavorites.id == card.id)){

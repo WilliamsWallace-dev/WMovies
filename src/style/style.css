@@ -61,6 +61,10 @@
   justify-content: space-between;
 }
 
+.flex-space-around {
+  justify-content: space-around;
+}
+
 .relative {
   position: relative;
 }
@@ -1977,6 +1981,20 @@ a {
 .Profile .filterMenu .favorite:hover::before {
   background-image: url("../assets/icons/likeIconHold.svg");
 }
+.Profile .filterMenu .favoriteActive::before {
+  content: "";
+  display: inline-block;
+  position: absolute;
+  left: 24px;
+  top: 12px;
+  width: 20px;
+  height: 20px;
+  background-image: url("../assets/icons/likeIconHold.svg");
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  transition: 0.5s ease;
+}
 .Profile .filterMenu .seeLater::before {
   content: "";
   display: inline-block;
@@ -1993,6 +2011,20 @@ a {
 }
 .Profile .filterMenu .seeLater:hover::before {
   background-image: url("../assets/icons/saveIconHold.svg");
+}
+.Profile .filterMenu .seeLaterActive::before {
+  content: "";
+  display: inline-block;
+  position: absolute;
+  left: 24px;
+  top: 12px;
+  width: 20px;
+  height: 20px;
+  background-image: url("../assets/icons/saveIconHold.svg");
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  transition: 0.5s ease;
 }
 .Profile .filterMenu .inputSearch {
   position: relative;
@@ -2267,4 +2299,114 @@ a {
   position: relative;
   width: 100%;
   min-height: 200px;
+}
+
+.CardBoard .title::after {
+  content: "";
+  display: block;
+  position: relative;
+  width: 80%;
+  height: 3px;
+  margin-top: 0.25rem;
+  border-radius: 0.125rem;
+  background: linear-gradient(89.97deg, #E50914 0%, rgba(8, 5, 6, 0) 101.2%);
+  transform: matrix(1, 0, 0.28, 0.96, 0, 0);
+  border-radius: 2px;
+}
+.CardBoard .selectFilter-menu label {
+  color: #FDF9F9;
+  text-transform: uppercase;
+}
+.CardBoard select {
+  padding: 0.075rem 1rem;
+  font-weight: 600;
+  border-radius: 4px;
+}
+.CardBoard .inputSearch {
+  position: relative;
+  width: 400px;
+}
+.CardBoard .inputSearch::after {
+  content: "";
+  display: inline-block;
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  top: 13%;
+  left: 4%;
+  padding: 0rem;
+  background-image: url("../assets/icons/searchIcon.svg");
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+.CardBoard .inputSearch input {
+  display: block;
+  position: relative;
+  width: 100%;
+  height: 45px;
+  border: none;
+  background-color: transparent;
+  background-image: url("../assets/icons/inputSearchIcon.svg");
+  background-repeat: no-repeat;
+  background-size: contain;
+  padding: 0 0 1rem 3rem;
+  font-family: "Mulish", sans-serif;
+  font-size: 16px;
+  line-height: 130%;
+  font-weight: 200;
+  color: #FDF9F9;
+  transition: 0.3s ease-in;
+}
+.CardBoard .inputSearch input:focus {
+  box-shadow: 0 0 0 0;
+  outline: 0;
+  transform: scale(1.01) translateY(-0.25px) translateX(1px);
+  background-image: url("../assets/icons/inputSearchIconActive.svg");
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+.CardBoard .inputSearch label {
+  font-family: "Mulish", sans-serif;
+  font-size: 16px;
+  line-height: 130%;
+  font-weight: 200;
+  color: #FDF9F9;
+  display: inline-block;
+  position: absolute;
+  top: 13%;
+  left: 27%;
+  transition: 0.3s ease-in;
+}
+.CardBoard input:focus + label {
+  transform: translateX(15px);
+  opacity: 0;
+  pointer-events: none;
+}
+.CardBoard .cardContainer {
+  position: relative;
+}
+.CardBoard .cardContainer::before {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 0;
+  width: 80%;
+  height: 3px;
+  border-radius: 0.125rem;
+  border-radius: 2px;
+  background: linear-gradient(90deg, rgba(8, 5, 6, 0) 0%, #E50914 50%, rgba(8, 5, 6, 0) 91.67%);
+  transform: matrix(1, 0, 0.28, 0.96, 0, 0);
+}
+.CardBoard .cardContainer::after {
+  content: "";
+  display: block;
+  position: absolute;
+  bottom: 0;
+  width: 80%;
+  height: 3px;
+  border-radius: 0.125rem;
+  border-radius: 2px;
+  background: linear-gradient(90deg, rgba(8, 5, 6, 0) 0%, #E50914 50%, rgba(8, 5, 6, 0) 91.67%);
+  transform: matrix(1, 0, 0.28, 0.96, 0, 0);
 }/*# sourceMappingURL=style.css.map */

@@ -1,5 +1,5 @@
 import { ChangeEvent, useContext, useEffect, useState } from "react";
-import { Search, TypeSearch, typeAccount, CardType } from "../../Types";
+import { Search, TypeSearch, typeAccount, CardType, Genre } from "../../Types";
 import { useAuth } from "../../context/AuthProvider/useAuth"
 import { URLValues, getTmdb } from "../../services/Api";
 import {CardAdmin} from "../CardAdmin";
@@ -16,7 +16,7 @@ export const UserProfile = ()=>{
 
     const [cards,setCards] = useState < {listCard : CardType [] | undefined, contentType : "favorites" | "seeLater"}>({listCard : user.favorites , contentType : "favorites"}) ;
 
-    const [search,setSearch] = useState({text : "", cards : []} as Search) ;
+    const [search,setSearch] = useState("") ;
 
     // const [feature,setFeature] = useState({} as TypeSearch)
 
@@ -43,22 +43,96 @@ export const UserProfile = ()=>{
         }
 
     const handleFieldsChange = (e : {currentTarget : {value : string}})=>{
-        setSearch({...search, text : e.currentTarget.value})
+        setSearch(e.currentTarget.value)
     }
 
-    const changeLabel = (e : any)=>{
-        const label = e.currentTarget.parentNode.querySelector("label") ;
-        console.log(label)
+    const changeLabel = ()=>{
+        const label = document.querySelector("#searchLabel") ;
 
-            if(search.text != "")
+            if(search != "" && label)
                 label.innerHTML = ""
-            else {
+            else if(label) {
+                console.log("mudei")
                 label.innerHTML = "Digite o Título do Filmes, Serie..."
             }  
     }
     
     const SearchCards = async (e: { keyCode: number; })=>{
-        console.log("search cards")
+        console.log(search.length,e.keyCode)
+        if(search.length == 0 && e.keyCode == 8){
+            filterSelect()
+        } else
+        if(e.keyCode == 13){
+            let result = [] as CardType [] | undefined;
+            // let auxResult = [] as CardType [] | undefined;
+            const aux = search.split(" ");
+            aux.forEach((text)=>{ 
+                result = cards.listCard?.filter((card) => {
+                    let found = false
+                        if(card.name){
+                            card.name.split(" ").forEach((e)=>{
+                                if(e.length > 2 && e.toUpperCase() == text.toUpperCase())
+                                    found = true;
+                            })
+                        }else if(card.title){
+                            card.title.split(" ").forEach((e)=>{
+                                if(e.length > 2 && e.toUpperCase() == text.toUpperCase())
+                                    found = true;
+                            })
+                        }
+                        return found
+                })
+                // if(auxResult){
+                //     result = [...result,...auxResult]
+                // }
+            })
+            console.log(result)
+            setCards({...cards, listCard : result})
+
+        }
+    }
+
+    const seeLaterActive = (e: { currentTarget: any; })=>{
+
+        
+        setSearch("")
+        const label = document.querySelector("#searchLabel")
+        if(label != null) label.innerHTML = "Digite o Título do Filmes, Serie..."
+
+        const aux = document.querySelector(".favoriteActive")
+        aux?.classList.remove("favoriteActive")
+        aux?.classList.add("favorite")
+
+        const btn = e.currentTarget;
+        btn.classList.toggle("seeLaterActive")
+        btn.classList.toggle("seeLater")
+
+        user.seeLater != undefined ? setCards({listCard : user.seeLater , contentType : "seeLater"}) : setCards({listCard : undefined , contentType : "seeLater"})
+        
+        document.querySelectorAll("select").forEach((element, index) =>{
+            element.value = "Todos"           
+        })
+    }
+    const favoritesActive = (e: { currentTarget: any; })=>{
+
+        setSearch("")
+        const label = document.querySelector("#searchLabel")
+        if(label != null) label.innerHTML = "Digite o Título do Filmes, Serie..."
+        
+
+        const aux = document.querySelector(".seeLaterActive")
+        aux?.classList.remove("seeLaterActive")
+        aux?.classList.add("seeLater")
+
+        const btn = e.currentTarget;
+        btn.classList.toggle("favoriteActive")
+        btn.classList.toggle("favorite")
+
+        user.favorites != undefined ? setCards({listCard : user.favorites , contentType : "favorites"}) : setCards({listCard : undefined , contentType : "favorites"})
+        
+        document.querySelectorAll("select").forEach((element, index) =>{
+            element.value = "Todos"           
+        })
         
     }
 
@@ -98,15 +172,15 @@ export const UserProfile = ()=>{
 
     // console.log(feature.typeContent, feature.typeOp)
 
+    console.log(cards.listCard)
+
     const filterSelect = ()=>{
-        // let result : CardType [] | undefined
-        // if(cards.contentType == "favorite"){
-        //       result = user.favorites;
-        // }else if(cards.contentType == "seeLater"){
-        //      result = user.seeLater;
-        // }
 
         let listCard : CardType [] | undefined;
+
+        setSearch("")
+        const label = document.querySelector("#searchLabel")
+        if(label != null) label.innerHTML = "Digite o Título do Filmes, Serie..."
 
         const filter = ["Todos","Todos"]
         document.querySelectorAll("select").forEach((element, index) =>{
@@ -119,27 +193,23 @@ export const UserProfile = ()=>{
             listCard = user[cards.contentType]?.filter((card)=>{return card.typeContent == filter[0]})
         }
 
-        setCards({...cards, listCard :listCard})
-        // switch (filter[0]){
-        //     case "Todos" : 
-        //         switch (cards.contentType){
-        //             case "favorites":
-        //                 cards.listCard = user.favorites
-        //                 break;
-        //             case "seeLater":
-        //                 cards.listCard = user.seeLater
-        //                 break;
-        //         }
-        //         break;
-        //     case "Filme":
-        //         cards.listCard = movie.favorites
-        //         break;
-        // }
-    }
-    // const filterSelectGenre = (e: ChangeEvent<HTMLSelectElement>)=>{
-    //     console.log(e.target.value)
-    // }
+        let aux : CardType[] | undefined
+        if(filter[1] != "Todos"){
+            console.log(filter[1])
+            aux = listCard?.filter((card)=>{
+                let found = false
+                card.genres?.forEach((e)=>{
+                    if(e.id == Number(filter[1])){
+                        found = true
+                    }    
+                })
+                return found;
+            })
+            listCard = aux
+        }
 
+        setCards({...cards, listCard :listCard})
+    }
 
     return(
         <>
@@ -183,11 +253,11 @@ export const UserProfile = ()=>{
                     </section>
                     <section className="filterMenu flex-center flex-between w-100 mt-5 mb-2" >
                             <div>
-                                <button className="second-button favorite mr-2" onClick={()=>{user.favorites != undefined ? setCards({listCard : user.favorites , contentType : "favorites"}) : setCards({listCard : undefined , contentType : "favorites"})}}>Favoritos</button>
-                                <button className="second-button seeLater" onClick={()=>{user.seeLater != undefined ? setCards({listCard : user.seeLater , contentType : "seeLater"}) : setCards({listCard : undefined , contentType : "seeLater"})}}>Ver Depois</button>
+                                <button className="second-button favoriteActive mr-2" onClick={(e)=>{favoritesActive(e)}}>Favoritos</button>
+                                <button className="second-button seeLater" onClick={(e)=>{seeLaterActive(e)}}>Ver Depois</button>
                             </div>
                             <div className="inputSearch">
-                                    <input className="" type="text" id="search" value={search.text} onChange={handleFieldsChange}  onBlur={changeLabel} onKeyDown={SearchCards} placeholder=""/>
+                                    <input className="" type="text" id="search" value={search} onChange={handleFieldsChange}  onBlur={changeLabel} onKeyDown={SearchCards} placeholder=""/>
                                     <label id="searchLabel" htmlFor="search">Digite o Título do Filmes, Serie...</label>
                             </div> 
                             <div className="selectFilter-menu">
@@ -197,16 +267,20 @@ export const UserProfile = ()=>{
                                     <option value="Todos">Todos</option>
                                     <option value="Filme">Filme</option>
                                     <option value="Série">Série</option>
-                                    <option value="Anime">Anime</option>filterSelectGenre
+                                    <option value="Anime">Anime</option>
                                 </select>
 
                                 <label htmlFor="Gênero" className="p2 mr-1">Gênero</label>
 
                                 <select name="Gênero" id="Gênero" className="genreSelect p2" onChange={()=> filterSelect()}>
                                     <option value="Todos">Todos</option>
-                                    <option value="Filme">Filme</option>
-                                    <option value="Série">Série</option>
-                                    <option value="Anime">Anime</option>
+                                    {Genre.All.map((e)=>{
+                                        return (
+                                            <>
+                                                <option value={e.id}>{e.name}</option>
+                                            </>
+                                        )
+                                    })}
                                 </select>
                             </div>
                             

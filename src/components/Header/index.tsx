@@ -17,10 +17,10 @@ export default function Header (){
                     <nav>
                         <ul className="menu-list flex-center">
                             <NavLink to={"/"}><li className="menu-item mr-2 p-1 px-4">Início</li></NavLink>
-                            <NavLink to={"Filmes/"}><li className="menu-item mr-2 p-1 px-4">Filmes</li></NavLink>
-                            <NavLink to={"Séries/"}><li className="menu-item mr-2 p-1 px-4">Séries</li></NavLink>
-                            <NavLink to={"Anime/"}><li className="menu-item mr-2 p-1 px-4">Animes</li></NavLink>
-                            <NavLink to={"Sobre/"}><li className="menu-item mr-2 p-1 px-4">Sobre</li></NavLink>
+                            <NavLink to={"Filme"}><li className="menu-item mr-2 p-1 px-4">Filme</li></NavLink>
+                            <NavLink to={"Série"}><li className="menu-item mr-2 p-1 px-4">Série</li></NavLink>
+                            <NavLink to={"Anime"}><li className="menu-item mr-2 p-1 px-4">Anime</li></NavLink>
+                            <NavLink to={"Sobre"}><li className="menu-item mr-2 p-1 px-4">Sobre</li></NavLink>
                         </ul>
                     </nav>
                 </div>

@@ -204,10 +204,6 @@ export const SetDocumentDbCardType = async (collectionName : string, data : Card
         data.video = videosResults.results[0] 
     }else data.video = false
 
-    if(data.id){
-      data.typeContent = "Filme"
-    }
-
     try {
       await setDoc(doc(db, collectionName, `${data.id}`),data);
     } catch (e) {
@@ -223,10 +219,6 @@ export const SetDocumentDbCardType = async (collectionName : string, data : Card
           if(videosResults.results.length){
               data.video = videosResults.results[0] 
             }else data.video = false
-          
-            if(data.id){
-              data.typeContent = "Série"
-            }
             
           try {
             await setDoc(doc(db, collectionName, `${data.id}`),data);
@@ -253,10 +245,6 @@ export const SetDocumentDbCardType = async (collectionName : string, data : Card
               if(videosResults.results.length){
                 data.video = videosResults.results[0] 
               }else data.video = false
-              
-              if(data.id){
-                data.typeContent = "Anime"
-              }
 
               try {
                 await setDoc(doc(db, collectionName, `${data.id}`),data);
