@@ -14,6 +14,8 @@ export const CardBoard = ({typeContent} : {typeContent : string})=>{
     
     const [cards,setCards] = useState([] as CardType [])
 
+    const [sort,setSort] = useState("" as string)
+
     const {moviesList,seriesList,animesList} = useContext(AppContext)
 
     const [search,setSearch] = useState("") ;
@@ -30,7 +32,16 @@ export const CardBoard = ({typeContent} : {typeContent : string})=>{
                 setCards(animesList)
                 break;
         }
-    })
+        setSearch("")
+        const label = document.querySelector("#searchLabel")
+        if(label != null) label.innerHTML = "Digite o Título do Filmes, Serie..."
+
+        document.querySelectorAll("select").forEach((element, index) =>{
+            if(index == 0) element.value = "Ano" 
+            else element.value = "Todos"  
+        })
+
+    },[moviesList,seriesList,animesList,typeContent])
 
 
 
@@ -48,15 +59,15 @@ export const CardBoard = ({typeContent} : {typeContent : string})=>{
             if(search != "" && label)
                 label.innerHTML = ""
             else if(label) {
-                console.log("mudei")
+                // console.log("mudei")
                 label.innerHTML = "Digite o Título do Filmes, Serie..."
             }  
     }
     
     const SearchCards = async (e: { keyCode: number; })=>{
-        console.log(search.length,e.keyCode)
+        // console.log(search.length,e.keyCode)
         if(search.length == 0 && e.keyCode == 8){
-            filterSelect()
+            filterSelect("reset")
         } else
         if(e.keyCode == 13){
             let result = [] as CardType [] | undefined;
@@ -82,7 +93,7 @@ export const CardBoard = ({typeContent} : {typeContent : string})=>{
                 //     result = [...result,...auxResult]
                 // }
             })
-            console.log(result)
+            // console.log(result)
             result && setCards(result)
 
         }
@@ -102,51 +113,77 @@ export const CardBoard = ({typeContent} : {typeContent : string})=>{
     // console.log(user.favorites)
     // console.log(moviesList)
 
-    useEffect(()=>{
-        window.scrollTo(0,0);
-    },[currentPage])
+    // useEffect(()=>{
+    //     window.scrollTo(0,0);
+    // },[currentPage])
 
     // console.log(feature.typeContent, feature.typeOp)
 
-    console.log(cards)
+    const filterSelect = (sort : string)=>{
 
-    const filterSelect = ()=>{
+        let listCard : CardType[];
 
-        console.log("filter")
+        switch (typeContent) {
+            case TypeContent.Filme : 
+                listCard = moviesList
+                break;
+            case TypeContent.Série : 
+                listCard = seriesList
+                break;
+            default :
+                listCard = animesList
+                break;
+        }
 
-        // let listCard : CardType [] | undefined;
+        setSearch("")
+        const label = document.querySelector("#searchLabel")
+        if(label != null) label.innerHTML = "Digite o Título do Filmes, Serie..."
 
-        // setSearch("")
-        // const label = document.querySelector("#searchLabel")
-        // if(label != null) label.innerHTML = "Digite o Título do Filmes, Serie..."
+        const filter = ["Todos","Todos"]
+        document.querySelectorAll("select").forEach((element, index) =>{
+            filter[index] = element.value            
+        })
+            switch (filter[0]){
+                case "Ano" : 
+                    listCard.sort((a,b)=>{
+                        if(a.typeContent == "Filme"){
+                            return a.release_date < b.release_date ?  1 : -1
+                        }else return a.first_air_date < b.first_air_date ?  1 : -1
+                    })
+                    break;
+                case "Título" : 
+                    listCard.sort((a,b)=>{
+                        if(a.typeContent == "Filme"){
+                            return a.title > b.title ?  1 : -1
+                        }else return a.name > b.name ?  1 : -1
+                    })
+                    break;
+                case "Rating" : 
+                    listCard.sort((a,b)=>{
+                            return a.vote_average < b.vote_average ?  1 : -1
+                    })
+                    break;
+            }
 
-        // const filter = ["Todos","Todos"]
-        // document.querySelectorAll("select").forEach((element, index) =>{
-        //     filter[index] = element.value            
-        // })
+        
 
-        // if(filter[0] == "Todos"){
-        //     listCard = user[cards.contentType]
-        // }else {
-        //     listCard = user[cards.contentType]?.filter((card)=>{return card.typeContent == filter[0]})
-        // }
-
-        // let aux : CardType[] | undefined
-        // if(filter[1] != "Todos"){
-        //     console.log(filter[1])
-        //     aux = listCard?.filter((card)=>{
-        //         let found = false
-        //         card.genres?.forEach((e)=>{
-        //             if(e.id == Number(filter[1])){
-        //                 found = true
-        //             }    
-        //         })
-        //         return found;
-        //     })
-        //     listCard = aux
-        // }
-
-        // setCards({...cards, listCard :listCard})
+        let aux : CardType[] | undefined
+        console.log(filter[1])
+        if(filter[1] != "Todos"){
+            console.log(listCard)
+            aux = listCard?.filter((card)=>{
+                let found = false
+                card.genres?.forEach((e)=>{
+                    if(e.id == Number(filter[1])){
+                        found = true
+                    }    
+                })
+                return found;
+            })
+            listCard = aux
+        }
+        setCards(listCard)
+        setSort(sort)
     }
 
 
@@ -172,18 +209,17 @@ export const CardBoard = ({typeContent} : {typeContent : string})=>{
                                     <label id="searchLabel" htmlFor="search">Digite o Título do Filmes, Serie...</label>
                             </div> 
                             <div className="selectFilter-menu">
-                                <label htmlFor="Categoria" className="p2 mr-1">Categoria</label>
+                                <label htmlFor="Categoria" className="p2 mr-1">Ordenar por</label>
 
-                                <select name="Categoria" id="Categoria" className="categorySelect mr-3 p2" onChange={()=> filterSelect()}>
-                                    <option value="Todos">Todos</option>
-                                    <option value="Filme">Filme</option>
-                                    <option value="Série">Série</option>
-                                    <option value="Anime">Anime</option>
+                                <select name="Sort" id="Sort" className="sortSelect mr-3 p2" onChange={(e)=> filterSelect(e.target.value)}>
+                                    <option value="Ano">Ano</option>
+                                    <option value="Título">Título</option>
+                                    <option value="Rating">Rating</option>
                                 </select>
 
                                 <label htmlFor="Gênero" className="p2 mr-1">Gênero</label>
 
-                                <select name="Gênero" id="Gênero" className="genreSelect p2" onChange={()=> filterSelect()}>
+                                <select name="Gênero" id="Gênero" className="genreSelect p2" onChange={(e)=> filterSelect(e.target.value)}>
                                     <option value="Todos">Todos</option>
                                     {Genre.All.map((e)=>{
                                         return (
