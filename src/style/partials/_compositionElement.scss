@@ -1,0 +1,38 @@
+.popCorn-right{
+    width: 300px;
+    height: 680px;
+
+    position: absolute;
+
+    right: 0;
+    // top: 0;
+
+    // background-color: red;
+
+    background: url("../assets/background/backgroundPopCorn.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+
+    }
+
+    .popCorn-left{
+
+    width: 300px;
+    height: 680px;
+
+    position: absolute;
+
+    left: 0;
+    transform: rotate(180deg);
+    // top: 0;
+
+    // background-color: red;
+
+    background: url("../assets/background/backgroundPopCorn.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+
+        
+    }

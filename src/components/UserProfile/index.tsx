@@ -137,23 +137,7 @@ export const UserProfile = ()=>{
     }
 
     const itensPerPage = 15;
-    const [currentPage,setCurrentPage] = useState(0)
-    
-    // useEffect(()=>{
-
-    //     setSearch({text : "", cards : []} )
-    //     const label = document.querySelector("#searchLabel") ;
-    //     if(label != null) label.innerHTML = "Digite o Título do Filmes, Serie..."
-        
-    //     if(feature.typeOp == "Gerenciar"){
-    //         if(feature.typeContent == "Filme") {setSearch({text : "", cards : moviesList} ); console.log("ta errado aqui")}
-    //         else if(feature.typeContent == "Série") setSearch({text : "", cards : seriesList} );
-    //         else if(feature.typeContent == "Anime") {setSearch({text : "", cards : animesList} ); console.log("ta certo") }
-    //     }
-    //     // else setSearch({text : "", cards : []} )
-    // },[feature.typeContent,feature.typeOp,moviesList,seriesList,animesList])
-
-    
+    const [currentPage,setCurrentPage] = useState(0)    
 
     const pages = cards.listCard ? Math.ceil(cards.listCard.length / itensPerPage) : 0
     const startIndex = currentPage * itensPerPage
@@ -215,7 +199,7 @@ export const UserProfile = ()=>{
         <>
             <section className="Profile flex-column container">
                     <section className="UserContainer flex-center flex-between">
-
+                    
                         <div className="flex-center">
                             <div className="UserAvatar"></div>
                             <div className="UserInf flex-center flex-column ml-3">
@@ -288,40 +272,9 @@ export const UserProfile = ()=>{
 
 
                     <div className="featuresProfile container flex-column ">
-                            {/* <ul className="menu-list flex-center mb-3">
-                                    <li className="menu-item flex-center flex-column mr-2 px-3" >
-                                        <h3 className="">Filmes</h3>
-                                        <ul className="menu-options flex-center">
-                                                <li className="mr-2" onClick = {()=>setFeature({typeContent : "Filme", typeOp : "Gerenciar"})}>Gerenciar</li>
-                                                <li onClick = {()=>setFeature({typeContent : "Filme", typeOp : "Adicionar"})}>Adicionar</li>
-                                        </ul>
-                                    </li>
-                                    <li className="menu-item flex-center flex-column mr-2 px-3" >
-                                        <h3 className="">Séries</h3>
-                                        <ul className="menu-options flex-center">
-                                                <li className="mr-2" onClick = {()=>setFeature({typeContent : "Série", typeOp : "Gerenciar"})}>Gerenciar</li>
-                                                <li onClick = {()=>setFeature({typeContent : "Série", typeOp : "Adicionar"})}>Adicionar</li>
-                                        </ul>
-                                    </li>
-                                    <li className="menu-item flex-center flex-column px-3" >
-                                        <h3 className="">Animes</h3>
-                                        <ul className="menu-options flex-center">
-                                                <li className="mr-2" onClick = {(e)=>{setFeature({typeContent : "Anime", typeOp : "Gerenciar"}); changeLabel(e)}}>Gerenciar</li>
-                                                <li onClick = {(e)=>{setFeature({typeContent : "Anime", typeOp : "Adicionar"}); changeLabel(e)}} >Adicionar</li>
-                                        </ul>
-                                    </li>
-                                    
-                                    
-                            </ul> */}
-                            {/* {feature.typeOp == "Adicionar" ? 
-                                <div className="inputSearch mt-3">
-                                    <input className="" type="text" id="search" value={search.text} onChange={handleFieldsChange}  onBlur={changeLabel} onKeyDown={SearchCards} placeholder=""/>
-                                    <label id="searchLabel" htmlFor="search">Digite o Título do Filmes, Serie...</label>
-                                </div> 
-                                    :
-                            <></>
-                            } */}
-                            <section className="cardContainer flex-center flex-wrap p-1 mt-3">
+                        <div className="popCorn-left "></div>
+                        <div className="popCorn-right "></div>
+                            <section className="cardContainer flex-center flex-wrap py-4 mt-3">
                                 {
                                     currentItens ? currentItens.map((card)=>{
                                         return(
@@ -337,6 +290,22 @@ export const UserProfile = ()=>{
                                 }
                             </section>
                             <PaginationComponent pages = {pages} setCurrentPage={setCurrentPage} currentPage = {currentPage}></PaginationComponent>
+                            {/* <section className="cardContainer flex-center flex-wrap p-1 mt-3">
+                                {
+                                    currentItens ? currentItens.map((card)=>{
+                                        return(
+                                            <>
+                                                <div className="m-2">
+                                                    <Card card = {card} key = {card.id}></Card>
+                                                </div>
+                                                
+                                            </>
+                                        )
+                                    }) : <></>
+                                    
+                                }
+                            </section>
+                            <PaginationComponent pages = {pages} setCurrentPage={setCurrentPage} currentPage = {currentPage}></PaginationComponent> */}
                             
                     </div>
                     

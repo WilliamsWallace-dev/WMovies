@@ -1,4 +1,4 @@
-import { useNavigate, useParams } from "react-router-dom"
+import { Link, useNavigate, useParams } from "react-router-dom"
 import CardDescription from "../../components/CardDescription"
 import Header from "../../components/Header"
 import SwiperMain from "../../components/SwiperMain"
@@ -197,7 +197,8 @@ export const CardBoard = ({typeContent} : {typeContent : string})=>{
     return(
         <>
             <section className="CardBoard container flex-column">
-                
+                <div className="popCorn-left "></div>
+                <div className="popCorn-right "></div>
                 <div className="filterMenu flex-center flex-space-around w-100" >
                     <h3 className="title mr-3">{typeContent}</h3>
                             {/* <div>
@@ -238,7 +239,7 @@ export const CardBoard = ({typeContent} : {typeContent : string})=>{
                                         return(
                                             <>
                                                 <div className="m-2">
-                                                    <Card card = {card} key = {card.id}></Card>
+                                                    <Link to={`../${typeContent}/${card.id}` }><Card card = {card} key = {card.id}></Card></Link>
                                                 </div>
                                                 
                                             </>
@@ -249,7 +250,7 @@ export const CardBoard = ({typeContent} : {typeContent : string})=>{
                             </section>
                             <PaginationComponent pages = {pages} setCurrentPage={setCurrentPage} currentPage = {currentPage}></PaginationComponent>
                             
-                    </div>
+                </div>
         </section>
         </>
     )

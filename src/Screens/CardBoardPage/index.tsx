@@ -15,7 +15,7 @@ export const CardBoardPage = ()=>{
 
     return(
         <>
-            { typeContent && <SwiperMain header = {false} typeSwiper={typeContent}></SwiperMain> }
+            { typeContent && <SwiperMain header = {true} typeSwiper={typeContent}></SwiperMain> }
             { typeContent && <CardBoard typeContent={typeContent}></CardBoard> }
         </>
     )

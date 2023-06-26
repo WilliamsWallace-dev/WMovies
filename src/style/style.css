@@ -26,7 +26,7 @@
 .container {
   max-width: 1440px;
   margin: 0 auto;
-  padding: 96px 24px;
+  padding: 48px 24px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -2096,18 +2096,6 @@ a {
   font-weight: 600;
   border-radius: 4px;
 }
-.Profile .featuresProfile {
-  position: relative;
-  width: 100%;
-  min-height: 500px;
-  padding: 2.5rem 1.5rem;
-  justify-content: flex-start;
-  background-color: linear-gradient(180deg, #140F10 0%, rgba(20, 15, 16, 0) 100%);
-  background-image: url("../assets/icons/BackgroundProfile.svg");
-  background-position: top center;
-  background-repeat: no-repeat;
-  background-size: 100%;
-}
 .Profile .featuresProfile .menu-list {
   position: relative;
 }
@@ -2299,8 +2287,36 @@ a {
   position: relative;
   width: 100%;
   min-height: 200px;
+  position: relative;
+}
+.Profile .cardContainer::before {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 0;
+  width: 80%;
+  height: 3px;
+  border-radius: 0.125rem;
+  border-radius: 2px;
+  background: linear-gradient(90deg, rgba(8, 5, 6, 0) 0%, #E50914 50%, rgba(8, 5, 6, 0) 91.67%);
+  transform: matrix(1, 0, 0.28, 0.96, 0, 0);
+}
+.Profile .cardContainer::after {
+  content: "";
+  display: block;
+  position: absolute;
+  bottom: 0;
+  width: 80%;
+  height: 3px;
+  border-radius: 0.125rem;
+  border-radius: 2px;
+  background: linear-gradient(90deg, rgba(8, 5, 6, 0) 0%, #E50914 50%, rgba(8, 5, 6, 0) 91.67%);
+  transform: matrix(1, 0, 0.28, 0.96, 0, 0);
 }
 
+.CardBoard {
+  padding-bottom: 0;
+}
 .CardBoard .title::after {
   content: "";
   display: block;
@@ -2409,4 +2425,113 @@ a {
   border-radius: 2px;
   background: linear-gradient(90deg, rgba(8, 5, 6, 0) 0%, #E50914 50%, rgba(8, 5, 6, 0) 91.67%);
   transform: matrix(1, 0, 0.28, 0.96, 0, 0);
+}
+
+.footerContainer {
+  position: relative;
+  width: 100%;
+  height: 60%;
+  align-items: flex-end;
+}
+.footerContainer::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 150%;
+  background-image: url("../assets/background/backgroundFooter.jpg");
+  background-position: bottom;
+  background-size: contain;
+  background-repeat: no-repeat;
+  z-index: -9999;
+}
+.footerContainer::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 150%;
+  background: linear-gradient(180deg, #0A0101 0%, rgba(5, 1, 1, 0) 46.88%, rgba(0, 0, 0, 0.32) 100%), linear-gradient(180deg, #0A0101 0%, rgba(5, 1, 1, 0) 46.88%, rgba(0, 0, 0, 0.32) 100%), linear-gradient(180deg, #0A0101 0%, rgba(5, 1, 1, 0) 46.88%, rgba(0, 0, 0, 0.32) 100%);
+  z-index: -9998;
+}
+.footerContainer .logo {
+  background-image: url("../assets/icons/logoIcon.svg");
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  width: 200px;
+  height: 38.69px;
+  cursor: pointer;
+}
+.footerContainer .iconInstagram {
+  width: 24px;
+  height: 24px;
+  background: url("../assets/icons/iconInstagram.svg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+.footerContainer .iconInstagram:hover {
+  background: url("../assets/icons/iconInstagramActive.svg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  transform: translateY(-1px);
+}
+.footerContainer .iconLinkedIn {
+  width: 24px;
+  height: 24px;
+  background: url("../assets/icons/iconLinkedIn.svg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+.footerContainer .iconLinkedIn:hover {
+  background: url("../assets/icons/iconLinkedInActive.svg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  transform: translateY(-1px);
+}
+.footerContainer .iconGitHub {
+  width: 26px;
+  height: 26px;
+  background: url("../assets/icons/iconGitHub.svg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+.footerContainer .iconGitHub:hover {
+  background: url("../assets/icons/iconGitHubActive.svg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  transform: translateY(-2px);
+}
+
+.popCorn-right {
+  width: 300px;
+  height: 680px;
+  position: absolute;
+  right: 0;
+  background: url("../assets/background/backgroundPopCorn.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.popCorn-left {
+  width: 300px;
+  height: 680px;
+  position: absolute;
+  left: 0;
+  transform: rotate(180deg);
+  background: url("../assets/background/backgroundPopCorn.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
 }/*# sourceMappingURL=style.css.map */

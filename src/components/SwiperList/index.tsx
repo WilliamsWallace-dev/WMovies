@@ -19,24 +19,16 @@ import "./swiperList.css"
 
 // import required modules
 import { Navigation } from "../../../node_modules/swiper";
-import { Link, useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 
 
 
-export default function SwiperList ({typeSwiper, id} : {typeSwiper? : string, id? : string}){
+export default function SwiperList ({typeSwiper = "Filmes" , id} : {typeSwiper : string, id? : string}){
 
     const {moviesList,seriesList,animesList} = useContext(AppContext) as AppContextType;
 
     const [swiperList,setSwiperList] = useState <CardType[] | null>(null)
-
-    if(typeSwiper == undefined){
-        // eslint-disable-next-line react-hooks/rules-of-hooks
-        const {typeContent} = useParams();
-        typeSwiper = typeContent
-
-        console.log(typeSwiper)
-    }
 
     useEffect(()=>{
         switch (typeSwiper) {
@@ -80,7 +72,7 @@ export default function SwiperList ({typeSwiper, id} : {typeSwiper? : string, id
                         swiperList && swiperList.map((movie)=>{
                             return (
                                 <>
-                                    <SwiperSlide><Link to={!id ? `${typeSwiper}/${movie.id}` : `../${typeSwiper}/${movie.id}` }><Card card = {movie} key={movie.id} ></Card></Link></SwiperSlide>
+                                    <SwiperSlide><Link to={`../${typeSwiper}/${movie.id}`}><Card card = {movie} key={movie.id} ></Card></Link></SwiperSlide>
                                 </>
                             )
                         })
