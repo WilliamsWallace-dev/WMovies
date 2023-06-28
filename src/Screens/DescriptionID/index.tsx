@@ -12,7 +12,7 @@ export const DescriptionID = ()=>{
         <>
             <ScrollToTop></ScrollToTop>
             <section className="DescriptionIDContainer">
-                <CardDescription></CardDescription>
+                <CardDescription key={0}></CardDescription>
             </section>    
             <SwiperList typeSwiper={typeContent} id = {id}></SwiperList>
         </>

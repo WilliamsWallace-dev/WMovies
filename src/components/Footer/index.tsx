@@ -1,12 +1,5 @@
 import { Link, Outlet } from "react-router-dom"
 
-// import {iconInstagram} from "../../assets/icons/iconInstagram.svg"
-// import {iconInstagramActive} from  "../../assets/icons/iconInstagramActive.svg"
-// import {iconLinkedIn} from "../../assets/icons/iconLinkedIn.svg"
-// import {iconLinkedInActive} from "../../assets/icons/iconLinkedInActive.svg"
-// import {iconGitHub} from "../../assets/icons/iconGitHub.svg"
-// import {iconGitHubActive} from "../../assets/icons/iconGitHubActive.svg"
-
 
 
 export const Footer = ()=>{
@@ -23,7 +16,7 @@ export const Footer = ()=>{
                 </div>
             </div>
             
-            
+    
             </section>
         </>
     )

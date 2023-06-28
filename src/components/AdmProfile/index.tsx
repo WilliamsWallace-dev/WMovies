@@ -41,8 +41,6 @@ export const AdmProfile = ()=>{
                 const url = `${URLValues.searchMovie}${URLValues.api_key}&query=${search.text}&language=pt-BR&page=${1}`
                 const searchTMDB = await getTmdb(url);
 
-                console.log(search)
-
                 let result = searchTMDB.results;
 
                 if(searchTMDB.total_pages == 1){
@@ -124,6 +122,11 @@ export const AdmProfile = ()=>{
         const label = document.querySelector("#searchLabel") ;
         if(label != null) label.innerHTML = "Digite o Título do Filmes, Serie..."
         
+        // else setSearch({text : "", cards : []} )
+    },[feature.typeContent,feature.typeOp])
+    
+    useEffect(()=>{
+        
         if(feature.typeOp == "Gerenciar"){
             if(feature.typeContent == "Filme") {setSearch({text : "", cards : moviesList} ); console.log("ta errado aqui")}
             else if(feature.typeContent == "Série") setSearch({text : "", cards : seriesList} );
@@ -131,8 +134,6 @@ export const AdmProfile = ()=>{
         }
         // else setSearch({text : "", cards : []} )
     },[feature.typeContent,feature.typeOp,moviesList,seriesList,animesList])
-
-    
 
     const pages = Math.ceil(search.cards.length / itensPerPage)
     const startIndex = currentPage * itensPerPage

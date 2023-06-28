@@ -7,11 +7,11 @@ import SwiperMain from "../../components/SwiperMain"
 export const HomePage = ()=>{
     return(
         <>
-            <SwiperMain header = {true} typeSwiper= {TypeContent.Filme}></SwiperMain>
+            <SwiperMain header = {true} typeContent= {TypeContent.Filme} typeSwiper = {"CardMain"}></SwiperMain>
             <SwiperList typeSwiper={TypeContent.Filme}></SwiperList>
-            <SwiperMain header = {false} typeSwiper={TypeContent.Série}></SwiperMain>
+            <SwiperMain header = {false} typeContent={TypeContent.Série} typeSwiper = {"CardMain"}></SwiperMain>
             <SwiperList typeSwiper={TypeContent.Série}></SwiperList>
-            <SwiperMain header = {false} typeSwiper={TypeContent.Anime}></SwiperMain>
+            <SwiperMain header = {false} typeContent={TypeContent.Anime} typeSwiper = {"CardMain"}></SwiperMain>
             <SwiperList typeSwiper={TypeContent.Anime}></SwiperList>
         </>
     )

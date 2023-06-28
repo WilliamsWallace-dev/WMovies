@@ -98,7 +98,9 @@ $container-s: 540px;
 .flex-space-around{
   justify-content: space-around;
 }
-
+.align-items-flex-start{
+  align-items: flex-start;
+}
 .relative {
   position: relative;
 }

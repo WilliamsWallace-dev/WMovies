@@ -6,7 +6,6 @@ import { AppContext } from "../../context/AppContext"
 // import { useParams } from "react-router-dom"
 
 export function CardAdmin({card, typeOp, typeContent} : {card : CardType, typeOp : string , typeContent : "Filme" | "Série" | "Anime"}){
-    console.log(card)
     const {SetLists,DelCard} = useContext(AppContext)
 
     return(

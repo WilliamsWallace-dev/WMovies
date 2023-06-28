@@ -16,16 +16,17 @@ import { ReactNode, useContext, useEffect, useState } from "react";
 import { AppContext } from "../../context/AppContext";
 import { AppContextType, CardType, TypeContent } from "../../Types";
 import { useParams } from "react-router-dom";
+import CardDescription from "../CardDescription";
 
 
-export default function SwiperMain({header = false, typeSwiper} : {header? : boolean, typeSwiper : string}){
+export default function SwiperMain({header = false, typeContent, typeSwiper} : {header? : boolean, typeContent : string, typeSwiper : "CardMain" | "CardDescription"}){
 
     const {moviesList,seriesList,animesList} = useContext(AppContext) as AppContextType;
 
     const [swiperMain,setSwiperMain] = useState <CardType[] | null>(null)
 
     useEffect(()=>{
-        switch (typeSwiper) {
+        switch (typeContent) {
             case TypeContent.Filme : 
                 setSwiperMain(moviesList)
                 break;
@@ -37,10 +38,10 @@ export default function SwiperMain({header = false, typeSwiper} : {header? : boo
                 break;
         }
     })
-
+    // "SwiperSecondary my-5"
     return(
         <>
-        <section className= {header ? "SwiperMain" : "SwiperSecondary my-5"}>
+        <section className= {header ? typeSwiper == "CardMain" ? "SwiperMain" : "SwiperTertiary" : "SwiperSecondary my-5"}>
             <Swiper
                     // install Swiper modules
                 modules={[EffectFade, Navigation, Pagination, Scrollbar, A11y , Autoplay]}
@@ -63,12 +64,18 @@ export default function SwiperMain({header = false, typeSwiper} : {header? : boo
             >
                 {
                     swiperMain && swiperMain.map((card,index)=>{
-                        if(index < 3)
-                        return (
+                        if(index < 3 && typeSwiper == "CardMain"){
+                            return (
+                                <>
+                                    <SwiperSlide><CardMain header={header} key = {card.id} card = {card}></CardMain></SwiperSlide>
+                                </>
+                            )
+                        } else if(index < 3 && typeSwiper == "CardDescription") return (
                             <>
-                                <SwiperSlide><CardMain key = {card.id} card = {card}></CardMain></SwiperSlide>
+                                <SwiperSlide><CardDescription  key = {card.id} cardContent = {card}></CardDescription></SwiperSlide>
                             </>
                         )
+                        
                     })
                 }
             </Swiper>     

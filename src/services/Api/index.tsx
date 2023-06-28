@@ -191,11 +191,15 @@ export const DelDocumentDb = async (collectionName : string,data : CardType)=>{
 
 }
 
-export const SetDocumentDbCardType = async (collectionName : string, data : CardType)=>{
+export const SetDocumentDbCardType = async (collectionName : "Filme" | "Série" | "Anime" | undefined, data : CardType)=>{
+
 
   if(collectionName == "Filme"){
+    
     let url = `${URLValues.movies}${data.id}${URLValues.api_key}&language=pt-BR`
     data = await getTmdb(url)
+
+    data.typeContent = collectionName;
 
     url = `${URLValues.movies}${data.id}/videos${URLValues.api_key}&language=pt-BR`
     const videosResults = await getTmdb(url)
@@ -203,6 +207,17 @@ export const SetDocumentDbCardType = async (collectionName : string, data : Card
     if(videosResults.results.length){
         data.video = videosResults.results[0] 
     }else data.video = false
+
+    url = `${data.title ? URLValues.movies : URLValues.movies}${data.id}/images${URLValues.api_key}&include_image_language=pt&language=pt-BR`
+    let imagesResults = await getTmdb(url)
+
+    if(imagesResults.logos){
+      url = `${data.title ? URLValues.movies : URLValues.movies}${data.id}/images${URLValues.api_key}&include_image_language=en&language=pt-BR`
+      imagesResults = await getTmdb(url)
+    }
+    if(imagesResults.logos[0])
+                data.logo = imagesResults.logos[0].file_path;
+                else data.logo = null
 
     try {
       await setDoc(doc(db, collectionName, `${data.id}`),data);
@@ -213,13 +228,26 @@ export const SetDocumentDbCardType = async (collectionName : string, data : Card
           let url = `${URLValues.seriesAnimes}${data.id}${URLValues.api_key}&language=pt-BR`
           data = await getTmdb(url)
 
+          data.typeContent = collectionName;
+
           url = `${URLValues.seriesAnimes}${data.id}/videos${URLValues.api_key}&language=pt-BR`
           const videosResults = await getTmdb(url)
 
           if(videosResults.results.length){
               data.video = videosResults.results[0] 
             }else data.video = false
-            
+          
+          url = `${data.title ? URLValues.movies : URLValues.seriesAnimes}${data.id}/images${URLValues.api_key}&include_image_language=pt&language=pt-BR`
+          let imagesResults = await getTmdb(url)
+
+          if(imagesResults.logos){
+            url = `${data.title ? URLValues.movies : URLValues.seriesAnimes}${data.id}/images${URLValues.api_key}&include_image_language=en&language=pt-BR`
+            imagesResults = await getTmdb(url)
+          }
+          if(imagesResults.logos[0])
+                data.logo = imagesResults.logos[0].file_path;
+                else data.logo = null
+          
           try {
             await setDoc(doc(db, collectionName, `${data.id}`),data);
           } catch (e) {
@@ -229,22 +257,26 @@ export const SetDocumentDbCardType = async (collectionName : string, data : Card
 
               let url = `${data.title ? URLValues.movies : URLValues.seriesAnimes }${data.id}${URLValues.api_key}&language=pt-BR`
               data = await getTmdb(url)
+
+              data.typeContent = collectionName;
               
               url = `${data.title ? URLValues.movies : URLValues.seriesAnimes}${data.id}/videos${URLValues.api_key}&language=pt-BR`
               const videosResults = await getTmdb(url)
 
-              url = `${data.title ? URLValues.movies : URLValues.seriesAnimes}${data.id}/images${URLValues.api_key}&include_image_language=pt&language=pt-BR`
-              let logoResults = await getTmdb(url)
-
-              if(logoResults){
-                url = `${data.title ? URLValues.movies : URLValues.seriesAnimes}${data.id}/images${URLValues.api_key}&include_image_language=en&language=pt-BR`
-                logoResults = await getTmdb(url)
-              }
-              console.log(logoResults)
-
               if(videosResults.results.length){
                 data.video = videosResults.results[0] 
               }else data.video = false
+
+              url = `${data.title ? URLValues.movies : URLValues.seriesAnimes}${data.id}/images${URLValues.api_key}&include_image_language=pt&language=pt-BR`
+              let imagesResults = await getTmdb(url)
+
+              if(imagesResults.logos){
+                url = `${data.title ? URLValues.movies : URLValues.seriesAnimes}${data.id}/images${URLValues.api_key}&include_image_language=en&language=pt-BR`
+                imagesResults = await getTmdb(url)
+              }
+              if(imagesResults.logos[0])
+                data.logo = imagesResults.logos[0].file_path;
+                else data.logo = null
 
               try {
                 await setDoc(doc(db, collectionName, `${data.id}`),data);
@@ -253,5 +285,5 @@ export const SetDocumentDbCardType = async (collectionName : string, data : Card
               }
     }
 
-
+    return data;
 }

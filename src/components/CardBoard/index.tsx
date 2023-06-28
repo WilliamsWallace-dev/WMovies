@@ -3,7 +3,7 @@ import CardDescription from "../../components/CardDescription"
 import Header from "../../components/Header"
 import SwiperMain from "../../components/SwiperMain"
 import { CardType, Genre, TypeContent } from "../../Types"
-import { useState, useContext, useEffect } from "react"
+import { useState, useContext, useEffect, MouseEvent } from "react"
 import { AppContext } from "../../context/AppContext"
 import Card from "../Card"
 import { PaginationComponent } from "../PaginationComponent"
@@ -40,6 +40,7 @@ export const CardBoard = ({typeContent} : {typeContent : string})=>{
             if(index == 0) element.value = "Ano" 
             else element.value = "Todos"  
         })
+        filterSelect("Ano")
 
     },[moviesList,seriesList,animesList,typeContent])
 
@@ -77,12 +78,12 @@ export const CardBoard = ({typeContent} : {typeContent : string})=>{
                 result = cards.filter((card) => {
                     let found = false
                         if(card.name){
-                            card.name.split(" ").forEach((e)=>{
+                            card.name.split(/[ -/;,:]/).forEach((e)=>{
                                 if(e.length > 2 && e.toUpperCase() == text.toUpperCase())
                                     found = true;
                             })
                         }else if(card.title){
-                            card.title.split(" ").forEach((e)=>{
+                            card.title.split(/[ -/;,:]/).forEach((e)=>{
                                 if(e.length > 2 && e.toUpperCase() == text.toUpperCase())
                                     found = true;
                             })
@@ -144,6 +145,7 @@ export const CardBoard = ({typeContent} : {typeContent : string})=>{
             filter[index] = element.value            
         })
             switch (filter[0]){
+    
                 case "Ano" : 
                     listCard.sort((a,b)=>{
                         if(a.typeContent == "Filme"){
@@ -186,6 +188,11 @@ export const CardBoard = ({typeContent} : {typeContent : string})=>{
         setSort(sort)
     }
 
+    const ReverCards = (e: MouseEvent<HTMLButtonElement>)=>{
+        setCards(...[cards.sort((a,b)=> -1)])
+        setSort(String(e.currentTarget.classList.toggle("rotateIcon")))
+    }
+
 
 
 
@@ -220,7 +227,7 @@ export const CardBoard = ({typeContent} : {typeContent : string})=>{
 
                                 <label htmlFor="Gênero" className="p2 mr-1">Gênero</label>
 
-                                <select name="Gênero" id="Gênero" className="genreSelect p2" onChange={(e)=> filterSelect(e.target.value)}>
+                                <select name="Gênero" id="Gênero" className="genreSelect p2 mr-3" onChange={(e)=> filterSelect(e.target.value)}>
                                     <option value="Todos">Todos</option>
                                     {Genre.All.map((e)=>{
                                         return (
@@ -230,6 +237,7 @@ export const CardBoard = ({typeContent} : {typeContent : string})=>{
                                         )
                                     })}
                                 </select>
+                                <button className="buttonIcon buttonIconReverse" onClick={(e)=>{ReverCards(e)}}></button>
                             </div>
                 </div>
                 <div className="featuresProfile flex-center flex-column ">

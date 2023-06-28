@@ -11,7 +11,7 @@ import { useAuth } from "../../context/AuthProvider/useAuth";
 
 
 
-export default function CardDescription(){
+export default function CardDescription({cardContent , key} : {cardContent? : CardType , key : number}){
 
     const {moviesList,seriesList,animesList} = useContext(AppContext) as AppContextType;
 
@@ -23,18 +23,25 @@ export default function CardDescription(){
     const navigate = useNavigate();
 
     useEffect(()=>{
+        if(cardContent){
+            setCard(cardContent)
+        }   
+        else{
 
-        switch (typeContent) {
-            case TypeContent.Filme : 
-                setCard(moviesList.find(movie => movie.id == parseInt(id)))
-                break;
-            case TypeContent.Série : 
-                setCard(seriesList.find(serie => serie.id == parseInt(id)))
-                break;
-            case TypeContent.Anime : 
-                setCard(animesList.find(anime => anime.id == parseInt(id)))
-                break;
+            switch (typeContent) {
+                case TypeContent.Filme : 
+                    setCard(moviesList.find(movie => movie.id == parseInt(id)))
+                    break;
+                case TypeContent.Série : 
+                    setCard(seriesList.find(serie => serie.id == parseInt(id)))
+                    break;
+                case TypeContent.Anime : 
+                    setCard(animesList.find(anime => anime.id == parseInt(id)))
+                    break;
+            }
+
         }
+        
     },[moviesList,seriesList,animesList,id])
 
     const ProtectedFunction = (action : ()=>void)=>{
@@ -65,14 +72,15 @@ export default function CardDescription(){
         
     }
 
+    console.log(moviesList)
         return(
             <>
-                <div className="DescriptionIDContainer">
+                {/* <div className="DescriptionIDContainer"> */}
                 <section className="SwiperDescriptionItem container ">
                     <div className="desciptionPoster mr-3 flex-center">
-                        <img style={{}} src={`${URLValues.img_path}${card?.poster_path}`} alt= {`Poste do Filmes : ${card?.name || card?.title}`} />
+                        <img style={{}} src={`${URLValues.img_path_original}${card?.poster_path}`} alt= {`Poste do Filmes : ${card?.name || card?.title}`} />
                     </div>
-                    <div className="description flex-start flex-column">
+                    <div className="description flex-start flex-column align-items-flex-start">
                         <h1 className="title">{card?.name || card?.title}</h1>
                         <div className="flex-start mt-2">
                             {card?.first_air_date || card?.release_date ? <p className="p1 mr-3 pt-1">{card?.first_air_date ? card?.first_air_date.split('-')[0] : card?.release_date.split('-')[0]}</p> : <></> }
@@ -124,10 +132,10 @@ export default function CardDescription(){
                     </div>
                     <div className="playIcon"></div>
                 </section>
-                <div className="backgroundPoster">
+                <div className="backgroundPosterDescription">
                     <img src= {`${URLValues.img_path_original}${card?.backdrop_path}`} alt={`Poste do filme ${card?.title}`} />
                 </div>
-                </div>
+                {/* </div> */}
             </>
         )
 }

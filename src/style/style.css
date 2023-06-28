@@ -65,6 +65,10 @@
   justify-content: space-around;
 }
 
+.align-items-flex-start {
+  align-items: flex-start;
+}
+
 .relative {
   position: relative;
 }
@@ -355,7 +359,7 @@ strong {
   background-image: url("../assets/icons/saveIcon.svg");
   background-position: center center;
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: contain;
   transition: 0.5s ease;
 }
 .second-button:hover {
@@ -366,6 +370,83 @@ strong {
 }
 .second-button:hover::before {
   background-image: url("../assets/icons/saveIconHold.svg");
+}
+
+.buttonIconPlay::before {
+  width: 20px;
+  height: 20px;
+  top: 25%;
+  left: 15%;
+  background-image: url("../assets/icons/iconPlayButton.svg");
+}
+.buttonIconPlay:hover::before {
+  background-image: url("../assets/icons/iconPlayButtonActive.svg");
+  transform: translateX(5px);
+}
+
+.buttonIconPlayCard {
+  opacity: 1;
+  background: rgba(240, 223, 223, 0.32);
+  filter: drop-shadow(0px 4px 32px rgba(0, 0, 0, 0.25)) drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+  transform: translateY(-2px);
+}
+.buttonIconPlayCard::before {
+  width: 20px;
+  height: 20px;
+  top: 25%;
+  left: 15%;
+  background-image: url("../assets/icons/iconPlayButtonActive.svg");
+  transform: translateX(5px);
+}
+.buttonIconPlayCard:hover::before {
+  background-image: url("../assets/icons/iconPlayButtonActive.svg");
+  transform: translateX(5px);
+}
+
+.buttonIcon {
+  position: relative;
+  background-color: transparent;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  color: #FDF9F9;
+  background: rgba(240, 223, 223, 0.08);
+  width: 48px;
+  height: 48px;
+  border-radius: 32px;
+  transition: 0.5s ease;
+}
+.buttonIcon::before {
+  content: "";
+  display: inline-block;
+  position: absolute;
+  left: 25%;
+  top: 30%;
+  width: 24px;
+  height: 21px;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  transition: 0.5s ease;
+}
+.buttonIcon:hover {
+  opacity: 1;
+  background: rgba(240, 223, 223, 0.32);
+  filter: drop-shadow(0px 4px 32px rgba(0, 0, 0, 0.25)) drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+  transform: translateY(-4px);
+}
+
+.buttonIconReverse {
+  transform: translateY(-2px);
+}
+.buttonIconReverse::before {
+  width: 26px;
+  height: 21px;
+  background-image: url("../assets/icons/iconReverse.svg");
+}
+
+.rotateIcon::before {
+  transform: rotate(-180deg);
 }
 
 .saveButton {
@@ -1227,6 +1308,9 @@ svg {
 
 img {
   width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 
 li {
@@ -1528,6 +1612,14 @@ a {
   height: 100%;
 }
 
+.DescriptionIDContainer {
+  transform: translateY(-16px);
+}
+
+.CardMain {
+  transform: translateY(56px);
+}
+
 .backgroundPoster {
   display: inline-block;
   position: absolute;
@@ -1546,6 +1638,27 @@ a {
   left: 0;
   width: 100%;
   height: 100%;
+  background: linear-gradient(180deg, rgba(10, 1, 1, 0.64) 0%, rgba(10, 1, 1, 0.54) 33%, rgba(10, 1, 1, 0.54) 57.84%, #0A0101 100%);
+}
+
+.backgroundPosterDescription {
+  display: inline-block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: -999;
+}
+.backgroundPosterDescription::before {
+  content: "";
+  display: inline-block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   background: linear-gradient(180deg, #0A0101 3.32%, rgba(10, 1, 1, 0.54) 33.69%, rgba(10, 1, 1, 0.54) 56.55%, #0A0101 95.35%);
 }
 
@@ -1555,15 +1668,18 @@ a {
 }
 
 .desciptionPoster {
-  width: 600px;
+  max-width: 224px;
 }
 .desciptionPoster img {
   border-radius: 24px;
 }
 
+.desciptionLogo {
+  max-width: 700px;
+}
+
 .description {
   max-width: 600px;
-  align-items: flex-start;
 }
 .description .title::after {
   content: "";
@@ -1889,7 +2005,7 @@ a {
 .Profile .UserContainer .UserAvatar {
   width: 140px;
   height: 140px;
-  background-image: url("https://wallpapercave.com/uwp/uwp1833288.jpeg");
+  background-image: url("https://wallpaperaccess.com/full/6283675.jpg");
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
@@ -2437,10 +2553,10 @@ a {
   content: "";
   position: absolute;
   width: 100%;
-  height: 150%;
+  height: 100%;
   background-image: url("../assets/background/backgroundFooter.jpg");
   background-position: bottom;
-  background-size: contain;
+  background-size: cover;
   background-repeat: no-repeat;
   z-index: -9999;
 }

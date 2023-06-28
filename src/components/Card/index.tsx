@@ -12,8 +12,9 @@ export default function Card({card ,key} : {card : CardType , key : number}){
                         <div className="sinopseHover px-1">
                             <p className="p5" style={{opacity : ".64"}} >Sinopse</p>
                                 <p>
-                                    {card.overview}
+                                    {`${card.overview.match(/^[^.]+/)} . . .`}
                                 </p>
+                                <button className="second-button buttonIconPlayCard mt-2">ver mais</button>
                         </div>
                         <p className="titleListItem p5 px-1" style={{textAlign : "center"}}>{card.name || card.title}</p>
                         <div className="descriptionListItem flex-start mb-2">
