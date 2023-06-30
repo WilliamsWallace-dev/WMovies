@@ -19,11 +19,11 @@ export const AppProvidor = ({children} : {children : ReactNode}) =>{
 
     const GetLists = async ()=>{
         let result = await getDocumentDbCardList("Filme")
-        setMoviesList(result);
+        setMoviesList(result.reverse());
          result = await getDocumentDbCardList("Série")
-         setSeriesList(result);
+         setSeriesList(result.reverse());
          result = await getDocumentDbCardList("Anime")
-         setAnimesList(result);
+         setAnimesList(result.reverse());
     }
     const SetLists = async (typeList : "Filme" | "Série" | "Anime", data : CardType) =>{
 

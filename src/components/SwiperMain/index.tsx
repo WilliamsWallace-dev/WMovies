@@ -6,16 +6,16 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/effect-fade";
 import "swiper/css/pagination";
+import "swiper/css/autoplay"
 
 import "./swiperMain.css"
 
 // import Swiper core and required modules
-import { EffectFade,Navigation, Pagination, Scrollbar, A11y,Autoplay } from '../../../node_modules/swiper';
+import swiper, { EffectFade,Navigation, Pagination, Scrollbar, A11y,Autoplay } from '../../../node_modules/swiper';
 // import Header from "../Header";
-import { ReactNode, useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { AppContext } from "../../context/AppContext";
 import { AppContextType, CardType, TypeContent } from "../../Types";
-import { useParams } from "react-router-dom";
 import CardDescription from "../CardDescription";
 
 
@@ -23,10 +23,11 @@ export default function SwiperMain({header = false, typeContent, typeSwiper} : {
 
     const {moviesList,seriesList,animesList} = useContext(AppContext) as AppContextType;
 
-    const [swiperMain,setSwiperMain] = useState <CardType[] | null>(null)
+    const [swiperMain,setSwiperMain] = useState<CardType[] | null>(null)
 
     useEffect(()=>{
-        switch (typeContent) {
+
+            switch (typeContent) {
             case TypeContent.Filme : 
                 setSwiperMain(moviesList)
                 break;
@@ -36,10 +37,15 @@ export default function SwiperMain({header = false, typeContent, typeSwiper} : {
             case TypeContent.Anime : 
                 setSwiperMain(animesList)
                 break;
-        }
-    })
-    // "SwiperSecondary my-5"
-    return(
+            }
+            
+    },[typeContent,moviesList,animesList,seriesList])
+
+    if(swiperMain?.length ==0 ){
+        return (
+            <></>
+        )
+    } else return(
         <>
         <section className= {header ? typeSwiper == "CardMain" ? "SwiperMain" : "SwiperTertiary" : "SwiperSecondary my-5"}>
             <Swiper
@@ -49,30 +55,31 @@ export default function SwiperMain({header = false, typeContent, typeSwiper} : {
                 effect={"fade"}
                 centeredSlides={true}
                 autoplay={{
-                delay: 10000,
+                delay: 7000,
                 disableOnInteraction: false,
                 }}
                 loop={true}
                 slidesPerView={1}
-                // navigation
+                // navigation = {true}
                 pagination={{ dynamicBullets: true, clickable: true }}
                 scrollbar={{ draggable: true }}
                 onSwiper={(swiper) => console.log(swiper)}
                 onSlideChange={() => console.log('slide change')}
+                onAutoplayPause = {(swiper)=>{console.log("pAUSE")}}
                 className="mySwiper"
                 style={{position:"absolute",top:"0"}}
             >
                 {
-                    swiperMain && swiperMain.map((card,index)=>{
+                   swiperMain && swiperMain.map((card,index)=>{
                         if(index < 3 && typeSwiper == "CardMain"){
                             return (
                                 <>
-                                    <SwiperSlide><CardMain header={header} key = {card.id} card = {card}></CardMain></SwiperSlide>
+                                    <SwiperSlide><CardMain header={header} key = {index} card = {card}></CardMain></SwiperSlide>
                                 </>
                             )
                         } else if(index < 3 && typeSwiper == "CardDescription") return (
                             <>
-                                <SwiperSlide><CardDescription  key = {card.id} cardContent = {card}></CardDescription></SwiperSlide>
+                                <SwiperSlide><CardDescription  key = {index} cardContent = {card}></CardDescription></SwiperSlide>
                             </>
                         )
                         

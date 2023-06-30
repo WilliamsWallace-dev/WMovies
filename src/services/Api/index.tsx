@@ -73,7 +73,7 @@ export const CreateUser = async (userCreated : IUser)=>{
   .then((userCredential) => {
     // Signed in
     const id = userCredential.user.uid;
-    console.log(userCredential)
+    // console.log(userCredential)
     // ...
     setDoc(doc(db, "User", `${id}`),{
       id : id,
@@ -218,6 +218,12 @@ export const SetDocumentDbCardType = async (collectionName : "Filme" | "Série" 
     if(imagesResults.logos[0])
                 data.logo = imagesResults.logos[0].file_path;
                 else data.logo = null
+    
+    url = `${data.title ? URLValues.movies : URLValues.movies}${data.id}/credits${URLValues.api_key}&include_image_language=pt&language=pt-BR`
+    const creditsResults = await getTmdb(url)
+    data.credits = creditsResults.cast.slice(1,6);
+    console.log(data.credits)
+
 
     try {
       await setDoc(doc(db, collectionName, `${data.id}`),data);
@@ -247,7 +253,12 @@ export const SetDocumentDbCardType = async (collectionName : "Filme" | "Série" 
           if(imagesResults.logos[0])
                 data.logo = imagesResults.logos[0].file_path;
                 else data.logo = null
+
+          url = `${data.title ? URLValues.movies : URLValues.seriesAnimes}${data.id}/credits${URLValues.api_key}&include_image_language=pt&language=pt-BR`
+          const creditsResults = await getTmdb(url)
+          data.credits = creditsResults.cast.slice(1,6);
           
+
           try {
             await setDoc(doc(db, collectionName, `${data.id}`),data);
           } catch (e) {
@@ -277,6 +288,10 @@ export const SetDocumentDbCardType = async (collectionName : "Filme" | "Série" 
               if(imagesResults.logos[0])
                 data.logo = imagesResults.logos[0].file_path;
                 else data.logo = null
+
+              url = `${data.title ? URLValues.movies : URLValues.seriesAnimes}${data.id}/credits${URLValues.api_key}&include_image_language=pt&language=pt-BR`
+              const creditsResults = await getTmdb(url)
+              data.credits = creditsResults.cast.slice(1,6);
 
               try {
                 await setDoc(doc(db, collectionName, `${data.id}`),data);

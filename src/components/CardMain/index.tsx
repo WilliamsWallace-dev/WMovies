@@ -95,7 +95,7 @@ import { Link } from "react-router-dom";
 
 
 export default function CardMain({header ,key , card} : {header? : boolean , key : number , card : CardType}){
-        console.log(card.overview.length,card.title)
+        console.log(card,key)
         return(
             <>
                 {/* <div style={{position : "relative"}}> */}

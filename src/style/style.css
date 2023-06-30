@@ -1721,12 +1721,12 @@ a {
   background-repeat: no-repeat;
 }
 .description .imageActor {
-  width: 36px;
-  height: 36px;
-  border-radius: 100%;
+  width: 64px;
 }
 .description .imageActor img {
-  border-radius: 100%;
+  border-radius: 35%;
+  -o-object-fit: contain;
+     object-fit: contain;
 }
 
 .playIcon {

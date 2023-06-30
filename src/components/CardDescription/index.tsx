@@ -72,10 +72,8 @@ export default function CardDescription({cardContent , key} : {cardContent? : Ca
         
     }
 
-    console.log(moviesList)
         return(
             <>
-                {/* <div className="DescriptionIDContainer"> */}
                 <section className="SwiperDescriptionItem container ">
                     <div className="desciptionPoster mr-3 flex-center">
                         <img style={{}} src={`${URLValues.img_path_original}${card?.poster_path}`} alt= {`Poste do Filmes : ${card?.name || card?.title}`} />
@@ -88,18 +86,18 @@ export default function CardDescription({cardContent , key} : {cardContent? : Ca
                             <p className="rated p1">{card?.vote_average}</p>
                         </div>
                         <div className="actors flex-start mt-2">
-                            <div className="actorsItem flex-start mr-3">
-                                <div className="imageActor mr-1"><img src={TomHolland} alt="TomHolland" /></div>
-                                <p className="p2">Tom Holland</p>
-                            </div>
-                            <div className="actorsItem flex-start mr-3">
-                                <div className="imageActor mr-1" ><img src={TomHolland} alt="TomHolland" /></div>
-                                <p className="p2">Tom Holland</p>
-                            </div>
-                            <div className="actorsItem flex-start mr-3">
-                                <div className="imageActor mr-1" ><img src={TomHolland} alt="TomHolland" /></div>
-                                <p className="p2">Tom Holland</p>
-                            </div>
+                            {
+                                card?.credits && card?.credits.map((e)=>{
+                                    return(
+                                        <>
+                                            <div className="actorsItem flex-start mr-3">
+                                                <div className="imageActor mr-1"><img src={`${URLValues.img_path_original}${e.profile_path}`} alt={e.name} /></div>
+                                                <p className="p2">{e.name}</p>
+                                            </div>
+                                        </>
+                                    )
+                                })
+                            }
                         </div>
                         <p className="sinopse text-left p1 mt-2">
                             {card?.overview}
@@ -135,7 +133,6 @@ export default function CardDescription({cardContent , key} : {cardContent? : Ca
                 <div className="backgroundPosterDescription">
                     <img src= {`${URLValues.img_path_original}${card?.backdrop_path}`} alt={`Poste do filme ${card?.title}`} />
                 </div>
-                {/* </div> */}
             </>
         )
 }
