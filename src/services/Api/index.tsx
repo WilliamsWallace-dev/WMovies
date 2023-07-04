@@ -53,7 +53,7 @@ export const db = getFirestore(app);
 
 import { collection, addDoc, getDocs, doc, setDoc, deleteDoc, getDoc, updateDoc   } from "firebase/firestore";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
-import { CardType, IUser } from '../../Types';
+import { CardType, IUser, typeVideo } from '../../Types';
 
 //Autenticação - Usuário
 export const AddDocumentDbUser = async (collectionName : string,data : IUser)=>{
@@ -202,11 +202,27 @@ export const SetDocumentDbCardType = async (collectionName : "Filme" | "Série" 
     data.typeContent = collectionName;
 
     url = `${URLValues.movies}${data.id}/videos${URLValues.api_key}&language=pt-BR`
-    const videosResults = await getTmdb(url)
+    let videosResults = await getTmdb(url)
 
     if(videosResults.results.length){
-        data.video = videosResults.results[0] 
-    }else data.video = false
+      videosResults.results.forEach((video:any)=>{
+        if(!data.video && video.type == "Trailer"){
+          data.video = video;
+        }
+          
+      })
+    }else {
+      url = `${URLValues.movies}${data.id}/videos${URLValues.api_key}&language=en-US`
+      videosResults = await getTmdb(url)
+      if(videosResults.results.length){
+        videosResults.results.forEach((video:any)=>{
+          if(!data.video && video.type == "Trailer"){
+            data.video = video;
+          }
+            
+        })
+      }else data.video = null
+    }
 
     url = `${data.title ? URLValues.movies : URLValues.movies}${data.id}/images${URLValues.api_key}&include_image_language=pt&language=pt-BR`
     let imagesResults = await getTmdb(url)
@@ -237,11 +253,27 @@ export const SetDocumentDbCardType = async (collectionName : "Filme" | "Série" 
           data.typeContent = collectionName;
 
           url = `${URLValues.seriesAnimes}${data.id}/videos${URLValues.api_key}&language=pt-BR`
-          const videosResults = await getTmdb(url)
+          let videosResults = await getTmdb(url)
 
           if(videosResults.results.length){
-              data.video = videosResults.results[0] 
-            }else data.video = false
+            videosResults.results.forEach((video : typeVideo)=>{
+              if(!data.video && video.type == "Trailer"){
+                data.video = video;
+              }
+                
+            })
+          }else {
+            url = `${URLValues.seriesAnimes}${data.id}/videos${URLValues.api_key}&language=en-US`
+            videosResults = await getTmdb(url)
+            if(videosResults.results.length){
+              videosResults.results.forEach((video : typeVideo)=>{
+                if(!data.video && video.type == "Trailer"){
+                  data.video = video;
+                }
+                  
+              })
+            }else data.video = null
+          }
           
           url = `${data.title ? URLValues.movies : URLValues.seriesAnimes}${data.id}/images${URLValues.api_key}&include_image_language=pt&language=pt-BR`
           let imagesResults = await getTmdb(url)
@@ -256,7 +288,7 @@ export const SetDocumentDbCardType = async (collectionName : "Filme" | "Série" 
 
           url = `${data.title ? URLValues.movies : URLValues.seriesAnimes}${data.id}/credits${URLValues.api_key}&include_image_language=pt&language=pt-BR`
           const creditsResults = await getTmdb(url)
-          data.credits = creditsResults.cast.slice(1,6);
+          data.credits = creditsResults.cast.slice(0,4);
           
 
           try {
@@ -272,11 +304,27 @@ export const SetDocumentDbCardType = async (collectionName : "Filme" | "Série" 
               data.typeContent = collectionName;
               
               url = `${data.title ? URLValues.movies : URLValues.seriesAnimes}${data.id}/videos${URLValues.api_key}&language=pt-BR`
-              const videosResults = await getTmdb(url)
+              let videosResults = await getTmdb(url)
 
               if(videosResults.results.length){
-                data.video = videosResults.results[0] 
-              }else data.video = false
+                videosResults.results.forEach((video : typeVideo)=>{
+                  if(!data.video && video.type == "Trailer"){
+                    data.video = video;
+                  }
+                    
+                })
+              }else {
+                url = `${data.title ? URLValues.movies : URLValues.seriesAnimes}${data.id}/videos${URLValues.api_key}&language=en-US`
+                videosResults = await getTmdb(url)
+                if(videosResults.results.length){
+                  videosResults.results.forEach((video : typeVideo)=>{
+                    if(!data.video && video.type == "Trailer"){
+                      data.video = video;
+                    }
+                      
+                  })
+                }else data.video = null
+              }
 
               url = `${data.title ? URLValues.movies : URLValues.seriesAnimes}${data.id}/images${URLValues.api_key}&include_image_language=pt&language=pt-BR`
               let imagesResults = await getTmdb(url)
@@ -289,9 +337,10 @@ export const SetDocumentDbCardType = async (collectionName : "Filme" | "Série" 
                 data.logo = imagesResults.logos[0].file_path;
                 else data.logo = null
 
-              url = `${data.title ? URLValues.movies : URLValues.seriesAnimes}${data.id}/credits${URLValues.api_key}&include_image_language=pt&language=pt-BR`
-              const creditsResults = await getTmdb(url)
-              data.credits = creditsResults.cast.slice(1,6);
+              // url = `${data.title ? URLValues.movies : URLValues.seriesAnimes}${data.id}/credits${URLValues.api_key}&include_image_language=pt&language=pt-BR`
+              // const creditsResults = await getTmdb(url)
+              // console.log(creditsResults.cast)
+              // data.credits = creditsResults.cast.slice(0,4);
 
               try {
                 await setDoc(doc(db, collectionName, `${data.id}`),data);

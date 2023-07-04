@@ -1728,6 +1728,13 @@ a {
   -o-object-fit: contain;
      object-fit: contain;
 }
+.description .imageProductionCompany {
+  width: 100px;
+}
+.description .imageProductionCompany img {
+  -o-object-fit: contain;
+     object-fit: contain;
+}
 
 .playIcon {
   width: 100%;
@@ -1743,6 +1750,18 @@ a {
   filter: drop-shadow(0px 0px 4px rgba(252, 248, 248, 0.16)) drop-shadow(0px 0px 8px rgba(252, 248, 248, 0.08)) drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
   transform: translateY(1px) scale(1.1);
   background-image: url("../assets/icons/playIconHover.svg");
+}
+
+.playIconDisable {
+  width: 100%;
+  height: 160px;
+  background-image: url("../assets/icons/playIcon.svg");
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 160px;
+  cursor: none;
+  pointer-events: none;
+  opacity: 0.5;
 }
 
 .SwiperListItem {
@@ -1869,12 +1888,33 @@ a {
   z-index: 999;
   overflow: hidden;
   text-align: center;
-  height: 100%;
-  width: 100%;
+  height: 100vh;
+  width: 100vw;
   background: rgba(10, 1, 1, 0.48);
   -webkit-backdrop-filter: blur(3px);
           backdrop-filter: blur(3px);
-  box-shadow: 0px 2px 16px 0px #F00;
+  transition: 0.8s ease;
+}
+.videoContainer .closeVideo {
+  position: absolute;
+  top: 180px;
+  background-color: transparent;
+  color: #FDF9F9;
+  opacity: 0.8;
+  border: none;
+  font-family: "Mulish", sans-serif;
+  font-size: 24px;
+  font-weight: 600;
+  padding: 0.25rem 0.5rem;
+  cursor: pointer;
+  transition: 0.2s ease;
+  transition: 0.8s ease;
+}
+.videoContainer .closeVideo:hover {
+  color: #B30710;
+  font-weight: 700;
+  opacity: 1;
+  transform: translateY(-3px);
 }
 .videoContainer iframe {
   height: 50%;
@@ -1883,6 +1923,25 @@ a {
   border: 3px solid #FDF9F9;
   border-radius: 8px;
   box-shadow: 0px 2px 12px 0px rgba(255, 255, 255, 0.32);
+  transition: 0.8s ease;
+}
+
+.videoContainerDisable {
+  background: transparent;
+  -webkit-backdrop-filter: blur(0px);
+          backdrop-filter: blur(0px);
+  pointer-events: none;
+  transition: 0.8s ease;
+}
+.videoContainerDisable iframe {
+  opacity: 0;
+  transform: scale(0.7) translateY(40%);
+  box-shadow: 0px 0px 0px 0px rgba(255, 255, 255, 0);
+  transition: 0.8s ease;
+}
+.videoContainerDisable .closeVideo {
+  opacity: 0;
+  transition: 0.5s ease;
 }
 
 .Form {

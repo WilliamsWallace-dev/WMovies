@@ -22,6 +22,7 @@ import { useContext, useEffect, useState } from "react";
 import { AppContext } from "../../context/AppContext";
 import { AppContextType, CardType, TypeContent } from "../../Types";
 import CardDescription from "../CardDescription";
+import { closeVideoUtil, openVideoUtil } from "../../utils/videoUtil";
 
 
 
@@ -36,35 +37,34 @@ export default function SwiperMain({header = false, typeContent, typeSwiper} : {
     // console.log(typeContent)
 
 
-    const stopSwiper = ()=>{
+    const stopSwiper = (videoKey : string) => {
+        openVideoUtil(videoKey)
         if (swiperRef.current) swiperRef.current.autoplay.stop();
-        console.log("stop")
     }
     const startSwiper = ()=>{
+        closeVideoUtil()
         if (swiperRef.current) swiperRef.current.autoplay.start();
-        console.log("start")
     }
 
     const onInit = (Swiper: SwiperCore): void => {
         swiperRef.current = Swiper;
-        console.log("Inciou")
       };
 
     useEffect(()=>{
 
             switch (typeContent) {
                 case TypeContent.Filme : 
-                    setSwiperMain(...[moviesList])
+                    setSwiperMain(moviesList)
                     break;
                 case TypeContent.Série : 
-                    setSwiperMain(...[seriesList])
+                    setSwiperMain(seriesList)
                     break;
                 case TypeContent.Anime : 
                     setSwiperMain(animesList)
                     break;
             }
             
-    },[swiperMain,typeContent,moviesList])
+    },[swiperMain,typeContent,moviesList,seriesList,animesList])
     
 
     if(swiperMain?.length == 0 ){
@@ -73,9 +73,11 @@ export default function SwiperMain({header = false, typeContent, typeSwiper} : {
         )
     } else return(
         <>
-         {/* <section className="videoContainer">
-                <iframe width="1280" height="720" src="https://www.youtube.com/embed/_fY3l9AKPa0" title="Touch of Heaven - David Funk | Worship Night" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen></iframe>
-        </section> */}
+         <section className="videoContainer videoContainerDisable">
+                
+                <iframe width="1280" height="720" src="" title="Touch of Heaven - David Funk | Worship Night" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen></iframe>
+                <button className="closeVideo" onClick={()=>{startSwiper()}}>X</button>
+        </section>
         <section className= {header ? typeSwiper == "CardMain" ? "SwiperMain" : "SwiperTertiary" : "SwiperSecondary my-5"}>
             <Swiper
                 onInit={onInit}
@@ -110,7 +112,7 @@ export default function SwiperMain({header = false, typeContent, typeSwiper} : {
                         } else if(index < 3 && typeSwiper == "CardDescription") 
                             return (
                                 <>
-                                    <SwiperSlide><CardDescription  key = {card.id} cardContent = {card} stopSwiper = {stopSwiper} startSwiper = {startSwiper}></CardDescription></SwiperSlide>
+                                    <SwiperSlide><CardDescription  key = {card.id} cardContent = {card} stopSwiper = {stopSwiper}></CardDescription></SwiperSlide>
                                 </>
                         )
                         

@@ -301,14 +301,22 @@ export interface CardType {
     vote_average : number,
     vote_count : number,
     runtime : null | number,
-    video? : boolean | typeVideo | null,
+    video : null | typeVideo,
     logo : string | null,
     cast : ActorType[],
     genres: null | GenreType[],
     credits : typeCredits[],
     number_of_seasons : number,
-    number_of_episodes : number
+    number_of_episodes : number,
+    production_companies : productionCompanies[]
 
+}
+
+interface productionCompanies {
+    id : number,
+    logo_path : string,
+    name: string,
+    origin_country : string
 }
 
 interface typeCredits {
@@ -322,7 +330,7 @@ interface typeCredits {
 }
 
 
-interface typeVideo { 
+export interface typeVideo { 
     id : string,
     key : string,
     name : string
