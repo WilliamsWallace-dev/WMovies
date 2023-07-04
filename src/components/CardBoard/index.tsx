@@ -14,11 +14,13 @@ export const CardBoard = ({typeContent} : {typeContent : string})=>{
     
     const [cards,setCards] = useState([] as CardType [])
 
-    const [sort,setSort] = useState("" as string)
+    const [sort,setSort] = useState("")
 
     const {moviesList,seriesList,animesList} = useContext(AppContext)
 
     const [search,setSearch] = useState("") ;
+
+    // console.log(document.querySelector(".CardBoard .inputSearchTarget").value)
 
     useEffect(()=>{
         switch (typeContent) {
@@ -27,6 +29,7 @@ export const CardBoard = ({typeContent} : {typeContent : string})=>{
                 break;
             case TypeContent.Série : 
                 setCards(seriesList)
+                console.log(seriesList)
                 break;
             case TypeContent.Anime : 
                 setCards(animesList)
@@ -67,7 +70,7 @@ export const CardBoard = ({typeContent} : {typeContent : string})=>{
     
     const SearchCards = async (e: { keyCode: number; })=>{
         // console.log(search.length,e.keyCode)
-        if(search.length == 0 && e.keyCode == 8){
+        if(search.length == 1 && e.keyCode == 8){
             filterSelect("reset")
         } else
         if(e.keyCode == 13){
@@ -108,17 +111,6 @@ export const CardBoard = ({typeContent} : {typeContent : string})=>{
     const endIndex = startIndex + itensPerPage
     const currentItens =  cards ? cards.slice(startIndex,endIndex) : [] as  CardType []
 
-
-    // const navigate = useNavigate();
-
-    // console.log(user.favorites)
-    // console.log(moviesList)
-
-    // useEffect(()=>{
-    //     window.scrollTo(0,0);
-    // },[currentPage])
-
-    // console.log(feature.typeContent, feature.typeOp)
 
     const filterSelect = (sort : string)=>{
 
@@ -170,7 +162,7 @@ export const CardBoard = ({typeContent} : {typeContent : string})=>{
         
 
         let aux : CardType[] | undefined
-        console.log(filter[1])
+
         if(filter[1] != "Todos"){
             console.log(listCard)
             aux = listCard?.filter((card)=>{
@@ -189,7 +181,7 @@ export const CardBoard = ({typeContent} : {typeContent : string})=>{
     }
 
     const ReverCards = (e: MouseEvent<HTMLButtonElement>)=>{
-        setCards(...[cards.sort((a,b)=> -1)])
+        setCards(...[cards.reverse()])
         setSort(String(e.currentTarget.classList.toggle("rotateIcon")))
     }
 
@@ -213,7 +205,7 @@ export const CardBoard = ({typeContent} : {typeContent : string})=>{
                                 <button className="second-button seeLater" onClick={(e)=>{seeLaterActive(e)}}>Ver Depois</button>
                             </div> */}
                             <div className="inputSearch">
-                                    <input className="" type="text" id="search" value={search} onChange={handleFieldsChange}  onBlur={changeLabel} onKeyDown={SearchCards} placeholder=""/>
+                                    <input className="inputSearchTarget" type="text" id="search" value={search} onChange={handleFieldsChange}  onBlur={changeLabel} onKeyDown={SearchCards} placeholder=""/>
                                     <label id="searchLabel" htmlFor="search">Digite o Título do Filmes, Serie...</label>
                             </div> 
                             <div className="selectFilter-menu">

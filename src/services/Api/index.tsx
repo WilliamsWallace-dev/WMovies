@@ -221,7 +221,7 @@ export const SetDocumentDbCardType = async (collectionName : "Filme" | "Série" 
     
     url = `${data.title ? URLValues.movies : URLValues.movies}${data.id}/credits${URLValues.api_key}&include_image_language=pt&language=pt-BR`
     const creditsResults = await getTmdb(url)
-    data.credits = creditsResults.cast.slice(1,6);
+    data.credits = creditsResults.cast.slice(0,4);
     console.log(data.credits)
 
 

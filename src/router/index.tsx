@@ -12,6 +12,8 @@ import { AdmProfile } from "../components/AdmProfile";
 import { UserProfile } from "../components/UserProfile";
 import { CardBoardPage } from "../Screens/CardBoardPage";
 import { Footer } from "../components/Footer";
+import { CardList } from "../components/CardList";
+import { SearchPage } from "../Screens/SearchPage";
 
 
 export const AppRoutes = ()=>{
@@ -27,6 +29,7 @@ export const AppRoutes = ()=>{
                         <Route path="Register" element={<RegisterToProfile><Register></Register></RegisterToProfile>}></Route>
                         <Route path="Profile/:id" element = {<ProtecteLayout><AdmProfile></AdmProfile></ProtecteLayout>}></Route>
                         <Route path=":typeContent" element = {<CardBoardPage></CardBoardPage>}></Route>
+                        <Route path="Search/:search?" element = {<SearchPage></SearchPage>}></Route>
                     </Route>
                 </Routes>
             </BrowserRouter>

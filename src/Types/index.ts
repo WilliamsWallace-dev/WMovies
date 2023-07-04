@@ -305,7 +305,9 @@ export interface CardType {
     logo : string | null,
     cast : ActorType[],
     genres: null | GenreType[],
-    credits : typeCredits
+    credits : typeCredits[],
+    number_of_seasons : number,
+    number_of_episodes : number
 
 }
 

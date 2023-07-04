@@ -95,7 +95,7 @@ import { Link } from "react-router-dom";
 
 
 export default function CardMain({header ,key , card} : {header? : boolean , key : number , card : CardType}){
-        console.log(card,key)
+
         return(
             <>
                 {/* <div style={{position : "relative"}}> */}
@@ -106,8 +106,8 @@ export default function CardMain({header ,key , card} : {header? : boolean , key
                     <div className="description flex-center flex-column">
                         <div className="flex-start mt-2">
                             {card.first_air_date || card.release_date ? <p className="p1 mr-3 pt-1">{card.first_air_date ? card.first_air_date.split('-')[0] : card.release_date.split('-')[0]}</p> : <></> }
-                            <p className="duration p1 mr-3">{card.runtime || "2h,36min"}</p>
-                            <p className="rated p1">{card.vote_average}</p>
+                            {card.runtime ? <p className="duration p5 mr-2 ">{`${Math.floor(card.runtime/60)}h,${(card.runtime%60)}min`}</p> : <p className="duration p5 mr-2 ">{card.number_of_seasons > 1 ? `${card.number_of_seasons} Temporadas` : `${card.number_of_seasons} Temporada`}</p>}
+                            <p className="rated p5">{card.vote_average.toFixed(1)}</p>
                         </div>
                         <p className="sinopse p1 mt-1">
                             {card.overview.length < 300 ? card.overview : `${card.overview.split(".")[0]}.${card.overview.split(".")[1]}. `}
