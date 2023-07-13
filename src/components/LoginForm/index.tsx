@@ -15,6 +15,8 @@ export const LoginForm = ()=>{
     const [fields, setFields] = useState({} as {email : string, password : string});
     const navigate = useNavigate();
 
+    
+
     const handleFieldsChange = (e: { currentTarget: { id: string; value: string; }; })=>{
         setFields({
             ...fields,
@@ -63,7 +65,7 @@ export const LoginForm = ()=>{
                     </div>
                     
                     <div className="inputPassword mb-3">
-                        <input className="" type="text" id="password" value={fields.password} onChange={handleFieldsChange}  onBlur={changeLabel} placeholder=""/>
+                        <input className="" type="password" id="password" value={fields.password} onChange={handleFieldsChange}  onBlur={changeLabel} placeholder=""/>
                         <label className="" htmlFor="password">Senha</label>
                     </div>
                     <button className="FormButton" type="submit">Entrar</button>

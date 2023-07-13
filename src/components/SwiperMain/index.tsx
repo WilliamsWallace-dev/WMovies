@@ -13,7 +13,6 @@ import "./swiperMain.css"
 
 // import Swiper core and required modules
 import SwiperCore,{ EffectFade,Navigation, Pagination, Scrollbar, A11y,Autoplay } from '../../../node_modules/swiper';
-import { useSwiper } from 'swiper/react';
 
 SwiperCore.use([Pagination, Autoplay]);
 
@@ -23,6 +22,7 @@ import { AppContext } from "../../context/AppContext";
 import { AppContextType, CardType, TypeContent } from "../../Types";
 import CardDescription from "../CardDescription";
 import { closeVideoUtil, openVideoUtil } from "../../utils/videoUtil";
+import { Loading } from "../Loading";
 
 
 
@@ -30,9 +30,11 @@ export default function SwiperMain({header = false, typeContent, typeSwiper} : {
 
     const [swiperMain,setSwiperMain] = useState([] as CardType[])
     
-    const {moviesList,seriesList,animesList} = useContext(AppContext) as AppContextType;
+    const {mainCards} = useContext(AppContext) as AppContextType;
 
     const swiperRef = React.useRef<SwiperCore>();
+
+    
 
     // console.log(typeContent)
 
@@ -51,30 +53,35 @@ export default function SwiperMain({header = false, typeContent, typeSwiper} : {
       };
 
     useEffect(()=>{
-
+        // console.log(moviesList)
             switch (typeContent) {
                 case TypeContent.Filme : 
-                    setSwiperMain(moviesList)
+                    setSwiperMain(mainCards.mainMovies)
                     break;
                 case TypeContent.Série : 
-                    setSwiperMain(seriesList)
+                    setSwiperMain(mainCards.mainSeries)
                     break;
                 case TypeContent.Anime : 
-                    setSwiperMain(animesList)
+                    setSwiperMain(mainCards.mainAnimes)
                     break;
             }
             
-    },[swiperMain,typeContent,moviesList,seriesList,animesList])
+            
+    },[swiperMain,typeContent,mainCards])
     
-
-    if(swiperMain?.length == 0 ){
+    // console.log(moviesList)
+    if(swiperMain?.length == 0 || swiperMain == undefined ){
+        console.log(swiperMain)
         return (
-            <></>
+            <>
+                <Loading></Loading>
+            </>
         )
-    } else return(
+    } else { 
+        console.log(swiperMain)
+        return(
         <>
-         <section className="videoContainer videoContainerDisable">
-                
+         <section className="videoContainer videoContainerDisable">  
                 <iframe width="1280" height="720" src="" title="Touch of Heaven - David Funk | Worship Night" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen></iframe>
                 <button className="closeVideo" onClick={()=>{startSwiper()}}>X</button>
         </section>
@@ -102,8 +109,13 @@ export default function SwiperMain({header = false, typeContent, typeSwiper} : {
                 style={{position:"absolute",top:"0"}}
             >   
                 {
-                   swiperMain && swiperMain.map((card,index)=>{                        
+                   swiperMain && swiperMain.sort((a,b)=>{ // Estrutura o vetor em ordem de adição dos cards
+                        if(a.watchedToday < b.watchedToday) //Possibilitando mostrar sempre os ultimos 3 adicionados no Swiper.
+                            return(1)
+                            else return (-1)
+                   }).map((card,index)=>{                        
                         if(index < 3 && typeSwiper == "CardMain"){
+                            // console.log(card)
                             return (
                                 <>
                                     <SwiperSlide><CardMain header={header} key = {card.id} card = {card}></CardMain></SwiperSlide>
@@ -123,4 +135,5 @@ export default function SwiperMain({header = false, typeContent, typeSwiper} : {
            
         </>
     )
+    }
 }

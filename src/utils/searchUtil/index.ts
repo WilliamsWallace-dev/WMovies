@@ -20,7 +20,7 @@ export const SearchCardsUtil = async (e: { keyCode: number; } , cards : CardType
     // console.log(search.length,e.keyCode)
     if(search.length == 1 && e.keyCode == 8){  
             if(typeContent != "Search"){
-                filterSelectUtil("reset",typeContent, moviesList, seriesList, animesList,setSort, setSearch, setCards,cards)
+                filterSelectUtil("reset",typeContent, moviesList, seriesList, animesList,setSort, setSearch, setCards)
             }else{
                 setSearch("")
                 setCards([...moviesList,...seriesList,...animesList])

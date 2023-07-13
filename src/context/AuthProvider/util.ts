@@ -1,5 +1,5 @@
 //Firebase
-import {createUserWithEmailAndPassword,signInWithEmailAndPassword,onAuthStateChanged   } from "firebase/auth";
+import {createUserWithEmailAndPassword,signInWithEmailAndPassword   } from "firebase/auth";
 import { auth } from "../../services/Api";
 
 
@@ -9,6 +9,7 @@ export const LoginRequest = async (email : string , password : string)=>{
       .then((userCredential) => {
         // Signed in
         const user = userCredential.user;
+        console.log(user)
         // ...
       })
       .catch((error) => {

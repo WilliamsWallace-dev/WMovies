@@ -1,18 +1,17 @@
 
-import { ReactNode, useEffect, useState, useContext } from "react"
+import { useEffect, useState, useContext } from "react"
 import "../../style/style.css";
-import TomHolland from "../../assets/actors/TomHolland.jpg"
 import { AppContextType, CardType, TypeContent } from "../../Types";
 import { URLValues } from "../../services/Api";
 import { useNavigate, useParams } from "react-router-dom";
 import { AppContext } from "../../context/AppContext";
 
 import { useAuth } from "../../context/AuthProvider/useAuth";
-import { closeVideoUtil, openVideoUtil } from "../../utils/videoUtil";
+import { openVideoUtil } from "../../utils/videoUtil";
 
 
 
-export default function CardDescription({cardContent , key, stopSwiper} : {cardContent? : CardType , key : number, stopSwiper? : (videoKey : string) => void}){
+export default function CardDescription({cardContent ,stopSwiper} : {cardContent? : CardType , stopSwiper? : (videoKey : string) => void}){
 
     const {moviesList,seriesList,animesList} = useContext(AppContext) as AppContextType;
 
@@ -67,7 +66,7 @@ export default function CardDescription({cardContent , key, stopSwiper} : {cardC
         user && card && updateUserCards("favorites",card,user)
         
     }
-    console.log(cardContent)
+    // console.log(cardContent)
     if(cardContent)
         return(
             <>
@@ -116,9 +115,6 @@ export default function CardDescription({cardContent , key, stopSwiper} : {cardC
                                     )
                                 })
                             }
-                            <p className="typeItem p2 mr-2">Aventura</p>
-                            <p className="typeItem p2 mr-2">Ação</p>
-                            <p className="typeItem p2 mr-2">Comédia</p>
                         </div>
                         <div className="buttonsDescription flex-center mt-2">
                             {

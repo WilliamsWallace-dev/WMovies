@@ -1,9 +1,7 @@
 import { createContext, useEffect, useState } from "react";
-import { IContext, IUser,IAuthProvider, typeAccount, CardType } from "../../Types";
-import { LoginRequest, Logout } from "./util";
+import { IContext, IUser,IAuthProvider, typeAccount, CardType, AvatarImgType } from "../../Types";
 import { onAuthStateChanged, signInWithEmailAndPassword } from "firebase/auth";
 import { CreateUser, auth, getDocument, updateDocumentUser } from "../../services/Api";
-import { useNavigate } from "react-router-dom";
 
 export const AuthContext = createContext<IContext>({} as IContext);
 
@@ -76,8 +74,8 @@ export const AuthProvider = ({children} : IAuthProvider) =>{
         .catch((error)=> console.log(error))
     }
 
-    const createAccount = (userCreated : IUser)=>{
-        CreateUser(userCreated)
+    const createAccount = async (userCreated : IUser)=>{
+        return await CreateUser(userCreated)
     }
     
     const getUserDocument = async (id : string)=>{
@@ -104,6 +102,11 @@ export const AuthProvider = ({children} : IAuthProvider) =>{
         
     }
 
+
+    const updateUserAvatar = (avatarImg : AvatarImgType,user : IUser)=>{
+        setUser({...user, avatar : avatarImg })
+    }
+
     return(
         <>
             <AuthContext.Provider value = {{
@@ -112,7 +115,8 @@ export const AuthProvider = ({children} : IAuthProvider) =>{
                 logout,
                 createAccount,
                 getUserDocument,
-                updateUserCards
+                updateUserCards,
+                updateUserAvatar
             }}>
                 {children}
             </AuthContext.Provider>

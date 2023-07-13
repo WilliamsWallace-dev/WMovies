@@ -2,9 +2,8 @@ import { CardType } from "../../Types"
 import "../../style/style.css"
 
 import { URLValues } from "../../services/Api"
-import { useParams } from "react-router-dom"
 
-export default function Card({card ,key} : {card : CardType , key : number}){
+export default function Card({card} : {card : CardType}){
     
     return(
         <>

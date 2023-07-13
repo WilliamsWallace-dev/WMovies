@@ -87,7 +87,6 @@
 
 
 import "../../style/style.css";
-import TomHolland from "../../assets/actors/TomHolland.jpg"
 import {CardType } from "../../Types";
 import { URLValues } from "../../services/Api";
 import { Link } from "react-router-dom";

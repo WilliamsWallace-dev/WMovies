@@ -27,7 +27,7 @@ export const getTmdb = async (url : string)=>{
   // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 // import { getAnalytics } from "firebase/analytics";
-import { DocumentData, getFirestore } from "firebase/firestore";
+import { getFirestore } from "firebase/firestore";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -54,6 +54,7 @@ export const db = getFirestore(app);
 import { collection, addDoc, getDocs, doc, setDoc, deleteDoc, getDoc, updateDoc   } from "firebase/firestore";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import { CardType, IUser, typeVideo } from '../../Types';
+import { avatarImg } from '../../assets/avatarImg';
 
 //Autenticação - Usuário
 export const AddDocumentDbUser = async (collectionName : string,data : IUser)=>{
@@ -69,7 +70,7 @@ export const AddDocumentDbUser = async (collectionName : string,data : IUser)=>{
 
 export const CreateUser = async (userCreated : IUser)=>{
 
-  createUserWithEmailAndPassword(auth, userCreated.email, userCreated.password)
+  return createUserWithEmailAndPassword(auth, userCreated.email, userCreated.password)
   .then((userCredential) => {
     // Signed in
     const id = userCredential.user.uid;
@@ -82,7 +83,8 @@ export const CreateUser = async (userCreated : IUser)=>{
       username : userCreated.username,
       favorites : [],
       seeLater  : [],
-      typeOfAccount : "user"
+      typeOfAccount : "user",
+      avatar : avatarImg[Math.round(Math.random()*(avatarImg.length-1))]
   })
       .then(()=>{
         console.log("UserDocument written");
@@ -93,7 +95,8 @@ export const CreateUser = async (userCreated : IUser)=>{
   })
   .catch((error) => {
     const errorCode = error.code;
-    const errorMessage = error.message;
+    // const errorMessage = error.message;
+    return errorCode
     // ..
   });
 
@@ -180,6 +183,16 @@ export const updateDocumentUser = async (attribute : "favorites" | "seeLater" , 
           }
 }
 
+export const updateDocumentUserAvatar = async (user : IUser)=>{
+
+  const docRef = doc(db, "User", `${user.id}`);
+        
+        await updateDoc(docRef, {
+          "avatar" : user.avatar
+        });
+
+    }
+
 export const DelDocumentDb = async (collectionName : string,data : CardType)=>{
 
   try {
@@ -191,8 +204,9 @@ export const DelDocumentDb = async (collectionName : string,data : CardType)=>{
 
 }
 
-export const SetDocumentDbCardType = async (collectionName : "Filme" | "Série" | "Anime" | undefined, data : CardType)=>{
+export const SetDocumentDbCardType = async (collectionName : "Filme" | "Série" | "Anime" | undefined, data : CardType, MainList? : boolean)=>{
 
+  
 
   if(collectionName == "Filme"){
     
@@ -200,6 +214,7 @@ export const SetDocumentDbCardType = async (collectionName : "Filme" | "Série" 
     data = await getTmdb(url)
 
     data.typeContent = collectionName;
+    data.watchedToday = Date.now()
 
     url = `${URLValues.movies}${data.id}/videos${URLValues.api_key}&language=pt-BR`
     let videosResults = await getTmdb(url)
@@ -238,19 +253,28 @@ export const SetDocumentDbCardType = async (collectionName : "Filme" | "Série" 
     url = `${data.title ? URLValues.movies : URLValues.movies}${data.id}/credits${URLValues.api_key}&include_image_language=pt&language=pt-BR`
     const creditsResults = await getTmdb(url)
     data.credits = creditsResults.cast.slice(0,4);
-    console.log(data.credits)
+    console.log(data)
 
-
-    try {
-      await setDoc(doc(db, collectionName, `${data.id}`),data);
-    } catch (e) {
-      console.error("Error adding document: ", e);
+    if(MainList){
+      try {
+        await setDoc(doc(db, "MainMovies", `${data.id}`),data);
+      } catch (e) {
+        console.error("Error adding document: ", e);
+      }
+    }else{
+      try {
+        await setDoc(doc(db, collectionName, `${data.id}`),data);
+      } catch (e) {
+        console.error("Error adding document: ", e);
+      }
     }
+    
   }else if(collectionName == "Série"){
           let url = `${URLValues.seriesAnimes}${data.id}${URLValues.api_key}&language=pt-BR`
           data = await getTmdb(url)
 
           data.typeContent = collectionName;
+          data.watchedToday = Date.now()
 
           url = `${URLValues.seriesAnimes}${data.id}/videos${URLValues.api_key}&language=pt-BR`
           let videosResults = await getTmdb(url)
@@ -291,10 +315,18 @@ export const SetDocumentDbCardType = async (collectionName : "Filme" | "Série" 
           data.credits = creditsResults.cast.slice(0,4);
           
 
-          try {
-            await setDoc(doc(db, collectionName, `${data.id}`),data);
-          } catch (e) {
-            console.error("Error adding document: ", e);
+          if(MainList){
+            try {
+              await setDoc(doc(db, "MainSeries", `${data.id}`),data);
+            } catch (e) {
+              console.error("Error adding document: ", e);
+            }
+          }else{
+            try {
+              await setDoc(doc(db, collectionName, `${data.id}`),data);
+            } catch (e) {
+              console.error("Error adding document: ", e);
+            }
           }
     }else if(collectionName == "Anime"){
 
@@ -302,6 +334,7 @@ export const SetDocumentDbCardType = async (collectionName : "Filme" | "Série" 
               data = await getTmdb(url)
 
               data.typeContent = collectionName;
+              data.watchedToday = Date.now()
               
               url = `${data.title ? URLValues.movies : URLValues.seriesAnimes}${data.id}/videos${URLValues.api_key}&language=pt-BR`
               let videosResults = await getTmdb(url)
@@ -342,10 +375,18 @@ export const SetDocumentDbCardType = async (collectionName : "Filme" | "Série" 
               // console.log(creditsResults.cast)
               // data.credits = creditsResults.cast.slice(0,4);
 
-              try {
-                await setDoc(doc(db, collectionName, `${data.id}`),data);
-              } catch (e) {
-                console.error("Error adding document: ", e);
+              if(MainList){
+                try {
+                  await setDoc(doc(db, "MainMovies", `${data.id}`),data);
+                } catch (e) {
+                  console.error("Error adding document: ", e);
+                }
+              }else{
+                try {
+                  await setDoc(doc(db, collectionName, `${data.id}`),data);
+                } catch (e) {
+                  console.error("Error adding document: ", e);
+                }
               }
     }
 

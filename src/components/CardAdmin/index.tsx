@@ -7,19 +7,19 @@ import { AppContext } from "../../context/AppContext"
 
 export function CardAdmin({card, typeOp, typeContent} : {card : CardType, typeOp : string , typeContent : "Filme" | "Série" | "Anime"}){
     const {SetLists,DelCard} = useContext(AppContext)
-
+    // console.log(card)
     return(
         <>
             <section className="SwiperListItem CardAdmin flex-center flex-column m-2">
                         <div className="sinopseHover px-1">
                         {
-                                typeOp == "Adicionar" ? <button className="buttonAdd p1" onClick={()=>{SetLists(typeContent,card)}}>+</button> : <button className="buttonDel p1" onClick={()=>{DelCard(typeContent,card)}}>X</button>
+                                typeOp == "Adicionar" ? <button className="buttonAdd p1" onClick={()=>{SetLists(typeContent,card)}}>+</button> : <><button className="buttonDel p1" onClick={()=>{DelCard(typeContent,card);DelCard(typeContent,card,true)}}>X</button> <div className="mt-4"><h3>Lista de Destaque</h3><div><button className="buttonAdd p1 mr-4" onClick={()=>{SetLists(typeContent,card,true)}}>+</button><button className="buttonDel p1" onClick={()=>{DelCard(typeContent,card,true)}}>x</button></div></div></>
                             }
                         </div>
                         <p className="titleListItem p5 px-1" style={{textAlign : "center"}}>{card.name || card.title}</p>
                         <div className="descriptionListItem flex-start mb-2">
                             {card.first_air_date || card.release_date ? <p className="p5 mr-2">{card.first_air_date ? card.first_air_date.split('-')[0] : card.release_date.split('-')[0]}</p> : <></> }
-                            {card.runtime ? <p className="duration p5 mr-2 ">{`${Math.floor(card.runtime/60)}h,${(card.runtime%60)}min`}</p> : <p className="duration p5 mr-2 ">{card.number_of_seasons > 1 ? `${card.number_of_seasons} Temporadas` : `${card.number_of_seasons} Temporada`}</p>}
+                            <p className="p5 mr-2 ">{`ID : ${card.id} `}</p>
                             <p className="rated p5">{card.vote_average.toFixed(1)}</p>
                         </div>
                         <div className="backgroundListItem"><img src= {`${URLValues.img_path}${card.poster_path}`} alt="" /></div>

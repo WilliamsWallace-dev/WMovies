@@ -1,4 +1,4 @@
-import { Navigate, useNavigate } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 import { useAuth } from "../../context/AuthProvider/useAuth"
 
 // export const ProtectedFunction = (action : ()=>void)=>{
@@ -46,22 +46,22 @@ export const ProtecteLayout = ({children} : {children : JSX.Element})=>{
     
 }
 
-export const RegisterToProfile = ({children} : {children : JSX.Element})=>{
+// export const RegisterToProfile = ({children} : {children : JSX.Element})=>{
 
-    const {user} = useAuth();
+//     const {user} = useAuth();
 
-    if(user && user.id){
-        return (
-            <>
-                <Navigate to="/Profile" replace={true}></Navigate>
-            </>
-        )
-    }else{
-        return(
-            <>
-                {children}
-            </>
-        )
-    }
+//     if(user && user.id){
+//         return (
+//             <>
+//                 <Navigate to="/Profile" replace={true}></Navigate>
+//             </>
+//         )
+//     }else{
+//         return(
+//             <>
+//                 {children}
+//             </>
+//         )
+//     }
     
-}
+// }

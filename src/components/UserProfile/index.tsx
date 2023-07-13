@@ -1,17 +1,17 @@
-import { ChangeEvent, useContext, useEffect, useState } from "react";
-import { Search, TypeSearch, typeAccount, CardType, Genre } from "../../Types";
+import { useEffect, useState } from "react";
+import {CardType, Genre } from "../../Types";
 import { useAuth } from "../../context/AuthProvider/useAuth"
-import { URLValues, getTmdb } from "../../services/Api";
-import {CardAdmin} from "../CardAdmin";
+import { updateDocumentUserAvatar } from "../../services/Api";
 import { PaginationComponent } from "../PaginationComponent";
-import { AppContext } from "../../context/AppContext";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Card from "../Card";
+import { avatarImg } from "../../assets/avatarImg";
+import { MovieTime } from "../MovieTime";
 
 
 export const UserProfile = ()=>{
 
-    const  {user,logout} = useAuth();
+    const  {user,logout,updateUserAvatar} = useAuth();
     // console.log(user)
 
     const [cards,setCards] = useState < {listCard : CardType [] | undefined, contentType : "favorites" | "seeLater"}>({listCard : user.favorites , contentType : "favorites"}) ;
@@ -58,8 +58,7 @@ export const UserProfile = ()=>{
     }
     
     const SearchCards = async (e: { keyCode: number; })=>{
-        console.log(search.length,e.keyCode)
-        if(search.length == 0 && e.keyCode == 8){
+        if(search.length == 1 && e.keyCode == 8){
             filterSelect()
         } else
         if(e.keyCode == 13){
@@ -109,7 +108,7 @@ export const UserProfile = ()=>{
 
         user.seeLater != undefined ? setCards({listCard : user.seeLater , contentType : "seeLater"}) : setCards({listCard : undefined , contentType : "seeLater"})
         
-        document.querySelectorAll("select").forEach((element, index) =>{
+        document.querySelectorAll("select").forEach((element) =>{
             element.value = "Todos"           
         })
     }
@@ -130,7 +129,7 @@ export const UserProfile = ()=>{
 
         user.favorites != undefined ? setCards({listCard : user.favorites , contentType : "favorites"}) : setCards({listCard : undefined , contentType : "favorites"})
         
-        document.querySelectorAll("select").forEach((element, index) =>{
+        document.querySelectorAll("select").forEach((element) =>{
             element.value = "Todos"           
         })
         
@@ -194,17 +193,37 @@ export const UserProfile = ()=>{
 
         setCards({...cards, listCard :listCard})
     }
-
     return(
-        <>
+        <>  
+            <div className="backgroundUserProfile flex-center">
+                    <img src= {user.avatar.imgBackground} alt={`Profile's Background`} />
+            </div>
             <section className="Profile flex-column container">
                     <section className="UserContainer flex-center flex-between">
-                    
                         <div className="flex-center">
-                            <div className="UserAvatar"></div>
+                            <div className="UserAvatar"  onMouseEnter = {(e)=>{e.currentTarget.children[0].classList.add("changeAvatarHover")}} onMouseLeave = {(e)=>{e.currentTarget.children[0].classList.remove("changeAvatarHover")}}  onClick={(e)=>{e.currentTarget.nextElementSibling?.classList.add("avatarBoardEnable")}}>
+                                <div className="changeAvatar p5" >Change Avatar</div>
+                                <div className="imgAvatar"><img src={user.avatar.imgAvatar} alt="" /></div>
+                            </div>
+                            <section className="avatarBoard flex-center">
+                                <ul className="avatarList flex-center flex-wrap">
+                                    {
+                                        avatarImg.map((avatar,index)=>{
+                                            return(
+                                                <>
+                                                    <li className="avatarItem m-1" onClick={()=>updateUserAvatar(avatar,user)}>
+                                                        <div className="imgAvatar"><img src = {avatar.imgAvatar} alt={`${index+1} Avatar`} /></div>
+                                                    </li> 
+                                                </>
+                                            )
+                                        })
+                                    }   
+                                </ul>
+                                <button className="closeVideo" onClick={(e)=>{e.currentTarget.parentElement?.classList.remove("avatarBoardEnable"),updateDocumentUserAvatar(user)}}>X</button>
+                            </section>
                             <div className="UserInf flex-center flex-column ml-3">
                                 <p className="typeOfAccount">Usuário</p>
-                                <h1>Williams Wallace</h1>
+                                <h1 className="title">Camila Estrela</h1>
                                 <ul className="UserInf-menu flex-center flex-column w-100 mt-1 ">
                                     <li className="UserInf-item flex-center flex-between w-100">
                                         <p className="typeContent p2">Filme</p>
@@ -271,21 +290,25 @@ export const UserProfile = ()=>{
                     </section>
 
 
-                    <div className="featuresProfile container flex-column ">
-                        <div className="popCorn-left "></div>
-                        <div className="popCorn-right "></div>
+                    <div className="featuresProfile flex-center flex-column margin-0-auto ">
+                        {/* <div className="popCorn-left "></div>
+                        <div className="popCorn-right "></div> */}
                             <section className="cardContainer flex-center flex-wrap py-4 mt-3">
                                 {
-                                    currentItens ? currentItens.map((card)=>{
+                                    currentItens && currentItens.length > 0 ? currentItens.map((card)=>{
                                         return(
                                             <>
                                                 <div className="m-2">
-                                                    <Card card = {card} key = {card.id}></Card>
+                                                    <Link to={`../${card.typeContent}/${card.id}` }><Card card = {card} key = {card.id}></Card></Link>
                                                 </div>
                                                 
                                             </>
                                         )
-                                    }) : <></>
+                                    }) 
+                                    : 
+                                   <>
+                                    <MovieTime></MovieTime>
+                                    </>
                                     
                                 }
                             </section>

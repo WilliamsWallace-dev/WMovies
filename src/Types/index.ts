@@ -272,9 +272,14 @@ export interface AppContextType {
     moviesList : CardType [], 
     seriesList : CardType [],  
     animesList : CardType [], 
+    mainCards: {
+        mainMovies: CardType[];
+        mainSeries: CardType[];
+        mainAnimes: CardType[];
+    },
     GetLists : ()=> Promise<void> ,
-    SetLists: (typeList: "Filme" | "Série" | "Anime", data: CardType) => void,
-    DelCard: (typeList: "Filme" | "Série" | "Anime", data: CardType) => Promise<void>
+    SetLists: (typeList: "Filme" | "Série" | "Anime", data: CardType, MainList? : boolean) => void,
+    DelCard: (typeList: "Filme" | "Série" | "Anime", data: CardType, MainList? : boolean) => Promise<void>
 }
 
 export interface SearchTMDBType {
@@ -308,7 +313,9 @@ export interface CardType {
     credits : typeCredits[],
     number_of_seasons : number,
     number_of_episodes : number,
-    production_companies : productionCompanies[]
+    production_companies : productionCompanies[],
+    watchedToday : number,
+    swiperMain : boolean
 
 }
 
@@ -355,6 +362,11 @@ export interface IUserRegister extends IUser{
     checkPassword : string
 }
 
+export interface AvatarImgType {
+    imgAvatar : string,
+    imgBackground : string
+}
+
 export interface IUser {
     id? : string,
     email : string,
@@ -363,7 +375,9 @@ export interface IUser {
     favorites? : CardType[],
     seeLater ? : CardType[],
     typeOfAccount? : "admin" | "user"
+    avatar : AvatarImgType;
 }
+
 
 // export interface IAdmin {
 //     id? : string,
@@ -376,9 +390,10 @@ export interface IContext{
     user : IUser,
     authenticate : (email : string , password : string) => Promise<void>,
     logout : () => void,
-    createAccount: (userCreated: IUser) => void,
+    createAccount: (userCreated: IUser) => Promise<string>,
     getUserDocument: (id: string) => Promise<void>,
-    updateUserCards: (attribute: "favorites" | "seeLater", card: CardType, user: IUser) => void
+    updateUserCards: (attribute: "favorites" | "seeLater", card: CardType, user: IUser) => void,
+    updateUserAvatar: (avatarImg: AvatarImgType, user: IUser) => void
 }
 
 export interface IAuthProvider {

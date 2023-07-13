@@ -1,11 +1,11 @@
-import { Link, Outlet } from "react-router-dom"
+import { Link} from "react-router-dom"
 
 
 
 export const Footer = ()=>{
     return(
         <>
-            <section className="footerContainer flex-center mt-5">
+            <section className="footerContainer flex-center ">
             <div className="flex-center flex-space-around pb-2 w-100">
                 <div className="logo mr-5"></div>
                 <p className="p1 pt-2">Williams Wallace © 2023 Todos Os Direitos Reservados.</p>

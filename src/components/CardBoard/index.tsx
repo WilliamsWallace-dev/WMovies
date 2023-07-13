@@ -1,7 +1,4 @@
-import { Link, useNavigate, useParams } from "react-router-dom"
-import CardDescription from "../../components/CardDescription"
-import Header from "../../components/Header"
-import SwiperMain from "../../components/SwiperMain"
+import { Link } from "react-router-dom"
 import { CardType, Genre, TypeContent } from "../../Types"
 import { useState, useContext, useEffect, MouseEvent } from "react"
 import { AppContext } from "../../context/AppContext"
@@ -29,13 +26,12 @@ export const CardBoard = ({typeContent} : {typeContent : string})=>{
                 break;
             case TypeContent.Série : 
                 setCards(seriesList)
-                console.log(seriesList)
                 break;
             case TypeContent.Anime : 
                 setCards(animesList)
                 break;
         }
-        setSearch("")
+        sort && setSearch("")
         const label = document.querySelector("#searchLabel")
         if(label != null) label.innerHTML = "Digite o Título do Filmes, Serie..."
 
@@ -181,7 +177,7 @@ export const CardBoard = ({typeContent} : {typeContent : string})=>{
     }
 
     const ReverCards = (e: MouseEvent<HTMLButtonElement>)=>{
-        setCards(...[cards.reverse()])
+        setCards(cards.reverse())
         setSort(String(e.currentTarget.classList.toggle("rotateIcon")))
     }
 

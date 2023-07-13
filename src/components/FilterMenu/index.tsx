@@ -1,5 +1,5 @@
 import { CardType, Genre } from "../../Types"
-import { SearchCardsUtil, changeLabelUtil, handleFieldsChangeUtil } from "../../utils/searchUtil"
+import { SearchCardsUtil, changeLabelUtil } from "../../utils/searchUtil"
 import {ReverCardsUtil, filterSelectUtil} from "../../utils/filterUtil"
 import { useContext, useEffect, useState } from "react"
 import { AppContext } from "../../context/AppContext"
@@ -25,7 +25,8 @@ export const FilterMenu = ({parentNode,cards,setCards, search, setSearch,typeCon
     const {moviesList,seriesList,animesList} = useContext(AppContext)
 
     useEffect(()=>{
-        typeContent != "Search" && filterSelectUtil("Ano",typeContent, moviesList, seriesList, animesList,  setSort, setSearch, setCards,cards)
+        console.log(sort)
+        typeContent != "Search" && filterSelectUtil("Ano",typeContent, moviesList, seriesList, animesList,  setSort, setSearch, setCards)
     },[moviesList,seriesList,animesList,typeContent])
     
     if(typeContent != "Search")
@@ -40,7 +41,7 @@ export const FilterMenu = ({parentNode,cards,setCards, search, setSearch,typeCon
                             <div className="selectFilter-menu">
                                 <label htmlFor="Categoria" className="p2 mr-1">Ordenar por</label>
 
-                                <select name="Sort" id="Sort" className="sortSelect mr-3 p2" onChange={(e)=> filterSelectUtil(e.target.value,typeContent, moviesList, seriesList, animesList,  setSort, setSearch, setCards,cards)}>
+                                <select name="Sort" id="Sort" className="sortSelect mr-3 p2" onChange={(e)=> filterSelectUtil(e.target.value,typeContent, moviesList, seriesList, animesList,  setSort, setSearch, setCards)}>
                                     <option value="Ano">Ano</option>
                                     <option value="Título">Título</option>
                                     <option value="Rating">Rating</option>
@@ -48,7 +49,7 @@ export const FilterMenu = ({parentNode,cards,setCards, search, setSearch,typeCon
 
                                 <label htmlFor="Gênero" className="p2 mr-1">Gênero</label>
 
-                                <select name="Gênero" id="Gênero" className="genreSelect p2 mr-3" onChange={(e)=> filterSelectUtil(e.target.value,typeContent, moviesList, seriesList, animesList,  setSort, setSearch, setCards,cards)}>
+                                <select name="Gênero" id="Gênero" className="genreSelect p2 mr-3" onChange={(e)=> filterSelectUtil(e.target.value,typeContent, moviesList, seriesList, animesList,  setSort, setSearch, setCards)}>
                                     <option value="Todos">Todos</option>
                                     {Genre.All.map((e)=>{
                                         return (

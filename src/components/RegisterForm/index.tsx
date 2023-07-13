@@ -1,12 +1,12 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { IUser, IUserRegister } from "../../Types";
+import { AvatarImgType, IUser, IUserRegister } from "../../Types";
 import { useAuth } from "../../context/AuthProvider/useAuth";
 
 export const RegisterForm = ()=>{
 
     const initialState : IUserRegister = {
-        username : "", password : "", checkPassword : "",email : ""
+        username : "", password : "", checkPassword : "",email : "", avatar : {} as AvatarImgType
     }
 
     const [fields, setFields] = useState<IUserRegister>(initialState);
@@ -23,8 +23,28 @@ export const RegisterForm = ()=>{
     }
 
     const handleSubmit = async (e: { preventDefault: () => void; })=>{
+        const error = document.querySelectorAll(".Form .error");
+        error.forEach((e)=>{
+            e.innerHTML = ""
+        })
+        const label = document.querySelectorAll("label");
+        console.log(label)
         e.preventDefault()
-        await createAccount(fields as IUser)
+        if(fields.username && fields.username?.length < 3){
+            error[0].innerHTML = "username inválido! ( min 4 caracteres )"
+        }else if(fields.checkPassword != fields.password){
+            error[3].innerHTML = "Senhas diferentes!"
+        }else{
+            const e = await createAccount(fields as IUser)
+            if(e == "auth/invalid-email"){
+                error[1].innerHTML = "e-mail inválido! ( xx@xx.com )"
+            }else if(e == "auth/weak-password"){
+                error[2].innerHTML = "senha fraca! ( min 6 caracteres )"
+            }if (e == "auth/email-already-in-use"){
+                error[1].innerHTML = "e-mail já existente!"
+            }else if(!e){navigate(-2)}
+        }
+        
         setFields(initialState)
     }
 
@@ -61,10 +81,6 @@ export const RegisterForm = ()=>{
                                 return 0
                             }
                         }
-                    
-            
-        
-        
     }
 
     return(
@@ -72,24 +88,28 @@ export const RegisterForm = ()=>{
             <section className="Form flex-center flex-column mx-2 ">
                 <form onSubmit={handleSubmit}>
                     <h1 className="">Registre-se</h1>
-                    <div className="inputUsername mb-2">
+                    <div className="inputUsername">
                         <input className="" type="text" id="username" value={fields.username} onChange={handleFieldsChange} onBlur={changeLabel}   placeholder=""/>
-                        <label className="" htmlFor="username">Usuário</label>
+                        <label className="" htmlFor="username" content = "Usuário">Usuário</label>
                     </div>
-                    <div className="inputUsername mb-2">
-                        <input className="" type="text" id="email" value={fields.email} onChange={handleFieldsChange}  onBlur={changeLabel} placeholder=""/>
-                        <label className="" htmlFor="email">E-mail</label>
+                    <p className="error p5"></p>
+                    <div className="inputUsername mt-2">
+                        <input className="" type="text" id="email" value={fields.email} onChange={handleFieldsChange} onBlur={changeLabel} placeholder=""/>
+                        <label className="" htmlFor="email" content = "E-mail">E-mail</label>
                     </div>
-                    <div className="inputPassword mb-2">
-                        <input className="" type="password" id="password" value={fields.password} onChange={handleFieldsChange}  onBlur={changeLabel} placeholder=""/>
-                        <label className="" htmlFor="password">Senha</label>
+                    <p className="error p5"></p>
+                    <div className="inputPassword mt-2">
+                        <input className="" type="password" id="password" value={fields.password} onChange={handleFieldsChange} onBlur={changeLabel} placeholder=""/>
+                        <label className="" htmlFor="password" content = "Senha">Senha</label>
                     </div>
-                    <div className="inputPassword mb-3">
+                    <p className="error p5"></p>
+                    <div className="inputPassword mt-2 ">
                         <input className="" type="password" id="checkPassword" value={fields.checkPassword} onChange={handleFieldsChange}  onBlur={changeLabel} placeholder=""/>
-                        <label className="" htmlFor="checkPassword">Repita sua senha</label>
+                        <label className="" htmlFor="checkPassword" content = "Repita sua senha">Repita sua senha</label>
                     </div>
+                    <p className="error p5"></p>
                     
-                    <button className="FormButton" type="submit">Cadastrar</button>
+                    <button className="FormButton mt-2" type="submit">Cadastrar</button>
                 </form>
                 <Link to="../Login"><p className=" mt-3">Já é usuário? <span className="p3">Entre na sua conta!</span></p></Link>
             </section>

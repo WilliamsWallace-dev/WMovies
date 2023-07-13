@@ -1,7 +1,7 @@
 import { MouseEvent } from "react";
 import { CardType, TypeContent } from "../../Types";
 
-export const filterSelectUtil = (sort : string, typeContent : string,moviesList : CardType[],seriesList : CardType[],animesList : CardType[],  setSort: (value: React.SetStateAction<string>) => void ,setSearch : (value: React.SetStateAction<string>) => void,setCards: (value: React.SetStateAction<CardType[]>) => void,cards : CardType[] )=>{
+export const filterSelectUtil = (sort : string, typeContent : string,moviesList : CardType[],seriesList : CardType[],animesList : CardType[],  setSort: (value: React.SetStateAction<string>) => void ,setSearch : (value: React.SetStateAction<string>) => void,setCards: (value: React.SetStateAction<CardType[]>) => void)=>{
 
     let listCard : CardType[] = [] as CardType[];
 
@@ -17,9 +17,9 @@ export const filterSelectUtil = (sort : string, typeContent : string,moviesList 
             break;
     }
 
-        setSearch("")
-        const label = document.querySelector("#searchLabel")
-        if(label != null) label.innerHTML = "Digite o Título do Filmes, Serie..."  
+    setSearch("")
+    const label = document.querySelector("#searchLabel")
+    if(label != null) label.innerHTML = "Digite o Título do Filmes, Serie..."  
     
 
     const filter = ["Todos","Todos"]
@@ -72,6 +72,6 @@ export const filterSelectUtil = (sort : string, typeContent : string,moviesList 
 
 
 export const ReverCardsUtil = (e: MouseEvent<HTMLButtonElement>,cards : CardType[],setCards: (value: React.SetStateAction<CardType[]>) => void,setSort: (value: React.SetStateAction<string>) => void)=>{
-    setCards(...[cards.reverse()])
+    setCards(cards.reverse())
     setSort(String(e.currentTarget.classList.toggle("rotateIcon")))
 }

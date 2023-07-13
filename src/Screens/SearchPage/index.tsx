@@ -3,7 +3,7 @@ import { CardList } from "../../components/CardList"
 import { AppContext } from "../../context/AppContext"
 import { CardType } from "../../Types"
 import { FilterMenu } from "../../components/FilterMenu"
-import SearchPageImage from "../../assets/background/SearchPageImage.png"
+import { MovieTime } from "../../components/MovieTime"
 
 
 export const SearchPage = ()=>{
@@ -36,9 +36,7 @@ export const SearchPage = ()=>{
                 {
                     cards.length == [...moviesList,...animesList,...seriesList].length ? 
                         <>
-                            <div className="flex-center flex-column">
-                                <div><img src={SearchPageImage} alt="Imagem de Picoca" /></div>
-                            </div>
+                            <MovieTime></MovieTime>
                         </> 
                         : 
                         <>

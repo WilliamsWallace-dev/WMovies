@@ -1,15 +1,14 @@
 import { Link } from "react-router-dom"
 import { CardType } from "../../Types"
 import Card from "../Card"
-import { useContext, useState } from "react"
-import { AppContext } from "../../context/AppContext"
+import {useState } from "react"
 import { PaginationComponent } from "../PaginationComponent"
 
 
 
 
 export const CardList = ({listCards} : {listCards : CardType[]})=>{
-
+    console.log("to aqui")
     const itensPerPage = 15;
     const [currentPage,setCurrentPage] = useState(0)    
 
@@ -23,7 +22,7 @@ export const CardList = ({listCards} : {listCards : CardType[]})=>{
         <div className="featuresProfile flex-center flex-column ">
             <section className="cardContainer flex-center flex-wrap p-1 mt-3">
                                     {
-                                        listCards ? listCards.map((card)=>{
+                                        currentItens ? currentItens.map((card)=>{
                                             return(
                                                 <>
                                                     <div className="m-2">
