@@ -174,9 +174,9 @@ export default function SwiperList ({typeSwiper = "Filme" , id} : {typeSwiper : 
                             spaceBetween={24}
                             navigation={true}
                             grabCursor={true}
-                            pagination={{
-                                clickable: true,
-                            }}
+                            // pagination={{
+                            //     clickable: true,
+                            // }}
                             modules={[Navigation]}
                             className="mySwiper"
                         >  

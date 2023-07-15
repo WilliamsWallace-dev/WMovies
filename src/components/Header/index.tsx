@@ -32,7 +32,7 @@ export default function Header (){
                 </div>
             </header>
             <header className="headerMobile">
-                <section className="headerMobile flex-center flex-between">
+                <section className="header flex-center flex-between">
                     <div className="header-menu flex-center">
                             <div className="logo"></div>
                         </div>

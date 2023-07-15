@@ -70,7 +70,7 @@ export default function CardDescription({cardContent ,stopSwiper} : {cardContent
     if(cardContent)
         return(
             <>
-                <section className="SwiperDescriptionItem flex-center px-2 ">
+                <section className="SwiperDescriptionItem containerFlex px-2 ">
                     {window.innerWidth < 700 ? <></> : 
                     <div className="desciptionPoster mr-3 flex-center">
                         <img style={{}} src={`${URLValues.img_path_original}${cardContent?.poster_path}`} alt= {`Poste do Filmes : ${cardContent?.name || cardContent?.title}`} />
@@ -141,7 +141,7 @@ export default function CardDescription({cardContent ,stopSwiper} : {cardContent
     else
         return(
             <>
-                <section className="SwiperDescriptionItem container ">
+                <section className="SwiperDescriptionItem containerFlex ">
                 {window.innerWidth < 960 ? <></> : 
                     <div className="desciptionPoster mr-3 flex-center">
                         <img style={{}} src={`${URLValues.img_path_original}${card?.poster_path}`} alt= {`Poste do Filmes : ${card?.name || card?.title}`} />

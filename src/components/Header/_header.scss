@@ -192,27 +192,9 @@
     .menuHeaderMobile{
   
         width: 100%;
-        
-        .logo{
-            // border: 1px solid rgb(103, 103, 103);
-            background-image: url("../assets/icons/logoIcon.svg");
-            background-position: center center;
-            background-size: cover;
-            background-repeat: no-repeat;
-            width: 200px;
-            height: 38.69px;
-
-            position: absolute;
-            z-index: 999;
-
-            top: 16px;
-            
-            margin: 0 auto;
-            
-            cursor: pointer;
-        }
+    
         .header-menu{
-            max-width: 80%;
+            max-width: 100%;
 
             position: fixed;
             bottom: 24px;
@@ -237,11 +219,11 @@
             opacity: .8;
 
             font-size: 12px;
-            // border: 1px solid green;
+            // border: 1px solid green;s
 
             &::before{
                 content: "";
-                display: block;
+                display: flex;
                 position: relative;
 
                 width: 20px;
