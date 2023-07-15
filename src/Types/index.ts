@@ -124,10 +124,10 @@
                 name : "Realidade",
                 id : 10764
             },
-            {
-                name : "Ficção Científica e Fantasia",
-                id : 10765
-            },
+            // {
+            //     name : "Ficção Científica e Fantasia",
+            //     id : 10765
+            // },
             {
                 name : "Romance",
                 id : 10749
@@ -200,10 +200,10 @@
                 name : "Realidade",
                 id : 10764
             },
-            {
-                name : "Ficção Científica e Fantasia",
-                id : 10765
-            },
+            // {
+            //     name : "Ficção Científica e Fantasia",
+            //     id : 10765
+            // },
             {
                 name : "Guerra e Política",
                 id : 10768

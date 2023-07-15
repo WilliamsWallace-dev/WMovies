@@ -71,21 +71,19 @@ export default function SwiperMain({header = false, typeContent, typeSwiper} : {
     
     // console.log(moviesList)
     if(swiperMain?.length == 0 || swiperMain == undefined ){
-        console.log(swiperMain)
         return (
             <>
                 <Loading></Loading>
             </>
         )
     } else { 
-        console.log(swiperMain)
         return(
         <>
          <section className="videoContainer videoContainerDisable">  
                 <iframe width="1280" height="720" src="" title="Touch of Heaven - David Funk | Worship Night" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen></iframe>
                 <button className="closeVideo" onClick={()=>{startSwiper()}}>X</button>
         </section>
-        <section className= {header ? typeSwiper == "CardMain" ? "SwiperMain" : "SwiperTertiary" : "SwiperSecondary my-5"}>
+        <section className= {header ? typeSwiper == "CardMain" ? "SwiperMain" : "SwiperTertiary" : "SwiperSecondary "}>
             <Swiper
                 onInit={onInit}
                     // install Swiper modules

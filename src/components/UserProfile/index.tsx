@@ -12,7 +12,7 @@ import { MovieTime } from "../MovieTime";
 export const UserProfile = ()=>{
 
     const  {user,logout,updateUserAvatar} = useAuth();
-    // console.log(user)
+    console.log(user)
 
     const [cards,setCards] = useState < {listCard : CardType [] | undefined, contentType : "favorites" | "seeLater"}>({listCard : user.favorites , contentType : "favorites"}) ;
 
@@ -223,7 +223,7 @@ export const UserProfile = ()=>{
                             </section>
                             <div className="UserInf flex-center flex-column ml-3">
                                 <p className="typeOfAccount">Usuário</p>
-                                <h1 className="title">Camila Estrela</h1>
+                                <h1 className="title">{user.username}</h1>
                                 <ul className="UserInf-menu flex-center flex-column w-100 mt-1 ">
                                     <li className="UserInf-item flex-center flex-between w-100">
                                         <p className="typeContent p2">Filme</p>

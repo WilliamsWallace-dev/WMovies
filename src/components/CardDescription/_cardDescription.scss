@@ -130,16 +130,22 @@
 
 
 // .actors{
-//     .actorsItem{
+//   width: 100%;
+//   @include responsive(s){
+//     justify-content: center;
+//     align-items: center;
+//     flex-wrap: wrap;
+//   }
+//     // .actorsItem{
         
-//         .imageActor{
-//             // border: 1px solid red;
+//     //     .imageActor{
+//     //         // border: 1px solid red;
         
-//             width: 60px;
-//             height: 60px;
-//             img{
-//                 object-fit: contain;
-//             }
-//         }
-//     }
+//     //         width: 60px;
+//     //         height: 60px;
+//     //         img{
+//     //             object-fit: contain;
+//     //         }
+//     //     }
+//     // }
 // }

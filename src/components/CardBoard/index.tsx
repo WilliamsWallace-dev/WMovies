@@ -192,40 +192,48 @@ export const CardBoard = ({typeContent} : {typeContent : string})=>{
     return(
         <>
             <section className="CardBoard container flex-column">
-                <div className="popCorn-left "></div>
-                <div className="popCorn-right "></div>
-                <div className="filterMenu flex-center flex-space-around w-100" >
-                    <h3 className="title mr-3">{typeContent}</h3>
+                {/* <div className="popCorn-left "></div>
+                <div className="popCorn-right "></div> */}
+                <div className="filterMenu flex-center flex-space-around flex-wrap w-100" >
+                            <h3 className="title mr-3">{typeContent}</h3>
                             {/* <div>
                                 <button className="second-button favoriteActive mr-2" onClick={(e)=>{favoritesActive(e)}}>Favoritos</button>
                                 <button className="second-button seeLater" onClick={(e)=>{seeLaterActive(e)}}>Ver Depois</button>
                             </div> */}
-                            <div className="inputSearch">
-                                    <input className="inputSearchTarget" type="text" id="search" value={search} onChange={handleFieldsChange}  onBlur={changeLabel} onKeyDown={SearchCards} placeholder=""/>
-                                    <label id="searchLabel" htmlFor="search">Digite o Título do Filmes, Serie...</label>
-                            </div> 
-                            <div className="selectFilter-menu">
-                                <label htmlFor="Categoria" className="p2 mr-1">Ordenar por</label>
+                            <div className="flex-center flex-wrap">
+                                <div className="inputSearch">
+                                        <input className="inputSearchTarget" type="text" id="search" value={search} onChange={handleFieldsChange}  onBlur={changeLabel} onKeyDown={SearchCards} placeholder=""/>
+                                        <label id="searchLabel" htmlFor="search">Digite o Título do Filmes, Serie...</label>
+                                </div> 
+                                <div className="selectFilter-menu flex-center flex-wrap">
+                                    <div>
+                                        <label htmlFor="Categoria" className="p2 mr-1">Ordenar por</label>
 
-                                <select name="Sort" id="Sort" className="sortSelect mr-3 p2" onChange={(e)=> filterSelect(e.target.value)}>
-                                    <option value="Ano">Ano</option>
-                                    <option value="Título">Título</option>
-                                    <option value="Rating">Rating</option>
-                                </select>
+                                        <select name="Sort" id="Sort" className="sortSelect mr-3 p2" onChange={(e)=> filterSelect(e.target.value)}>
+                                            <option value="Ano">Ano</option>
+                                            <option value="Título">Título</option>
+                                            <option value="Rating">Rating</option>
+                                        </select>
+                                    </div>
+                                    
+                                    <div>
+                                        <label htmlFor="Gênero" className="p2 mr-1">Gênero</label>
 
-                                <label htmlFor="Gênero" className="p2 mr-1">Gênero</label>
-
-                                <select name="Gênero" id="Gênero" className="genreSelect p2 mr-3" onChange={(e)=> filterSelect(e.target.value)}>
-                                    <option value="Todos">Todos</option>
-                                    {Genre.All.map((e)=>{
-                                        return (
-                                            <>
-                                                <option value={e.id}>{e.name}</option>
-                                            </>
-                                        )
-                                    })}
-                                </select>
-                                <button className="buttonIcon buttonIconReverse" onClick={(e)=>{ReverCards(e)}}></button>
+                                        <select name="Gênero" id="Gênero" className="genreSelect p2 mr-3" onChange={(e)=> filterSelect(e.target.value)}>
+                                            <option value="Todos">Todos</option>
+                                            {Genre.All.map((e)=>{
+                                                return (
+                                                    <>
+                                                        <option value={e.id}>{e.name}</option>
+                                                    </>
+                                                )
+                                            })}
+                                        </select>
+                                    </div>
+                                    
+                                    <button className="buttonIcon buttonIconReverse" onClick={(e)=>{ReverCards(e)}}></button>
+                            </div>
+                            
                             </div>
                 </div>
                 <div className="featuresProfile flex-center flex-column ">

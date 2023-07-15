@@ -9,6 +9,11 @@
 
     align-items: flex-end;
 
+    @include responsive(s){
+        padding-bottom: 100px;
+        margin-top: 36px;
+    }
+
     &::before{
         content: "";
         // display: block;
@@ -43,9 +48,13 @@
         // border: 1px solid rgb(103, 103, 103);
         background-image: url("../assets/icons/logoIcon.svg");
         background-position: center center;
-        background-size: cover;
+        background-size: contain;
         background-repeat: no-repeat;
         width: 200px;
+        @include responsive(xs){
+            width: 20%;
+        }
+
         height: 38.69px;
 
         cursor: pointer;
@@ -53,6 +62,11 @@
     .iconInstagram{
         width: 24px;
         height: 24px;
+
+        @include responsive(s){
+            width: 20px;
+            height: 20px;
+        }
 
         background: url("../assets/icons/iconInstagram.svg");
         background-position: center;
@@ -76,6 +90,11 @@
         width: 24px;
         height: 24px;
 
+        @include responsive(s){
+            width: 20px;
+            height: 20px;
+        }
+
         background: url("../assets/icons/iconLinkedIn.svg");
         background-position: center;
         background-repeat: no-repeat;
@@ -97,6 +116,11 @@
     .iconGitHub{
         width: 26px;
         height: 26px;
+
+        @include responsive(s){
+            width: 22px;
+            height: 22px;
+        }
 
         background: url("../assets/icons/iconGitHub.svg");
         background-position: center;

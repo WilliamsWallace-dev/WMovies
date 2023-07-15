@@ -1,9 +1,9 @@
 .SwiperList{
   //Menu Swiper
 .menuSwiper{
-  justify-content: flex-start;
 
-  padding: 0px 96px;
+    justify-content: flex-start;
+    padding: 0px 96px;
 
   &::after{
     content: "";
@@ -17,8 +17,40 @@
     border-radius: 2px;
     transform: matrix(1, 0, 0.28, 0.96, 0, 0);
   }
+  
+  @media screen and (max-width : 745px) {
+    justify-content: center;
+    flex-wrap: wrap;
+    padding: 0px 16px;
+    .title{
+      margin-bottom: 8px;
+    }
+
+    &::after{
+      content: "";
+      display: inline-block;
+      position: relative;
+  
+      width: 40%;
+      height: 3px;
+
+      margin-top: 20px;
+  
+      background: linear-gradient(90deg, rgba(8, 5, 6, 0) 0%, #E50914 50%, rgba(8, 5, 6, 0) 91.67%);
+      border-radius: 2px;
+      transform: matrix(1, 0, 0.28, 0.96, 0, 0);
+    }
+  }
+  
+
+  @media screen and (max-width : 490px) {
+    .SwiperList-buttonContainer{
+      flex-wrap: wrap;
+    } 
+  }
 }
 .title{
+
   &::after{
       content: "";
       display: block;
@@ -37,6 +69,12 @@
       // background: linear-gradient(90deg, rgba(8, 5, 6, 0) 0%, #E50914 50%, rgba(8, 5, 6, 0) 91.67%);
       // transform: matrix(1, 0, 0.28, 0.96, 0, 0);
 
+      @media screen and (max-width:960px) {
+       background: linear-gradient(90deg, rgba(8, 5, 6, 0) 0%, #E50914 50%, rgba(8, 5, 6, 0) 91.67%);
+      transform: matrix(1, 0, 0.28, 0.96, 0, 0);
+        
+      }
+
   }
 }
 
@@ -52,6 +90,8 @@ body,html{
     position: relative;
 
     margin: 0 auto;
+    margin-top: 8px;
+    padding-bottom: 64px;
 
     max-width: 100%;
 
@@ -126,6 +166,9 @@ body,html{
 .swiper-button-next,
           .swiper-button-prev {
             padding: 0px 19px;
+            @media screen and (max-width : 960px) {
+              display: none;    
+            }
           }
 
           .swiper-button-prev {

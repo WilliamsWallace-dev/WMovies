@@ -12,6 +12,32 @@
   border-radius: 2px;
   transform: matrix(1, 0, 0.28, 0.96, 0, 0);
 }
+@media screen and (max-width: 745px) {
+  .SwiperList .menuSwiper {
+    justify-content: center;
+    flex-wrap: wrap;
+    padding: 0px 16px;
+  }
+  .SwiperList .menuSwiper .title {
+    margin-bottom: 8px;
+  }
+  .SwiperList .menuSwiper::after {
+    content: "";
+    display: inline-block;
+    position: relative;
+    width: 40%;
+    height: 3px;
+    margin-top: 20px;
+    background: linear-gradient(90deg, rgba(8, 5, 6, 0) 0%, #E50914 50%, rgba(8, 5, 6, 0) 91.67%);
+    border-radius: 2px;
+    transform: matrix(1, 0, 0.28, 0.96, 0, 0);
+  }
+}
+@media screen and (max-width: 490px) {
+  .SwiperList .menuSwiper .SwiperList-buttonContainer {
+    flex-wrap: wrap;
+  }
+}
 .SwiperList .title::after {
   content: "";
   display: block;
@@ -24,12 +50,20 @@
   transform: matrix(1, 0, 0.28, 0.96, 0, 0);
   border-radius: 2px;
 }
+@media screen and (max-width: 960px) {
+  .SwiperList .title::after {
+    background: linear-gradient(90deg, rgba(8, 5, 6, 0) 0%, #E50914 50%, rgba(8, 5, 6, 0) 91.67%);
+    transform: matrix(1, 0, 0.28, 0.96, 0, 0);
+  }
+}
 .SwiperList body, .SwiperList html {
   width: 100%;
 }
 .SwiperList .mySwiper {
   position: relative;
   margin: 0 auto;
+  margin-top: 8px;
+  padding-bottom: 64px;
   max-width: 100%;
 }
 .SwiperList .mySwiper::before {
@@ -80,6 +114,12 @@
 .SwiperList .swiper-button-next,
 .SwiperList .swiper-button-prev {
   padding: 0px 19px;
+}
+@media screen and (max-width: 960px) {
+  .SwiperList .swiper-button-next,
+  .SwiperList .swiper-button-prev {
+    display: none;
+  }
 }
 .SwiperList .swiper-button-prev {
   border-width: 6px 0px 0px 6px;

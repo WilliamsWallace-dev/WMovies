@@ -96,7 +96,6 @@ export default function SwiperList ({typeSwiper = "Filme" , id} : {typeSwiper : 
                     break;
                 }
             const randomNumber  = Math.floor(Math.random() * (recomentionCards.length / 10 ) * 9)
-            console.log(randomNumber)
             recomentionCards = recomentionCards.slice(randomNumber,randomNumber + 10)
             setSwiperList(recomentionCards)
         }
@@ -135,6 +134,14 @@ export default function SwiperList ({typeSwiper = "Filme" , id} : {typeSwiper : 
 
     // console.log(`TO aqui ; Id : ${id}`)
 
+    // window.addEventListener('resize',()=>{
+    //     const windowSize = window.innerWidth;
+    //     const swiper = document.querySelector(".mySwiper")
+    //     if(windowSize < 960) 
+            
+    //         console.log(swiper?.getAttributeNames())
+    // })
+
 
     if(swiperList?.length == 0 ){
         return (
@@ -145,18 +152,21 @@ export default function SwiperList ({typeSwiper = "Filme" , id} : {typeSwiper : 
     } else{
             return(
                 <>
-                    <section className="SwiperList ">
-                        <div className="menuSwiper flex-center my-1">
+                    <section className="SwiperList my-2">
+                        <div className="menuSwiper flex-center ">
                             <h3 className="title mr-3">{ id ? "Recomendações" : typeSwiper}</h3>
-                            { !id  ?
-                                <>
-                                    <button className="starButton backgroundStar p3 mr-2" onClick={(e)=>{filterSwiper(e.currentTarget.innerHTML)}}>Lançamentos</button>
-                                    <button className="sumButton p3 mr-2" onClick={(e)=>{filterSwiper(e.currentTarget.innerHTML)}}>Novos Filmes</button>
-                                    <button className="popularButton p3 mr-2" onClick={(e)=>{filterSwiper(e.currentTarget.innerHTML)}}>Populares</button>
-                                </>
-                                :
-                                <></>
-                            }
+                            <div className="SwiperList-buttonContainer flex-center">
+                                { !id  ?
+                                    <>
+                                        <button className="starButton backgroundStar p3 mr-2 my-1" onClick={(e)=>{filterSwiper(e.currentTarget.innerHTML)}}>Lançamentos</button>
+                                        <button className="sumButton p3 mr-2 my-1" onClick={(e)=>{filterSwiper(e.currentTarget.innerHTML)}}>Novos Filmes</button>
+                                        <button className="popularButton p3" onClick={(e)=>{filterSwiper(e.currentTarget.innerHTML)}}>Populares</button>
+                                    </>
+                                    :
+                                    <></>
+                                }
+                            </div>
+                            
                         </div>
                         <Swiper
                             slidesPerView={"auto"}
@@ -170,7 +180,7 @@ export default function SwiperList ({typeSwiper = "Filme" , id} : {typeSwiper : 
                             modules={[Navigation]}
                             className="mySwiper"
                         >  
-                            <SwiperSlide style={{width : "100px"}}></SwiperSlide>
+                            {window.innerWidth > 960 ? <SwiperSlide style={{width : "80px"}}></SwiperSlide> : <SwiperSlide style={{width : "15px"}}></SwiperSlide>}
                             {
                                 swiperList && filter == "" ? swiperList.sort((a,b)=>{
                                     if(a.release_date < b.release_date || a.first_air_date < b.first_air_date || a.first_air_date < b.release_date || a.release_date < b.first_air_date)

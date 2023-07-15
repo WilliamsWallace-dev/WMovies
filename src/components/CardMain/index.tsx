@@ -99,7 +99,7 @@ export default function CardMain({header ,key , card} : {header? : boolean , key
             <>
                 {/* <div style={{position : "relative"}}> */}
                 <section key={key} className={header ? "CardMain SwiperDescriptionItem flex-center flex-column " : "SwiperDescriptionItem flex-center flex-column "}>
-                    <div className="desciptionLogo mr-3">
+                    <div className="descriptionLogo mr-3">
                         <img src={`${URLValues.img_path_original}${card.logo}`} alt= {`Poste do Filmes : ${card.title}`} />
                     </div>
                     <div className="description flex-center flex-column">
@@ -109,7 +109,8 @@ export default function CardMain({header ,key , card} : {header? : boolean , key
                             <p className="rated p5">{card.vote_average.toFixed(1)}</p>
                         </div>
                         <p className="sinopse p1 mt-1">
-                            {card.overview.length < 300 ? card.overview : `${card.overview.split(".")[0]}.${card.overview.split(".")[1]}. `}
+                            {window.innerWidth < 540 ? card.overview.length < 200 ? card.overview : `${card.overview.split(".")[0]}...` : card.overview.length < 320 ? card.overview : `${card.overview.split(".")[0]}.${card.overview.split(".")[1]}... `}
+                            {/* {card.overview.length < 320 ? card.overview : `${card.overview.split(".")[0]}... `} */}
                         </p>
                         <Link to={`../${card.typeContent}/${card.id}` }><button className="second-button buttonIconPlay mt-2">ver mais</button></Link>
                     </div>

@@ -70,10 +70,12 @@ export default function CardDescription({cardContent ,stopSwiper} : {cardContent
     if(cardContent)
         return(
             <>
-                <section className="SwiperDescriptionItem container ">
+                <section className="SwiperDescriptionItem flex-center px-2 ">
+                    {window.innerWidth < 700 ? <></> : 
                     <div className="desciptionPoster mr-3 flex-center">
                         <img style={{}} src={`${URLValues.img_path_original}${cardContent?.poster_path}`} alt= {`Poste do Filmes : ${cardContent?.name || cardContent?.title}`} />
                     </div>
+                    }
                     <div className="description flex-start flex-column align-items-flex-start">
                         <h1 className="title">{cardContent?.name || cardContent?.title}</h1>
                         <div className="flex-start mt-2">
@@ -81,12 +83,12 @@ export default function CardDescription({cardContent ,stopSwiper} : {cardContent
                             {cardContent.runtime ? <p className="duration p5 mr-2 ">{`${Math.floor(cardContent.runtime/60)}h,${(cardContent.runtime%60)}min`}</p> : <p className="duration p5 mr-2 ">{cardContent.number_of_seasons > 1 ? `${cardContent.number_of_seasons} Temporadas` : `${cardContent.number_of_seasons} Temporada`}</p>}
                             <p className="rated p5">{cardContent.vote_average.toFixed(1)}</p>
                         </div>
-                        <div className="actors flex-start mt-2">
+                        <div className="actors flex-center flex-start mt-2">
                             {
                                 cardContent?.credits ? cardContent?.credits.map((e)=>{
                                     return(
                                         <>
-                                            <div className="actorsItem flex-start mr-3">
+                                            <div className="actorsItem flex-start mr-3 my-1">
                                                 <div className="imageActor mr-1"><img src={`${URLValues.img_path_original}${e.profile_path}`} alt={e.name} /></div>
                                                 <p className="p2">{e.name}</p>
                                             </div>
@@ -97,7 +99,7 @@ export default function CardDescription({cardContent ,stopSwiper} : {cardContent
                                     <>
                                         <div className="productionCompanyItem mr-3">
                                                 <div className="imageProductionCompany mr-1"><img src={`${URLValues.img_path_original}${cardContent.production_companies[0].logo_path}`} alt={cardContent.production_companies[0].name} /></div>
-                                                {/* <p className="p2">{e.name}</p> */}
+                                                
                                             </div>
                                     </>
                             }
@@ -128,7 +130,8 @@ export default function CardDescription({cardContent ,stopSwiper} : {cardContent
                         </div>
                         
                     </div>
-                    { cardContent.video ? <div className="playIcon" onClick={()=>cardContent.video && stopSwiper && stopSwiper(cardContent.video.key)}></div> : <div className="playIconDisable"></div>}
+                    {window.innerWidth < 960 ? <></> : cardContent.video ? <div className="playIcon" onClick={()=>cardContent.video && stopSwiper && stopSwiper(cardContent.video.key)}></div> : <div className="playIconDisable"></div>}
+                    {/* { cardContent.video ? <div className="playIcon" onClick={()=>cardContent.video && stopSwiper && stopSwiper(cardContent.video.key)}></div> : <div className="playIconDisable"></div>} */}
                 </section>
                 <div className="backgroundPosterDescription">
                     <img src= {`${URLValues.img_path_original}${cardContent?.backdrop_path}`} alt={`Poste do filme ${cardContent?.title}`} />
@@ -139,13 +142,15 @@ export default function CardDescription({cardContent ,stopSwiper} : {cardContent
         return(
             <>
                 <section className="SwiperDescriptionItem container ">
+                {window.innerWidth < 960 ? <></> : 
                     <div className="desciptionPoster mr-3 flex-center">
                         <img style={{}} src={`${URLValues.img_path_original}${card?.poster_path}`} alt= {`Poste do Filmes : ${card?.name || card?.title}`} />
                     </div>
+                    }
                     <div className="description flex-start flex-column align-items-flex-start">
                         <h1 className="title">{card?.name || card?.title}</h1>
                         <div className="flex-start mt-2">
-                            {card?.first_air_date || card?.release_date ? <p className="p1 mr-3 pt-1">{card?.first_air_date ? card?.first_air_date.split('-')[0] : card?.release_date.split('-')[0]}</p> : <></> }
+                            {card?.first_air_date || card?.release_date ? <p className="p5 mr-3 pt-1">{card?.first_air_date ? card?.first_air_date.split('-')[0] : card?.release_date.split('-')[0]}</p> : <></> }
                             {card?.runtime ? <p className="duration p5 mr-2 ">{`${Math.floor(card?.runtime/60)}h,${(card?.runtime%60)}min`}</p> : <p className="duration p5 mr-2 ">{card?.number_of_seasons && card?.number_of_seasons > 1 ? `${card?.number_of_seasons} Temporadas` : `${card?.number_of_seasons} Temporada`}</p>}
                             <p className="rated p5">{card?.vote_average && card?.vote_average.toFixed(1)}</p>
                         </div>
@@ -176,9 +181,6 @@ export default function CardDescription({cardContent ,stopSwiper} : {cardContent
                                     )
                                 })
                             }
-                            <p className="typeItem p2 mr-2">Aventura</p>
-                            <p className="typeItem p2 mr-2">Ação</p>
-                            <p className="typeItem p2 mr-2">Comédia</p>
                         </div>
                         <div className="buttonsDescription flex-center mt-2">
                             {
@@ -192,7 +194,8 @@ export default function CardDescription({cardContent ,stopSwiper} : {cardContent
                         </div>
                         
                     </div>
-                    { card?.video ? <div className="playIcon" onClick={()=>card.video && openVideoUtil(card.video.key)}></div> : <div className="playIconDisable" ></div>}
+                    {window.innerWidth < 960 ? <></> : card?.video ? <div className="playIcon" onClick={()=>card.video && openVideoUtil(card.video.key)}></div> : <div className="playIconDisable" ></div>}
+                    {/* { card?.video ? <div className="playIcon" onClick={()=>card.video && openVideoUtil(card.video.key)}></div> : <div className="playIconDisable" ></div>} */}
                 </section>
                 <div className="backgroundPosterDescription">
                     <img src= {`${URLValues.img_path_original}${card?.backdrop_path}`} alt={`Poste do filme ${card?.title}`} />
