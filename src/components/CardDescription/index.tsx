@@ -142,7 +142,7 @@ export default function CardDescription({cardContent ,stopSwiper} : {cardContent
         return(
             <>
                 <section className="SwiperDescriptionItem containerFlex ">
-                {window.innerWidth < 960 ? <></> : 
+                {window.innerWidth < 700 ? <></> : 
                     <div className="desciptionPoster mr-3 flex-center">
                         <img style={{}} src={`${URLValues.img_path_original}${card?.poster_path}`} alt= {`Poste do Filmes : ${card?.name || card?.title}`} />
                     </div>
