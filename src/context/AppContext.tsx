@@ -29,8 +29,10 @@ export const AppProvidor = ({children} : {children : ReactNode}) =>{
     }
     const GetMainLists = async ()=>{
         const result1 = await getDocumentDbCardList("MainMovies")
+        console.log(result1)
         const result2 = await getDocumentDbCardList("MainSeries")
-        const result3 = await getDocumentDbCardList("MainAnimes")
+        const result3 = await getDocumentDbCardList("MainMovies")
+        console.log(result3)
          setMainCards({mainMovies : result1,mainSeries : result2,mainAnimes : result3});
     }
     const SetLists = async (typeList : "Filme" | "Série" | "Anime", data : CardType , MainList? : boolean) =>{

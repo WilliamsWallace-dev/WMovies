@@ -122,15 +122,15 @@ export async function  getDocument <typeDocument> (collectionName : string , id 
 
   const docRef = doc(db, collectionName, `${id}`);
   const docSnap = await getDoc(docRef);
-
-  if (docSnap.exists()) {
-    console.log("Document data:", docSnap.data());
-    return docSnap.data() as typeDocument;
-  } else {
-    // docSnap.data() will be undefined in this case
-    console.log("No such document!");
-    return {} as typeDocument
-  }
+  if(id != "d71VydFfu8ONnfoQiKKjCDjlh7w2")
+    if (docSnap.exists()) {
+      console.log("Document data:", docSnap.data());
+      return docSnap.data() as typeDocument;
+    } else {
+      // docSnap.data() will be undefined in this case
+      console.log("No such document!");
+      return {} as typeDocument
+    }
 }
 
 export const updateDocumentUser = async (attribute : "favorites" | "seeLater" , card : CardType, user : IUser,)=>{
@@ -377,7 +377,7 @@ export const SetDocumentDbCardType = async (collectionName : "Filme" | "Série" 
 
               if(MainList){
                 try {
-                  await setDoc(doc(db, "MainMovies", `${data.id}`),data);
+                  await setDoc(doc(db, "MainAnimes", `${data.id}`),data);
                 } catch (e) {
                   console.error("Error adding document: ", e);
                 }

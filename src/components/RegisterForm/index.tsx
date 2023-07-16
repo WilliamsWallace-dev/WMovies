@@ -28,7 +28,7 @@ export const RegisterForm = ()=>{
             e.innerHTML = ""
         })
         const label = document.querySelectorAll("label");
-        console.log(label)
+        // console.log(label)
         e.preventDefault()
         if(fields.username && fields.username?.length < 3){
             error[0].innerHTML = "username inválido! ( min 4 caracteres )"

@@ -28,12 +28,17 @@ export const LoginForm = ()=>{
     const handleSubmit = async (e: { preventDefault: () => void; })=>{
         e.preventDefault()
         try {
-            await auth.authenticate(fields.email,fields.password)
+            const result = await auth.authenticate(fields.email,fields.password)
+            if(result == "auth/invalid-email") throw result
             navigate(-1)
         }catch(error){
-            console.log(error)
+            const err = document.querySelector(".Form .error");
+            err ? err.innerHTML = "E-mail / Senha inválido" : ""
         }
         setFields(initialState)
+        document.querySelectorAll(".Form label").forEach((e,index)=>{
+            index == 0 ? e.innerHTML = "E-mail" : e.innerHTML = "Senha"
+        })
     }
 
     const changeLabel = (e : any)=>{
@@ -64,11 +69,12 @@ export const LoginForm = ()=>{
                         <label className="" htmlFor="email">E-mail</label>
                     </div>
                     
-                    <div className="inputPassword mb-3">
+                    <div className="inputPassword mb-1">
                         <input className="" type="password" id="password" value={fields.password} onChange={handleFieldsChange}  onBlur={changeLabel} placeholder=""/>
                         <label className="" htmlFor="password">Senha</label>
                     </div>
-                    <button className="FormButton" type="submit">Entrar</button>
+                    <p className="error p5"></p>
+                    <button className="FormButton mt-1" type="submit">Entrar</button>
                 </form>
                 <Link to="/Register"><p className=" mt-3">Não tem uma conta? <span className="p3">Cadastre-se</span></p></Link>
             </section>

@@ -36,7 +36,7 @@ export const AuthProvider = ({children} : IAuthProvider) =>{
     },[])
 
     const authenticate = async (email : string ,password : string)=>{
-        signInWithEmailAndPassword(auth, email, password)
+        return signInWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
                 // Signed in
                 const userOn = userCredential.user;
@@ -53,8 +53,8 @@ export const AuthProvider = ({children} : IAuthProvider) =>{
             .catch((error) => {
                 const errorCode = error.code;
                 const errorMessage = error.message;
-  
-                console.log(`ErrorCode : ${errorCode} - ErrorMessage : ${errorMessage}`)
+                return errorCode
+                // console.log(`ErrorCode : ${errorCode} - ErrorMessage : ${errorMessage}`)
             });
     }
 
@@ -72,7 +72,9 @@ export const AuthProvider = ({children} : IAuthProvider) =>{
     }
     
     const getUserDocument = async (id : string)=>{
-       setUser(await getDocument<IUser>("User", id))
+       const result = await getDocument<IUser>("User", id)
+       if(result)
+        setUser(result)
     }
 
     const updateUserCards = (attribute : "favorites" | "seeLater", card : CardType,user : IUser)=>{

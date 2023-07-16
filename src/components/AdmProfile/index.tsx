@@ -200,9 +200,9 @@ export const AdmProfile = ()=>{
 
                     <section className="filterMenu flex-center flex-space-around w-100 mt-5 mb-2" >
                         <div>
-                            <button className="second-button mr-2" onClick={()=>{setFeature({...feature,typeContent : "Filme"})}}>Filme</button>
-                            <button className="second-button mr-2" onClick={()=>{setFeature({...feature,typeContent : "Série"})}}>Séries</button>
-                            <button className="second-button" onClick={()=>{setFeature({...feature,typeContent : "Anime"})}}>Animes</button>
+                            <button className="primary-button  mr-2" onClick={()=>{setFeature({...feature,typeContent : "Filme"})}}>Filme</button>
+                            <button className="primary-button mr-2" onClick={()=>{setFeature({...feature,typeContent : "Série"})}}>Séries</button>
+                            <button className="primary-button" onClick={()=>{setFeature({...feature,typeContent : "Anime"})}}>Animes</button>
                         </div>
                         <div className="selectFilter-menu">
                                     <label htmlFor="Categoria" className="p2 mr-1">Categoria</label>

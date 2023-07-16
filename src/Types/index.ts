@@ -388,7 +388,7 @@ export interface IUser {
 
 export interface IContext{
     user : IUser,
-    authenticate : (email : string , password : string) => Promise<void>,
+    authenticate : (email : string , password : string) => Promise<any>,
     logout : () => void,
     createAccount: (userCreated: IUser) => Promise<string>,
     getUserDocument: (id: string) => Promise<void>,

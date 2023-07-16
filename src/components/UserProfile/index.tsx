@@ -267,7 +267,7 @@ export const UserProfile = ()=>{
                                     <label  id="searchLabel" htmlFor="search">Digite o Título do Filmes, Serie...</label>
                             </div> 
                             <div className="selectFilter-menu flex-center flex-wrap">
-                                <div className="flex-center">
+                                <div className="flex-center mb-1">
                                     <label htmlFor="Categoria" className="p2 mr-1">Categoria</label>
 
                                     <select name="Categoria" id="Categoria" className="categorySelect mr-3 p2" onChange={()=> filterSelect()}>

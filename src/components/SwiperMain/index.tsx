@@ -57,6 +57,8 @@ export default function SwiperMain({header = false, typeContent, typeSwiper} : {
             switch (typeContent) {
                 case TypeContent.Filme : 
                     setSwiperMain(mainCards.mainMovies)
+                    console.log(mainCards.mainMovies)
+                    console.log(mainCards.mainAnimes)
                     break;
                 case TypeContent.Série : 
                     setSwiperMain(mainCards.mainSeries)

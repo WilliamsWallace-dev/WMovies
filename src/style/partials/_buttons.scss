@@ -1,4 +1,33 @@
 //Card Description
+.primary-button{
+  position: relative;
+    background-color: transparent;
+    text-decoration: none;
+    border: none;
+
+    padding: 8px 16px;
+
+  cursor: pointer;
+
+  // border: 1px solid red;
+  color: $white-normal;
+  text-transform: uppercase;
+
+  background: rgba(240, 223, 223, 0.16);
+
+
+  // padding: 1rem 2rem ;
+
+  border-radius: 32px;
+  transition: .5s ease;
+  &:hover{
+    opacity: 1;
+    background: rgba(240, 223, 223, 0.32);
+    filter: drop-shadow(0px 4px 32px rgba(0, 0, 0, 0.25)) drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+    transform: translateY(-2px);
+  }
+
+}
 .second-button{
     position: relative;
     background-color: transparent;
