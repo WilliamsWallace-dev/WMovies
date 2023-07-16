@@ -61,7 +61,7 @@ export const AdmProfile = ()=>{
                     setSearch({...search,cards : result})
                 }else{
                     Array.from(Array(searchTMDB.total_pages), async (item,index)=>{
-                        if(index != 0 && item){
+                        if(index != 0){
                             const url = `${URLValues.searchMovie}${URLValues.api_key}&query=${search.text}&language=pt-BR&page=${index+1}`
                             const searchTMDB = await getTmdb(url);
                             result = [...result,...searchTMDB.results]
@@ -81,7 +81,7 @@ export const AdmProfile = ()=>{
                     setSearch({...search,cards : result})
                 }else{
                     Array.from(Array(searchTMDB.total_pages), async (item,index)=>{
-                        if(index != 0 && item){
+                        if(index != 0){
                             const url = `${URLValues.searchSerieAnimes}${URLValues.api_key}&query=${search.text}&language=pt-BR&page=${index+1}`
                             const searchTMDB = await getTmdb(url);
                             result = [...result,...searchTMDB.results]
@@ -98,7 +98,7 @@ export const AdmProfile = ()=>{
 
                 if(searchTMDB.total_pages > 1){
                     Array.from(Array(searchTMDB.total_pages), async (item,index)=>{
-                        if(index != 0 && item){
+                        if(index != 0){
                             const url = `${URLValues.searchSerieAnimes}${URLValues.api_key}&query=${search.text}&language=pt-BR&page=${index+1}`
                             const searchTMDB = await getTmdb(url);
                             result = [...result,...searchTMDB.results]
@@ -116,7 +116,7 @@ export const AdmProfile = ()=>{
                         setSearch({...search,cards : result})
                     }else{
                         Array.from(Array(searchTMDB.total_pages), async (item,index)=>{
-                            if(index != 0 && item){
+                            if(index != 0){
                                 const url = `${URLValues.searchMovie}${URLValues.api_key}&query=${search.text}&language=pt-BR&page=${index+1}`
                                 const searchTMDB = await getTmdb(url);
                                 result = [...result,...searchTMDB.results]

@@ -24,7 +24,7 @@ export const AuthProvider = ({children} : IAuthProvider) =>{
                 // https://firebase.google.com/docs/reference/js/firebase.User
                 const uid = userOn.uid;
                 const uemail = userOn.email
-                if(uid == "uJqqGNTncHPWRHcC3tvivS0R1dX2" && uemail){
+                if(uid == "d71VydFfu8ONnfoQiKKjCDjlh7w2" && uemail){
                     setUser({...user,id : uid,typeOfAccount : typeAccount.admin, email : uemail})
                 }else if(uid && uemail){
                     setUser({...user,id : uid,typeOfAccount : typeAccount.user, email : uemail})
