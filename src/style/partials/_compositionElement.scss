@@ -2,7 +2,13 @@
     width: 300px;
     height: 680px;
 
+    @include responsive(s){
+        width: 200px;
+        height: 450px;
+    }
+
     position: absolute;
+    z-index: -999;
 
     right: 0;
     // top: 0;
@@ -21,7 +27,13 @@
     width: 300px;
     height: 680px;
 
+    @include responsive(s){
+        width: 200px;
+        height: 450px;
+    }
+    
     position: absolute;
+    z-index: -999;
 
     left: 0;
     transform: rotate(180deg);

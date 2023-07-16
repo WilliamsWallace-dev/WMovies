@@ -26,7 +26,7 @@ export const CardList = ({listCards} : {listCards : CardType[]})=>{
                                             return(
                                                 <>
                                                     <div className="m-2">
-                                                        <Link to={`../${card.typeContent}/${card.id}` }><Card card = {card} key = {card.id}></Card></Link>
+                                                        <Link to={`../${card.typeContent}/descrição/${card.id}` }><Card card = {card} key = {card.id}></Card></Link>
                                                     </div>
                                                     
                                                 </>

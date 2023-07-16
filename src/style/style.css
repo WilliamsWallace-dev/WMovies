@@ -1049,6 +1049,20 @@ strong {
   background-image: url("../assets/icons/logoutIconActive.svg");
 }
 
+.LogoutButtonMobile {
+  position: relative;
+  background-color: transparent;
+  text-decoration: none;
+  border: none;
+  align-self: flex-end;
+  cursor: pointer;
+  color: #FDF9F9;
+  background: rgba(252, 248, 248, 0.05);
+  border-radius: 32px;
+  margin-top: 4px;
+  padding: 2px 4px;
+}
+
 .s-0 {
   margin: 0;
   padding: 0;
@@ -1485,76 +1499,6 @@ a {
   background-image: url("../img/people6.png");
 }
 
-.bg-icon-mobile::after {
-  background-image: url("../svg/icon-mobile.svg");
-  background-size: cover;
-  transition: 0.5s ease;
-  cursor: pointer;
-  filter: drop-shadow(0px 16px 24px rgba(169, 80, 196, 0.25));
-}
-.bg-icon-mobile:hover::after {
-  transform: scale(1.05);
-}
-
-.bg-icon-time::after {
-  background-image: url("../svg/icon-time.svg");
-  background-size: cover;
-  transition: 0.5s ease;
-  cursor: pointer;
-  filter: drop-shadow(0px 16px 24px rgba(169, 80, 196, 0.25));
-}
-.bg-icon-time:hover::after {
-  transform: scale(1.05);
-}
-
-.bg-icon-config::after {
-  background-image: url("../svg/icon-config.svg");
-  background-size: cover;
-  transition: 0.5s ease;
-  cursor: pointer;
-  filter: drop-shadow(0px 16px 24px rgba(169, 80, 196, 0.25));
-}
-.bg-icon-config:hover::after {
-  transform: scale(1.05);
-}
-
-.bg-icon-contactless::after {
-  background-image: url("../svg/icon-contactless.svg");
-  background-size: cover;
-  transition: 0.5s ease;
-  cursor: pointer;
-  filter: drop-shadow(0px 16px 24px rgba(169, 80, 196, 0.25));
-}
-.bg-icon-contactless:hover::after {
-  transform: scale(1.05);
-}
-
-.bg-icon-card::after {
-  background-image: url("../svg/icon-card.svg");
-  background-size: cover;
-  transition: 0.5s ease;
-  cursor: pointer;
-  filter: drop-shadow(0px 16px 24px rgba(169, 80, 196, 0.25));
-}
-.bg-icon-card:hover::after {
-  transform: scale(1.05);
-}
-
-.bg-icon-check::after {
-  background-image: url("../svg/icon-check.svg");
-  background-size: cover;
-  transition: 0.5s ease;
-  cursor: pointer;
-  filter: drop-shadow(0px 16px 24px rgba(169, 80, 196, 0.25));
-  width: 40px;
-  height: 40px;
-  top: 16px;
-  left: 8px;
-}
-.bg-icon-check:hover::after {
-  transform: scale(1.05);
-}
-
 .header {
   max-width: 100%;
   position: relative;
@@ -1696,15 +1640,12 @@ a {
   overflow: hidden;
   z-index: 999;
 }
-.headerMobile .menuHeaderMobile {
-  width: 100%;
-}
 .headerMobile .menuHeaderMobile .header-menu {
-  max-width: 100%;
+  width: 300px;
   position: fixed;
   bottom: 24px;
   z-index: 999;
-  padding: 0px 16px;
+  padding: 0px 8px;
   margin: 0 auto;
   border-radius: 32px;
   border: 3px solid #FDF9F9;
@@ -1713,14 +1654,14 @@ a {
 .headerMobile .menuHeaderMobile .menu-item-mobile {
   color: #F5E9E9;
   opacity: 0.8;
-  font-size: 12px;
+  font-size: 10px;
 }
 .headerMobile .menuHeaderMobile .menu-item-mobile::before {
   content: "";
   display: flex;
   position: relative;
-  width: 20px;
-  height: 20px;
+  width: 16px;
+  height: 16px;
   margin: 0 auto;
   margin-bottom: 4px;
 }
@@ -1728,7 +1669,7 @@ a {
   position: absolute;
   z-index: 9999;
   background-color: #0A0101;
-  left: 37.5%;
+  left: 33.7%;
   top: -10px;
   width: 80px;
   height: 80px;
@@ -2045,9 +1986,6 @@ a {
   background-position: center center;
   background-size: cover;
   background-repeat: no-repeat;
-}
-.SwiperListItem .rated {
-  margin-right: 0;
 }
 .SwiperListItem .rated::before {
   content: "";
@@ -2561,6 +2499,11 @@ a {
   position: relative;
   width: 400px;
 }
+@media screen and (max-width: 960px) {
+  .Profile .filterMenu .inputSearch {
+    width: 350px;
+  }
+}
 .Profile .filterMenu .inputSearch::after {
   content: "";
   display: inline-block;
@@ -2574,6 +2517,12 @@ a {
   background-position: center center;
   background-repeat: no-repeat;
   background-size: contain;
+}
+@media screen and (max-width: 960px) {
+  .Profile .filterMenu .inputSearch::after {
+    width: 16px;
+    height: 16px;
+  }
 }
 .Profile .filterMenu .inputSearch input {
   display: block;
@@ -2609,8 +2558,8 @@ a {
   color: #FDF9F9;
   display: inline-block;
   position: absolute;
-  top: 13%;
-  left: 27%;
+  top: 8%;
+  left: 20%;
   transition: 0.3s ease-in;
 }
 .Profile .filterMenu .inputSearch input:focus + label {
@@ -2622,7 +2571,13 @@ a {
   color: #FDF9F9;
   text-transform: uppercase;
 }
+@media screen and (max-width: 540px) {
+  .Profile .filterMenu .selectFilter-menu > :nth-child(1) {
+    margin-bottom: 8px;
+  }
+}
 .Profile .filterMenu select {
+  border: 1px solid red;
   padding: 0.075rem 1rem;
   font-weight: 600;
   border-radius: 4px;
@@ -2890,17 +2845,31 @@ a {
     font-size: 10px;
   }
 }
+@media screen and (max-width: 360px) {
+  .CardBoard .cardContainer .SwiperListItem {
+    width: 135px;
+    height: 199px;
+  }
+  .CardBoard .cardContainer .SwiperListItem .descriptionListItem {
+    padding: 0 8px;
+    margin: 0 auto;
+  }
+  .CardBoard .cardContainer .SwiperListItem .descriptionListItem p {
+    font-size: 10px;
+  }
+}
 
 .footerContainer {
   position: relative;
   width: 100%;
   height: 60%;
   align-items: flex-end;
+  margin-top: 0px;
 }
 @media screen and (max-width: 960px) {
   .footerContainer {
-    padding-bottom: 100px;
-    margin-top: 36px;
+    padding-bottom: 80px;
+    margin-top: 100px;
   }
 }
 .footerContainer::before {
@@ -2908,11 +2877,17 @@ a {
   position: absolute;
   width: 100%;
   height: 100%;
+  margin-bottom: 1rem;
   background-image: url("../assets/background/backgroundFooter.jpg");
   background-position: bottom;
   background-size: cover;
   background-repeat: no-repeat;
   z-index: -9999;
+}
+@media screen and (max-width: 960px) {
+  .footerContainer::before {
+    margin-bottom: 1rem;
+  }
 }
 .footerContainer::after {
   content: "";
@@ -3028,23 +3003,37 @@ a {
   width: 300px;
   height: 680px;
   position: absolute;
+  z-index: -999;
   right: 0;
   background: url("../assets/background/backgroundPopCorn.png");
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
 }
+@media screen and (max-width: 960px) {
+  .popCorn-right {
+    width: 200px;
+    height: 450px;
+  }
+}
 
 .popCorn-left {
   width: 300px;
   height: 680px;
   position: absolute;
+  z-index: -999;
   left: 0;
   transform: rotate(180deg);
   background: url("../assets/background/backgroundPopCorn.png");
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
+}
+@media screen and (max-width: 960px) {
+  .popCorn-left {
+    width: 200px;
+    height: 450px;
+  }
 }
 
 .cardContainer {
@@ -3089,6 +3078,13 @@ a {
   transform: matrix(1, 0, 0.28, 0.96, 0, 0);
   border-radius: 2px;
 }
+@media screen and (max-width: 960px) {
+  .filterMenu .title::after {
+    margin: 0 auto;
+    margin-top: 0.25rem;
+    background: linear-gradient(90deg, rgba(8, 5, 6, 0) 0%, #E50914 50%, rgba(8, 5, 6, 0) 91.67%);
+  }
+}
 .filterMenu .selectFilter-menu label {
   color: #FDF9F9;
   text-transform: uppercase;
@@ -3105,6 +3101,12 @@ a {
 @media screen and (max-width: 960px) {
   .filterMenu .inputSearch {
     width: 350px;
+    margin: 8px;
+  }
+}
+@media screen and (max-width: 360px) {
+  .filterMenu .inputSearch {
+    width: 320px;
     margin: 8px;
   }
 }
@@ -3138,6 +3140,7 @@ a {
   background-image: url("../assets/icons/inputSearchIcon.svg");
   background-repeat: no-repeat;
   background-size: contain;
+  transform: translateY(1px);
   padding: 0 0 1rem 3rem;
   font-family: "Mulish", sans-serif;
   font-size: 16px;
@@ -3169,8 +3172,13 @@ a {
   display: inline-block;
   position: absolute;
   top: 13%;
-  left: 27%;
+  left: 24%;
   transition: 0.3s ease-in;
+}
+@media screen and (max-width: 960px) {
+  .filterMenu .inputSearch label {
+    left: 15%;
+  }
 }
 .filterMenu input:focus + label {
   transform: translateX(15px);
@@ -3208,10 +3216,30 @@ a {
 .Search .inputSearch {
   width: 600px;
 }
+@media screen and (max-width: 960px) {
+  .Search .inputSearch {
+    width: 500px;
+  }
+}
+@media screen and (max-width: 540px) {
+  .Search .inputSearch {
+    width: 330px;
+  }
+}
 .Search .inputSearch input {
   padding: 0 0 1rem 6rem;
   background-color: transparent;
   background-image: url("../assets/icons/inputSearchIconSecond.svg");
+}
+@media screen and (max-width: 540px) {
+  .Search .inputSearch input {
+    padding: 0 0 2rem 3rem;
+  }
+}
+@media screen and (max-width: 540px) {
+  .Search .inputSearch input {
+    transform: translateY(8px);
+  }
 }
 .Search .inputSearch input:focus {
   box-shadow: 0 0 0 0;
@@ -3220,6 +3248,11 @@ a {
   background-image: url("../assets/icons/inputSearchIconSecondActive.svg");
   background-repeat: no-repeat;
   background-size: contain;
+}
+@media screen and (max-width: 540px) {
+  .Search .inputSearch input:focus {
+    transform: scale(1.01) translateY(7px) translateX(1px);
+  }
 }
 .Search .inputSearch label {
   font-family: "Mulish", sans-serif;

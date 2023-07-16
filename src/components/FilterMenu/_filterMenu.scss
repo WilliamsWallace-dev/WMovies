@@ -20,9 +20,14 @@
             background: linear-gradient(89.97deg, #E50914 0%, rgba(8, 5, 6, 0) 101.2%);
             transform: matrix(1, 0, 0.28, 0.96, 0, 0);
             border-radius: 2px;
-    
-            // background: linear-gradient(90deg, rgba(8, 5, 6, 0) 0%, #E50914 50%, rgba(8, 5, 6, 0) 91.67%);
-            // transform: matrix(1, 0, 0.28, 0.96, 0, 0);
+            
+            @include responsive (s){
+                margin: 0 auto;
+                margin-top: .25rem;
+                background: linear-gradient(90deg, rgba(8, 5, 6, 0) 0%, #E50914 50%, rgba(8, 5, 6, 0) 91.67%);
+                // transform: matrix(1, 0, 0.28, 0.96, 0, 0);
+            }
+            
       
         }
     }
@@ -52,6 +57,10 @@
         width: 400px;
         @include responsive(s){
             width: 350px;
+            margin: 8px;
+        }
+        @media screen and (max-width : 360px) {
+            width: 320px;
             margin: 8px;
         }
     
@@ -102,6 +111,8 @@
         // background-position: center center;
         background-repeat: no-repeat;
         background-size: contain;
+
+        transform: translateY(1px);
         
     
         padding: 0 0 1rem 3rem;
@@ -139,8 +150,12 @@
         position: absolute;
     
         top: 13%;
-        left: 27%;
-    
+        left: 24%;
+        
+        @include responsive(s){
+            left: 15%;
+        }
+
         transition: .3s ease-in;
         
         // transform: translateY(-30px) translateX(37px);
@@ -206,26 +221,44 @@
 .Search{
     .inputSearch{
         width: 600px;
+
+        @include responsive(s){
+            width: 500px;
+        }
+        @include responsive(xs){
+            width: 330px;
+        }
         // border: 1px solid red;
 
         input{
-            
+            // border: 1px solid red;
             padding: 0 0 1rem 6rem;
+
+            @include responsive (xs){
+                padding: 0 0 2rem 3rem;
+            }
 
             background-color: transparent;
             background-image: url("../assets/icons/inputSearchIconSecond.svg");
+            @include responsive (xs){
+                transform: translateY(8px);
+            }
+            
             // background-position: center center;
             &:focus{
                 box-shadow: 0 0 0 0;
                 outline: 0;
         
                 transform: scale(1.01) translateY(-.25px) translateX(1px);
+                @include responsive (xs){
+                    transform: scale(1.01) translateY(7px) translateX(1px);
+                }
                 background-image: url("../assets/icons/inputSearchIconSecondActive.svg");
                 background-repeat: no-repeat;
                 background-size: contain;
                 
                 // box-shadow: white;
-        
+                // background-image: url("../assets/icons/inputSearchIcon.svg");
             }
     }
     label{

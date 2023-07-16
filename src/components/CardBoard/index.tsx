@@ -192,10 +192,10 @@ export const CardBoard = ({typeContent} : {typeContent : string})=>{
     return(
         <>
             <section className="CardBoard container flex-column">
-                {/* <div className="popCorn-left "></div>
-                <div className="popCorn-right "></div> */}
-                <div className="filterMenu flex-center flex-space-around flex-wrap w-100" >
-                            <h3 className="title mr-3">{typeContent}</h3>
+                <div className="popCorn-left "></div>
+                <div className="popCorn-right "></div>
+                <div className="filterMenu flex-center flex-wrap w-100" >
+                            <h3 className="title mr-4">{typeContent}</h3>
                             {/* <div>
                                 <button className="second-button favoriteActive mr-2" onClick={(e)=>{favoritesActive(e)}}>Favoritos</button>
                                 <button className="second-button seeLater" onClick={(e)=>{seeLaterActive(e)}}>Ver Depois</button>
@@ -243,7 +243,7 @@ export const CardBoard = ({typeContent} : {typeContent : string})=>{
                                         return(
                                             <>
                                                 <div className="m-2">
-                                                    <Link to={`../${typeContent}/${card.id}` }><Card card = {card} key = {card.id}></Card></Link>
+                                                    <Link to={`../${typeContent}/descrição/${card.id}` }><Card card = {card} key = {card.id}></Card></Link>
                                                 </div>
                                                 
                                             </>

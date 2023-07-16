@@ -190,7 +190,7 @@ export default function SwiperList ({typeSwiper = "Filme" , id} : {typeSwiper : 
                                     if(index < 15)
                                     return (
                                         <>
-                                            <SwiperSlide><Link to={`../${typeSwiper}/${movie.id}`}><Card card = {movie} key={movie.id} ></Card></Link></SwiperSlide>
+                                            <SwiperSlide><Link to={`../${typeSwiper}/descrição/${movie.id}`}><Card card = {movie} key={movie.id} ></Card></Link></SwiperSlide>
                                         </>
                                     )
                                 })
@@ -199,7 +199,7 @@ export default function SwiperList ({typeSwiper = "Filme" , id} : {typeSwiper : 
                                     if(index < 2)
                                     return (
                                         <>
-                                            <SwiperSlide><Link to={`../${typeSwiper}/${movie.id}`}><Card card = {movie} key={movie.id} ></Card></Link></SwiperSlide>
+                                            <SwiperSlide><Link to={`../${typeSwiper}/descrição/${movie.id}`}><Card card = {movie} key={movie.id} ></Card></Link></SwiperSlide>
                                         </>
                                     )
                                 })

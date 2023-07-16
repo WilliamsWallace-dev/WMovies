@@ -910,3 +910,24 @@ transition: .5s ease;
     }
   }
 }
+
+.LogoutButtonMobile{
+  position: relative;
+  background-color: transparent;
+  text-decoration: none;
+  border: none;
+
+  align-self: flex-end;
+  
+  cursor: pointer;
+
+  // border: 1px solid red;
+  color: $white-normal;
+
+  background: rgba(252, 248, 248, 0.05);
+  
+  border-radius: 32px;
+
+  margin-top: 4px;
+  padding: 2px 4px;
+}

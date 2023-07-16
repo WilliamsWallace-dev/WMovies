@@ -445,6 +445,9 @@
             position: relative;
 
             width: 400px;
+            @include responsive (s){
+                width: 350px;
+            }
         
             &::after{
                 content: "";
@@ -453,6 +456,11 @@
         
                 width: 20px;
                 height: 20px;
+
+                @include responsive(s){
+                    width: 16px;
+                    height: 16px;
+                }
         
                 top: 13%;
                 left: 4%;
@@ -516,8 +524,8 @@
                 display: inline-block;
                 position: absolute;
             
-                top: 13%;
-                left: 27%;
+                top: 8%;
+                left: 20%;
             
                 transition: .3s ease-in;
                 
@@ -538,10 +546,15 @@
                 text-transform: uppercase;
                 // border: 1px solid red;
             }
+            & > :nth-child(1){
+                @include responsive (xs){
+                    margin-bottom: 8px;
+                }
+            }
         }
 
         select{
-            // border: 1px solid red;
+            border: 1px solid red;
 
             padding: .075rem 1rem;
             font-weight: 600;

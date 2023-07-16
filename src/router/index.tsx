@@ -26,12 +26,13 @@ export const AppRoutes = ()=>{
                 <Routes>
                     <Route path="/" element = {<><Header></Header><Footer></Footer></>}>
                         <Route path="" element = {<HomePage></HomePage>}></Route>
-                        <Route path=":typeContent/:id" element = {<DescriptionID></DescriptionID>}></Route>
+                        <Route path=":typeContent/descrição/:id" element = {<DescriptionID></DescriptionID>}></Route>
                         <Route path="Login" element={<ProtectedLoginRegisteRoute><LoginForm></LoginForm></ProtectedLoginRegisteRoute>}></Route>
                         <Route path="Register" element={<ProtectedLoginRegisteRoute><Register></Register></ProtectedLoginRegisteRoute>}></Route>
                         <Route path="Profile/:id" element = {user && user.typeOfAccount != typeAccount.admin ? <ProtecteLayout><UserProfile></UserProfile></ProtecteLayout> : <ProtecteLayout><AdmProfile></AdmProfile></ProtecteLayout>}></Route>
-                        <Route path=":typeContent" element = {<CardBoardPage></CardBoardPage>}></Route>
+                        <Route path="Lista/:typeContent/" element = {<CardBoardPage></CardBoardPage>}></Route>
                         <Route path="Search/:search?" element = {<SearchPage></SearchPage>}></Route>
+                        <Route path="*" element = {<HomePage></HomePage>}></Route>
                     </Route>
                 </Routes>
             </BrowserRouter>

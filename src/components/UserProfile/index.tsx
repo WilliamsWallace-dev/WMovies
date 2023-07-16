@@ -200,10 +200,12 @@ export const UserProfile = ()=>{
             </div>
             <section className="Profile flex-column container">
                     <section className="UserContainer flex-center flex-between">
-                        <div className="flex-center">
+                        <div className="flex-center flex-wrap">
                             <div className="UserAvatar"  onMouseEnter = {(e)=>{e.currentTarget.children[0].classList.add("changeAvatarHover")}} onMouseLeave = {(e)=>{e.currentTarget.children[0].classList.remove("changeAvatarHover")}}  onClick={(e)=>{e.currentTarget.nextElementSibling?.classList.add("avatarBoardEnable")}}>
                                 <div className="changeAvatar p5" >Change Avatar</div>
-                                <div className="imgAvatar"><img src={user.avatar.imgAvatar} alt="" /></div>
+                                <div className="imgAvatar">
+                                    <img src={user.avatar.imgAvatar} alt="" />  
+                                </div>
                             </div>
                             <section className="avatarBoard flex-center">
                                 <ul className="avatarList flex-center flex-wrap">
@@ -222,7 +224,7 @@ export const UserProfile = ()=>{
                                 <button className="closeVideo" onClick={(e)=>{e.currentTarget.parentElement?.classList.remove("avatarBoardEnable"),updateDocumentUserAvatar(user)}}>X</button>
                             </section>
                             <div className="UserInf flex-center flex-column ml-3">
-                                <p className="typeOfAccount">Usuário</p>
+                                <div className="flex-center flex-between w-100"><p className="typeOfAccount">Usuário</p>{window.innerWidth < 600 && <button className="LogoutButtonMobile p4" onClick={()=>{logout() ; navigate("/")}}>Sair</button>}</div>
                                 <h1 className="title">{user.username}</h1>
                                 <ul className="UserInf-menu flex-center flex-column w-100 mt-1 ">
                                     <li className="UserInf-item flex-center flex-between w-100">
@@ -250,41 +252,48 @@ export const UserProfile = ()=>{
                                 </ul>
                             </div> 
                         </div>
+                            {window.innerWidth >= 600 && <button className="LogoutButton p4" onClick={()=>{logout() ; navigate("/")}}>Sair</button>}
                             
-                            <button className="LogoutButton p4" onClick={()=>{logout() ; navigate("/")}}>Sair</button>
                 
                     </section>
-                    <section className="filterMenu flex-center flex-between w-100 mt-5 mb-2" >
-                            <div>
+
+                    <section className="filterMenu flex-center flex-space-around flex-wrap w-100 mt-5 mb-2" >
+                            <div className="mb-1">
                                 <button className="second-button favoriteActive mr-2" onClick={(e)=>{favoritesActive(e)}}>Favoritos</button>
                                 <button className="second-button seeLater" onClick={(e)=>{seeLaterActive(e)}}>Ver Depois</button>
                             </div>
                             <div className="inputSearch">
                                     <input className="" type="text" id="search" value={search} onChange={handleFieldsChange}  onBlur={changeLabel} onKeyDown={SearchCards} placeholder=""/>
-                                    <label id="searchLabel" htmlFor="search">Digite o Título do Filmes, Serie...</label>
+                                    <label  id="searchLabel" htmlFor="search">Digite o Título do Filmes, Serie...</label>
                             </div> 
-                            <div className="selectFilter-menu">
-                                <label htmlFor="Categoria" className="p2 mr-1">Categoria</label>
+                            <div className="selectFilter-menu flex-center flex-wrap">
+                                <div className="flex-center">
+                                    <label htmlFor="Categoria" className="p2 mr-1">Categoria</label>
 
-                                <select name="Categoria" id="Categoria" className="categorySelect mr-3 p2" onChange={()=> filterSelect()}>
-                                    <option value="Todos">Todos</option>
-                                    <option value="Filme">Filme</option>
-                                    <option value="Série">Série</option>
-                                    <option value="Anime">Anime</option>
-                                </select>
+                                    <select name="Categoria" id="Categoria" className="categorySelect mr-3 p2" onChange={()=> filterSelect()}>
+                                        <option value="Todos">Todos</option>
+                                        <option value="Filme">Filme</option>
+                                        <option value="Série">Série</option>
+                                        <option value="Anime">Anime</option>
+                                    </select>
+                                </div>
+                                <div className="flex-center">
+                                    <label htmlFor="Gênero" className="p2 mr-1">Gênero</label>
 
-                                <label htmlFor="Gênero" className="p2 mr-1">Gênero</label>
+                                    <select name="Gênero" id="Gênero" className="genreSelect p2" onChange={()=> filterSelect()}>
+                                        <option value="Todos">Todos</option>
+                                        {Genre.All.map((e)=>{
+                                            return (
+                                                <>
+                                                    <option value={e.id}>{e.name}</option>
+                                                </>
+                                            )
+                                        })}
+                                    </select>
+                                </div>
+                                
 
-                                <select name="Gênero" id="Gênero" className="genreSelect p2" onChange={()=> filterSelect()}>
-                                    <option value="Todos">Todos</option>
-                                    {Genre.All.map((e)=>{
-                                        return (
-                                            <>
-                                                <option value={e.id}>{e.name}</option>
-                                            </>
-                                        )
-                                    })}
-                                </select>
+                                
                             </div>
                             
                     </section>

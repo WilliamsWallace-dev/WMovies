@@ -36,7 +36,8 @@ export const SearchPage = ()=>{
                 {
                     cards.length == [...moviesList,...animesList,...seriesList].length ? 
                         <>
-                            <MovieTime></MovieTime>
+                            {/* <MovieTime></MovieTime> */}
+                            <div className="mb-5"> <MovieTime></MovieTime> </div>
                         </> 
                         : 
                         <>

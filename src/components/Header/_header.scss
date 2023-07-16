@@ -191,16 +191,19 @@
     }
     .menuHeaderMobile{
   
-        width: 100%;
+        // width: 100%;
+
+       
     
         .header-menu{
-            max-width: 100%;
+            width: 300px;
+            
 
             position: fixed;
             bottom: 24px;
             z-index: 999;
             
-            padding: 0px 16px;
+            padding: 0px 8px;
             margin: 0 auto;
 
             // overflow: hidden;
@@ -208,6 +211,7 @@
             border-radius: 32px;
 
             border: 3px solid $white-normal;
+            // border: 1px solid red;
             background-color: $black-dark;
             // background: rgba(252, 248, 248, 0.05);
             
@@ -218,7 +222,7 @@
             color: $white-dark;
             opacity: .8;
 
-            font-size: 12px;
+            font-size: 10px;
             // border: 1px solid green;s
 
             &::before{
@@ -226,8 +230,8 @@
                 display: flex;
                 position: relative;
 
-                width: 20px;
-                height: 20px;
+                width: 16px;
+                height: 16px;
 
                 // border: 1px solide red;
                 // background-color: red;
@@ -247,7 +251,7 @@
              background-color: $black-dark;
             
 
-            left: 37.5%;
+            left: 33.7%;
             top: -10px;
 
             width: 80px;

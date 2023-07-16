@@ -112,7 +112,7 @@ export default function CardMain({header ,key , card} : {header? : boolean , key
                             {window.innerWidth < 540 ? card.overview.length < 200 ? card.overview : `${card.overview.split(".")[0]}...` : card.overview.length < 320 ? card.overview : `${card.overview.split(".")[0]}.${card.overview.split(".")[1]}... `}
                             {/* {card.overview.length < 320 ? card.overview : `${card.overview.split(".")[0]}... `} */}
                         </p>
-                        <Link to={`../${card.typeContent}/${card.id}` }><button className="second-button buttonIconPlay mt-2">ver mais</button></Link>
+                        <Link to={`../${card.typeContent}/descrição/${card.id}` }><button className="second-button buttonIconPlay mt-2">ver mais</button></Link>
                     </div>
                 </section>
                 {/* <div className={header ? "backgroundPoster" : "backgroundPoster " }></div> */}
