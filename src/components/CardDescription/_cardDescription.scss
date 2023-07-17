@@ -36,7 +36,9 @@
 
   .closeVideo{
     position: absolute;
-    top: 180px;
+    top: -40px;
+    right: -20px;
+    z-index: 999;
 
     background-color: transparent;
     color: $white-normal;
@@ -66,11 +68,29 @@
 
     transition: .8s ease;
   }
+  .iframeContainer{
+    margin: 0 auto;
 
-  iframe{
     height: 50%;
-    width: 50%;
+    width: 55%;
     transform: translateY(50%);
+
+    @include responsive(s){
+      height: 40%;
+      width: 80%;
+      transform: translateY(70%);
+    }
+    @include responsive(xs){
+      height: 25%;
+      width: 80%;
+      transform: translateY(100%);
+    }
+  }
+  iframe{
+    // display: inline-block;
+    width: 100%;
+    height: 100%;
+    
     
     border: 3px solid $white-light;
     border-radius: 8px;
@@ -106,11 +126,20 @@
     transition: .8s ease;
   }
 
-  .closeVideo{
+  .closeButton{
     opacity: 0;
     transition: .5s ease;
   }
 }
+
+
+
+
+
+// .closeVideo{
+//   opacity: 0;
+//   transition: .5s ease;
+// }
 
 // .videoContainerEnable{
 //   opacity: 1;

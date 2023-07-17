@@ -354,6 +354,92 @@ transition: .5s ease;
   }
   }
 
+  .playIconMovile{
+    position: relative;
+    background-color: transparent;
+    text-decoration: none;
+    border: none;
+
+    cursor: pointer;
+
+    color: $white-normal;
+
+    background: rgba(240, 223, 223, 0.16);
+
+    width: 48px;
+    height: 48px;
+
+    border-radius: 32px;
+
+&::before{
+    content: "";
+    display: inline-block;
+    position: absolute;
+
+    left: 33%;
+    top: 26%;
+    width: 24px;
+    height: 24px;
+
+    background-image: url("../assets/icons/iconPlayMobile.svg");
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    transition: .5s ease;
+}
+transition: .5s ease;
+&:hover{
+    opacity: 1;
+    background: rgba(240, 223, 223, 0.32);
+    filter: drop-shadow(0px 4px 32px rgba(0, 0, 0, 0.25)) drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+    transform: translateY(-2px);
+}
+}
+
+.playIconMovileDisable{
+  position: relative;
+  background-color: transparent;
+  text-decoration: none;
+  border: none;
+
+  cursor: none;
+  pointer-events: none;
+  opacity: .5;
+
+  color: $white-normal;
+
+  background: rgba(240, 223, 223, 0.16);
+
+  width: 48px;
+  height: 48px;
+
+  border-radius: 32px;
+
+&::before{
+  content: "";
+  display: inline-block;
+  position: absolute;
+
+  left: 33%;
+  top: 26%;
+  width: 24px;
+  height: 24px;
+
+  background-image: url("../assets/icons/iconPlayMobile.svg");
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  transition: .5s ease;
+}
+transition: .5s ease;
+&:hover{
+  opacity: 1;
+  background: rgba(240, 223, 223, 0.32);
+  filter: drop-shadow(0px 4px 32px rgba(0, 0, 0, 0.25)) drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+  transform: translateY(-2px);
+}
+}
+
 .starButton{
     position: relative;
     background-color: transparent;
@@ -940,7 +1026,7 @@ transition: .5s ease;
   }
 }
 
-.LogoutButtonMobile{
+.tertiaryButton{
   position: relative;
   background-color: transparent;
   text-decoration: none;
@@ -959,4 +1045,40 @@ transition: .5s ease;
 
   margin-top: 4px;
   padding: 2px 4px;
+}
+
+
+.closeButton{
+  position: absolute;
+  top: -40px;
+  right: -20px;
+  z-index: 999;
+
+  background-color: transparent;
+  color: $white-normal;
+  opacity: .8;
+
+  border: none;
+
+  font-family: "Mulish", sans-serif;
+  font-size: 24px;
+  font-weight: 600;
+
+  padding: .25rem .5rem;
+
+  // border: 1px solid white;
+
+  cursor: pointer;
+
+  transition: .2s ease;
+
+
+  &:hover{
+    color: $primary-dark;
+    font-weight: 700;
+    opacity: 1;
+    transform:translateY(-3px) ;
+  }
+
+  transition: .8s ease;
 }

@@ -31,7 +31,7 @@ export const AppProvidor = ({children} : {children : ReactNode}) =>{
         const result1 = await getDocumentDbCardList("MainMovies")
         console.log(result1)
         const result2 = await getDocumentDbCardList("MainSeries")
-        const result3 = await getDocumentDbCardList("MainMovies")
+        const result3 = await getDocumentDbCardList("MainAnimes")
         console.log(result3)
          setMainCards({mainMovies : result1,mainSeries : result2,mainAnimes : result3});
     }

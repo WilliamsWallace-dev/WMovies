@@ -155,8 +155,6 @@ export const UserProfile = ()=>{
 
     // console.log(feature.typeContent, feature.typeOp)
 
-    console.log(cards.listCard)
-
     const filterSelect = ()=>{
 
         let listCard : CardType [] | undefined;
@@ -208,6 +206,7 @@ export const UserProfile = ()=>{
                                 </div>
                             </div>
                             <section className="avatarBoard flex-center">
+                                <div className="avatarListContainer">
                                 <ul className="avatarList flex-center flex-wrap">
                                     {
                                         avatarImg.map((avatar,index)=>{
@@ -221,10 +220,13 @@ export const UserProfile = ()=>{
                                         })
                                     }   
                                 </ul>
-                                <button className="closeVideo" onClick={(e)=>{e.currentTarget.parentElement?.classList.remove("avatarBoardEnable"),updateDocumentUserAvatar(user)}}>X</button>
+                                <button className="closeButton" onClick={(e)=>{e.currentTarget.parentElement?.parentElement?.classList.remove("avatarBoardEnable"),updateDocumentUserAvatar(user)}}>X</button>
+                                </div>
+                                
+                                
                             </section>
                             <div className="UserInf flex-center flex-column ml-3">
-                                <div className="flex-center flex-between w-100"><p className="typeOfAccount">Usuário</p>{window.innerWidth < 600 && <button className="LogoutButtonMobile p4" onClick={()=>{logout() ; navigate("/")}}>Sair</button>}</div>
+                                <div className="flex-center flex-between w-100"><p className="typeOfAccount">Usuário</p>{window.innerWidth < 600 && <button className="tertiaryButton p4" onClick={()=>{logout() ; navigate("/")}}>Sair</button>}</div>
                                 <h1 className="title">{user.username}</h1>
                                 <ul className="UserInf-menu flex-center flex-column w-100 mt-1 ">
                                     <li className="UserInf-item flex-center flex-between w-100">

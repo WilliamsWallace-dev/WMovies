@@ -9,7 +9,7 @@ export const CardBoardPage = ()=>{
     const {typeContent} = useParams()
 
     return(
-        <>
+        <>  
             { typeContent && <SwiperMain header = {true} typeContent = {typeContent} typeSwiper = {"CardDescription"}></SwiperMain> }
             { typeContent && <CardBoard typeContent={typeContent}></CardBoard> }
         </>

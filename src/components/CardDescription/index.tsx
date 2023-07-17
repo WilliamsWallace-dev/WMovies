@@ -125,6 +125,7 @@ export default function CardDescription({cardContent ,stopSwiper} : {cardContent
                             {
                                 (cardContent && user.favorites != undefined) && user.favorites.find((favoritesCard)=> favoritesCard.id === cardContent.id) ? <button className="likeButtonActive" onClick= {(e)=>{ProtectedFunction(()=> favoritesActive(e,cardContent))}}></button> : <button className="likeButton" onClick= {(e)=>{ProtectedFunction(()=> cardContent && favoritesActive(e,cardContent))}}></button>
                             }
+                            {window.innerWidth >= 960 ? <></> : cardContent?.video ? <button className="playIconMovile ml-2" onClick={()=>cardContent.video && openVideoUtil(cardContent.video.key)}></button> :  <button className="playIconMovileDisable ml-2" ></button> }
                             {/* <button className="saveButton p3 mr-2" onClick= {()=>{ProtectedFunction(()=> (user && card) && updateUserCards("seeLater",card,user))}}> Ver depois</button>
                             <button className="likeButton" onClick= {()=>{ProtectedFunction(()=> (user && card) && updateUserCards("favorites",card,user))}}></button> */}
                         </div>
@@ -191,8 +192,9 @@ export default function CardDescription({cardContent ,stopSwiper} : {cardContent
                             }
                             {/* <button className="saveButton p3 mr-2" onClick= {()=>{ProtectedFunction(()=> (user && card) && updateUserCards("seeLater",card,user))}}> Ver depois</button>
                             <button className="likeButton" onClick= {()=>{ProtectedFunction(()=> (user && card) && updateUserCards("favorites",card,user))}}></button> */}
+                            {window.innerWidth >= 960 ? <></> : card?.video ? <button className="playIconMovile ml-2" onClick={()=>card.video && openVideoUtil(card.video.key)}></button> :  <button className="playIconMovileDisable ml-2" ></button> }
                         </div>
-                        
+                            
                     </div>
                     {window.innerWidth < 960 ? <></> : card?.video ? <div className="playIcon" onClick={()=>card.video && openVideoUtil(card.video.key)}></div> : <div className="playIconDisable" ></div>}
                     {/* { card?.video ? <div className="playIcon" onClick={()=>card.video && openVideoUtil(card.video.key)}></div> : <div className="playIconDisable" ></div>} */}

@@ -23,6 +23,7 @@ import { AppContextType, CardType, TypeContent } from "../../Types";
 import CardDescription from "../CardDescription";
 import { closeVideoUtil, openVideoUtil } from "../../utils/videoUtil";
 import { Loading } from "../Loading";
+import { VideoContainer } from "../VideoContainer";
 
 
 
@@ -57,8 +58,6 @@ export default function SwiperMain({header = false, typeContent, typeSwiper} : {
             switch (typeContent) {
                 case TypeContent.Filme : 
                     setSwiperMain(mainCards.mainMovies)
-                    console.log(mainCards.mainMovies)
-                    console.log(mainCards.mainAnimes)
                     break;
                 case TypeContent.Série : 
                     setSwiperMain(mainCards.mainSeries)
@@ -81,10 +80,13 @@ export default function SwiperMain({header = false, typeContent, typeSwiper} : {
     } else { 
         return(
         <>
-         <section className="videoContainer videoContainerDisable">  
-                <iframe width="1280" height="720" src="" title="Touch of Heaven - David Funk | Worship Night" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen></iframe>
-                <button className="closeVideo" onClick={()=>{startSwiper()}}>X</button>
-        </section>
+        <VideoContainer></VideoContainer>
+         {/* <section className="videoContainer videoContainerDisable">
+                    <div className="iframeContainer relative">
+                        <iframe width="1280" height="720" src="" title="" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen></iframe>
+                        <button className="closeButton" onClick={closeVideoUtil}>X</button>
+                    </div>
+            </section> */}
         <section className= {header ? typeSwiper == "CardMain" ? "SwiperMain" : "SwiperTertiary" : "SwiperSecondary "}>
             <Swiper
                 onInit={onInit}

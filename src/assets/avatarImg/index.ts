@@ -40,7 +40,7 @@ export const avatarImg : AvatarImgType[] = [
     
     {
         imgAvatar : "https://i.pinimg.com/564x/66/1b/5f/661b5f5bcf5a334a0618c3cc090f28eb.jpg",
-        imgBackground : "https://www.xtrafondos.com/wallpapers/resized/rocket-raccoon-marvels-guardianes-de-la-galaxia-8280.jpg?s=large",
+        imgBackground : "https://www.xtrafondos.com/wallpapers/rocket-raccoon-marvels-guardianes-de-la-galaxia-8280.jpg",
     },
     
     {
@@ -116,7 +116,7 @@ export const avatarImg : AvatarImgType[] = [
     
     {
         imgAvatar : "https://i.pinimg.com/564x/5c/81/6a/5c816a21427093cdf8f13f7cb522b2f4.jpg",
-        imgBackground : "https://i.pinimg.com/564x/33/02/93/330293b9c3728dea20f40e37f8194e5f.jpg",
+        imgBackground : "https://www.xtrafondos.com/wallpapers/kakashi-hatake-3098.jpg",
     },
     
     {

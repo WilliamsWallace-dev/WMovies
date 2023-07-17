@@ -29,11 +29,12 @@ export const LoginForm = ()=>{
         e.preventDefault()
         try {
             const result = await auth.authenticate(fields.email,fields.password)
-            if(result == "auth/invalid-email") throw result
+            if(result) throw result
             navigate(-1)
         }catch(error){
+            console.log(error)
             const err = document.querySelector(".Form .error");
-            err ? err.innerHTML = "E-mail / Senha inválido" : ""
+            err ? error == "auth/user-not-found" ? err.innerHTML = "Usuário não existente" : err.innerHTML = "E-mail / Senha inválido" : ""
         }
         setFields(initialState)
         document.querySelectorAll(".Form label").forEach((e,index)=>{

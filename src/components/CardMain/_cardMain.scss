@@ -141,6 +141,8 @@
 
         }
         @include responsive(s){
+            text-align: center;
+            // border: 1px solid red;
             &::after{
                 content: "";
                 display: block;
