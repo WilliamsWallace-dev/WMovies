@@ -15,7 +15,7 @@ export default function Header (){
         <>
             <header className="header flex-center flex-between">
                 <div className="header-menu flex-center">
-                    <div className="logo mr-5"></div>
+                    <Link to={"/"}><div className="logo mr-5"></div></Link>
                     <nav>
                         <ul className="menu-list flex-center">
                             <NavLink to={"/"}><li className="menu-item mr-2 p-1 px-4">Início</li></NavLink>
@@ -34,7 +34,7 @@ export default function Header (){
             <header className="headerMobile">
                 <section className="header flex-center flex-between">
                     <div className="header-menu flex-center">
-                            <div className="logo"></div>
+                        <Link to={"/"}><div className="logo"></div></Link>
                         </div>
                         <div className="header-user flex-center">
                             <NavLink className="activeSearch" to="Search"><SearchButton></SearchButton></NavLink>
