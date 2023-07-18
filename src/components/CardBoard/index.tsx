@@ -95,7 +95,6 @@ export const CardBoard = ({typeContent} : {typeContent : string})=>{
             })
             // console.log(result)
             result && setCards(result)
-
         }
     }
 

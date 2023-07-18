@@ -12,7 +12,7 @@ export const PaginationComponent = ({pages,setCurrentPage,currentPage} : {pages 
                 })}
                 {currentPage+1 < pages && <button className="paginationControllRight p1 ml-2" onClick = {()=> setCurrentPage(currentPage+1)}>&rarr;</button>}
             </div> */}
-            <ScrollToTop currentPage={currentPage}></ScrollToTop>
+            <ScrollToTop currentPage={currentPage} setCurrentPage={setCurrentPage}></ScrollToTop>
             <div className="pages my-3">
                 {currentPage > 0 && pages && <button className="paginationControllLeft p1 mr-2" onClick = {()=> setCurrentPage(currentPage-1)}>&larr;</button>}
                 {Array.from(Array(pages), (item,index)=>{
