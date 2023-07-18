@@ -187,7 +187,7 @@ export default function SwiperList ({typeSwiper = "Filme" , id} : {typeSwiper : 
                                         return(1)
                                         else return (-1)
                                 }).map((movie,index)=>{
-                                    if(index < 15)
+                                    if(index < 12)
                                     return (
                                         <>
                                             <SwiperSlide><Link to={`../${typeSwiper}/descrição/${movie.id}`}><Card card = {movie} key={movie.id} ></Card></Link></SwiperSlide>
@@ -196,7 +196,7 @@ export default function SwiperList ({typeSwiper = "Filme" , id} : {typeSwiper : 
                                 })
                                 :
                                 swiperList && swiperList.map((movie,index)=>{
-                                    if(index < 2)
+                                    if(index < 12)
                                     return (
                                         <>
                                             <SwiperSlide><Link to={`../${typeSwiper}/descrição/${movie.id}`}><Card card = {movie} key={movie.id} ></Card></Link></SwiperSlide>
