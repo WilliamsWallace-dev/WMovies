@@ -31,7 +31,7 @@ export const AppRoutes = ()=>{
                         <Route path="Register" element={<ProtectedLoginRegisteRoute><Register></Register></ProtectedLoginRegisteRoute>}></Route>
                         <Route path="Profile/:id" element = {user && user.typeOfAccount != typeAccount.admin ? <ProtecteLayout><UserProfile></UserProfile></ProtecteLayout> : <ProtecteLayout><AdmProfile></AdmProfile></ProtecteLayout>}></Route>
                         <Route path="Lista/:typeContent/page/:pg" element = {<CardBoardPage></CardBoardPage>}></Route>
-                        <Route path="Search/:search/:pg" element = {<SearchPage></SearchPage>}></Route>
+                        <Route path="Search" element = {<SearchPage></SearchPage>}></Route>
                         <Route path="*" element = {<HomePage></HomePage>}></Route>
                     </Route>
                 </Routes>

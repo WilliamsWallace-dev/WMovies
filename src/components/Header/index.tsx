@@ -27,7 +27,7 @@ export default function Header (){
                     </nav>
                 </div>
                 <div className="header-user flex-center">
-                    <NavLink className="activeSearch" to="Search/=/0"><SearchButton></SearchButton></NavLink>
+                    <NavLink className="activeSearch" to="Search"><SearchButton></SearchButton></NavLink>
                     {user && user.id ? <NavLink className="SignedIn" to = {`Profile/${user.id}`} ><UserButton signedIn = {true}></UserButton></NavLink> : <NavLink className="activeLogin" to="Login"><UserButton signedIn = {false}>Minha conta</UserButton></NavLink>}
                 </div>
             </header>
@@ -46,12 +46,12 @@ export default function Header (){
                             <ul className=" flex-center flex-between relative w-100">
                                 <div className="flex-center">
                                 <NavLink to={"/"}><li className="menu-item-mobile icon-inicio p1 p-1 mx-1">Incio</li></NavLink>
-                                <NavLink to={"Lista/Filme"}><li className="menu-item-mobile icon-filme p1 p-1">Filme</li></NavLink>
+                                <NavLink to={`Lista/Filme/page/${1}`}><li className="menu-item-mobile icon-filme p1 p-1">Filme</li></NavLink>
                                 </div>
                                 {user && user.id ? <NavLink className="SignedIn" to = {`Profile/${user.id}`} ><li className="menu-item-main flex-center p1"><UserButton signedIn = {true}></UserButton></li></NavLink> : <NavLink className="activeLogin" to="Login"><li className="menu-item-main flex-center p1"><UserButton signedIn = {false}>Login</UserButton></li></NavLink>}
                                 <div className="flex-center">
-                                <NavLink to={"Lista/Série"}><li className="menu-item-mobile icon-série p1 p-1">Série</li></NavLink>
-                                <NavLink to={"Lista/Anime"}><li className="menu-item-mobile icon-anime p1 p-1 mx-1">Anime</li></NavLink>
+                                <NavLink to={`Lista/Série/page/${1}`}><li className="menu-item-mobile icon-serie p1 p-1">Série</li></NavLink>
+                                <NavLink to={`Lista/Anime/page/${1}`}><li className="menu-item-mobile icon-anime p1 p-1 mx-1">Anime</li></NavLink>
                                 </div>
                             </ul>
                         </nav>
