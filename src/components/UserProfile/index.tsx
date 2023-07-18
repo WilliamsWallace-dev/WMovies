@@ -153,6 +153,7 @@ export const UserProfile = ()=>{
         window.scrollTo(0,0);
     },[currentPage])
 
+    console.log(user.typeOfAccount)
     // console.log(feature.typeContent, feature.typeOp)
 
     const filterSelect = ()=>{

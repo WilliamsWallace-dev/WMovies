@@ -30,20 +30,38 @@ export const RegisterForm = ()=>{
         const label = document.querySelectorAll("label");
         // console.log(label)
         e.preventDefault()
-        if(fields.username && fields.username?.length < 3){
+        if(fields.username && fields.username?.length < 4){
             error[0].innerHTML = "username inválido! ( min 4 caracteres )"
         }else if(fields.checkPassword != fields.password){
             error[3].innerHTML = "Senhas diferentes!"
         }else{
             const e = await createAccount(fields as IUser)
-            if(e == "auth/invalid-email"){
-                error[1].innerHTML = "e-mail inválido! ( xx@xx.com )"
-            }else if(e == "auth/weak-password"){
-                error[2].innerHTML = "senha fraca! ( min 6 caracteres )"
-            }if (e == "auth/email-already-in-use"){
-                error[1].innerHTML = "e-mail já existente!"
-            }else if(!e){navigate(-2)}
+            if(e){
+                if(e == "auth/invalid-email"){
+                    error[1].innerHTML = "e-mail inválido! ( xx@xx.com )"
+                }else if(e == "auth/weak-password"){
+                    error[2].innerHTML = "senha fraca! ( min 6 caracteres )"
+                }if (e == "auth/email-already-in-use"){
+                    error[1].innerHTML = "e-mail já existente!"
+                }
+            }else navigate(-2)
+            
         }
+        error.forEach((e)=>{
+            if(e.innerHTML != ""){
+                label.forEach((e,i)=>{
+                    if(i==0)
+                        e.innerHTML = "Usuário"
+                    else if(i==1)
+                        e.innerHTML = "E-mail"
+                    else if(i==2)
+                        e.innerHTML = "Senha"
+                    else if(i==3)
+                        e.innerHTML = "Repita sua senha"
+                
+                })
+            }        
+        })
         
         setFields(initialState)
     }

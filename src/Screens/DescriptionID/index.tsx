@@ -2,7 +2,6 @@ import { useParams } from "react-router-dom"
 import CardDescription from "../../components/CardDescription"
 import SwiperList from "../../components/SwiperList"
 import { ScrollToTop } from "../../components/ScrollToTop";
-import { closeVideoUtil } from "../../utils/videoUtil";
 import { VideoContainer } from "../../components/VideoContainer";
 
 

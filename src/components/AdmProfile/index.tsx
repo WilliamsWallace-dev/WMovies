@@ -29,7 +29,7 @@ export const AdmProfile = ()=>{
             const label = document.querySelector("#searchLabel") ;
             if(label != null) label.innerHTML = ""
         }
-    },[loading])
+    },[loading,search.text])
 
 
     const handleFieldsChange = (e : {currentTarget : {value : string}})=>{
@@ -61,7 +61,7 @@ export const AdmProfile = ()=>{
                     setSearch({...search,cards : result})
                 }else{
                     Array.from(Array(searchTMDB.total_pages), async (item,index)=>{
-                        if(index != 0){
+                        if(index != 0 && !item){
                             const url = `${URLValues.searchMovie}${URLValues.api_key}&query=${search.text}&language=pt-BR&page=${index+1}`
                             const searchTMDB = await getTmdb(url);
                             result = [...result,...searchTMDB.results]
@@ -81,7 +81,7 @@ export const AdmProfile = ()=>{
                     setSearch({...search,cards : result})
                 }else{
                     Array.from(Array(searchTMDB.total_pages), async (item,index)=>{
-                        if(index != 0){
+                        if(index != 0 && !item){
                             const url = `${URLValues.searchSerieAnimes}${URLValues.api_key}&query=${search.text}&language=pt-BR&page=${index+1}`
                             const searchTMDB = await getTmdb(url);
                             result = [...result,...searchTMDB.results]
@@ -98,7 +98,7 @@ export const AdmProfile = ()=>{
 
                 if(searchTMDB.total_pages > 1){
                     Array.from(Array(searchTMDB.total_pages), async (item,index)=>{
-                        if(index != 0){
+                        if(index != 0 && !item){
                             const url = `${URLValues.searchSerieAnimes}${URLValues.api_key}&query=${search.text}&language=pt-BR&page=${index+1}`
                             const searchTMDB = await getTmdb(url);
                             result = [...result,...searchTMDB.results]
@@ -116,7 +116,7 @@ export const AdmProfile = ()=>{
                         setSearch({...search,cards : result})
                     }else{
                         Array.from(Array(searchTMDB.total_pages), async (item,index)=>{
-                            if(index != 0){
+                            if(index != 0 && !item){
                                 const url = `${URLValues.searchMovie}${URLValues.api_key}&query=${search.text}&language=pt-BR&page=${index+1}`
                                 const searchTMDB = await getTmdb(url);
                                 result = [...result,...searchTMDB.results]
@@ -206,7 +206,7 @@ export const AdmProfile = ()=>{
                         </div>
                         <div className="selectFilter-menu">
                                     <label htmlFor="Categoria" className="p2 mr-1">Categoria</label>
-                                    <select name="Categoria" id="Categoria" className="categorySelect mr-3 p2" onChange={(e)=>{ (e.currentTarget.value == "Gerenciar" || e.currentTarget.value == "Adicionar") && setFeature({...feature,typeOp : e.currentTarget.value})}}>
+                                    <select name="Categoria" id="Categoria" value={feature.typeOp}  className="categorySelect mr-3 p2" onChange={(e)=>{ (e.currentTarget.value == "Gerenciar" || e.currentTarget.value == "Adicionar") && setFeature({...feature,typeOp : e.currentTarget.value})}}>
                                         <option value="Gerenciar">Gerenciar</option>
                                         <option value="Adicionar">Adicionar</option>
                                     </select>

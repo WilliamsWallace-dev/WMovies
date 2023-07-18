@@ -21,7 +21,7 @@ import { useContext, useEffect, useState } from "react";
 import { AppContext } from "../../context/AppContext";
 import { AppContextType, CardType, TypeContent } from "../../Types";
 import CardDescription from "../CardDescription";
-import { closeVideoUtil, openVideoUtil } from "../../utils/videoUtil";
+import { openVideoUtil } from "../../utils/videoUtil";
 import { Loading } from "../Loading";
 import { VideoContainer } from "../VideoContainer";
 
@@ -44,10 +44,10 @@ export default function SwiperMain({header = false, typeContent, typeSwiper} : {
         openVideoUtil(videoKey)
         if (swiperRef.current) swiperRef.current.autoplay.stop();
     }
-    const startSwiper = ()=>{
-        closeVideoUtil()
-        if (swiperRef.current) swiperRef.current.autoplay.start();
-    }
+    // const startSwiper = ()=>{
+    //     closeVideoUtil()
+    //     if (swiperRef.current) swiperRef.current.autoplay.start();
+    // }
 
     const onInit = (Swiper: SwiperCore): void => {
         swiperRef.current = Swiper;

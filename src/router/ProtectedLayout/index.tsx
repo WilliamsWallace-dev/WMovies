@@ -30,7 +30,7 @@ export const ProtecteLayout = ({children} : {children : JSX.Element})=>{
 
     const {user} = useAuth();
 
-    if(user && user.id){
+    if(user && user.id && user.typeOfAccount){
         return (
             <>
                 {children}

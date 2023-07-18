@@ -1,3 +1,4 @@
+
 import { CardType } from "../../Types";
 import { filterSelectUtil } from "../filterUtil";
 
@@ -18,6 +19,7 @@ export const changeLabelUtil = (parentNode : string, search : string)=>{
 
 export const SearchCardsUtil = async (e: { keyCode: number; } , cards : CardType[], setCards: (value: React.SetStateAction<CardType[]>) => void, search : string, setSearch: (value: React.SetStateAction<string>) => void,typeContent: string, moviesList: CardType[], seriesList: CardType[], animesList: CardType[],  setSort: (value: React.SetStateAction<string>) => void)=>{
     // console.log(search.length,e.keyCode)
+
     if(search.length == 1 && e.keyCode == 8){  
             if(typeContent != "Search"){
                 filterSelectUtil("reset",typeContent, moviesList, seriesList, animesList,setSort, setSearch, setCards)

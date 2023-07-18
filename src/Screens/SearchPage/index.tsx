@@ -29,6 +29,11 @@ export const SearchPage = ()=>{
 
     },[moviesList,seriesList,animesList])
 
+    // useEffect(()=>{
+    //     if(cards.length < (moviesList.length + seriesList.length + animesList.length))
+    //     console.log("passei aqui denovo mlk")
+    // },[cards])
+
     return(
         <>
             <section className="SearchPage">

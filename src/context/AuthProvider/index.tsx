@@ -42,7 +42,7 @@ export const AuthProvider = ({children} : IAuthProvider) =>{
                 const userOn = userCredential.user;
                 const uid = userOn.uid;
                 const uemail = userOn.email
-                if(uid == "uJqqGNTncHPWRHcC3tvivS0R1dX2" && uemail){
+                if(uid == "d71VydFfu8ONnfoQiKKjCDjlh7w2" && uemail){
                     setUser({...user,id : uid,typeOfAccount : typeAccount.admin, email : uemail})
                 }else if(uid && uemail){
                     setUser({...user,id : uid,typeOfAccount : typeAccount.user, email : uemail})
@@ -52,7 +52,7 @@ export const AuthProvider = ({children} : IAuthProvider) =>{
             })
             .catch((error) => {
                 const errorCode = error.code;
-                const errorMessage = error.message;
+                // const errorMessage = error.message;
                 return errorCode
                 // console.log(`ErrorCode : ${errorCode} - ErrorMessage : ${errorMessage}`)
             });

@@ -19,15 +19,15 @@ export default function Header (){
                     <nav>
                         <ul className="menu-list flex-center">
                             <NavLink to={"/"}><li className="menu-item mr-2 p-1 px-4">Início</li></NavLink>
-                            <NavLink to={"Lista/Filme"}><li className="menu-item mr-2 p-1 px-4">Filme</li></NavLink>
-                            <NavLink to={"Lista/Série"}><li className="menu-item mr-2 p-1 px-4">Série</li></NavLink>
-                            <NavLink to={"Lista/Anime"}><li className="menu-item mr-2 p-1 px-4">Anime</li></NavLink>
+                            <NavLink to={`Lista/Filme/page/${1}`}><li className="menu-item mr-2 p-1 px-4">Filme</li></NavLink>
+                            <NavLink to={`Lista/Série/page/${1}`}><li className="menu-item mr-2 p-1 px-4">Série</li></NavLink>
+                            <NavLink to={`Lista/Anime/page/${1}`}><li className="menu-item mr-2 p-1 px-4">Anime</li></NavLink>
                             <Link to = {`https://www.linkedin.com/in/williams-wallace`} target = {"_blank"}><li className="menu-item mr-2 p-1 px-4">#WWallace.dev</li></Link>
                         </ul>
                     </nav>
                 </div>
                 <div className="header-user flex-center">
-                    <NavLink className="activeSearch" to="Search"><SearchButton></SearchButton></NavLink>
+                    <NavLink className="activeSearch" to="Search/=/0"><SearchButton></SearchButton></NavLink>
                     {user && user.id ? <NavLink className="SignedIn" to = {`Profile/${user.id}`} ><UserButton signedIn = {true}></UserButton></NavLink> : <NavLink className="activeLogin" to="Login"><UserButton signedIn = {false}>Minha conta</UserButton></NavLink>}
                 </div>
             </header>
