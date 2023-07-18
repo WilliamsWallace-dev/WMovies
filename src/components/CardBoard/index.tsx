@@ -43,7 +43,7 @@ export const CardBoard = ({typeContent} : {typeContent : string})=>{
 
     },[moviesList,seriesList,animesList,typeContent])
 
-
+    console.log(moviesList)
 
 
     //////////////////

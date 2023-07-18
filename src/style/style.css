@@ -2730,7 +2730,6 @@ a {
   }
 }
 .Profile .filterMenu select {
-  border: 1px solid red;
   padding: 0.075rem 1rem;
   font-weight: 600;
   border-radius: 4px;
