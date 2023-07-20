@@ -2048,6 +2048,12 @@ a {
   cursor: pointer;
   transition: 0.3s ease-in;
 }
+@media screen and (max-width: 540px) {
+  .SwiperListItem {
+    width: 196px;
+    height: 290.7px;
+  }
+}
 .SwiperListItem:hover {
   transform: scale(1.05) translateY(-4px);
 }

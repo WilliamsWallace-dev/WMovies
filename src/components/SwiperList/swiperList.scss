@@ -1,5 +1,11 @@
 .SwiperList{
   //Menu Swiper
+.active{
+        opacity: 1;
+        background: rgba(240, 223, 223, 0.24);
+        filter: drop-shadow(0px 4px 32px rgba(0, 0, 0, 0.25)) drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+        transform: translateY(-2px);
+}
 .menuSwiper{
 
     justify-content: flex-start;
@@ -23,7 +29,14 @@
     flex-wrap: wrap;
     padding: 0px 16px;
     .title{
-      margin-bottom: 8px;
+      // margin-bottom: 8px;
+      margin: 0 auto 8px auto;
+      width: 100%;
+      // border: 1px solid red;
+      &::after{
+        margin: .5rem auto 0 auto;
+      }
+
     }
 
     &::after{
@@ -148,6 +161,13 @@ body,html{
   max-width: 232px;
   height: 100%;
 
+  @media screen and (max-width: 540px){
+    width: 196px;
+    height: 100%;
+    margin: 1rem 0;
+}
+
+    // border: 1px solid red;
 //   z-index: -999;
 
   /* Center slide text vertically */

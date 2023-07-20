@@ -132,6 +132,14 @@ export default function SwiperList ({typeSwiper = "Filme" , id} : {typeSwiper : 
         setSwiperList(list)
     }
 
+    const activeButton = (e:any)=>{
+        
+        const buttons =  document.querySelectorAll(".SwiperList-buttonContainer button")
+        buttons.forEach((button)=>{
+            button.classList.remove("active")
+        })
+        e.currentTarget.classList.toggle("active")
+    }
     // console.log(`TO aqui ; Id : ${id}`)
 
     // window.addEventListener('resize',()=>{
@@ -158,9 +166,9 @@ export default function SwiperList ({typeSwiper = "Filme" , id} : {typeSwiper : 
                             <div className="SwiperList-buttonContainer flex-center">
                                 { !id  ?
                                     <>
-                                        <button className="starButton backgroundStar p3 mr-2 my-1" onClick={(e)=>{filterSwiper(e.currentTarget.innerHTML)}}>Lançamentos</button>
-                                        <button className="sumButton p3 mr-2 my-1" onClick={(e)=>{filterSwiper(e.currentTarget.innerHTML)}}>Novos Filmes</button>
-                                        <button className="popularButton p3" onClick={(e)=>{filterSwiper(e.currentTarget.innerHTML)}}>Populares</button>
+                                        <button className="starButton active backgroundStar p3 mr-2 my-1" onClick={(e)=>{filterSwiper(e.currentTarget.innerHTML); activeButton(e)}}>Lançamentos</button>
+                                        <button className="sumButton p3 mr-2 my-1" onClick={(e)=>{filterSwiper(e.currentTarget.innerHTML); activeButton(e)}}>Novos Filmes</button>
+                                        <button className="popularButton p3" onClick={(e)=>{filterSwiper(e.currentTarget.innerHTML); activeButton(e)}}>Populares</button>
                                     </>
                                     :
                                     <></>

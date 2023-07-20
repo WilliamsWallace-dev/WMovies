@@ -4,6 +4,11 @@
     width: 232px;
     height: 344.14px;
 
+    @include responsive(xs){
+        width: 196px;
+        height: 290.7px;
+    }
+
     justify-content: flex-end;
     align-items: center;
 
