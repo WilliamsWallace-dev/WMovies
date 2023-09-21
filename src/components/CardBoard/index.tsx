@@ -234,7 +234,7 @@ export const CardBoard = ({typeContent} : {typeContent : string})=>{
                             </div>
                             
                             </div> */}
-                                <FilterMenu parentNode= {"CardBoard"} cards = {cards} setCards = {setCards} search = {search} setSearch = {setSearch} typeContent = {typeContent}></FilterMenu>
+                                <FilterMenu parentNode= {"CardBoard"} cards = {cards} setCards = {setCards} search = {search} setSearch = {setSearch} typeContent = {"Search"}></FilterMenu>
 
                 </div>
                 <div className="featuresProfile flex-center flex-column ">
