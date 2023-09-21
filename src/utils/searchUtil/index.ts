@@ -1,5 +1,5 @@
 
-import { CardType } from "../../Types";
+import { CardType, TypeContent } from "../../Types";
 import { filterSelectUtil } from "../filterUtil";
 
 export const handleFieldsChangeUtil = (e : {currentTarget : {value : string}}, setSearch : (value: React.SetStateAction<string>) => void)=>{
@@ -40,7 +40,21 @@ export const SearchCardsUtil = async (e: { keyCode: number; }, setCards: (value:
         // let auxResult = [] as CardType [] | undefined;
         const aux = search.split(" ");
         aux.forEach((text)=>{ 
-            result = [...moviesList,...seriesList,...animesList].filter((card) => {
+            switch (typeContent) {
+                case TypeContent.Filme : 
+                result = [...moviesList]
+                    break;
+                case TypeContent.Série : 
+                result = [...seriesList]
+                    break;
+                case TypeContent.Anime : 
+                result = [...animesList]
+                    break;
+                default : 
+                    result = [...moviesList,...seriesList,...animesList]
+            }
+            
+                result = result.filter((card) => {
                 let found = false
                     if(card.name){
                         card.name.split(/[ -/;,:]/).forEach((e)=>{

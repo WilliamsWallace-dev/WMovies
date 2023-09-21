@@ -6,6 +6,7 @@ import Card from "../Card"
 import { PaginationComponent } from "../PaginationComponent"
 import { FilterMenu } from "../FilterMenu"
 import { filterSelectUtil } from "../../utils/filterUtil"
+import { MovieTime } from "../MovieTime"
 
 
 
@@ -234,13 +235,13 @@ export const CardBoard = ({typeContent} : {typeContent : string})=>{
                             </div>
                             
                             </div> */}
-                                <FilterMenu parentNode= {"CardBoard"} cards = {cards} setCards = {setCards} search = {search} setSearch = {setSearch} typeContent = {"Search"}></FilterMenu>
+                                <FilterMenu parentNode= {"CardBoard"} cards = {cards} setCards = {setCards} search = {search} setSearch = {setSearch} typeContent = {typeContent}></FilterMenu>
 
                 </div>
                 <div className="featuresProfile flex-center flex-column ">
                             <section className="cardContainer flex-center flex-wrap py-4 mt-3">
                                 {
-                                    currentItens ? currentItens.map((card)=>{
+                                    currentItens && currentItens.length > 0 ? currentItens.map((card)=>{
                                         return(
                                             <>
                                                 <div className="m-2">
@@ -249,7 +250,7 @@ export const CardBoard = ({typeContent} : {typeContent : string})=>{
                                                 
                                             </>
                                         )
-                                    }) : <></>
+                                    }) : <div className="mb-5"> <MovieTime></MovieTime> </div>
                                     
                                 }
                             </section>
