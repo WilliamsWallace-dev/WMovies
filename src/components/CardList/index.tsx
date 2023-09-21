@@ -8,7 +8,7 @@ import { PaginationComponent } from "../PaginationComponent"
 
 
 export const CardList = ({listCards} : {listCards : CardType[]})=>{
-    console.log("to aqui")
+    // console.log("to aqui")
     const itensPerPage = 15;
     const [currentPage,setCurrentPage] = useState(0)    
 

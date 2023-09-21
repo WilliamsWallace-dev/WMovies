@@ -28,7 +28,6 @@ export const SearchPage = ()=>{
         
 
     },[moviesList,seriesList,animesList])
-
     // useEffect(()=>{
     //     if(cards.length < (moviesList.length + seriesList.length + animesList.length))
     //     console.log("passei aqui denovo mlk")
@@ -39,7 +38,7 @@ export const SearchPage = ()=>{
             <section className="SearchPage">
                 <FilterMenu parentNode= {"SearchPage"} cards = {cards} setCards = {setCards} search = {search} setSearch = {setSearch} typeContent = {`Search`}></FilterMenu>
                 {
-                    cards.length == [...moviesList,...animesList,...seriesList].length ? 
+                    cards.length == [...moviesList,...animesList,...seriesList].length || cards.length == 0 ? 
                         <>
                             {/* <MovieTime></MovieTime> */}
                             <div className="mb-5"> <MovieTime></MovieTime> </div>

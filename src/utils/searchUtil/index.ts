@@ -17,12 +17,17 @@ export const changeLabelUtil = (parentNode : string, search : string)=>{
         }  
 }
 
-export const SearchCardsUtil = async (e: { keyCode: number; } , cards : CardType[], setCards: (value: React.SetStateAction<CardType[]>) => void, search : string, setSearch: (value: React.SetStateAction<string>) => void,typeContent: string, moviesList: CardType[], seriesList: CardType[], animesList: CardType[],  setSort: (value: React.SetStateAction<string>) => void)=>{
+export const SearchCardsUtil = async (e: { keyCode: number; } , cards : CardType[], setCards: (value: React.SetStateAction<CardType[]>) => void, search : string, setSearch: (value: React.SetStateAction<string>) => void,typeContent: string, moviesList: CardType[], seriesList: CardType[], animesList: CardType[])=>{
     // console.log(search.length,e.keyCode)
+    // console.log("To aqui ")
+    // console.log(e.keyCode)
+    // console.log(cards)
+    // console.log(search)
+
 
     if(search.length == 1 && e.keyCode == 8){  
             if(typeContent != "Search"){
-                filterSelectUtil("reset",typeContent, moviesList, seriesList, animesList,setSort, setSearch, setCards)
+                filterSelectUtil(typeContent, moviesList, seriesList, animesList, setSearch, setCards)
             }else{
                 setSearch("")
                 setCards([...moviesList,...seriesList,...animesList])
@@ -35,7 +40,7 @@ export const SearchCardsUtil = async (e: { keyCode: number; } , cards : CardType
         // let auxResult = [] as CardType [] | undefined;
         const aux = search.split(" ");
         aux.forEach((text)=>{ 
-            result = cards.filter((card) => {
+            result = [...moviesList,...seriesList,...animesList].filter((card) => {
                 let found = false
                     if(card.name){
                         card.name.split(/[ -/;,:]/).forEach((e)=>{

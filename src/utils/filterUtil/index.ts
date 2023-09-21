@@ -1,19 +1,19 @@
 import { MouseEvent } from "react";
 import { CardType, TypeContent } from "../../Types";
 
-export const filterSelectUtil = (sort : string, typeContent : string,moviesList : CardType[],seriesList : CardType[],animesList : CardType[],  setSort: (value: React.SetStateAction<string>) => void ,setSearch : (value: React.SetStateAction<string>) => void,setCards: (value: React.SetStateAction<CardType[]>) => void)=>{
+export const filterSelectUtil = (typeContent : string,moviesList : CardType[],seriesList : CardType[],animesList : CardType[] ,setSearch : (value: React.SetStateAction<string>) => void,setCards: (value: React.SetStateAction<CardType[]>) => void)=>{
 
     let listCard : CardType[] = [] as CardType[];
 
     switch (typeContent) {
         case TypeContent.Filme : 
-            listCard = moviesList
+            listCard = [...moviesList]
             break;
         case TypeContent.Série : 
-            listCard = seriesList
+            listCard = [...seriesList]
             break;
         case TypeContent.Anime :
-            listCard = animesList
+            listCard = [...animesList]
             break;
     }
 
@@ -67,11 +67,13 @@ export const filterSelectUtil = (sort : string, typeContent : string,moviesList 
         listCard = aux
     }
     setCards(listCard)
-    setSort(sort)
+    
+    
 }
 
 
-export const ReverCardsUtil = (e: MouseEvent<HTMLButtonElement>,cards : CardType[],setCards: (value: React.SetStateAction<CardType[]>) => void,setSort: (value: React.SetStateAction<string>) => void)=>{
-    setCards(cards.reverse())
-    setSort(String(e.currentTarget.classList.toggle("rotateIcon")))
+export const ReverCardsUtil = (e: MouseEvent<HTMLButtonElement>,cards : CardType[],setCards: (value: React.SetStateAction<CardType[]>) => void)=>{
+    const newCards = [...cards].reverse()
+    setCards(newCards)
+    e.currentTarget.classList.toggle("rotateIcon")
 }

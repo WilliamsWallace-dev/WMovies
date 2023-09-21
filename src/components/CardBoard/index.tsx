@@ -4,6 +4,8 @@ import { useState, useContext, useEffect, MouseEvent } from "react"
 import { AppContext } from "../../context/AppContext"
 import Card from "../Card"
 import { PaginationComponent } from "../PaginationComponent"
+import { FilterMenu } from "../FilterMenu"
+import { filterSelectUtil } from "../../utils/filterUtil"
 
 
 
@@ -11,7 +13,7 @@ export const CardBoard = ({typeContent} : {typeContent : string})=>{
     
     const [cards,setCards] = useState([] as CardType [])
 
-    const [sort,setSort] = useState("")
+    const [sort,setSort] = useState(true as boolean)
 
     const {moviesList,seriesList,animesList} = useContext(AppContext)
 
@@ -31,7 +33,8 @@ export const CardBoard = ({typeContent} : {typeContent : string})=>{
                 setCards(animesList)
                 break;
         }
-        sort && setSearch("")
+        // sort && setSearch("")
+        setSearch("")
         const label = document.querySelector("#searchLabel")
         if(label != null) label.innerHTML = "Digite o Título do Filmes, Serie..."
 
@@ -39,64 +42,63 @@ export const CardBoard = ({typeContent} : {typeContent : string})=>{
             if(index == 0) element.value = "Ano" 
             else element.value = "Todos"  
         })
-        filterSelect("Ano")
+        filterSelectUtil(typeContent ,moviesList,seriesList,animesList,setSearch ,setCards)
 
     },[moviesList,seriesList,animesList,typeContent])
 
-    console.log(moviesList)
 
 
     //////////////////
 
 
-    const handleFieldsChange = (e : {currentTarget : {value : string}})=>{
-        setSearch(e.currentTarget.value)
-    }
+    // const handleFieldsChange = (e : {currentTarget : {value : string}})=>{
+    //     setSearch(e.currentTarget.value)
+    // }
 
-    const changeLabel = ()=>{
-        const label = document.querySelector("#searchLabel") ;
+    // const changeLabel = ()=>{
+    //     const label = document.querySelector("#searchLabel") ;
 
-            if(search != "" && label)
-                label.innerHTML = ""
-            else if(label) {
-                // console.log("mudei")
-                label.innerHTML = "Digite o Título do Filmes, Serie..."
-            }  
-    }
+    //         if(search != "" && label)
+    //             label.innerHTML = ""
+    //         else if(label) {
+    //             // console.log("mudei")
+    //             label.innerHTML = "Digite o Título do Filmes, Serie..."
+    //         }  
+    // }
     
-    const SearchCards = async (e: { keyCode: number; })=>{
-        // console.log(search.length,e.keyCode)
-        if(search.length == 1 && e.keyCode == 8){
-            filterSelect("reset")
-        } else
-        if(e.keyCode == 13){
-            let result = [] as CardType [] | undefined;
-            // let auxResult = [] as CardType [] | undefined;
-            const aux = search.split(" ");
-            aux.forEach((text)=>{ 
-                result = cards.filter((card) => {
-                    let found = false
-                        if(card.name){
-                            card.name.split(/[ -/;,:]/).forEach((e)=>{
-                                if(e.length > 2 && e.toUpperCase() == text.toUpperCase())
-                                    found = true;
-                            })
-                        }else if(card.title){
-                            card.title.split(/[ -/;,:]/).forEach((e)=>{
-                                if(e.length > 2 && e.toUpperCase() == text.toUpperCase())
-                                    found = true;
-                            })
-                        }
-                        return found
-                })
-                // if(auxResult){
-                //     result = [...result,...auxResult]
-                // }
-            })
-            // console.log(result)
-            result && setCards(result)
-        }
-    }
+    // const SearchCards = async (e: { keyCode: number; })=>{
+    //     // console.log(search.length,e.keyCode)
+    //     if(search.length == 1 && e.keyCode == 8){
+    //         filterSelect("reset")
+    //     } else
+    //     if(e.keyCode == 13){
+    //         let result = [] as CardType [] | undefined;
+    //         // let auxResult = [] as CardType [] | undefined;
+    //         const aux = search.split(" ");
+    //         aux.forEach((text)=>{ 
+    //             result = cards.filter((card) => {
+    //                 let found = false
+    //                     if(card.name){
+    //                         card.name.split(/[ -/;,:]/).forEach((e)=>{
+    //                             if(e.length > 2 && e.toUpperCase() == text.toUpperCase())
+    //                                 found = true;
+    //                         })
+    //                     }else if(card.title){
+    //                         card.title.split(/[ -/;,:]/).forEach((e)=>{
+    //                             if(e.length > 2 && e.toUpperCase() == text.toUpperCase())
+    //                                 found = true;
+    //                         })
+    //                     }
+    //                     return found
+    //             })
+    //             // if(auxResult){
+    //             //     result = [...result,...auxResult]
+    //             // }
+    //         })
+    //         // console.log(result)
+    //         result && setCards(result)
+    //     }
+    // }
 
     const itensPerPage = 15;
     const [currentPage,setCurrentPage] = useState(0)    
@@ -107,78 +109,78 @@ export const CardBoard = ({typeContent} : {typeContent : string})=>{
     const currentItens =  cards ? cards.slice(startIndex,endIndex) : [] as  CardType []
 
 
-    const filterSelect = (sort : string)=>{
+    // const filterSelect = (sort : string)=>{
 
-        let listCard : CardType[];
+    //     let listCard : CardType[];
 
-        switch (typeContent) {
-            case TypeContent.Filme : 
-                listCard = moviesList
-                break;
-            case TypeContent.Série : 
-                listCard = seriesList
-                break;
-            default :
-                listCard = animesList
-                break;
-        }
+    //     switch (typeContent) {
+    //         case TypeContent.Filme : 
+    //             listCard = moviesList
+    //             break;
+    //         case TypeContent.Série : 
+    //             listCard = seriesList
+    //             break;
+    //         default :
+    //             listCard = animesList
+    //             break;
+    //     }
 
-        setSearch("")
-        const label = document.querySelector("#searchLabel")
-        if(label != null) label.innerHTML = "Digite o Título do Filmes, Serie..."
+    //     setSearch("")
+    //     const label = document.querySelector("#searchLabel")
+    //     if(label != null) label.innerHTML = "Digite o Título do Filmes, Serie..."
 
-        const filter = ["Todos","Todos"]
-        document.querySelectorAll("select").forEach((element, index) =>{
-            filter[index] = element.value            
-        })
-            switch (filter[0]){
+    //     const filter = ["Todos","Todos"]
+    //     document.querySelectorAll("select").forEach((element, index) =>{
+    //         filter[index] = element.value            
+    //     })
+    //         switch (filter[0]){
     
-                case "Ano" : 
-                    listCard.sort((a,b)=>{
-                        if(a.typeContent == "Filme"){
-                            return a.release_date < b.release_date ?  1 : -1
-                        }else return a.first_air_date < b.first_air_date ?  1 : -1
-                    })
-                    break;
-                case "Título" : 
-                    listCard.sort((a,b)=>{
-                        if(a.typeContent == "Filme"){
-                            return a.title > b.title ?  1 : -1
-                        }else return a.name > b.name ?  1 : -1
-                    })
-                    break;
-                case "Rating" : 
-                    listCard.sort((a,b)=>{
-                            return a.vote_average < b.vote_average ?  1 : -1
-                    })
-                    break;
-            }
+    //             case "Ano" : 
+    //                 listCard.sort((a,b)=>{
+    //                     if(a.typeContent == "Filme"){
+    //                         return a.release_date < b.release_date ?  1 : -1
+    //                     }else return a.first_air_date < b.first_air_date ?  1 : -1
+    //                 })
+    //                 break;
+    //             case "Título" : 
+    //                 listCard.sort((a,b)=>{
+    //                     if(a.typeContent == "Filme"){
+    //                         return a.title > b.title ?  1 : -1
+    //                     }else return a.name > b.name ?  1 : -1
+    //                 })
+    //                 break;
+    //             case "Rating" : 
+    //                 listCard.sort((a,b)=>{
+    //                         return a.vote_average < b.vote_average ?  1 : -1
+    //                 })
+    //                 break;
+    //         }
 
         
 
-        let aux : CardType[] | undefined
+    //     let aux : CardType[] | undefined
 
-        if(filter[1] != "Todos"){
-            console.log(listCard)
-            aux = listCard?.filter((card)=>{
-                let found = false
-                card.genres?.forEach((e)=>{
-                    if(e.id == Number(filter[1])){
-                        found = true
-                    }    
-                })
-                return found;
-            })
-            listCard = aux
-        }
-        setCards(listCard)
-        setSort(sort)
-    }
+    //     if(filter[1] != "Todos"){
+    //         console.log(listCard)
+    //         aux = listCard?.filter((card)=>{
+    //             let found = false
+    //             card.genres?.forEach((e)=>{
+    //                 if(e.id == Number(filter[1])){
+    //                     found = true
+    //                 }    
+    //             })
+    //             return found;
+    //         })
+    //         listCard = aux
+    //     }
+    //     setCards(listCard)
+    //     setSort(sort)
+    // }
 
-    const ReverCards = (e: MouseEvent<HTMLButtonElement>)=>{
-        setCards(cards.reverse())
-        setSort(String(e.currentTarget.classList.toggle("rotateIcon")))
-    }
+    // const ReverCards = (e: MouseEvent<HTMLButtonElement>)=>{
+    //     setCards(cards.reverse())
+    //     setSort(String(e.currentTarget.classList.toggle("rotateIcon")))
+    // }
 
 
 
@@ -199,7 +201,7 @@ export const CardBoard = ({typeContent} : {typeContent : string})=>{
                                 <button className="second-button favoriteActive mr-2" onClick={(e)=>{favoritesActive(e)}}>Favoritos</button>
                                 <button className="second-button seeLater" onClick={(e)=>{seeLaterActive(e)}}>Ver Depois</button>
                             </div> */}
-                            <div className="flex-center flex-wrap">
+                            {/* <div className="flex-center flex-wrap">
                                 <div className="inputSearch">
                                         <input className="inputSearchTarget" type="text" id="search" value={search} onChange={handleFieldsChange}  onBlur={changeLabel} onKeyDown={SearchCards} placeholder=""/>
                                         <label id="searchLabel" htmlFor="search">Digite o Título do Filmes, Serie...</label>
@@ -233,7 +235,9 @@ export const CardBoard = ({typeContent} : {typeContent : string})=>{
                                     <button className="buttonIcon buttonIconReverse" onClick={(e)=>{ReverCards(e)}}></button>
                             </div>
                             
-                            </div>
+                            </div> */}
+                                <FilterMenu parentNode= {"CardBoard"} cards = {cards} setCards = {setCards} search = {search} setSearch = {setSearch} typeContent = {typeContent}></FilterMenu>
+
                 </div>
                 <div className="featuresProfile flex-center flex-column ">
                             <section className="cardContainer flex-center flex-wrap py-4 mt-3">

@@ -4,11 +4,12 @@ import Card from "../Card";
 import { AppContextType, CardType, TypeContent } from "../../Types";
 
 // Context
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { AppContext } from "../../context/AppContext";
 
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
+import SwiperCore from '../../../node_modules/swiper';
 
 // Import Swiper styles
 import "swiper/css";
@@ -21,6 +22,7 @@ import "./swiperList.css"
 import { Navigation } from "../../../node_modules/swiper";
 import { Link } from "react-router-dom";
 import { Loading } from "../Loading";
+import React from "react";
 
 
 
@@ -32,6 +34,12 @@ export default function SwiperList ({typeSwiper = "Filme" , id} : {typeSwiper : 
     const [swiperList,setSwiperList] = useState <CardType[] | null>(null)
 
     const [filter,setFilter] = useState("")
+
+    const swiperRef = React.useRef<SwiperCore>();
+
+    const onInit = (Swiper: SwiperCore): void => {
+        swiperRef.current = Swiper;
+      };
 
     // const [recomendations,setRecomendations] = useState([] as CardType [])
 
@@ -98,6 +106,9 @@ export default function SwiperList ({typeSwiper = "Filme" , id} : {typeSwiper : 
             const randomNumber  = Math.floor(Math.random() * (recomentionCards.length / 10 ) * 9)
             recomentionCards = recomentionCards.slice(randomNumber,randomNumber + 10)
             setSwiperList(recomentionCards)
+            if (swiperRef.current) {
+                swiperRef.current?.slideTo(0);
+              }
         }
     },[id,moviesList,seriesList,animesList])
 
@@ -130,6 +141,10 @@ export default function SwiperList ({typeSwiper = "Filme" , id} : {typeSwiper : 
         }
         setFilter(option)
         setSwiperList(list)
+        
+        if (swiperRef.current) {
+            swiperRef.current?.slideTo(0);
+          }
     }
 
     const activeButton = (e:any)=>{
@@ -149,7 +164,6 @@ export default function SwiperList ({typeSwiper = "Filme" , id} : {typeSwiper : 
             
     //         console.log(swiper?.getAttributeNames())
     // })
-
 
     if(swiperList?.length == 0 ){
         return (
@@ -177,6 +191,7 @@ export default function SwiperList ({typeSwiper = "Filme" , id} : {typeSwiper : 
                             
                         </div>
                         <Swiper
+                            onInit={onInit}
                             slidesPerView={"auto"}
                             centeredSlides={false}
                             spaceBetween={24}
