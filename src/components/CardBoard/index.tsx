@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom"
-import { CardType, Genre, TypeContent } from "../../Types"
-import { useState, useContext, useEffect, MouseEvent } from "react"
+import { CardType, TypeContent } from "../../Types"
+import { useState, useContext, useEffect } from "react"
 import { AppContext } from "../../context/AppContext"
 import Card from "../Card"
 import { PaginationComponent } from "../PaginationComponent"
@@ -12,8 +12,6 @@ import { filterSelectUtil } from "../../utils/filterUtil"
 export const CardBoard = ({typeContent} : {typeContent : string})=>{
     
     const [cards,setCards] = useState([] as CardType [])
-
-    const [sort,setSort] = useState(true as boolean)
 
     const {moviesList,seriesList,animesList} = useContext(AppContext)
 

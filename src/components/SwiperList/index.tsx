@@ -4,7 +4,7 @@ import Card from "../Card";
 import { AppContextType, CardType, TypeContent } from "../../Types";
 
 // Context
-import { useContext, useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { AppContext } from "../../context/AppContext";
 
 // Import Swiper React components
