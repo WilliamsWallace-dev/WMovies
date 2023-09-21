@@ -33,6 +33,10 @@ export const FilterMenu = ({parentNode,cards,setCards, search, setSearch,typeCon
             <>             
                 <section className="filterMenu container flex-space-around w-100" >
                             <h3 className="title mr-3">{typeContent}</h3>
+                            {/* <div className="inputSearch">
+                                <input className="inputSearchTarget" type="text" id="search" value={search} onChange={(e)=>{handleFieldsChange(e,setSearch)}}  onBlur={()=>{changeLabel(parentNode,search)}} onKeyDown={(e)=>{SearchCards(e,setCards,search,setSearch,typeContent, moviesList, seriesList, animesList)}} placeholder=""/>
+                                <label id="searchLabel" htmlFor="search">Digite o Título do Filmes, Serie...</label>
+                            </div>   */}
                             <div className="inputSearch">
                                 <input className="inputSearchTarget" type="text" id="search" value={search} onChange={(e)=>{handleFieldsChange(e,setSearch)}}  onBlur={()=>{changeLabel(parentNode,search)}} onKeyDown={(e)=>{SearchCards(e,setCards,search,setSearch,typeContent, moviesList, seriesList, animesList)}} placeholder=""/>
                                 <label id="searchLabel" htmlFor="search">Digite o Título do Filmes, Serie...</label>

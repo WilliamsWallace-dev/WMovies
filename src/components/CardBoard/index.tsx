@@ -194,7 +194,7 @@ export const CardBoard = ({typeContent} : {typeContent : string})=>{
                 <div className="popCorn-left "></div>
                 <div className="popCorn-right "></div>
                 <div className="filterMenu flex-center flex-wrap w-100" >
-                            <h3 className="title mr-4">{typeContent}</h3>
+                            {/* <h3 className="title mr-4">{typeContent}</h3> */}
                             {/* <div>
                                 <button className="second-button favoriteActive mr-2" onClick={(e)=>{favoritesActive(e)}}>Favoritos</button>
                                 <button className="second-button seeLater" onClick={(e)=>{seeLaterActive(e)}}>Ver Depois</button>
