@@ -17,10 +17,10 @@ export const changeLabelUtil = (parentNode : string, search : string)=>{
         }  
 }
 
-export const SearchCardsUtil = async (e: { keyCode: number; }, setCards: (value: React.SetStateAction<CardType[]>) => void, search : string, setSearch: (value: React.SetStateAction<string>) => void,typeContent: string, moviesList: CardType[], seriesList: CardType[], animesList: CardType[])=>{
+export const SearchCardsUtil = async (e: { keyCode: number,key : string}, setCards: (value: React.SetStateAction<CardType[]>) => void, search : string, setSearch: (value: React.SetStateAction<string>) => void,typeContent: string, moviesList: CardType[], seriesList: CardType[], animesList: CardType[])=>{
     // console.log(search.length,e.keyCode)
     // console.log("To aqui ")
-    // console.log(e.keyCode)
+    console.log(e.key)
     // console.log(cards)
     // console.log(search)
 
@@ -35,7 +35,7 @@ export const SearchCardsUtil = async (e: { keyCode: number; }, setCards: (value:
                 if(label != null) label.innerHTML = "Digite o Título do Filmes, Serie..."  
             }
     } else
-    if(e.keyCode == 13){
+    if(e.keyCode == 13 && e.key == "Enter"){
         let result = [] as CardType [] | undefined;
         // let auxResult = [] as CardType [] | undefined;
         const aux = search.split(" ");
