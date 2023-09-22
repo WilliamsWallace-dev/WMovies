@@ -36,6 +36,7 @@ export const SearchCardsUtil = async (e: { keyCode: number,key : string}, setCar
             }
     } else
     if(e.keyCode == 13 && e.key == "Enter"){
+        alert("to aqui karai")
         let result = [] as CardType [] | undefined;
         // let auxResult = [] as CardType [] | undefined;
         const aux = search.split(" ");
