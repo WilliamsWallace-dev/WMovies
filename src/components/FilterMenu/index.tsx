@@ -44,15 +44,15 @@ export const FilterMenu = ({parentNode,cards,setCards, search, setSearch,typeCon
                                 <label id="searchLabel" htmlFor="search">Digite o Título do Filmes, Serie...</label>
                             </div>  
                             <div className="selectFilter-menu">
-                                {/* <label htmlFor="Categoria" className="p2 mr-1">Ordenar por</label>
+                                <label htmlFor="Categoria" className="p2 mr-1">Ordenar por</label>
 
                                 <select name="Sort" id="Sort" className="sortSelect mr-3 p2" onChange={()=> filterSelectUtil(typeContent, moviesList, seriesList, animesList, setSearch, setCards)}>
                                     <option value="Ano">Ano</option>
                                     <option value="Título">Título</option>
                                     <option value="Rating">Rating</option>
-                                </select> */}
+                                </select>
 
-                                <label htmlFor="Gênero" className="p2 mr-1">Gênero</label>
+                                {/* <label htmlFor="Gênero" className="p2 mr-1">Gênero</label>
 
                                 <select name="Gênero" id="Gênero" className="genreSelect p2 mr-3" onChange={()=> filterSelectUtil(typeContent, moviesList, seriesList, animesList, setSearch, setCards)}>
                                     <option value="Todos">Todos</option>
@@ -63,7 +63,7 @@ export const FilterMenu = ({parentNode,cards,setCards, search, setSearch,typeCon
                                             </>
                                         )
                                     })}
-                                </select>
+                                </select> */}
                                 <button className="buttonIcon buttonIconReverse" onClick={(e)=>{ReverCardsUtil(e,cards,setCards)}}></button>
                             </div>
                         </section>    
