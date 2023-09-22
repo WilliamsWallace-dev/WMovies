@@ -1,10 +1,10 @@
-import { CardType, Genre } from "../../Types"
+// import { CardType, Genre } from "../../Types"
+// import { SearchCardsUtil, changeLabelUtil } from "../../utils/searchUtil"
+// import {ReverCardsUtil, filterSelectUtil} from "../../utils/filterUtil"
+
+import { CardType } from "../../Types"
 import { SearchCardsUtil, changeLabelUtil } from "../../utils/searchUtil"
 import {ReverCardsUtil, filterSelectUtil} from "../../utils/filterUtil"
-
-// import { CardType } from "../../Types"
-// import { SearchCardsUtil, changeLabelUtil } from "../../utils/searchUtil"
-// import { filterSelectUtil} from "../../utils/filterUtil"
 
 import { useContext, useEffect } from "react"
 import { AppContext } from "../../context/AppContext"
