@@ -3,7 +3,7 @@ import { CardType, TypeContent } from "../../Types";
 
 export const filterSelectUtil = (typeContent : string,moviesList : CardType[],seriesList : CardType[],animesList : CardType[] ,setSearch : (value: React.SetStateAction<string>) => void,setCards: (value: React.SetStateAction<CardType[]>) => void)=>{
 
-    let listCard : CardType[] = [] as CardType[];
+    let listCard : CardType[] | undefined = [] as CardType[];
 
     switch (typeContent) {
         case TypeContent.Filme : 
@@ -54,7 +54,6 @@ export const filterSelectUtil = (typeContent : string,moviesList : CardType[],se
     let aux : CardType[] | undefined
 
     if(filter[1] != "Todos"){
-        console.log(listCard)
         aux = listCard?.filter((card)=>{
             let found = false
             card.genres?.forEach((e)=>{

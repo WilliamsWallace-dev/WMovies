@@ -18,7 +18,7 @@ const changeLabel = (parentNode : string, search : string)=>{
     changeLabelUtil(parentNode, search)
 }
 
-const SearchCards = async (e : {currentTarget : {value : string}} , setCards: (value: React.SetStateAction<CardType[]>) => void, setSearch: (value: React.SetStateAction<string>) => void, typeContent: string, moviesList: CardType[], seriesList: CardType[], animesList: CardType[])=>{
+const SearchCards = async (e : {currentTarget : {value : string}}, setCards: (value: React.SetStateAction<CardType[]>) => void, setSearch: (value: React.SetStateAction<string>) => void, typeContent: string, moviesList: CardType[], seriesList: CardType[], animesList: CardType[])=>{
     SearchCardsUtil(e,setCards,setSearch,typeContent, moviesList, seriesList, animesList)
 }
 
