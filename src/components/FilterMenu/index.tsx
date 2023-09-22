@@ -44,13 +44,13 @@ export const FilterMenu = ({parentNode,cards,setCards, search, setSearch,typeCon
                                 <label id="searchLabel" htmlFor="search">Digite o Título do Filmes, Serie...</label>
                             </div>  
                             <div className="selectFilter-menu">
-                                <label htmlFor="Categoria" className="p2 mr-1">Ordenar por</label>
+                                {/* <label htmlFor="Categoria" className="p2 mr-1">Ordenar por</label>
 
                                 <select name="Sort" id="Sort" className="sortSelect mr-3 p2" onChange={()=> filterSelectUtil(typeContent, moviesList, seriesList, animesList, setSearch, setCards)}>
                                     <option value="Ano">Ano</option>
                                     <option value="Título">Título</option>
                                     <option value="Rating">Rating</option>
-                                </select>
+                                </select> */}
 
                                 {/* <label htmlFor="Gênero" className="p2 mr-1">Gênero</label>
 
