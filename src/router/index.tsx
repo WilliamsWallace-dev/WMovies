@@ -1,5 +1,5 @@
 
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import Header from "../components/Header";
 import { HomePage } from "../Screens/HomePage";
 import { DescriptionID } from "../Screens/DescriptionID";
@@ -32,7 +32,7 @@ export const AppRoutes = ()=>{
                         <Route path="Profile/:id" element = {user && user.typeOfAccount != typeAccount.admin ? <ProtecteLayout><UserProfile></UserProfile></ProtecteLayout> : <ProtecteLayout><AdmProfile></AdmProfile></ProtecteLayout>}></Route>
                         <Route path="Lista/:typeContent/page/:pg" element = {<CardBoardPage></CardBoardPage>}></Route>
                         <Route path="Search" element = {<SearchPage></SearchPage>}></Route>
-                        <Route path="*" element = {<HomePage></HomePage>}></Route>
+                        <Route path="*" element = {<Navigate to="/" />}></Route>
                     </Route>
                 </Routes>
             </BrowserRouter>
