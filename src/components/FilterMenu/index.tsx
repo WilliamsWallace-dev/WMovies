@@ -32,6 +32,7 @@ export const FilterMenu = ({parentNode,cards,setCards, search, setSearch,typeCon
         // console.log(sort)
         typeContent != "Search" && filterSelectUtil(typeContent, moviesList, seriesList, animesList, setSearch, setCards)
     },[moviesList,seriesList,animesList,typeContent])
+
     
     if(typeContent != "Search")
         return(
@@ -39,17 +40,17 @@ export const FilterMenu = ({parentNode,cards,setCards, search, setSearch,typeCon
                 <section className="filterMenu container flex-space-around w-100" >
                             <h3 className="title mr-3">{typeContent}</h3>
                             <div className="inputSearch">
-                                <input className="inputSearchTarget" type="text" id="search" value={search} onChange={(e)=>{handleFieldsChange(e,setSearch)}}  onBlur={()=>{changeLabel(parentNode,search)}} onKeyDown={(e)=>{SearchCards(e,setCards,search,setSearch,typeContent, moviesList, seriesList, animesList)}} placeholder=""/>
+                                <input className="inputSearchTarget" type="text" id="search" name="search" value={search} onChange={(e)=>{handleFieldsChange(e,setSearch)}}  onBlur={()=>{changeLabel(parentNode,search)}} onKeyDown={(e)=>{SearchCards(e,setCards,search,setSearch,typeContent, moviesList, seriesList, animesList)}} placeholder=""/>
                                 <label id="searchLabel" htmlFor="search">Digite o Título do Filmes, Serie...</label>
                             </div>  
                             <div className="selectFilter-menu">
-                                <label htmlFor="Categoria" className="p2 mr-1">Ordenar por</label>
+                                {/* <label htmlFor="Categoria" className="p2 mr-1">Ordenar por</label>
 
                                 <select name="Sort" id="Sort" className="sortSelect mr-3 p2" onChange={()=> filterSelectUtil(typeContent, moviesList, seriesList, animesList, setSearch, setCards)}>
                                     <option value="Ano">Ano</option>
                                     <option value="Título">Título</option>
                                     <option value="Rating">Rating</option>
-                                </select>
+                                </select> */}
 
                                 <label htmlFor="Gênero" className="p2 mr-1">Gênero</label>
 
