@@ -17,16 +17,16 @@ export const changeLabelUtil = (parentNode : string, search : string)=>{
         }  
 }
 
-export const SearchCardsUtil = async (e: { keyCode?: number,key? : string, type? : string}, setCards: (value: React.SetStateAction<CardType[]>) => void, search : string, setSearch: (value: React.SetStateAction<string>) => void,typeContent: string, moviesList: CardType[], seriesList: CardType[], animesList: CardType[])=>{
+export const SearchCardsUtil = async (e : {currentTarget : {value : string}}, setCards: (value: React.SetStateAction<CardType[]>) => void, search : string, setSearch: (value: React.SetStateAction<string>) => void,typeContent: string, moviesList: CardType[], seriesList: CardType[], animesList: CardType[])=>{
     // console.log(search.length,e.keyCode)
     // console.log("To aqui ")
-    console.log(e.key)
-    alert("to aqui")
+    // alert("to aqui")
+    console.log(e.currentTarget.value)
     // console.log(cards)
     // console.log(search)
 
 
-    if(search.length == 1 && e.keyCode == 8){  
+    if(e.currentTarget.value.length == 0){  
             if(typeContent != "Search"){
                 filterSelectUtil(typeContent, moviesList, seriesList, animesList, setSearch, setCards)
             }else{
@@ -36,40 +36,41 @@ export const SearchCardsUtil = async (e: { keyCode?: number,key? : string, type?
                 if(label != null) label.innerHTML = "Digite o Título do Filmes, Serie..."  
             }
     } else
-    if(e.keyCode == 13 && e.key == "Enter"){
-        let result = [] as CardType [] | undefined;
+    if(e.currentTarget.value){
+        let cardContainer = [] as CardType [] | undefined;
+        let result = [] as CardType [];
         // let auxResult = [] as CardType [] | undefined;
-        const aux = search.split(" ");
+        const aux = e.currentTarget.value.split(" ");
         aux.forEach((text)=>{ 
             switch (typeContent) {
                 case TypeContent.Filme : 
-                result = [...moviesList]
+                cardContainer = [...moviesList]
                     break;
                 case TypeContent.Série : 
-                result = [...seriesList]
+                cardContainer = [...seriesList]
                     break;
                 case TypeContent.Anime : 
-                result = [...animesList]
+                cardContainer = [...animesList]
                     break;
                 default : 
-                    result = [...moviesList,...seriesList,...animesList]
+                    cardContainer = [...moviesList,...seriesList,...animesList]
             }
             
-                result = result.filter((card) => {
+                result = [...result,...cardContainer.filter((card) => {
                 let found = false
                     if(card.name){
-                        card.name.split(/[ -/;,:]/).forEach((e)=>{
+                        card.name.split(/[ /;,:]/).forEach((e)=>{
                             if(e.length > 2 && e.toUpperCase() == text.toUpperCase())
                                 found = true;
                         })
                     }else if(card.title){
-                        card.title.split(/[ -/;,:]/).forEach((e)=>{
+                        card.title.split(/[ /;,:]/).forEach((e)=>{
                             if(e.length > 2 && e.toUpperCase() == text.toUpperCase())
                                 found = true;
                         })
                     }
                     return found
-            })
+            })]
             // if(auxResult){
             //     result = [...result,...auxResult]
             // }

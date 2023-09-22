@@ -250,8 +250,37 @@ export const CardBoard = ({typeContent} : {typeContent : string})=>{
                                                 
                                             </>
                                         )
-                                    }) : <div className="mb-5"> <MovieTime></MovieTime> </div>
-                                    
+                                    }) : typeContent == TypeContent.Filme ? 
+                                                moviesList.map((card)=>{
+                                                    return(
+                                                        <>
+                                                            <div className="m-2">
+                                                                <Link to={`../${typeContent}/descrição/${card.id}` }><Card card = {card} key = {card.id}></Card></Link>
+                                                            </div>
+                                                            
+                                                        </>
+                                                    )
+                                                }) : typeContent == TypeContent.Série ? 
+                                                        seriesList.map((card)=>{
+                                                            return(
+                                                                <>
+                                                                    <div className="m-2">
+                                                                        <Link to={`../${typeContent}/descrição/${card.id}` }><Card card = {card} key = {card.id}></Card></Link>
+                                                                    </div>
+                                                                    
+                                                                </>
+                                                            )
+                                                        }) : typeContent == TypeContent.Anime ? 
+                                                                    animesList.map((card)=>{
+                                                                        return(
+                                                                            <>
+                                                                                <div className="m-2">
+                                                                                    <Link to={`../${typeContent}/descrição/${card.id}` }><Card card = {card} key = {card.id}></Card></Link>
+                                                                                </div>
+                                                                                
+                                                                            </>
+                                                                        )
+                                                                    }) : <div className="mb-5"> <MovieTime></MovieTime> </div>
                                 }
                             </section>
                             <PaginationComponent pages = {pages} setCurrentPage={setCurrentPage} currentPage = {currentPage}></PaginationComponent>
