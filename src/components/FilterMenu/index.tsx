@@ -1,6 +1,11 @@
-import { CardType, Genre } from "../../Types"
+// import { CardType, Genre } from "../../Types"
+// import { SearchCardsUtil, changeLabelUtil } from "../../utils/searchUtil"
+// import {ReverCardsUtil, filterSelectUtil} from "../../utils/filterUtil"
+
+import { CardType } from "../../Types"
 import { SearchCardsUtil, changeLabelUtil } from "../../utils/searchUtil"
-import {ReverCardsUtil, filterSelectUtil} from "../../utils/filterUtil"
+import { filterSelectUtil} from "../../utils/filterUtil"
+
 import { useContext, useEffect } from "react"
 import { AppContext } from "../../context/AppContext"
 
@@ -18,7 +23,7 @@ const SearchCards = async (e: { keyCode: number; } , setCards: (value: React.Set
 
 
 
-export const FilterMenu = ({parentNode,cards,setCards, search, setSearch,typeContent} : {parentNode : string, cards : CardType[], setCards: (value: React.SetStateAction<CardType[]>) => void, search : string, setSearch: (value: React.SetStateAction<string>) => void , typeContent : string})=>{
+export const FilterMenu = ({parentNode,setCards, search, setSearch,typeContent} : {parentNode : string, cards : CardType[], setCards: (value: React.SetStateAction<CardType[]>) => void, search : string, setSearch: (value: React.SetStateAction<string>) => void , typeContent : string})=>{
 
 
     const {moviesList,seriesList,animesList} = useContext(AppContext)
