@@ -31,6 +31,13 @@ export const FilterMenu = ({parentNode,cards,setCards, search, setSearch,typeCon
     if(typeContent != "Search")
         return(
             <>             
+                <section className="filterMenu Search container" >
+                            {/* <h3 className="title mr-5">Pesquisa</h3> */}
+                            <div className="inputSearch">
+                                <input className="inputSearchTarget" type="text" id="search" value={search} onChange={(e)=>{handleFieldsChange(e,setSearch)}}  onBlur={()=>{changeLabel(parentNode,search)}} onKeyDown={(e)=>{SearchCards(e,setCards,search,setSearch,typeContent, moviesList, seriesList, animesList)}} placeholder=""/>
+                                <label id="searchLabel" htmlFor="search">Digite o Título do Filmes, Serie...</label>
+                            </div>  
+            </section>    
                 <section className="filterMenu Search container flex-space-around w-100" >
                             <h3 className="title mr-3">{typeContent}</h3>
                             {/* <div className="inputSearch">
@@ -41,12 +48,12 @@ export const FilterMenu = ({parentNode,cards,setCards, search, setSearch,typeCon
                                 <input className="inputSearchTarget" type="text" id="search" value={search} onChange={(e)=>{handleFieldsChange(e,setSearch)}}  onBlur={()=>{changeLabel(parentNode,search)}} onKeyDown={(e)=>{SearchCards(e,setCards,search,setSearch,typeContent, moviesList, seriesList, animesList)}} placeholder=""/>
                                 <label id="searchLabel" htmlFor="search">Digite o Título do Filmes, Serie...</label>
                             </div>   */}
-                            <section className="filterMenu Search container" >
+                            {/* <section className="filterMenu Search container" >
                             <div className="inputSearch">
                                 <input className="inputSearchTarget" type="text" id="search" value={search} onChange={(e)=>{handleFieldsChange(e,setSearch)}}  onBlur={()=>{changeLabel(parentNode,search)}} onKeyDown={(e)=>{SearchCards(e,setCards,search,setSearch,typeContent, moviesList, seriesList, animesList)}} placeholder=""/>
                                 <label id="searchLabel" htmlFor="search">Digite o Título do Filmes, Serie...</label>
                             </div>  
-                            </section>  
+                            </section>   */}
                             <div className="selectFilter-menu">
                                 <label htmlFor="Categoria" className="p2 mr-1">Ordenar por</label>
 
