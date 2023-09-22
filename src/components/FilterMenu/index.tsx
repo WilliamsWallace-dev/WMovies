@@ -1,10 +1,10 @@
-// import { CardType, Genre } from "../../Types"
-// import { SearchCardsUtil, changeLabelUtil } from "../../utils/searchUtil"
-// import {ReverCardsUtil, filterSelectUtil} from "../../utils/filterUtil"
-
-import { CardType } from "../../Types"
+import { CardType, Genre } from "../../Types"
 import { SearchCardsUtil, changeLabelUtil } from "../../utils/searchUtil"
-import { filterSelectUtil} from "../../utils/filterUtil"
+import {ReverCardsUtil, filterSelectUtil} from "../../utils/filterUtil"
+
+// import { CardType } from "../../Types"
+// import { SearchCardsUtil, changeLabelUtil } from "../../utils/searchUtil"
+// import { filterSelectUtil} from "../../utils/filterUtil"
 
 import { useContext, useEffect } from "react"
 import { AppContext } from "../../context/AppContext"
@@ -23,7 +23,7 @@ const SearchCards = async (e: { keyCode: number; } , setCards: (value: React.Set
 
 
 
-export const FilterMenu = ({parentNode,setCards, search, setSearch,typeContent} : {parentNode : string, cards : CardType[], setCards: (value: React.SetStateAction<CardType[]>) => void, search : string, setSearch: (value: React.SetStateAction<string>) => void , typeContent : string})=>{
+export const FilterMenu = ({parentNode,cards,setCards, search, setSearch,typeContent} : {parentNode : string, cards : CardType[], setCards: (value: React.SetStateAction<CardType[]>) => void, search : string, setSearch: (value: React.SetStateAction<string>) => void , typeContent : string})=>{
 
 
     const {moviesList,seriesList,animesList} = useContext(AppContext)
@@ -42,7 +42,7 @@ export const FilterMenu = ({parentNode,setCards, search, setSearch,typeContent} 
                                 <input className="inputSearchTarget" type="text" id="search" value={search} onChange={(e)=>{handleFieldsChange(e,setSearch)}}  onBlur={()=>{changeLabel(parentNode,search)}} onKeyDown={(e)=>{SearchCards(e,setCards,search,setSearch,typeContent, moviesList, seriesList, animesList)}} placeholder=""/>
                                 <label id="searchLabel" htmlFor="search">Digite o Título do Filmes, Serie...</label>
                             </div>  
-                            {/* <div className="selectFilter-menu">
+                            <div className="selectFilter-menu">
                                 <label htmlFor="Categoria" className="p2 mr-1">Ordenar por</label>
 
                                 <select name="Sort" id="Sort" className="sortSelect mr-3 p2" onChange={()=> filterSelectUtil(typeContent, moviesList, seriesList, animesList, setSearch, setCards)}>
@@ -64,7 +64,7 @@ export const FilterMenu = ({parentNode,setCards, search, setSearch,typeContent} 
                                     })}
                                 </select>
                                 <button className="buttonIcon buttonIconReverse" onClick={(e)=>{ReverCardsUtil(e,cards,setCards)}}></button>
-                            </div> */}
+                            </div>
                         </section>    
                         
             </>      
