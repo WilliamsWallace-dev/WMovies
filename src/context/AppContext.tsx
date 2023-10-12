@@ -64,7 +64,7 @@ export const AppProvidor = ({children} : {children : ReactNode}) =>{
                 setMainCards({...mainCards,mainSeries : mainCards.mainSeries.filter((card)=> card.id != data.id)})
                 await DelDocumentDb("MainSeries", data)
             }else {
-                setMainCards({...mainCards,mainAnimes : mainCards.mainMovies.filter((card)=> card.id != data.id)})
+                setMainCards({...mainCards,mainAnimes : mainCards.mainAnimes.filter((card)=> card.id != data.id)})
                 await DelDocumentDb("MainAnimes", data)
             }
         }else{
